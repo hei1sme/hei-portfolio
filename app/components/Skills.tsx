@@ -2,18 +2,28 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-// Import icons for technologies
 import {
-  SiPython, SiTensorflow, SiPytorch, SiScikitlearn, SiPandas,
-  SiNumpy, SiReact, SiNextdotjs, SiJavascript, SiGit, SiDocker, SiPostgresql
-} from "react-icons/si";
-import { FaDatabase, FaBrain, FaCode, FaUsers } from 'react-icons/fa'; // Generic icons
+  SiPython,
+  SiTensorflow,
+  SiPytorch,
+  SiScikitlearn,
+  SiPandas,
+  SiNumpy,
+  SiKeras,
+  SiHuggingface,
+  SiOpencv,
+  SiStreamlit,
+  SiWeightsandbiases,
+  SiGit,
+  SiLinux,
+  SiJupyter,
+} from 'react-icons/si';
+import { FaDatabase, FaBrain, FaCode, FaUsers, FaLightbulb, FaWaveSquare, FaNetworkWired, FaChartLine, FaLaptopCode } from 'react-icons/fa';
 
-// --- Data Structures ---
 interface BroadSkill {
   name: string;
-  level: number; // Percentage
-  icon?: React.ReactElement; // Optional icon for broad skill
+  level: number;
+  icon: React.ReactElement;
 }
 
 interface Technology {
@@ -21,132 +31,127 @@ interface Technology {
   icon: React.ReactElement;
 }
 
-// --- Example Data (Customize this!) ---
 const broadSkills: BroadSkill[] = [
-  { name: "Programming", level: 90, icon: <FaCode className="mr-2" /> },
-  { name: "Machine Learning", level: 85, icon: <FaBrain className="mr-2" /> },
-  { name: "Deep Learning", level: 80, icon: <FaBrain className="mr-2 opacity-70" /> }, // Slightly different icon/style
-  { name: "Data Analysis", level: 88, icon: <FaDatabase className="mr-2 text-teal-400" /> },
-  { name: "Problem Solving", level: 95, icon: <FaUsers className="mr-2" /> }, // Example
-  { name: "Communication", level: 85, icon: <FaUsers className="mr-2 opacity-70" /> },
+  { name: 'ML & DL Research', level: 90, icon: <FaBrain className="text-purple-200" /> },
+  { name: 'Explainable AI (XAI)', level: 87, icon: <FaLightbulb className="text-yellow-200" /> },
+  { name: 'Time-Series Forecasting', level: 88, icon: <FaWaveSquare className="text-teal-200" /> },
+  { name: 'Multimodal Learning', level: 84, icon: <FaNetworkWired className="text-sky-200" /> },
+  { name: 'Python Engineering', level: 92, icon: <FaCode className="text-slate-100" /> },
+  { name: 'Research Leadership', level: 80, icon: <FaUsers className="text-pink-200" /> },
 ];
 
 const technologies: Technology[] = [
-  { name: "Python", icon: <SiPython size={28} className="text-blue-400" /> },
-  { name: "JavaScript", icon: <SiJavascript size={28} className="text-yellow-400"/> },
-  { name: "TensorFlow", icon: <SiTensorflow size={28} className="text-orange-500"/> },
-  { name: "PyTorch", icon: <SiPytorch size={28} className="text-red-500"/> },
-  { name: "Scikit-learn", icon: <SiScikitlearn size={28} className="text-orange-400"/> },
-  { name: "Pandas", icon: <SiPandas size={28} className="text-indigo-400"/> },
-  { name: "NumPy", icon: <SiNumpy size={28} className="text-blue-500"/> },
-  { name: "React", icon: <SiReact size={28} className="text-cyan-400"/> },
-  { name: "Next.js", icon: <SiNextdotjs size={28} className="text-white"/> }, // Use specific color or default
-  { name: "SQL", icon: <FaDatabase size={28} className="text-teal-400"/> }, 
-  { name: "Git", icon: <SiGit size={28} className="text-red-600"/> },
-  { name: "Docker", icon: <SiDocker size={28} className="text-blue-600"/> },
+  { name: 'Python', icon: <SiPython size={26} className="text-blue-400" /> },
+  { name: 'SQL', icon: <FaDatabase size={26} className="text-teal-400" /> },
+  { name: 'PyTorch', icon: <SiPytorch size={26} className="text-red-500" /> },
+  { name: 'TensorFlow', icon: <SiTensorflow size={26} className="text-orange-500" /> },
+  { name: 'Keras', icon: <SiKeras size={26} className="text-red-400" /> },
+  { name: 'HuggingFace', icon: <SiHuggingface size={26} className="text-yellow-400" /> },
+  { name: 'Scikit-learn', icon: <SiScikitlearn size={26} className="text-orange-400" /> },
+  { name: 'OpenCV', icon: <SiOpencv size={26} className="text-green-400" /> },
+  { name: 'Pandas', icon: <SiPandas size={26} className="text-indigo-400" /> },
+  { name: 'NumPy', icon: <SiNumpy size={26} className="text-blue-500" /> },
+  { name: 'Matplotlib', icon: <FaChartLine size={26} className="text-pink-300" /> },
+  { name: 'Streamlit', icon: <SiStreamlit size={26} className="text-rose-400" /> },
+  { name: 'REST API', icon: <FaNetworkWired size={26} className="text-sky-400" /> },
+  { name: 'Weights & Biases', icon: <SiWeightsandbiases size={26} className="text-amber-500" /> },
+  { name: 'Git', icon: <SiGit size={26} className="text-red-500" /> },
+  { name: 'Linux', icon: <SiLinux size={26} className="text-yellow-400" /> },
+  { name: 'Jupyter', icon: <SiJupyter size={26} className="text-orange-300" /> },
+  { name: 'VS Code', icon: <FaLaptopCode size={26} className="text-blue-400" /> },
 ];
-
-const skillItemVariants = {
-  hidden: { opacity: 0, x: -20 },
-  visible: (i: number) => ({
-    opacity: 1,
-    x: 0,
-    transition: {
-      delay: i * 0.1,
-      duration: 0.5,
-      ease: "easeOut",
-    },
-  }),
-};
-
-const techItemVariants = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: (i: number) => ({
-    opacity: 1,
-    scale: 1,
-    transition: {
-      delay: i * 0.05, // Faster stagger for icons
-      duration: 0.4,
-    },
-  }),
-};
-
 
 const Skills: React.FC = () => {
   return (
-    <section className="py-24 text-white" id="skills">
-      <div className="container mx-auto px-4">
-        <motion.h2 
-          className="text-4xl font-bold mb-16 text-left font-mono relative pl-4 border-l-4 border-purple-500 text-purple-300"
-          initial={{ opacity: 0, y: -20 }}
+    <section id="skills" className="relative py-28 text-white">
+      <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-sky-500/10 via-transparent to-transparent" />
+      <div className="relative max-w-6xl mx-auto px-6 lg:px-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+          className="mb-14 flex flex-col gap-4"
         >
-          Skills & Technologies
-        </motion.h2>
-        
-        {/* Two Column Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12">
-          
-          {/* Column 1: Broad Skills */}
-          <div className="space-y-6">
-            <h3 className="text-2xl font-semibold font-mono text-purple-400 mb-6">Core Skills</h3>
-            {broadSkills.map((skill, index) => (
-              <motion.div 
-                key={skill.name}
-                className="space-y-2"
-                variants={skillItemVariants}
-                initial="hidden"
-                whileInView="visible"
-                custom={index}
-                viewport={{ once: true, amount: 0.3 }}
-              >
-                <div className="flex justify-between items-center mb-1">
-                  <span className="font-mono font-medium text-lg text-gray-100 flex items-center">
-                    {skill.icon} {skill.name}
-                  </span>
-                  <span className="text-purple-400 font-mono text-sm font-semibold">{skill.level}%</span>
-                </div>
-                <div className="h-2.5 w-full bg-gray-700/50 rounded-full overflow-hidden">
-                  <motion.div 
-                    className="h-full bg-gradient-to-r from-purple-500 to-purple-700 rounded-full"
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${skill.level}%` }}
-                    transition={{ duration: 1, ease: [0.25, 1, 0.5, 1], delay: 0.2 + index * 0.05 }}
-                    viewport={{ once: true }}
-                  />
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-xs uppercase tracking-[0.35em] text-slate-200/80">
+            Skills
+          </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight max-w-3xl">
+            A toolkit built for rigorous experimentation, transparent storytelling, and shipping resilient AI systems.
+          </h2>
+        </motion.div>
 
-          {/* Column 2: Technologies */}
-          <div className="space-y-6">
-             <h3 className="text-2xl font-semibold font-mono text-purple-400 mb-6">Technologies</h3>
-             <div className="flex flex-wrap gap-x-6 gap-y-6">
-                {technologies.map((tech, index) => (
-                  <motion.div
-                    key={tech.name}
-                    className="flex flex-col items-center gap-2 p-3 rounded-lg bg-gray-800/40 border border-gray-700/60 w-24 h-24 justify-center shadow-sm"
-                    variants={techItemVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    custom={index}
-                    viewport={{ once: true, amount: 0.5 }}
-                    whileHover={{ y: -5, scale: 1.05, shadow: 'lg', borderColor: '#a855f7' }}
-                    transition={{ type: 'spring', stiffness: 300 }}
-                  >
-                    {tech.icon} 
-                    <span className="text-xs font-mono text-gray-300 mt-1">{tech.name}</span>
-                  </motion.div>
-                ))}
-             </div>
-          </div>
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ delay: 0.1, duration: 0.7 }}
+            className="rounded-[30px] border border-white/10 bg-white/[0.04] p-8 backdrop-blur-2xl shadow-[0_18px_60px_rgba(15,11,36,0.45)]"
+          >
+            <h3 className="text-xl font-semibold text-white">Core Competencies</h3>
+            <p className="mt-3 text-sm text-slate-300/80">
+              A blend of research depth and engineering execution - from concept to reproducible notebooks and production-ready demos.
+            </p>
+            <div className="mt-8 space-y-6">
+              {broadSkills.map((skill, index) => (
+                <motion.div
+                  key={skill.name}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.4 }}
+                  transition={{ delay: index * 0.05, duration: 0.5 }}
+                  className="space-y-2"
+                >
+                  <div className="flex items-center justify-between text-sm text-slate-200">
+                    <span className="flex items-center gap-2 font-semibold">
+                      <span className="grid h-8 w-8 place-items-center rounded-full border border-white/10 bg-white/10">{skill.icon}</span>
+                      {skill.name}
+                    </span>
+                    <span className="text-xs uppercase tracking-[0.3em] text-slate-300/80">{skill.level}%</span>
+                  </div>
+                  <div className="h-2.5 w-full rounded-full bg-white/5">
+                    <div
+                      className="h-full rounded-full bg-gradient-to-r from-purple-400 via-fuchsia-400 to-sky-300"
+                      style={{ width: `${skill.level}%` }}
+                    />
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ delay: 0.2, duration: 0.7 }}
+            className="rounded-[30px] border border-white/10 bg-gradient-to-br from-white/[0.05] via-white/[0.02] to-transparent p-8 backdrop-blur-2xl shadow-[0_20px_60px_rgba(18,15,40,0.5)]"
+          >
+            <h3 className="text-xl font-semibold text-white">Tools I push daily</h3>
+            <p className="mt-3 text-sm text-slate-300/80">
+              Model training, experimentation, deployment, and feedback loops with a focus on clarity and reproducibility.
+            </p>
+            <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
+              {technologies.map((tech, index) => (
+                <motion.div
+                  key={tech.name}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.4 }}
+                  transition={{ delay: index * 0.04, duration: 0.4 }}
+                  className="flex flex-col items-center gap-2 rounded-2xl border border-white/10 bg-white/10 px-4 py-4 text-center transition-all duration-300 hover:border-white/20 hover:bg-white/15"
+                >
+                  {tech.icon}
+                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-200/80">{tech.name}</span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
   );
 };
 
-export default Skills; 
+export default Skills;

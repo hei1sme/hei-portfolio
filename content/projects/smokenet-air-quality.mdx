@@ -1,0 +1,42 @@
+---
+title: "SmokeNet - Proactive Air Quality Forecasting"
+date: "2025-01-15"
+summary: "Transformer architecture delivering interpretable PM2.5 forecasts and public-health alerts for Melbourne."
+image: "/images/project-placeholder.svg"
+tags: ['Time-Series Forecasting', 'Environmental AI', 'Explainability']
+technologies: ['PyTorch', 'Transformers', 'SHAP', 'Integrated Gradients', 'DiCE', 'OpenWeather API']
+---
+
+## Overview
+
+SmokeNet is a transformer-based forecasting system that I designed after months of air-quality monitoring in Melbourne.  
+The aim was to **predict PM2.5 levels up to 24 hours ahead** and translate raw concentrations into practical health alerts.
+
+## Key Outcomes
+
+- **AJCAI 2025 acceptance** with a research paper detailing the end-to-end system.
+- Achieved **MAE 0.7470** and **R^2 0.9545** on the held-out 2024 evaluation split (35.9% MAE reduction vs an XGBoost baseline).
+- Survived a back-test on the **May 2024 smoke crisis**, outperforming the traditional baseline by **57.7% MAE**.
+
+## Architecture
+
+- Custom transformer encoder with seasonal embeddings and a reconstruction loss that stabilises long-horizon error.
+- Chronological cross-validation ensures leakage-free evaluation for drifting urban-air patterns.
+- GPU-accelerated training on rolling 2020-2025 data ingested from the OpenWeather API.
+
+## Explainability
+
+Transparency is central to the project:
+
+- Integrated **SHAP**, **Integrated Gradients**, and **DiCE** to audit forecasts both globally and per prediction.
+- Generated clinic-friendly rationales that highlight how humidity shifts, wind direction, or burn-off events influence alerts.
+
+## Product Surface
+
+- Dashboard prototype that summarises next-day PM2.5 levels, confidence bands, and response playbooks.
+- Health guidance tiers mapped to WHO thresholds and local emergency procedures.
+
+## Lessons
+
+- A lightweight transformer with solid data hygiene can beat heavier baselines when the evaluation protocol is honest.
+- Human-readable narratives (via XAI) are non-negotiable when models drive public safety decisions.

@@ -39,9 +39,7 @@ const config: Config = {
             img: {
               borderRadius: theme('borderRadius.lg'), // Use theme value for rounded-lg
               // Add glow effect using box-shadow
-              boxShadow: `0 0 15px 3px ${theme('colors.purple.500') / 0.4}`,
-              // Example with less intensity: 
-              // boxShadow: `0 0 10px 2px ${theme('colors.purple.600') / 0.3}`,
+              boxShadow: `0 0 15px 3px ${theme('colors.purple.500')}`,
             },
             // Add any other inverted prose overrides here
           },

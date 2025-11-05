@@ -1,0 +1,29 @@
+---
+title: "PPE Detection & Safety Compliance Monitor"
+date: "2024-09-20"
+summary: "A YOLOv8-based inspection assistant that flags PPE compliance in real time and powers instant field reports."
+image: "/images/project-placeholder.svg"
+tags: ['Computer Vision', 'SafetyTech', 'Edge AI']
+technologies: ['YOLOv8', 'OpenCV', 'Python', 'Streamlit']
+---
+
+## Problem Statement
+
+Construction supervisors needed a lightweight way to verify whether workers were wearing mandatory protective equipment.  
+Manual inspection was inconsistent, and existing tools struggled with multiple classes simultaneously.
+
+## Solution
+
+- Trained **YOLOv8** models to detect nine PPE categories (helmet, vest, gloves, boots, and their absence states).
+- Added a compliance engine that labels frames as **SAFE** or **UNSAFE** based on detected combinations.
+- Packaged the pipeline inside a **Streamlit** app capable of processing webcam feeds, uploaded videos, or still images.
+
+## Features
+
+- Real-time inference with configurable confidence thresholds and per-class alerting.
+- Exportable compliance logs for auditing and incident follow-up.
+- Hardware-friendly deployment footprint suitable for field laptops.
+
+## Result
+
+The project became the capstone deliverable for **DPL302m** and a foundation for future industrial safety experiments at SpeedyLabX.

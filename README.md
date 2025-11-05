@@ -1,4 +1,4 @@
-# Le Nguyen Gia Hung – Personal Portfolio  
+# Le Nguyen Gia Hung - Personal Portfolio  
 🌐 [Live Website](https://hei-portfolio-w.vercel.app)
 
 A personal portfolio website for **Le Nguyen Gia Hung**, an undergraduate AI student, built to showcase personal information, education, projects, skills, and contact details in a clean, responsive interface.

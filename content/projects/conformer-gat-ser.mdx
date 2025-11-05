@@ -1,0 +1,36 @@
+---
+title: "Conformer-GAT Multimodal Speech Emotion Recognition"
+date: "2025-03-02"
+summary: "An explainable multimodal pipeline that fuses Conformer encoders with graph attention to reason about speech emotion."
+image: "/images/project-placeholder.svg"
+tags: ['Multimodal AI', 'Speech Emotion Recognition', 'Graph Attention']
+technologies: ['Conformer', 'Graph Attention Networks', 'PyTorch', 'SHAP', 'Integrated Gradients', 'IEMOCAP', 'RAVDESS']
+---
+
+## Motivation
+
+Emotion recognition systems often operate as black boxes, especially when they merge acoustic signals with transcripts.  
+This project explores how **Conformer encoders** and **Graph Attention Networks (GATs)** can cooperate to provide both accuracy and interpretability.
+
+## Architecture Sketch
+
+- **Conformer branch** encodes prosody, spectral features, and temporal cues from audio.
+- **Text branch** produces contextual embeddings for transcripts and forced alignments.
+- **GAT fusion layer** models cross-modal dependencies, letting important syllables attend to emotive acoustic frames.
+- A shared decision head predicts categorical emotions while exposing attention weights for inspection.
+
+## Explainability Toolkit
+
+- Built a reusable pipeline featuring SHAP value aggregation, Integrated Gradients, and counterfactual analysis (DiCE-style).
+- Explanations surface *which* words or time segments contribute to a prediction and *how* the modalities corroborate each other.
+
+## Current Progress
+
+- Standing up reproducible experiments on the **IEMOCAP** and **RAVDESS** datasets.
+- Validating that GAT-based fusion improves macro-F1 compared to late-concatenation baselines.
+- Stress-testing interpretability outputs with qualitative reviews from peers.
+
+## Next Steps
+
+- Extend to low-resource languages by experimenting with multilingual wav2vec front-ends.
+- Package the training code and dashboards for the SpeedyLabX research group.

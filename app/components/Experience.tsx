@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import SectionHeader from './SectionHeader';
 
 interface ExperienceEntry {
   id: number;
@@ -60,22 +61,13 @@ const Experience: React.FC = () => {
     <section id="experience" className="relative py-28 text-white">
       <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-purple-500/10 via-transparent to-transparent" />
       <div className="relative max-w-6xl mx-auto px-6 lg:px-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
-          className="mb-14 flex flex-col gap-4"
-        >
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-xs uppercase tracking-[0.35em] text-slate-200/80">
-            Experience
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight max-w-3xl">
-            Leading and shipping research that balances academic rigor with production constraints.
-          </h2>
-        </motion.div>
+        <SectionHeader
+          eyebrow="Experience"
+          title="Leading research squads and shipping prototypes that hold up in production."
+          description="Every milestone blends academic rigor with applied constraints — ensuring interpretability, operator empathy, and measurable impact."
+        />
 
-        <div className="relative">
+        <div className="relative mt-14">
           <div className="absolute left-4 top-0 bottom-0 hidden md:block">
             <div className="h-full w-[3px] bg-gradient-to-b from-purple-400 via-fuchsia-400 to-sky-300 opacity-60" />
           </div>
@@ -117,6 +109,32 @@ const Experience: React.FC = () => {
             ))}
           </div>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          className="mt-14 rounded-[30px] border border-white/10 bg-white/[0.03] p-7 backdrop-blur-xl shadow-[0_20px_60px_rgba(14,10,32,0.45)]"
+        >
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div className="space-y-2">
+              <p className="text-xs uppercase tracking-[0.35em] text-slate-300/70">Collaboration Pulse</p>
+              <h3 className="text-lg font-semibold text-white">I work best with mission-driven labs and teams who value transparency.</h3>
+              <p className="text-sm text-slate-300/80">
+                Whether you need help with evaluation frameworks, XAI storytelling, or launching an AI community, I love partnering with teams who pair ambition with responsibility.
+              </p>
+            </div>
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-6 py-3 text-sm font-semibold tracking-wide text-slate-100 transition-all duration-300 hover:bg-white/18"
+              data-interactive
+            >
+              Let&apos;s talk
+              <span className="text-base">↗</span>
+            </a>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

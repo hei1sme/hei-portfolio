@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useTheme } from '../context/ThemeContext';
-import { FaHome, FaUser, FaBriefcase, FaCog, FaEnvelope, FaUniversity, FaMoon, FaSun, FaFeatherAlt, FaBars, FaTimes, FaHistory } from 'react-icons/fa';
+import { useLab } from '../context/LabContext';
+import { FaHome, FaUser, FaBriefcase, FaCog, FaEnvelope, FaUniversity, FaFeatherAlt, FaBars, FaTimes, FaHistory } from 'react-icons/fa';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -21,7 +21,7 @@ const navItems = [
 
 const VerticalNavigation: React.FC = () => {
   const [activeSection, setActiveSection] = useState('home');
-  const { isDarkMode, toggleTheme } = useTheme();
+  const { openLab } = useLab();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
@@ -168,14 +168,12 @@ const VerticalNavigation: React.FC = () => {
                 );
             })}
             <motion.button
-                className={`mt-10 px-5 py-2 rounded-full border border-white/10 flex items-center gap-2 text-sm uppercase tracking-[0.25em] transition-colors duration-300 ${isDarkMode ? 'text-amber-200 hover:bg-white/5' : 'text-sky-200 hover:bg-white/10'}`}
-                whileHover={{ scale: 1.08, rotate: isDarkMode ? -6 : 6 }} 
+                onClick={openLab}
+                className="grid h-12 w-12 place-items-center rounded-xl border border-white/15 bg-white/10 text-[10px] font-semibold uppercase tracking-[0.35em] text-slate-100 transition-colors duration-300 hover:bg-white/18"
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={toggleTheme}
-                title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
             >
-                {isDarkMode ? <FaSun size={18} /> : <FaMoon size={18} />}
-                <span>{isDarkMode ? 'Light' : 'Dark'}</span>
+                Lab
             </motion.button>
           </motion.div>
         )}
@@ -243,14 +241,15 @@ const VerticalNavigation: React.FC = () => {
         </div>
 
         <motion.button
-          className={`px-4 py-2 rounded-full border border-white/10 flex items-center gap-2 transition-colors duration-300 text-xs tracking-[0.3em] uppercase ${isDarkMode ? 'text-amber-200 hover:bg-white/5' : 'text-sky-200 hover:bg-white/10'}`}
-          whileHover={{ scale: 1.05, rotate: isDarkMode ? -6 : 6, transition: { type: "spring", stiffness: 300, damping: 12 } }}
-          whileTap={{ scale: 0.95, transition: { type: "spring", stiffness: 400, damping: 18 } }}
-          onClick={toggleTheme}
-          title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+          className="group relative mb-4 grid h-12 w-12 place-items-center rounded-xl border border-white/15 bg-white/10 text-[10px] font-semibold uppercase tracking-[0.35em] text-slate-100 transition-colors duration-300 hover:bg-white/18"
+          whileHover={{ scale: 1.06, y: -2 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={openLab}
         >
-          {isDarkMode ? <FaSun size={18} /> : <FaMoon size={18} />}
-          <span>{isDarkMode ? 'Light' : 'Dark'}</span>
+          Lab
+          <span className="pointer-events-none absolute right-full mr-4 hidden whitespace-nowrap rounded-md border border-white/10 bg-[#0f1120]/95 px-3 py-1 text-[10px] font-medium tracking-[0.3em] text-slate-100 opacity-0 shadow-xl transition-all duration-200 group-hover:opacity-100 md:block">
+            Launch AI Lab
+          </span>
         </motion.button>
       </motion.nav>
     </>

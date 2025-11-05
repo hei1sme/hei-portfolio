@@ -37,6 +37,7 @@ Live site → https://hei-portfolio-w.vercel.app
 - Resume (PDF): `/public/HungLNG_Resume.pdf`
 - Blog: `/blog`
 - Projects: `/projects/[slug]`
+- Neural Calibration Lab: hero CTA or type `AILAB`
 
 ---
 
@@ -53,6 +54,7 @@ Live site → https://hei-portfolio-w.vercel.app
 | Education    | Honors and core modules in elevated cards                                                   |
 | Contact      | Split layout (signals + glass form), animated status messaging                              |
 | Blog         | MDX posts, Shiki-based syntax highlighting via rehype-pretty-code                           |
+| AI Lab       | Neural Calibration Lab space-shooter (Three.js) with easter-egg trigger, score, and hardware upgrades |
 
 ---
 

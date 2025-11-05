@@ -5,6 +5,7 @@
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from './context/ThemeContext';
+import { LabProvider } from './context/LabContext';
 import { ParallaxProvider } from 'react-scroll-parallax'; // Import ParallaxProvider
 // Import slick-carousel styles
 import "slick-carousel/slick/slick.css"; 
@@ -26,14 +27,16 @@ export default function RootLayout({
     <html lang="en" className="bg-black"> {/* Ensure html has base background */}
       <body className={`${inter.className} cursor-none bg-black relative`}> {/* Apply cursor-none to body */}
         <ThemeProvider>
-          <ParallaxProvider> {/* Wrap with ParallaxProvider */}
-            <CustomCursor /> {/* Add CustomCursor here */}
-            <VerticalNavigation /> 
-            {/* Render children directly, add padding to avoid nav */}
-            <main className="pl-20 w-full min-h-screen">
-               {children} 
-            </main>
-          </ParallaxProvider>
+          <LabProvider>
+            <ParallaxProvider> {/* Wrap with ParallaxProvider */}
+              <CustomCursor /> {/* Add CustomCursor here */}
+              <VerticalNavigation /> 
+              {/* Render children directly, add padding to avoid nav */}
+              <main className="pl-20 w-full min-h-screen">
+                 {children} 
+              </main>
+            </ParallaxProvider>
+          </LabProvider>
         </ThemeProvider>
       </body>
     </html>

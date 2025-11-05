@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaLinkedin, FaGithub, FaInstagram, FaEnvelope, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa';
+import SectionHeader from './SectionHeader';
 
 interface FormData {
   name: string;
@@ -41,22 +42,13 @@ const Contact: React.FC = () => {
     <section id="contact" className="relative py-28 text-white">
       <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-fuchsia-500/10 via-transparent to-transparent" />
       <div className="relative max-w-6xl mx-auto px-6 lg:px-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
-          className="mb-14 flex flex-col gap-4"
-        >
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-xs uppercase tracking-[0.35em] text-slate-200/80">
-            Contact
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight max-w-3xl">
-            Let&apos;s collaborate on research, ambitious prototypes, or opportunities to bring transparent AI to production.
-          </h2>
-        </motion.div>
+        <SectionHeader
+          eyebrow="Contact"
+          title="Let’s collaborate on research, auditable prototypes, or AI community programs."
+          description="I aim to reply within 48 hours. Share context, timelines, or desired outcomes — I’ll bring the right artefacts to the conversation."
+        />
 
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] items-start">
+        <div className="mt-14 grid gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] items-start">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

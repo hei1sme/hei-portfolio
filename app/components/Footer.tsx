@@ -9,19 +9,19 @@ const Footer: React.FC = () => {
 
   return (
     <motion.footer 
-      className="py-8 text-gray-400 mt-16"
+      className="mt-16 border-t border-white/10 bg-black/40 py-10 text-gray-400 backdrop-blur-xl"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
     >
-      <div className="container mx-auto px-4 text-center">
-        <div className="flex justify-center space-x-6 mb-4">
+      <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-6 px-6 text-center">
+        <div className="flex justify-center space-x-6">
           <motion.a
             href="https://linkedin.com/in/le-nguyen-gia-hung/" // Replace with actual link
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-purple-400 transition-colors"
+            className="grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/10 text-slate-200 transition-colors hover:border-white/25 hover:text-white"
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.9 }}
           >
@@ -31,7 +31,7 @@ const Footer: React.FC = () => {
             href="https://github.com/hei1sme" // Replace with actual link
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-purple-400 transition-colors"
+            className="grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/10 text-slate-200 transition-colors hover:border-white/25 hover:text-white"
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.9 }}
           >
@@ -41,18 +41,18 @@ const Footer: React.FC = () => {
             href="https://www.instagram.com/hei.isme/" // Replace with actual link
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-purple-400 transition-colors"
+            className="grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/10 text-slate-200 transition-colors hover:border-white/25 hover:text-white"
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.9 }}
           >
             <FaInstagram size={24} />
           </motion.a>
         </div>
-        <p className="text-sm font-mono">
+        <p className="text-sm font-mono text-slate-300/80">
           &copy; {currentYear} Le Nguyen Gia Hung (hei). All rights reserved.
         </p>
-        <p className="text-xs mt-2">
-          Built with Next.js, TailwindCSS, and Framer Motion.
+        <p className="text-xs text-slate-400/70">
+          Built with Next.js, Tailwind CSS, Framer Motion, and a playful Neural Calibration Lab.
         </p>
       </div>
     </motion.footer>

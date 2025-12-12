@@ -43,13 +43,13 @@ const TechIcon = ({ name }: { name: string }) => {
 
 const components = {
   // Map standard HTML elements to styled versions if desired
-  h2: (props: any) => <h2 className="text-2xl font-bold font-mono text-purple-300 mt-8 mb-4" {...props} />,
-  h3: (props: any) => <h3 className="text-xl font-semibold font-mono text-purple-400 mt-6 mb-3" {...props} />,
-  ul: (props: any) => <ul className="list-disc list-outside pl-6 space-y-2 mb-4" {...props} />,
-  ol: (props: any) => <ol className="list-decimal list-outside pl-6 space-y-2 mb-4" {...props} />,
-  p: (props: any) => <p className="leading-relaxed mb-4" {...props} />,
-  a: (props: any) => <a className="text-teal-400 hover:text-teal-300 underline transition-colors" {...props} />,
-  img: (props: any) => ( // Style images rendered from markdown
+  h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => <h2 className="text-2xl font-bold font-mono text-purple-300 mt-8 mb-4" {...props} />,
+  h3: (props: React.HTMLAttributes<HTMLHeadingElement>) => <h3 className="text-xl font-semibold font-mono text-purple-400 mt-6 mb-3" {...props} />,
+  ul: (props: React.HTMLAttributes<HTMLUListElement>) => <ul className="list-disc list-outside pl-6 space-y-2 mb-4" {...props} />,
+  ol: (props: React.HTMLAttributes<HTMLOListElement>) => <ol className="list-decimal list-outside pl-6 space-y-2 mb-4" {...props} />,
+  p: (props: React.HTMLAttributes<HTMLParagraphElement>) => <p className="leading-relaxed mb-4" {...props} />,
+  a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => <a className="text-teal-400 hover:text-teal-300 underline transition-colors" {...props} />,
+  img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => ( // Style images rendered from markdown
         <div className="my-6">
             <Image
                 src={props.src || ''}
@@ -68,6 +68,7 @@ const components = {
 interface ProjectClientPageProps {
   mdxSource: MDXRemoteSerializeResult;
   frontmatter: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any; // Or define a stricter type for frontmatter
   };
 }

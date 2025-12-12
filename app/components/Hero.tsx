@@ -4,10 +4,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Typewriter from 'typewriter-effect'; // Import Typewriter
 import HeroShape from './HeroShape'; // Import the 3D shape
-import { useLab } from '../context/LabContext';
+// import { useLab } from '../context/LabContext';
 
 const Hero: React.FC = () => {
-  const { openLab } = useLab();
+  // const { openLab } = useLab();
 
   return (
     <section

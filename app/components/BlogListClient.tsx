@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { PostMetadata } from '@/lib/posts'; // Import the type
 
@@ -16,11 +17,12 @@ const BlogPostCard: React.FC<{ post: PostMetadata }> = ({ post }) => {
       transition={{ duration: 0.5, delay: Math.random() * 0.3 }} // Random delay for staggered effect
     >
       <Link href={`/blog/${post.slug}`} className="block group">
-        <div className="h-48 bg-gray-700 overflow-hidden">
-          <img
+        <div className="h-48 bg-gray-700 overflow-hidden relative">
+          <Image
             src={post.imageUrl || '/images/placeholder-project.png'} // Provide a fallback image
             alt={post.title}
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            fill
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
           />
         </div>
         <div className="p-6">

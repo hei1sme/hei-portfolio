@@ -39,10 +39,10 @@ export default function Home() {
   }, []); // Empty dependency array ensures this runs only once on mount
 
   // Restore simple scroll handler for nav links
-  const handleNavAction = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
+  // const handleNavAction = (id: string) => {
+  //   const element = document.getElementById(id);
+  //   if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // };
 
   return (
     <main className="relative bg-black">

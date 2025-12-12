@@ -2,21 +2,20 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MDXRemote } from 'next-mdx-remote';
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 
 interface BlogPostClientContentProps {
   title: string;
   date: string;
   author?: string; // Add optional author prop
   imageUrl?: string; // Optional image URL
-  mdxSource: any; // Serialized MDX source
+  mdxSource: MDXRemoteSerializeResult; // Serialized MDX source
 }
 
 const BlogPostClientContent: React.FC<BlogPostClientContentProps> = ({
   title,
   date,
   author, // Destructure author prop
-  imageUrl,
   mdxSource,
 }) => {
   return (
@@ -49,7 +48,6 @@ const BlogPostClientContent: React.FC<BlogPostClientContentProps> = ({
         transition={{ duration: 0.5, delay: 0.2 }}
       >
         {/* Render the serialized MDX content */}
-        {/* @ts-ignore - MDXRemote props might cause temporary TS issues */}
         <MDXRemote {...mdxSource} />
       </motion.article>
     </>

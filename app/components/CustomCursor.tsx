@@ -26,8 +26,8 @@ const CustomCursor: React.FC = () => {
       mouseY.set(e.clientY);
     };
 
-    const handleMouseEnter = () => setIsHoveringInteractive(true);
-    const handleMouseLeave = () => setIsHoveringInteractive(false);
+    // const handleMouseEnter = () => setIsHoveringInteractive(true);
+    // const handleMouseLeave = () => setIsHoveringInteractive(false);
 
     window.addEventListener('mousemove', handleMouseMove);
 

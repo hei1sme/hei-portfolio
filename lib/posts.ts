@@ -7,6 +7,8 @@ import rehypePrettyCode from 'rehype-pretty-code';
 // If you plan to use remark/rehype plugins for syntax highlighting, footnotes, etc., import them here
 // Example: import rehypeHighlight from 'rehype-highlight';
 
+import { MDXRemoteSerializeResult } from 'next-mdx-remote';
+
 // Define options for rehype-pretty-code
 const prettyCodeOptions = {
   // Use one of Shiki's packaged themes
@@ -14,6 +16,7 @@ const prettyCodeOptions = {
   // Keep the background or use a custom background color?
   keepBackground: true,
   // Callback hooks for customization if needed
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onVisitLine(node: any) {
     // Prevent lines from collapsing in `display: grid` mode, and allow empty
     // lines to be copy/pasted
@@ -21,10 +24,12 @@ const prettyCodeOptions = {
       node.children = [{type: 'text', value: ' '}]
     }
   },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onVisitHighlightedLine(node: any) {
     // Each line node by default has `class="line"`.
     node.properties.className.push('highlighted')
   },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onVisitHighlightedWord(node: any) {
     // Each word node has no className by default.
     node.properties.className = ['word--highlighted']
@@ -45,7 +50,7 @@ export interface PostMetadata {
 }
 
 export interface PostData extends PostMetadata {
-  mdxSource: any; // Type from next-mdx-remote/dist/types
+  mdxSource: MDXRemoteSerializeResult; // Type from next-mdx-remote/dist/types
 }
 
 export function getSortedPostsData(): PostMetadata[] {

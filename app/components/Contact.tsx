@@ -30,7 +30,7 @@ const Contact: React.FC = () => {
       setSubmitStatus('success');
       setFormData({ name: '', email: '', message: '' });
       setTimeout(() => setSubmitStatus('idle'), 2500);
-    } catch (error) {
+    } catch {
       setSubmitStatus('error');
       setTimeout(() => setSubmitStatus('idle'), 2500);
     } finally {

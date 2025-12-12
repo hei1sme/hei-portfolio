@@ -32,7 +32,7 @@ const About: React.FC = () => {
           description="Blending peer-reviewed experimentation with community-facing tooling."
         />
 
-        <div className="mt-14 grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-start">
+        <div className="mt-14 grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-stretch">
           {/* Profile Card */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -44,16 +44,16 @@ const About: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-transparent to-sky-400/10 opacity-80" />
 
             <div className="relative flex flex-col gap-6">
-              {/* Header */}
-              <div className="flex items-start gap-5">
-                <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-2xl border border-white/15 bg-white/5">
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500/30 via-transparent to-sky-300/30" />
+              {/* Profile Image - Large and Centered */}
+              <div className="flex flex-col items-center text-center gap-4">
+                <div className="relative h-56 w-56 flex-shrink-0 overflow-hidden rounded-3xl border-2 border-purple-400/30 bg-white/5 shadow-[0_0_60px_rgba(168,85,247,0.3)]">
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500/40 via-transparent to-sky-400/40" />
                   <Image src="/profile.png" alt="Le Nguyen Gia Hung" fill className="object-cover" priority />
                 </div>
                 <div>
                   <p className="text-[11px] uppercase tracking-[0.35em] text-slate-300/70">Le Nguyen Gia Hung</p>
-                  <h3 className="mt-1 text-xl font-semibold text-white">AI/ML Research Student</h3>
-                  <p className="text-sm text-slate-300/80">B.Eng AI · FPT University · Dec 2027</p>
+                  <h3 className="mt-1 text-2xl font-bold text-white">AI/ML Research Student</h3>
+                  <p className="text-sm text-slate-300/80 mt-1">B.Eng AI · FPT University · Dec 2027</p>
                 </div>
               </div>
 
@@ -102,7 +102,7 @@ const About: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ delay: 0.18, duration: 0.7 }}
-            className="space-y-5"
+            className="flex flex-col gap-5 h-full"
           >
             {/* Quick Info */}
             <div className="rounded-[24px] border border-white/12 bg-white/[0.035] p-6 backdrop-blur-xl">
@@ -129,6 +129,25 @@ const About: React.FC = () => {
                 <div className="flex items-center gap-2">
                   <FaMapMarkerAlt className="text-slate-400" />
                   <span>Ho Chi Minh City, Vietnam</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Certifications */}
+            <div className="flex-1 rounded-[24px] border border-white/12 bg-white/[0.035] p-6 backdrop-blur-xl">
+              <p className="text-[10px] uppercase tracking-[0.3em] text-slate-300/70">Certifications</p>
+              <div className="mt-3 space-y-2">
+                <div className="flex items-center gap-2 text-sm text-slate-200/85">
+                  <span className="h-1.5 w-1.5 rounded-full bg-purple-400" />
+                  <span>Building RAG Agents with LLMs — NVIDIA</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-slate-200/85">
+                  <span className="h-1.5 w-1.5 rounded-full bg-sky-400" />
+                  <span>IBM Full Stack Developer — IBM</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-slate-200/85">
+                  <span className="h-1.5 w-1.5 rounded-full bg-teal-400" />
+                  <span>Data Science Fundamentals — IBM</span>
                 </div>
               </div>
             </div>

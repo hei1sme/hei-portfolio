@@ -8,6 +8,7 @@ import { FaFileAlt, FaRocket, FaBrain, FaArrowRight } from 'react-icons/fa';
 import HeroShape from './HeroShape';
 import AchievementBadge from './AchievementBadge';
 import StatsRow from './StatsRow';
+import MagneticButton from './MagneticButton';
 
 const Hero: React.FC = () => {
   const { scrollY } = useScroll();
@@ -70,7 +71,7 @@ const Hero: React.FC = () => {
               >
                 <h1 className="text-balance text-[2.75rem] sm:text-[3.1rem] lg:text-[3.5rem] font-semibold leading-[1.05] tracking-tight">
                   Building{' '}
-                  <span className="bg-gradient-to-r from-purple-200 via-fuchsia-200 to-sky-200 bg-clip-text text-transparent">
+                  <span className="animated-gradient-text">
                     transparent AI
                   </span>{' '}
                   for high-stakes decisions.
@@ -134,24 +135,28 @@ const Hero: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.35, duration: 0.7 }}
               >
-                <a
-                  href="/HungLNG_Resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-500 via-fuchsia-500 to-sky-400 px-6 py-3 text-sm font-semibold tracking-wide text-white shadow-[0_0_30px_rgba(129,71,255,0.4)] transition-transform duration-300 hover:scale-105"
-                  data-interactive
-                >
-                  Download Resume
-                  <span className="text-lg transition-transform group-hover:translate-x-1">↗</span>
-                </a>
-                <a
-                  href="#projects"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold tracking-wide text-slate-100 transition-all duration-300 hover:bg-white/12"
-                  data-interactive
-                >
-                  Explore Projects
-                  <FaArrowRight className="text-sm" />
-                </a>
+                <MagneticButton>
+                  <a
+                    href="/HungLNG_Resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-500 via-fuchsia-500 to-sky-400 px-6 py-3 text-sm font-semibold tracking-wide text-white shadow-[0_0_30px_rgba(129,71,255,0.4)] transition-transform duration-300 hover:scale-105"
+                    data-interactive
+                  >
+                    Download Resume
+                    <span className="text-lg transition-transform group-hover:translate-x-1">↗</span>
+                  </a>
+                </MagneticButton>
+                <MagneticButton>
+                  <a
+                    href="#projects"
+                    className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold tracking-wide text-slate-100 transition-all duration-300 hover:bg-white/12"
+                    data-interactive
+                  >
+                    Explore Projects
+                    <FaArrowRight className="text-sm" />
+                  </a>
+                </MagneticButton>
               </motion.div>
             </div>
 

@@ -8,10 +8,12 @@ import { ThemeProvider } from './context/ThemeContext';
 import { LabProvider } from './context/LabContext';
 import { ParallaxProvider } from 'react-scroll-parallax'; // Import ParallaxProvider
 // Import slick-carousel styles
-import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CustomCursor from './components/CustomCursor'; // Import CustomCursor
 import VerticalNavigation from './components/VerticalNavigation'; // Keep VerticalNavigation
+import ScrollProgress from './components/ScrollProgress'; // Import ScrollProgress
+import FloatingCTA from './components/FloatingCTA';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -29,11 +31,13 @@ export default function RootLayout({
         <ThemeProvider>
           <LabProvider>
             <ParallaxProvider> {/* Wrap with ParallaxProvider */}
+              <ScrollProgress /> {/* Add scroll progress bar */}
               <CustomCursor /> {/* Add CustomCursor here */}
-              <VerticalNavigation /> 
+              <FloatingCTA /> {/* Floating contact button */}
+              <VerticalNavigation />
               {/* Render children directly, add padding to avoid nav */}
               <main className="pl-20 w-full min-h-screen">
-                 {children} 
+                {children}
               </main>
             </ParallaxProvider>
           </LabProvider>

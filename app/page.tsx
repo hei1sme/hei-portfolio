@@ -11,6 +11,8 @@ import Experience from './components/Experience';
 import Education from './components/Education';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import ValueProps from './components/ValueProps';
+import WaveDivider from './components/WaveDivider';
 
 // Define metadata values
 const pageTitle = 'Le Nguyen Gia Hung - Portfolio';
@@ -22,7 +24,7 @@ export default function Home() {
   // Set metadata on component mount
   useEffect(() => {
     document.title = pageTitle;
-    
+
     // Set description meta tag
     let descriptionMeta = document.querySelector('meta[name="description"]');
     if (!descriptionMeta) {
@@ -47,14 +49,14 @@ export default function Home() {
   return (
     <main className="relative bg-black">
       <EntranceAnimation onAnimationComplete={() => setIsEntranceComplete(true)} />
-      
+
       {/* Conditionally render main content */}
       {isEntranceComplete && (
         <>
           {/* Main content wrapper - Removed md:pl-20, keep pt for mobile nav offset */}
           <div className="pt-16 md:pt-0">
             {/* Section Order: Hero -> About -> Projects -> Skills -> Experience -> Education -> Contact */}
-            
+
             {/* 1. Hero */}
             <motion.div
               id="home"
@@ -66,7 +68,13 @@ export default function Home() {
               <Hero />
             </motion.div>
 
-            {/* 2. About */}
+            {/* 2. Value Props - Why Hire Me */}
+            <ValueProps />
+
+            {/* Wave Divider */}
+            <WaveDivider color="purple" />
+
+            {/* 3. About */}
             <motion.div
               id="about"
               className="mx-auto w-full max-w-6xl px-6 lg:px-10"
@@ -77,7 +85,7 @@ export default function Home() {
             >
               <About />
             </motion.div>
-            
+
             {/* 3. Projects */}
             <motion.div
               id="projects"
@@ -140,7 +148,7 @@ export default function Home() {
           </div> {/* End of the main content div */}
 
           {/* Render Footer OUTSIDE the padded content div */}
-          <Footer /> 
+          <Footer />
 
         </>
       )}

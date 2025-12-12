@@ -36,7 +36,7 @@ export default function RootLayout({
               <FloatingCTA /> {/* Floating contact button */}
               <VerticalNavigation />
               {/* Render children directly, add padding to avoid nav */}
-              <main className="pl-20 w-full min-h-screen">
+              <main className="pl-0 md:pl-20 w-full min-h-screen">
                 {children}
               </main>
             </ParallaxProvider>

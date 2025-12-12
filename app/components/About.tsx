@@ -23,7 +23,6 @@ const About: React.FC = () => {
 
   return (
     <section id="about" className="relative py-28 text-white">
-      <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/[0.04] via-transparent to-transparent" />
 
       <div className="relative mx-auto max-w-6xl px-6 lg:px-10">
         <SectionHeader

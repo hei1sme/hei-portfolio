@@ -90,7 +90,6 @@ const Experience: React.FC = () => {
 
   return (
     <section id="experience" className="relative py-28 text-white">
-      <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-purple-500/10 via-transparent to-transparent" />
 
       <div className="relative max-w-6xl mx-auto px-6 lg:px-10">
         <SectionHeader

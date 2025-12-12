@@ -48,6 +48,18 @@ export default function Home() {
 
   return (
     <main className="relative bg-black">
+      {/* Global ambient gradients - smooth blending across all sections */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        {/* Top purple orb */}
+        <div className="absolute -top-[30%] left-1/2 -translate-x-1/2 w-[120%] h-[800px] bg-[radial-gradient(ellipse_at_center,_rgba(147,51,234,0.15)_0%,_transparent_60%)]" />
+        {/* Middle sky orb */}
+        <div className="absolute top-[40%] -right-[20%] w-[80%] h-[600px] bg-[radial-gradient(ellipse_at_center,_rgba(14,165,233,0.08)_0%,_transparent_50%)]" />
+        {/* Lower fuchsia orb */}
+        <div className="absolute top-[70%] -left-[20%] w-[80%] h-[600px] bg-[radial-gradient(ellipse_at_center,_rgba(192,38,211,0.08)_0%,_transparent_50%)]" />
+        {/* Bottom teal orb */}
+        <div className="absolute bottom-[5%] right-[10%] w-[60%] h-[500px] bg-[radial-gradient(ellipse_at_center,_rgba(20,184,166,0.06)_0%,_transparent_50%)]" />
+      </div>
+
       <EntranceAnimation onAnimationComplete={() => setIsEntranceComplete(true)} />
 
       {/* Conditionally render main content */}

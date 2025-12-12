@@ -15,7 +15,6 @@ const coursework = ['Data Structures & Algorithms', 'Linear Algebra', 'Introduct
 const Education: React.FC = () => {
   return (
     <section id="education" className="relative py-28 text-white">
-      <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-teal-400/10 via-transparent to-transparent" />
 
       <div className="relative max-w-5xl mx-auto px-6 lg:px-10">
         <SectionHeader

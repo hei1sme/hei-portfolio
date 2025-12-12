@@ -31,7 +31,6 @@ const outcomes = [
 const Skills: React.FC = () => {
   return (
     <section id="skills" className="relative py-28 text-white">
-      <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-sky-500/10 via-transparent to-transparent" />
 
       <div className="relative mx-auto max-w-6xl px-6 lg:px-10">
         <SectionHeader

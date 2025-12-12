@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaLinkedin, FaGithub, FaInstagram } from 'react-icons/fa'; // Using react-icons
+import { FaLinkedin, FaGithub, FaInstagram, FaGraduationCap, FaIdCard, FaSearch, FaGlobeAmericas } from 'react-icons/fa';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -52,19 +52,19 @@ const Footer: React.FC = () => {
         {/* Academic Profiles */}
         <div className="flex flex-wrap justify-center gap-2">
           {[
-            { href: 'https://scholar.google.com/citations?user=iGODAQYAAAAJ&hl=en', label: 'Google Scholar' },
-            { href: 'https://orcid.org/0009-0003-7120-8167', label: 'ORCID' },
-            { href: 'https://www.scopus.com/authid/detail.uri?authorId=60219530700', label: 'Scopus' },
-            { href: 'https://www.webofscience.com/wos/author/record/PCR-6096-2025', label: 'Web of Science' },
+            { href: 'https://scholar.google.com/citations?user=iGODAQYAAAAJ&hl=en', label: 'Scholar', icon: <FaGraduationCap className="text-purple-300" /> },
+            { href: 'https://orcid.org/0009-0003-7120-8167', label: 'ORCID', icon: <FaIdCard className="text-green-300" /> },
+            { href: 'https://www.scopus.com/authid/detail.uri?authorId=60219530700', label: 'Scopus', icon: <FaSearch className="text-orange-300" /> },
+            { href: 'https://www.webofscience.com/wos/author/record/PCR-6096-2025', label: 'WoS', icon: <FaGlobeAmericas className="text-sky-300" /> },
           ].map((profile) => (
             <a
               key={profile.label}
               href={profile.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[10px] font-medium text-slate-400 transition-all hover:bg-white/10 hover:text-white"
+              className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[10px] font-medium text-slate-400 transition-all hover:bg-white/10 hover:text-white"
             >
-              {profile.label} ↗
+              {profile.icon} {profile.label}
             </a>
           ))}
         </div>

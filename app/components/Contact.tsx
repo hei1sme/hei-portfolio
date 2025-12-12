@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaLinkedin, FaGithub, FaInstagram, FaEnvelope, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa';
+import { FaLinkedin, FaGithub, FaInstagram, FaEnvelope, FaMapMarkerAlt, FaPaperPlane, FaGraduationCap, FaIdCard, FaSearch, FaGlobeAmericas } from 'react-icons/fa';
 import SectionHeader from './SectionHeader';
 
 interface FormData {
@@ -40,7 +40,6 @@ const Contact: React.FC = () => {
 
   return (
     <section id="contact" className="relative py-28 text-white">
-      <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-fuchsia-500/10 via-transparent to-transparent" />
       <div className="relative max-w-6xl mx-auto px-6 lg:px-10">
         <SectionHeader
           eyebrow="Contact"
@@ -103,19 +102,19 @@ const Contact: React.FC = () => {
               <p className="text-xs uppercase tracking-[0.35em] text-slate-300/70">Academic Profiles</p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {[
-                  { href: 'https://scholar.google.com/citations?user=iGODAQYAAAAJ&hl=en', label: 'Google Scholar' },
-                  { href: 'https://orcid.org/0009-0003-7120-8167', label: 'ORCID' },
-                  { href: 'https://www.scopus.com/authid/detail.uri?authorId=60219530700', label: 'Scopus' },
-                  { href: 'https://www.webofscience.com/wos/author/record/PCR-6096-2025', label: 'Web of Science' },
+                  { href: 'https://scholar.google.com/citations?user=iGODAQYAAAAJ&hl=en', label: 'Google Scholar', icon: <FaGraduationCap className="text-purple-300" /> },
+                  { href: 'https://orcid.org/0009-0003-7120-8167', label: 'ORCID', icon: <FaIdCard className="text-green-300" /> },
+                  { href: 'https://www.scopus.com/authid/detail.uri?authorId=60219530700', label: 'Scopus', icon: <FaSearch className="text-orange-300" /> },
+                  { href: 'https://www.webofscience.com/wos/author/record/PCR-6096-2025', label: 'Web of Science', icon: <FaGlobeAmericas className="text-sky-300" /> },
                 ].map((profile) => (
                   <a
                     key={profile.label}
                     href={profile.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[11px] font-medium text-slate-300 transition-all hover:bg-white/10 hover:text-white"
+                    className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[11px] font-medium text-slate-300 transition-all hover:bg-white/10 hover:text-white"
                   >
-                    {profile.label} ↗
+                    {profile.icon} {profile.label}
                   </a>
                 ))}
               </div>

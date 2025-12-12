@@ -13,7 +13,7 @@ const highlights = [
 ];
 
 const speedyLabStats = [
-  { label: 'Crew', value: '6', icon: <FaUsers className="text-purple-300" /> },
+  { label: 'Crew', value: '10', icon: <FaUsers className="text-purple-300" /> },
   { label: 'Pilots', value: '8', icon: <FaFlask className="text-sky-300" /> },
   { label: 'Cadence', value: 'Bi-weekly', icon: <FaRocket className="text-teal-300" /> },
 ];

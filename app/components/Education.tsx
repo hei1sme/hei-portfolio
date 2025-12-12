@@ -6,11 +6,11 @@ import { FaGraduationCap, FaMedal, FaBook } from 'react-icons/fa';
 import SectionHeader from './SectionHeader';
 
 const highlights = [
-  { icon: <FaMedal className="text-amber-300" />, text: 'Certificates of Merit — Semesters 3 & 4' },
+  { icon: <FaMedal className="text-amber-300" />, text: 'Certificates of Merit — Semesters 3, 4 & 5' },
   { icon: <FaBook className="text-teal-300" />, text: 'AI research focus: environmental intelligence & multimodal' },
 ];
 
-const coursework = ['Data Structures & Algorithms', 'Linear Algebra', 'Introduction to AI'];
+const coursework = ['Data Structures & Algorithms', 'Linear Algebra', 'Introduction to AI', 'Deep Learning', 'Statistical Analysis'];
 
 const Education: React.FC = () => {
   return (

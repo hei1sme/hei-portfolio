@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <motion.footer 
+    <motion.footer
       className="mt-16 border-t border-white/10 bg-black/40 py-10 text-gray-400 backdrop-blur-xl"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
@@ -47,6 +47,26 @@ const Footer: React.FC = () => {
           >
             <FaInstagram size={24} />
           </motion.a>
+        </div>
+
+        {/* Academic Profiles */}
+        <div className="flex flex-wrap justify-center gap-2">
+          {[
+            { href: 'https://scholar.google.com/citations?user=iGODAQYAAAAJ&hl=en', label: 'Google Scholar' },
+            { href: 'https://orcid.org/0009-0003-7120-8167', label: 'ORCID' },
+            { href: 'https://www.scopus.com/authid/detail.uri?authorId=60219530700', label: 'Scopus' },
+            { href: 'https://www.webofscience.com/wos/author/record/PCR-6096-2025', label: 'Web of Science' },
+          ].map((profile) => (
+            <a
+              key={profile.label}
+              href={profile.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[10px] font-medium text-slate-400 transition-all hover:bg-white/10 hover:text-white"
+            >
+              {profile.label} ↗
+            </a>
+          ))}
         </div>
         <p className="text-sm font-mono text-slate-300/80">
           &copy; {currentYear} Le Nguyen Gia Hung (hei). All rights reserved.

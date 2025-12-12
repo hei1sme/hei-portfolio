@@ -97,6 +97,29 @@ const Contact: React.FC = () => {
                 ))}
               </div>
             </div>
+
+            {/* Academic Profiles */}
+            <div className="mt-6">
+              <p className="text-xs uppercase tracking-[0.35em] text-slate-300/70">Academic Profiles</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {[
+                  { href: 'https://scholar.google.com/citations?user=iGODAQYAAAAJ&hl=en', label: 'Google Scholar' },
+                  { href: 'https://orcid.org/0009-0003-7120-8167', label: 'ORCID' },
+                  { href: 'https://www.scopus.com/authid/detail.uri?authorId=60219530700', label: 'Scopus' },
+                  { href: 'https://www.webofscience.com/wos/author/record/PCR-6096-2025', label: 'Web of Science' },
+                ].map((profile) => (
+                  <a
+                    key={profile.label}
+                    href={profile.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[11px] font-medium text-slate-300 transition-all hover:bg-white/10 hover:text-white"
+                  >
+                    {profile.label} ↗
+                  </a>
+                ))}
+              </div>
+            </div>
           </motion.div>
 
           <motion.div
@@ -149,9 +172,8 @@ const Contact: React.FC = () => {
                   disabled={isSubmitting}
                   whileHover={!isSubmitting ? { scale: 1.03, y: -2 } : {}}
                   whileTap={!isSubmitting ? { scale: 0.97 } : {}}
-                  className={`inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-500 via-fuchsia-500 to-sky-400 px-6 py-3 text-sm font-semibold tracking-wide text-white shadow-[0_0_25px_rgba(133,76,255,0.4)] transition-all duration-300 ${
-                    isSubmitting ? 'opacity-60 cursor-not-allowed' : 'hover:shadow-[0_0_35px_rgba(133,76,255,0.55)]'
-                  }`}
+                  className={`inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-500 via-fuchsia-500 to-sky-400 px-6 py-3 text-sm font-semibold tracking-wide text-white shadow-[0_0_25px_rgba(133,76,255,0.4)] transition-all duration-300 ${isSubmitting ? 'opacity-60 cursor-not-allowed' : 'hover:shadow-[0_0_35px_rgba(133,76,255,0.55)]'
+                    }`}
                 >
                   <FaPaperPlane />
                   {isSubmitting ? 'Sending...' : 'Send Message'}

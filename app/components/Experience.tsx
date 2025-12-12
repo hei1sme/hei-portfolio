@@ -23,12 +23,12 @@ const experienceData: ExperienceEntry[] = [
     company: 'SpeedyLabX — FPT University',
     date: '2025 - Present',
     description: [
-      'Launched a six-member applied AI collective accelerating student-led research',
+      'Launched a ten-member applied AI collective accelerating student-led research',
       'Established cross-functional rituals: code reviews, reproducibility checks, demo days',
     ],
     icon: <FaRocket className="text-purple-300" />,
     metrics: [
-      { label: 'Team', value: '6', color: 'bg-purple-500/20 text-purple-200' },
+      { label: 'Team', value: '10', color: 'bg-purple-500/20 text-purple-200' },
       { label: 'Pilots', value: '8', color: 'bg-sky-500/20 text-sky-200' },
     ],
     badge: 'Current',

@@ -44,6 +44,7 @@ const featuredProject: ProjectItem = {
     { label: 'Improvement', value: '57.7%', color: 'teal' },
   ],
   githubUrl: 'https://github.com/hei1sme',
+  demoUrl: 'https://doi.org/10.1007/978-981-95-4969-6_34',
 };
 
 const otherProjects: ProjectItem[] = [
@@ -136,9 +137,16 @@ const Projects: React.FC = () => {
                     <FaGithub /> Code
                   </a>
                 )}
-                <span className="ml-auto flex items-center gap-2 text-sm font-semibold text-purple-300 opacity-0 group-hover:opacity-100 transition-opacity">
-                  View Case Study <FaArrowRight className="text-xs" />
-                </span>
+                {featuredProject.demoUrl && (
+                  <a
+                    href={featuredProject.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ml-auto flex items-center gap-2 text-sm font-semibold text-purple-300 hover:text-white transition-colors"
+                  >
+                    View Publication <FaArrowRight className="text-xs" />
+                  </a>
+                )}
               </div>
             </div>
           </motion.article>

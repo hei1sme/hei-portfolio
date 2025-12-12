@@ -13,7 +13,7 @@ const stats = [
         icon: <FaFileAlt className="text-purple-300" />,
     },
     {
-        end: 6,
+        end: 10,
         suffix: '',
         label: 'Researchers Led',
         icon: <FaUsers className="text-sky-300" />,

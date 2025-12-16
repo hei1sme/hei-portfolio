@@ -305,7 +305,7 @@ const HorizontalScrollProjects: React.FC = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.1 }}
                     >
-                        Things I've Built
+                        Things I&apos;ve Built
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0 }}

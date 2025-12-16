@@ -132,7 +132,7 @@ const About: React.FC = () => {
 
             {/* Bio */}
             <p className="text-lg text-white/70 leading-relaxed">
-              I'm an undergraduate AI researcher at FPT University, focused on explainable AI for high-stakes domains.
+              I&apos;m an undergraduate AI researcher at FPT University, focused on explainable AI for high-stakes domains.
               My work spans time-series forecasting, multimodal emotion recognition, and building tools that make
               AI decisions interpretable.
             </p>

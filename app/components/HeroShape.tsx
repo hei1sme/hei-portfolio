@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useMemo, useRef, useEffect, useState } from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
 // Hook to get mouse position in normalized device coordinates

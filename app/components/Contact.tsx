@@ -19,7 +19,7 @@ const Contact: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <span className="text-white">Let's build</span>
+          <span className="text-white">Let&apos;s build</span>
           <br />
           <span
             className="bg-gradient-to-r from-purple-400 via-fuchsia-400 to-green-400 bg-clip-text text-transparent"

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { motion, useMotionValue, useSpring, PanInfo } from 'framer-motion';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 // Word pools for each bubble - tech, emojis, and personal keywords
 const wordPools = [

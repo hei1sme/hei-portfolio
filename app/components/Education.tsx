@@ -2,85 +2,88 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaGraduationCap, FaMedal, FaBook } from 'react-icons/fa';
-import SectionHeader from './SectionHeader';
-
-const highlights = [
-  { icon: <FaMedal className="text-amber-300" />, text: 'Certificates of Merit — Semesters 3, 4 & 5' },
-  { icon: <FaBook className="text-teal-300" />, text: 'AI research focus: environmental intelligence & multimodal' },
-];
-
-const coursework = ['Data Structures & Algorithms', 'Linear Algebra', 'Introduction to AI', 'Deep Learning', 'Statistical Analysis'];
+import { FaGraduationCap, FaMedal } from 'react-icons/fa';
 
 const Education: React.FC = () => {
   return (
-    <section id="education" className="relative py-28 text-white">
-
-      <div className="relative max-w-5xl mx-auto px-6 lg:px-10">
-        <SectionHeader
-          eyebrow="Education"
-          title="Grounded in an AI-first curriculum with research fluency."
-          description="FPT University's B.Eng AI program with theoretical depth and production-ready systems."
-        />
-
+    <section id="education" className="relative py-20 text-white">
+      <div className="relative max-w-4xl mx-auto">
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 25 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.7 }}
-          className="mt-12 rounded-[28px] border border-white/10 bg-gradient-to-br from-white/[0.05] via-white/[0.02] to-transparent p-8 backdrop-blur-2xl shadow-[0_20px_60px_rgba(15,18,40,0.45)]"
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
         >
-          {/* Header */}
-          <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex items-center gap-4">
-              <div className="grid h-14 w-14 place-items-center rounded-2xl border border-teal-400/30 bg-teal-500/20">
-                <FaGraduationCap className="text-2xl text-teal-200" />
+          <p
+            className="text-sm uppercase tracking-[0.3em] text-purple-400 mb-4"
+            style={{ textShadow: '0 0 20px #a855f780' }}
+          >
+            Education
+          </p>
+          <h2
+            className="text-3xl md:text-4xl lg:text-5xl font-black"
+            style={{ letterSpacing: '-0.02em' }}
+          >
+            Formal{' '}
+            <span
+              className="bg-gradient-to-r from-purple-400 to-green-400 bg-clip-text text-transparent"
+              style={{ filter: 'drop-shadow(0 0 25px rgba(168,85,247,0.6))' }}
+            >
+              foundation
+            </span>
+          </h2>
+        </motion.div>
+
+        {/* Main card */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="p-8 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl"
+        >
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            {/* Left: University info */}
+            <div className="flex items-start gap-4">
+              <div
+                className="grid h-14 w-14 flex-shrink-0 place-items-center rounded-2xl border border-teal-400/30 bg-teal-500/20"
+                style={{ boxShadow: '0 0 25px #14b8a640' }}
+              >
+                <FaGraduationCap className="text-2xl text-teal-300" />
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-white">FPT University</h3>
-                <p className="text-sm text-slate-300/85">Ho Chi Minh City, Vietnam</p>
+                <h3 className="text-xl font-bold text-white">FPT University</h3>
+                <p className="text-white/60">Ho Chi Minh City, Vietnam</p>
+                <p className="mt-2 text-sm text-white/80">
+                  B.Eng in <span className="text-purple-300 font-medium">Artificial Intelligence</span>
+                </p>
               </div>
             </div>
-            <div className="sm:text-right">
-              <p className="text-[10px] uppercase tracking-[0.3em] text-slate-300/70">Bachelor of Engineering</p>
-              <p className="text-sm font-semibold text-slate-100/90">Artificial Intelligence — Dec 2027</p>
+
+            {/* Right: Date */}
+            <div className="md:text-right">
+              <p className="text-2xl font-bold text-white">2023 - 2027</p>
+              <p className="text-sm text-white/50">Expected graduation</p>
             </div>
           </div>
 
-          {/* Content Grid */}
-          <div className="mt-8 grid gap-5 sm:grid-cols-2">
-            {/* Highlights */}
-            <div className="rounded-2xl border border-white/10 bg-white/10 p-5">
-              <p className="text-[10px] uppercase tracking-[0.3em] text-slate-300/70">Highlights</p>
-              <ul className="mt-4 space-y-3">
-                {highlights.map((item, i) => (
-                  <motion.li
-                    key={i}
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.1 + i * 0.1 }}
-                    className="flex items-center gap-3 text-sm text-slate-200/85"
-                  >
-                    {item.icon}
-                    <span>{item.text}</span>
-                  </motion.li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Coursework */}
-            <div className="rounded-2xl border border-white/10 bg-white/10 p-5">
-              <p className="text-[10px] uppercase tracking-[0.3em] text-slate-300/70">Core Coursework</p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {coursework.map((course) => (
-                  <span
-                    key={course}
-                    className="rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs text-slate-200/85"
-                  >
-                    {course}
-                  </span>
-                ))}
+          {/* Achievements */}
+          <div className="mt-8 pt-6 border-t border-white/10">
+            <div className="flex flex-wrap gap-3">
+              <div
+                className="flex items-center gap-2 px-4 py-2 rounded-full border border-amber-400/30 bg-amber-500/10"
+                style={{ boxShadow: '0 0 15px #f59e0b30' }}
+              >
+                <FaMedal className="text-amber-300" />
+                <span className="text-sm text-white/80">Certificate of Merit — Sem 3, 4 & 5</span>
+              </div>
+              <div
+                className="flex items-center gap-2 px-4 py-2 rounded-full border border-purple-400/30 bg-purple-500/10"
+                style={{ boxShadow: '0 0 15px #a855f730' }}
+              >
+                <span className="text-sm text-white/80">AI Research Focus</span>
               </div>
             </div>
           </div>

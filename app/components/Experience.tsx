@@ -1,201 +1,384 @@
 'use client';
 
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { FaRocket, FaFileAlt, FaBrain, FaShieldAlt } from 'react-icons/fa';
-import SectionHeader from './SectionHeader';
+import React, { useRef, useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import Image from 'next/image';
+import { FaFileAlt, FaRocket, FaExternalLinkAlt } from 'react-icons/fa';
 
-interface ExperienceEntry {
-  id: number;
-  role: string;
-  company: string;
-  date: string;
-  description: string[];
+interface Milestone {
+  id: string;
+  month: string;
+  year: string;
+  title: string;
+  tagline: string;
   icon: React.ReactNode;
-  metrics?: { label: string; value: string; color: string }[];
-  badge: string;
+  color: string;
+  image: string;
+  stat: { value: string; label: string };
+  link?: string;
 }
 
-const experienceData: ExperienceEntry[] = [
+const milestones: Milestone[] = [
   {
-    id: 1,
-    role: 'Founder & Lead Researcher',
-    company: 'SpeedyLabX — FPT University',
-    date: '2025 - Present',
-    description: [
-      'Launched a ten-member applied AI collective accelerating student-led research',
-      'Established cross-functional rituals: code reviews, reproducibility checks, demo days',
-    ],
-    icon: <FaRocket className="text-purple-300" />,
-    metrics: [
-      { label: 'Team', value: '10', color: 'bg-purple-500/20 text-purple-200' },
-      { label: 'Pilots', value: '8', color: 'bg-sky-500/20 text-sky-200' },
-    ],
-    badge: 'Current',
+    id: 'speedylabx',
+    month: 'June',
+    year: '2025',
+    title: 'SpeedyLabX',
+    tagline: 'Built a research team from scratch',
+    icon: <FaRocket />,
+    color: '#ec4899',
+    image: '/images/experience/1_SpeedyLabX/1_1_slx.png',
+    stat: { value: '10', label: 'researchers united' },
   },
   {
-    id: 2,
-    role: 'AI Researcher — SmokeNet',
-    company: 'AJCAI 2025 Accepted Paper',
-    date: '2024 - 2025',
-    description: [
-      'Designed transformer achieving MAE 0.7470 and R² 0.9545 on PM₂.₅ forecasting',
-      'Delivered interpretable health-alert workflow with SHAP, IG, and DiCE',
-    ],
-    icon: <FaFileAlt className="text-sky-300" />,
-    metrics: [
-      { label: 'MAE', value: '0.7470', color: 'bg-purple-500/20 text-purple-200' },
-      { label: 'R²', value: '0.9545', color: 'bg-sky-500/20 text-sky-200' },
-      { label: 'Gain', value: '57.7%', color: 'bg-teal-500/20 text-teal-200' },
-    ],
-    badge: 'Published',
-  },
-  {
-    id: 3,
-    role: 'Researcher — Conformer-GAT SER',
-    company: 'Multimodal Speech Emotion Recognition',
-    date: '2025',
-    description: [
-      'Prototyping Conformer-GAT fusion for audio-transcript emotion reasoning',
-      'Building transparency-first dashboards for IEMOCAP and RAVDESS benchmarks',
-    ],
-    icon: <FaBrain className="text-teal-300" />,
-    badge: 'Active',
-  },
-  {
-    id: 4,
-    role: 'Project Lead — PPE Detection',
-    company: 'DPL302m Capstone',
-    date: '2024',
-    description: [
-      'Trained YOLOv8 pipeline across nine PPE classes with real-time compliance engine',
-      'Shipped Streamlit interface with webcam inference and audit exports',
-    ],
-    icon: <FaShieldAlt className="text-amber-300" />,
-    metrics: [
-      { label: 'Classes', value: '9', color: 'bg-amber-500/20 text-amber-200' },
-    ],
-    badge: 'Shipped',
+    id: 'smokenet',
+    month: 'December',
+    year: '2025',
+    title: 'First Publication',
+    tagline: 'SmokeNet accepted at AJCAI 2025',
+    icon: <FaFileAlt />,
+    color: '#a855f7',
+    image: '/images/experience/2_SmokeNet/2_1_SN.jpg',
+    stat: { value: '57.7%', label: 'improvement achieved' },
+    link: 'https://doi.org/10.1007/978-981-95-4969-6_34',
   },
 ];
 
-const Experience: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
+// Animated counter with glow
+const Counter: React.FC<{ value: string; color: string }> = ({ value, color }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const [displayValue, setDisplayValue] = useState('0');
+
+  useEffect(() => {
+    if (isInView) {
+      const numericPart = parseFloat(value.replace(/[^0-9.]/g, ''));
+      const suffix = value.replace(/[0-9.]/g, '');
+      const duration = 2000;
+      const startTime = Date.now();
+
+      const animate = () => {
+        const elapsed = Date.now() - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = numericPart * eased;
+        setDisplayValue(current.toFixed(value.includes('.') ? 1 : 0) + suffix);
+        if (progress < 1) requestAnimationFrame(animate);
+      };
+      animate();
+    }
+  }, [isInView, value]);
+
+  return (
+    <span
+      ref={ref}
+      className="text-6xl md:text-8xl font-black tabular-nums"
+      style={{
+        color,
+        textShadow: `0 0 30px ${color}80, 0 0 60px ${color}40`
+      }}
+    >
+      {displayValue}
+    </span>
+  );
+};
+
+// Animated text that reveals letter by letter
+const AnimatedText: React.FC<{
+  text: string;
+  className?: string;
+  color?: string;
+  delay?: number;
+  glow?: boolean;
+}> = ({ text, className = '', color, delay = 0, glow = false }) => {
+  const letters = text.split('');
+
+  return (
+    <span className={className}>
+      {letters.map((letter, i) => (
+        <motion.span
+          key={i}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{
+            duration: 0.4,
+            delay: delay + i * 0.03,
+            ease: 'easeOut'
+          }}
+          style={glow && color ? {
+            color,
+            textShadow: `0 0 20px ${color}60, 0 0 40px ${color}30`
+          } : { color }}
+          className="inline-block"
+        >
+          {letter === ' ' ? '\u00A0' : letter}
+        </motion.span>
+      ))}
+    </span>
+  );
+};
+
+// Glowing text component
+const GlowText: React.FC<{
+  children: React.ReactNode;
+  color: string;
+  intensity?: 'low' | 'medium' | 'high';
+  className?: string;
+}> = ({ children, color, intensity = 'medium', className = '' }) => {
+  const shadows = {
+    low: `0 0 10px ${color}40`,
+    medium: `0 0 20px ${color}60, 0 0 40px ${color}30`,
+    high: `0 0 30px ${color}80, 0 0 60px ${color}50, 0 0 100px ${color}30`,
+  };
+
+  return (
+    <span
+      className={className}
+      style={{ color, textShadow: shadows[intensity] }}
+    >
+      {children}
+    </span>
+  );
+};
+
+// Split screen milestone with glow effects
+const SplitMilestone: React.FC<{ milestone: Milestone; index: number; isReversed: boolean }> = ({
+  milestone, index, isReversed
+}) => {
+  const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
-    target: containerRef,
+    target: ref,
     offset: ['start end', 'end start'],
   });
 
-  const lineHeight = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
+  const imageY = useTransform(scrollYProgress, [0, 1], [50, -50]);
+  const contentY = useTransform(scrollYProgress, [0, 1], [30, -30]);
 
   return (
-    <section id="experience" className="relative py-28 text-white">
+    <div ref={ref} className="min-h-[80vh] md:min-h-screen flex items-center py-12 md:py-20">
+      <div className={`w-full max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center`}>
 
-      <div className="relative max-w-6xl mx-auto px-6 lg:px-10">
-        <SectionHeader
-          eyebrow="Experience"
-          title="Leading research squads and shipping production prototypes."
-          description="Every milestone blends academic rigor with applied constraints — interpretability, operator empathy, and measurable impact."
-        />
-
-        <div ref={containerRef} className="relative mt-14">
-          {/* Animated Timeline Line */}
-          <div className="absolute left-4 top-0 bottom-0 hidden md:block w-[3px] bg-white/10 rounded-full overflow-hidden">
-            <motion.div
-              style={{ height: lineHeight }}
-              className="w-full bg-gradient-to-b from-purple-400 via-fuchsia-400 to-sky-300"
-            />
-          </div>
-
-          <div className="space-y-8">
-            {experienceData.map((item, index) => (
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.4 }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
-                className="relative md:pl-16"
-              >
-                {/* Timeline Node with Icon */}
-                <div className="absolute left-0 top-4 hidden md:flex h-8 w-8 -translate-x-[14px] items-center justify-center rounded-xl border border-white/20 bg-[#05010a] shadow-[0_0_25px_rgba(148,93,255,0.35)] z-10">
-                  {item.icon}
-                </div>
-
-                <motion.div
-                  whileHover={{ y: -4 }}
-                  className="group rounded-[24px] border border-white/10 bg-white/[0.04] p-6 backdrop-blur-2xl shadow-[0_18px_55px_rgba(12,10,32,0.45)] transition-all duration-300 hover:bg-white/[0.06] hover:border-white/20"
-                >
-                  {/* Header */}
-                  <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-                    <div>
-                      <p className="text-[11px] uppercase tracking-[0.35em] text-slate-300/70">{item.date}</p>
-                      <h3 className="mt-1.5 text-lg font-semibold text-white group-hover:text-purple-200 transition-colors">
-                        {item.role}
-                      </h3>
-                      <p className="text-sm text-slate-300/80">{item.company}</p>
-                    </div>
-                    <span className={`inline-flex items-center gap-2 rounded-full border border-white/15 px-3 py-1 text-[10px] uppercase tracking-[0.3em] ${item.badge === 'Current'
-                      ? 'bg-gradient-to-r from-purple-500/20 to-sky-500/20 text-white'
-                      : 'bg-white/10 text-slate-200/80'
-                      }`}>
-                      {item.badge}
-                    </span>
-                  </div>
-
-                  {/* Metrics */}
-                  {item.metrics && (
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {item.metrics.map((metric) => (
-                        <span
-                          key={metric.label}
-                          className={`rounded-md px-2.5 py-1 text-[11px] font-semibold ${metric.color}`}
-                        >
-                          {metric.label}: {metric.value}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* Description */}
-                  <ul className="mt-4 space-y-2 text-sm leading-relaxed text-slate-200/85">
-                    {item.description.map((point) => (
-                      <li key={point} className="flex gap-3">
-                        <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gradient-to-r from-purple-400 to-sky-300" />
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* CTA */}
+        {/* Image side with glow border */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          className="mt-12 rounded-[24px] border border-white/10 bg-white/[0.03] p-6 backdrop-blur-xl"
+          style={{ y: imageY }}
+          className={`relative ${isReversed ? 'md:order-2' : 'md:order-1'}`}
         >
-          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <div>
-              <h3 className="text-lg font-semibold text-white">I thrive with mission-driven teams.</h3>
-              <p className="mt-1 text-sm text-slate-300/80">
-                Looking for research internships or applied AI collaborations.
-              </p>
+          <div
+            className="relative aspect-[4/3] rounded-3xl overflow-hidden group"
+            style={{
+              boxShadow: `0 0 60px ${milestone.color}30, 0 0 120px ${milestone.color}15`
+            }}
+          >
+            {/* Animated border glow */}
+            <motion.div
+              className="absolute -inset-1 rounded-3xl opacity-50"
+              style={{ background: `linear-gradient(45deg, ${milestone.color}, transparent, ${milestone.color})` }}
+              animate={{
+                backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+              }}
+              transition={{ duration: 5, repeat: Infinity, ease: 'linear' }}
+            />
+
+            <div className="absolute inset-0 rounded-3xl overflow-hidden">
+              <Image
+                src={milestone.image}
+                alt={milestone.title}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              {/* Gradient overlay */}
+              <div
+                className="absolute inset-0"
+                style={{ background: `linear-gradient(135deg, ${milestone.color}40 0%, transparent 50%)` }}
+              />
             </div>
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-5 py-2.5 text-sm font-semibold text-slate-100 transition-all duration-300 hover:bg-white/18"
-              data-interactive
+
+            {/* Index badge with glow */}
+            <div
+              className="absolute top-4 left-4 w-12 h-12 rounded-xl flex items-center justify-center text-xl font-bold text-white z-10"
+              style={{
+                backgroundColor: milestone.color,
+                boxShadow: `0 0 20px ${milestone.color}80`
+              }}
             >
-              Let&apos;s talk <span>↗</span>
-            </a>
+              {String(index + 1).padStart(2, '0')}
+            </div>
           </div>
         </motion.div>
+
+        {/* Content side */}
+        <motion.div
+          style={{ y: contentY }}
+          className={`space-y-6 ${isReversed ? 'md:order-1 md:text-right' : 'md:order-2'}`}
+        >
+          {/* Date with letter animation */}
+          <div>
+            <AnimatedText
+              text={milestone.month}
+              className="text-4xl sm:text-5xl md:text-6xl font-black"
+              color={milestone.color}
+              glow={true}
+            />
+            <motion.span
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5 }}
+              className="text-2xl sm:text-3xl md:text-4xl font-light text-white/30 ml-2 md:ml-3"
+            >
+              {milestone.year}
+            </motion.span>
+          </div>
+
+          {/* Title with glow */}
+          <motion.h3
+            initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-2xl sm:text-3xl md:text-4xl font-bold text-white"
+            style={{ textShadow: '0 0 30px rgba(255,255,255,0.1)' }}
+          >
+            {milestone.title}
+          </motion.h3>
+
+          {/* Tagline with shimmer */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-xl text-white/60 relative"
+          >
+            {milestone.tagline}
+          </motion.p>
+
+          {/* Stat with counter and intense glow */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className={`inline-block ${isReversed ? 'md:ml-auto' : ''}`}
+          >
+            <div
+              className="px-8 py-5 rounded-2xl border backdrop-blur-sm relative overflow-hidden"
+              style={{
+                borderColor: `${milestone.color}50`,
+                backgroundColor: `${milestone.color}15`,
+                boxShadow: `0 0 40px ${milestone.color}25, inset 0 0 30px ${milestone.color}10`
+              }}
+            >
+              {/* Inner glow effect */}
+              <div
+                className="absolute inset-0 opacity-30"
+                style={{
+                  background: `radial-gradient(circle at 50% 0%, ${milestone.color}60 0%, transparent 70%)`
+                }}
+              />
+              <div className="relative z-10">
+                <Counter value={milestone.stat.value} color={milestone.color} />
+                <p className="text-base text-white/50 mt-1">{milestone.stat.label}</p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Link with glow hover */}
+          {milestone.link && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+            >
+              <a
+                href={milestone.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-lg font-medium hover:gap-3 transition-all group"
+                style={{ color: milestone.color }}
+              >
+                <span className="group-hover:drop-shadow-[0_0_10px_var(--tw-shadow-color)]" style={{ '--tw-shadow-color': milestone.color } as React.CSSProperties}>
+                  Read the paper
+                </span>
+                <FaExternalLinkAlt className="text-sm" />
+              </a>
+            </motion.div>
+          )}
+        </motion.div>
+      </div>
+    </div>
+  );
+};
+
+const Experience: React.FC = () => {
+  return (
+    <section id="experience" className="relative py-20">
+      {/* Header with dramatic animations */}
+      <div className="min-h-[60vh] flex items-center justify-center">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center px-6"
+        >
+          <motion.p
+            initial={{ opacity: 0, letterSpacing: '0.2em' }}
+            whileInView={{ opacity: 1, letterSpacing: '0.4em' }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-sm uppercase text-pink-400 mb-6"
+            style={{ textShadow: '0 0 20px #ec489980' }}
+          >
+            The Story
+          </motion.p>
+
+          <h2 className="text-5xl md:text-7xl lg:text-8xl font-black mb-4">
+            <AnimatedText text="Two " className="text-white" delay={0.2} />
+            <br className="md:hidden" />
+            <GlowText
+              color="#ec4899"
+              intensity="high"
+              className="bg-gradient-to-r from-pink-400 via-purple-400 to-violet-400 bg-clip-text text-transparent"
+            >
+              <AnimatedText text="Milestones" delay={0.4} />
+            </GlowText>
+          </h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 1 }}
+            className="text-xl text-white/40"
+          >
+            That defined 2025
+          </motion.p>
+        </motion.div>
+      </div>
+
+      {/* Milestones */}
+      {milestones.map((milestone, index) => (
+        <SplitMilestone
+          key={milestone.id}
+          milestone={milestone}
+          index={index}
+          isReversed={index % 2 === 1}
+        />
+      ))}
+
+      {/* Closing with subtle glow */}
+      <div className="py-32 flex items-center justify-center">
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          className="text-2xl md:text-3xl font-bold text-white/20"
+          style={{ textShadow: '0 0 40px rgba(168,85,247,0.2)' }}
+        >
+          2026 loading...
+        </motion.p>
       </div>
     </section>
   );

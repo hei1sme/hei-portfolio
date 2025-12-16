@@ -1,110 +1,186 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaBrain, FaLightbulb, FaWaveSquare, FaNetworkWired, FaCode, FaUsers } from 'react-icons/fa';
-import SectionHeader from './SectionHeader';
-import TechIconGrid from './TechIconGrid';
+import { FaBrain, FaCode, FaTools, FaPython, FaReact, FaDocker, FaGitAlt } from 'react-icons/fa';
+import { SiPytorch, SiTypescript, SiFastapi, SiJupyter, SiStreamlit } from 'react-icons/si';
 
-interface CoreSkill {
+interface Skill {
   name: string;
-  icon: React.ReactElement;
+  icon: React.ReactNode;
   color: string;
+  category: 'ml' | 'dev' | 'tools';
 }
 
-const coreSkills: CoreSkill[] = [
-  { name: 'ML & Deep Learning', icon: <FaBrain />, color: 'text-purple-300' },
-  { name: 'Explainable AI', icon: <FaLightbulb />, color: 'text-amber-300' },
-  { name: 'Time-Series', icon: <FaWaveSquare />, color: 'text-teal-300' },
-  { name: 'Multimodal', icon: <FaNetworkWired />, color: 'text-sky-300' },
-  { name: 'Python Eng.', icon: <FaCode />, color: 'text-slate-100' },
-  { name: 'Research Lead', icon: <FaUsers />, color: 'text-pink-300' },
+const allSkills: Skill[] = [
+  // ML
+  { name: 'PyTorch', icon: <SiPytorch />, color: '#EE4C2C', category: 'ml' },
+  { name: 'Deep Learning', icon: <FaBrain />, color: '#a855f7', category: 'ml' },
+  { name: 'Transformers', icon: <FaBrain />, color: '#f59e0b', category: 'ml' },
+  { name: 'Explainable AI', icon: <FaBrain />, color: '#22c55e', category: 'ml' },
+  { name: 'Computer Vision', icon: <FaBrain />, color: '#0ea5e9', category: 'ml' },
+  { name: 'GNNs', icon: <FaBrain />, color: '#ec4899', category: 'ml' },
+  { name: 'Time-Series', icon: <FaBrain />, color: '#8b5cf6', category: 'ml' },
+  // Dev
+  { name: 'Python', icon: <FaPython />, color: '#3776AB', category: 'dev' },
+  { name: 'TypeScript', icon: <SiTypescript />, color: '#3178C6', category: 'dev' },
+  { name: 'React', icon: <FaReact />, color: '#61DAFB', category: 'dev' },
+  { name: 'FastAPI', icon: <SiFastapi />, color: '#009688', category: 'dev' },
+  { name: 'Streamlit', icon: <SiStreamlit />, color: '#FF4B4B', category: 'dev' },
+  // Tools
+  { name: 'Git', icon: <FaGitAlt />, color: '#F05032', category: 'tools' },
+  { name: 'Docker', icon: <FaDocker />, color: '#2496ED', category: 'tools' },
+  { name: 'Jupyter', icon: <SiJupyter />, color: '#F37626', category: 'tools' },
 ];
 
-const outcomes = [
-  { label: 'Model reliability dashboards', detail: 'SHAP & IG overlays' },
-  { label: 'Human feedback loops', detail: 'Evaluation scripts' },
-  { label: 'Deployment playbooks', detail: 'CI pipelines & monitoring' },
-  { label: 'Community mentorship', detail: '600+ learners reached' },
-];
+// Skill pill component
+const SkillPill: React.FC<{ skill: Skill; isHovered: boolean; onHover: () => void; onLeave: () => void }> = ({
+  skill, isHovered, onHover, onLeave
+}) => (
+  <motion.div
+    onMouseEnter={onHover}
+    onMouseLeave={onLeave}
+    className="flex items-center gap-3 px-5 py-3 rounded-full border backdrop-blur-sm whitespace-nowrap cursor-default"
+    style={{
+      backgroundColor: isHovered ? `${skill.color}20` : 'rgba(255,255,255,0.05)',
+      borderColor: isHovered ? skill.color : 'rgba(255,255,255,0.1)',
+      boxShadow: isHovered ? `0 0 25px ${skill.color}40` : 'none',
+    }}
+    whileHover={{ scale: 1.05, y: -2 }}
+    transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+  >
+    <span
+      className="text-xl"
+      style={{ color: skill.color }}
+    >
+      {skill.icon}
+    </span>
+    <span className="text-sm font-medium text-white/90">{skill.name}</span>
+  </motion.div>
+);
+
+// Infinite marquee row
+const MarqueeRow: React.FC<{ skills: Skill[]; direction: 'left' | 'right'; speed?: number }> = ({
+  skills, direction, speed = 30
+}) => {
+  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Duplicate skills for seamless loop
+  const duplicatedSkills = [...skills, ...skills, ...skills];
+
+  return (
+    <div
+      className="relative overflow-hidden py-2"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      {/* Fade edges */}
+      <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
+
+      <motion.div
+        className="flex gap-4"
+        animate={{
+          x: direction === 'left' ? ['0%', '-33.33%'] : ['-33.33%', '0%'],
+        }}
+        transition={{
+          x: {
+            repeat: Infinity,
+            repeatType: 'loop',
+            duration: speed,
+            ease: 'linear',
+          },
+        }}
+        style={{
+          animationPlayState: isPaused ? 'paused' : 'running',
+        }}
+      >
+        {duplicatedSkills.map((skill, i) => (
+          <SkillPill
+            key={`${skill.name}-${i}`}
+            skill={skill}
+            isHovered={hoveredSkill === `${skill.name}-${i}`}
+            onHover={() => setHoveredSkill(`${skill.name}-${i}`)}
+            onLeave={() => setHoveredSkill(null)}
+          />
+        ))}
+      </motion.div>
+    </div>
+  );
+};
 
 const Skills: React.FC = () => {
+  const mlSkills = allSkills.filter(s => s.category === 'ml');
+  const devSkills = allSkills.filter(s => s.category === 'dev');
+  const toolSkills = allSkills.filter(s => s.category === 'tools');
+
   return (
-    <section id="skills" className="relative py-28 text-white">
+    <section id="skills" className="relative py-32 text-white overflow-hidden">
+      {/* Background glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(168,85,247,0.08)_0%,_transparent_60%)] pointer-events-none" />
 
-      <div className="relative mx-auto max-w-6xl px-6 lg:px-10">
-        <SectionHeader
-          eyebrow="Skills"
-          title="A toolkit for rigorous experimentation and deployable AI."
-          description="From GPU-bound research sprints to production dashboards — ideation, modelling, interpretability, deployment."
-        />
-
-        {/* Core Competencies - Simplified Pills */}
+      <div className="relative max-w-7xl mx-auto">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ delay: 0.1, duration: 0.6 }}
-          className="mt-10 flex flex-wrap justify-center gap-3"
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16 px-6"
         >
-          {coreSkills.map((skill, index) => (
-            <motion.div
-              key={skill.name}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05, duration: 0.4 }}
-              whileHover={{ scale: 1.05, y: -3 }}
-              className="flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-4 py-2.5 backdrop-blur-xl shadow-[0_0_20px_rgba(168,85,247,0.15)] transition-all duration-300 hover:bg-white/[0.1] hover:border-white/25"
+          <p
+            className="text-sm uppercase tracking-[0.3em] text-purple-400 mb-4"
+            style={{ textShadow: '0 0 20px #a855f780' }}
+          >
+            Skills
+          </p>
+          <h2
+            className="text-3xl md:text-4xl lg:text-5xl font-black"
+            style={{ letterSpacing: '-0.02em' }}
+          >
+            Toolkit for{' '}
+            <span
+              className="bg-gradient-to-r from-purple-400 to-green-400 bg-clip-text text-transparent"
+              style={{ filter: 'drop-shadow(0 0 25px rgba(168,85,247,0.6))' }}
             >
-              <span className={`text-lg ${skill.color}`}>{skill.icon}</span>
-              <span className="text-sm font-medium text-slate-100">{skill.name}</span>
-            </motion.div>
-          ))}
+              rigorous AI
+            </span>
+          </h2>
+          <p className="mt-6 text-base md:text-lg text-white/40 max-w-xl mx-auto">
+            Hover to highlight
+          </p>
         </motion.div>
 
-        {/* Tech Stack Grid */}
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ delay: 0.2, duration: 0.7 }}
-          className="mt-14 rounded-[32px] border border-white/10 bg-white/[0.04] p-8 backdrop-blur-2xl shadow-[0_24px_70px_rgba(16,12,40,0.45)]"
-        >
-          <div className="text-center mb-8">
-            <h3 className="text-xl font-semibold text-white">Tech Stack</h3>
-            <p className="mt-2 text-sm text-slate-300/80">
-              Click categories to filter. Hover for proficiency levels.
-            </p>
+        {/* Marquee rows */}
+        <div className="space-y-6">
+          {/* Row 1: ML - left */}
+          <div>
+            <div className="flex items-center gap-3 px-6 mb-3">
+              <FaBrain className="text-purple-400" />
+              <span className="text-sm font-medium text-white/60">AI & Machine Learning</span>
+            </div>
+            <MarqueeRow skills={mlSkills} direction="left" speed={35} />
           </div>
 
-          <TechIconGrid />
-        </motion.div>
+          {/* Row 2: Dev - right */}
+          <div>
+            <div className="flex items-center gap-3 px-6 mb-3">
+              <FaCode className="text-green-400" />
+              <span className="text-sm font-medium text-white/60">Development</span>
+            </div>
+            <MarqueeRow skills={devSkills} direction="right" speed={40} />
+          </div>
 
-        {/* Outcomes Grid */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
-        >
-          {outcomes.map((item, index) => (
-            <motion.div
-              key={item.label}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 + index * 0.08, duration: 0.5 }}
-              whileHover={{ y: -4 }}
-              className="group rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-xl transition-all duration-300 hover:bg-white/[0.07] hover:border-white/20"
-            >
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-purple-500/5 via-transparent to-sky-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <p className="text-sm font-semibold text-white relative z-10">{item.label}</p>
-              <p className="mt-1.5 text-xs text-slate-300/70 relative z-10">{item.detail}</p>
-            </motion.div>
-          ))}
-        </motion.div>
+          {/* Row 3: Tools - left */}
+          <div>
+            <div className="flex items-center gap-3 px-6 mb-3">
+              <FaTools className="text-sky-400" />
+              <span className="text-sm font-medium text-white/60">Tools & Platforms</span>
+            </div>
+            <MarqueeRow skills={toolSkills} direction="left" speed={45} />
+          </div>
+        </div>
       </div>
     </section>
   );

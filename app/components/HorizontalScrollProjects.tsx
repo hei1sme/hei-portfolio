@@ -207,9 +207,9 @@ const ProjectCard: React.FC<{ project: Project; index: number; onClick: () => vo
                     src={project.image}
                     alt={project.title}
                     fill
-                    className="object-cover opacity-30 transition-all duration-700 group-hover:opacity-50 group-hover:scale-110"
+                    className="object-cover opacity-50 transition-all duration-700 group-hover:opacity-70 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
             </div>
 
             {/* Badge */}

@@ -1,11 +1,11 @@
 'use client';
 
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
-import AIMinigameOverlay from '../components/AIMinigameOverlay';
+import NeuralBreach from '../components/NeuralBreach';
 
 interface LabContextValue {
   isLabOpen: boolean;
-  openLab: () => void;
+  openLab: (buttonPosition?: { x: number; y: number }) => void;
   closeLab: () => void;
   toggleLab: () => void;
 }
@@ -16,9 +16,16 @@ const SECRET_SEQUENCE = ['a', 'i', 'l', 'a', 'b'];
 
 export const LabProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isLabOpen, setIsLabOpen] = useState(false);
+  const [buttonPosition, setButtonPosition] = useState({ x: 48, y: window?.innerHeight - 100 || 700 });
   const bufferRef = useRef<string[]>([]);
 
-  const openLab = useCallback(() => setIsLabOpen(true), []);
+  const openLab = useCallback((position?: { x: number; y: number }) => {
+    if (position) {
+      setButtonPosition(position);
+    }
+    setIsLabOpen(true);
+  }, []);
+
   const closeLab = useCallback(() => setIsLabOpen(false), []);
   const toggleLab = useCallback(() => setIsLabOpen((prev) => !prev), []);
 
@@ -60,7 +67,7 @@ export const LabProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   return (
     <LabContext.Provider value={value}>
       {children}
-      {isLabOpen && <AIMinigameOverlay onClose={closeLab} />}
+      {isLabOpen && <NeuralBreach onClose={closeLab} buttonPosition={buttonPosition} />}
     </LabContext.Provider>
   );
 };

@@ -132,10 +132,38 @@ const About: React.FC = () => {
 
             {/* Bio */}
             <p className="text-lg text-white/70 leading-relaxed">
-              I&apos;m an undergraduate AI researcher at FPT University, focused on explainable AI for high-stakes domains.
+              I&apos;m an undergraduate AI researcher at FPT University, focused on Explainable AI (XAI) for high-stakes domains.
               My work spans time-series forecasting, multimodal emotion recognition, and building tools that make
-              AI decisions interpretable.
+              AI decisions interpretable and trustworthy for real-world applications.
             </p>
+
+            {/* Research Interests */}
+            <div className="space-y-3">
+              <p className="text-xs uppercase tracking-[0.2em] text-white/40">Research Interests</p>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  { label: 'Explainable AI (XAI)', color: '#a855f7' },
+                  { label: 'Multimodal Learning', color: '#22c55e' },
+                  { label: 'Time-Series Forecasting', color: '#0ea5e9' },
+                  { label: 'Speech Emotion Recognition', color: '#ec4899' },
+                  { label: 'Transformer Architectures', color: '#f59e0b' },
+                ].map((interest) => (
+                  <motion.span
+                    key={interest.label}
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    className="px-3 py-1.5 text-sm font-medium rounded-full border cursor-default transition-all"
+                    style={{
+                      borderColor: `${interest.color}40`,
+                      backgroundColor: `${interest.color}15`,
+                      color: interest.color,
+                      boxShadow: `0 0 15px ${interest.color}20`,
+                    }}
+                  >
+                    {interest.label}
+                  </motion.span>
+                ))}
+              </div>
+            </div>
 
             {/* SpeedyLabX highlight */}
             <GlowBox

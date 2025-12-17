@@ -5,10 +5,11 @@ import { motion } from 'framer-motion';
 import EntranceAnimation from './components/EntranceAnimation';
 import Hero from './components/Hero';
 import About from './components/About';
-import Impact from './components/Impact';
-import HorizontalScrollProjects from './components/HorizontalScrollProjects';
-import Skills from './components/Skills';
+import Publications from './components/Publications';
 import Experience from './components/Experience';
+import HorizontalScrollProjects from './components/HorizontalScrollProjects';
+import Impact from './components/Impact';
+import Skills from './components/Skills';
 import Education from './components/Education';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -49,7 +50,7 @@ export default function Home() {
           {/* Hero - full viewport */}
           <Hero />
 
-          {/* About */}
+          {/* About + Research Interests */}
           <motion.section
             id="about"
             className="relative py-32"
@@ -63,7 +64,27 @@ export default function Home() {
             </div>
           </motion.section>
 
-          {/* Impact - Animated counters */}
+          {/* Publications - Academic credentials (priority for research) */}
+          <motion.section
+            id="publications"
+            className="relative py-20"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <div className="max-w-5xl mx-auto px-6">
+              <Publications />
+            </div>
+          </motion.section>
+
+          {/* Experience - Research journey */}
+          <Experience />
+
+          {/* Projects - Technical implementations */}
+          <HorizontalScrollProjects />
+
+          {/* Impact - Supporting metrics */}
           <motion.section
             id="impact"
             className="relative py-20"
@@ -77,10 +98,7 @@ export default function Home() {
             </div>
           </motion.section>
 
-          {/* Projects - Horizontal scroll takes over vertical scroll */}
-          <HorizontalScrollProjects />
-
-          {/* Skills */}
+          {/* Skills - Technical capabilities */}
           <motion.section
             id="skills"
             className="relative py-32"
@@ -94,10 +112,7 @@ export default function Home() {
             </div>
           </motion.section>
 
-          {/* Experience - full width for cinematic effect */}
-          <Experience />
-
-          {/* Education */}
+          {/* Education - Academic background */}
           <motion.section
             id="education"
             className="relative py-32"

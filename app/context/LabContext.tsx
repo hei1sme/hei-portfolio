@@ -16,8 +16,13 @@ const SECRET_SEQUENCE = ['a', 'i', 'l', 'a', 'b'];
 
 export const LabProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isLabOpen, setIsLabOpen] = useState(false);
-  const [buttonPosition, setButtonPosition] = useState({ x: 48, y: window?.innerHeight - 100 || 700 });
+  const [buttonPosition, setButtonPosition] = useState({ x: 48, y: 700 });
   const bufferRef = useRef<string[]>([]);
+
+  // Set initial position once on client
+  useEffect(() => {
+    setButtonPosition({ x: 48, y: window.innerHeight - 100 });
+  }, []);
 
   const openLab = useCallback((position?: { x: number; y: number }) => {
     if (position) {

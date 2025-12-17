@@ -162,7 +162,7 @@ const BlogListClient: React.FC<BlogListClientProps> = ({ posts }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
         >
-          <p className="text-gray-500 text-lg">No articles found matching "{searchQuery}"</p>
+          <p className="text-gray-500 text-lg">No articles found matching &ldquo;{searchQuery}&rdquo;</p>
           <button
             onClick={() => setSearchQuery('')}
             className="mt-4 text-purple-400 hover:text-purple-300 transition-colors"

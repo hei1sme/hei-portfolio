@@ -67,8 +67,18 @@ export default function ShooterGame({ onComplete }: ShooterGameProps) {
     const [gameState, setGameState] = useState<'playing' | 'stageComplete' | 'victory' | 'gameOver'>('playing');
     const [message, setMessage] = useState(STAGES[0].name);
 
-    const gameWidth = typeof window !== 'undefined' ? Math.min(window.innerWidth - 80, 950) : 900;
-    const gameHeight = typeof window !== 'undefined' ? Math.min(window.innerHeight - 160, 620) : 580;
+    // Game dimensions - use state to avoid SSR issues
+    const [dimensions, setDimensions] = useState({ width: 900, height: 580 });
+
+    useEffect(() => {
+        setDimensions({
+            width: Math.min(window.innerWidth - 80, 950),
+            height: Math.min(window.innerHeight - 160, 620),
+        });
+    }, []);
+
+    const gameWidth = dimensions.width;
+    const gameHeight = dimensions.height;
 
     // Spawn enemies
     const spawnEnemies = useCallback(() => {

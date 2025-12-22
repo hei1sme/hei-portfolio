@@ -21,10 +21,10 @@ interface Milestone {
 const milestones: Milestone[] = [
   {
     id: 'speedylabx',
-    month: 'June',
+    month: 'January',
     year: '2025',
     title: 'SpeedyLabX',
-    tagline: 'Built a research team from scratch',
+    tagline: 'Founded a student research group',
     icon: <FaRocket />,
     color: '#ec4899',
     image: '/images/experience/1_SpeedyLabX/1_1_slx.png',

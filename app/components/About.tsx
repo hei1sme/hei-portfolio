@@ -39,7 +39,7 @@ const About: React.FC = () => {
     <section id="about" className="relative py-20 text-white">
       <div className="relative max-w-5xl mx-auto">
         {/* Main content - clean two-column layout */}
-        <div className="grid gap-16 md:grid-cols-[360px_1fr] items-center">
+        <div className="grid gap-12 md:grid-cols-[380px_1fr] items-start">
 
           {/* Left: Photo with 3D tilt effect - follows mouse */}
           <motion.div
@@ -47,7 +47,7 @@ const About: React.FC = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative"
+            className="relative md:sticky md:top-24"
           >
             <div
               ref={photoRef}
@@ -136,6 +136,40 @@ const About: React.FC = () => {
               My work spans time-series forecasting, multimodal emotion recognition, and building tools that make
               AI decisions interpretable and trustworthy for real-world applications.
             </p>
+
+            {/* Stats Row - GPA, Honors, Publication */}
+            <div className="flex flex-wrap gap-4">
+              <div
+                className="flex items-center gap-3 px-4 py-3 rounded-2xl border border-purple-400/30 bg-purple-500/10"
+                style={{ boxShadow: '0 0 20px #a855f730' }}
+              >
+                <span className="text-2xl font-black text-purple-300">8.62</span>
+                <div className="text-left">
+                  <p className="text-xs text-white/50 uppercase tracking-wider">GPA</p>
+                  <p className="text-sm font-medium text-white/80">/ 10.0</p>
+                </div>
+              </div>
+              <div
+                className="flex items-center gap-3 px-4 py-3 rounded-2xl border border-amber-400/30 bg-amber-500/10"
+                style={{ boxShadow: '0 0 20px #f59e0b30' }}
+              >
+                <span className="text-2xl font-black text-amber-300">3×</span>
+                <div className="text-left">
+                  <p className="text-xs text-white/50 uppercase tracking-wider">Honor Student</p>
+                  <p className="text-sm font-medium text-white/80">Semesters 3, 4, 5</p>
+                </div>
+              </div>
+              <div
+                className="flex items-center gap-3 px-4 py-3 rounded-2xl border border-green-400/30 bg-green-500/10"
+                style={{ boxShadow: '0 0 20px #22c55e30' }}
+              >
+                <span className="text-2xl font-black text-green-300">1</span>
+                <div className="text-left">
+                  <p className="text-xs text-white/50 uppercase tracking-wider">Q2 Publication</p>
+                  <p className="text-sm font-medium text-white/80">AJCAI 2025</p>
+                </div>
+              </div>
+            </div>
 
             {/* Research Interests */}
             <div className="space-y-3">

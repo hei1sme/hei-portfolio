@@ -2,8 +2,9 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaBrain, FaCode, FaTools, FaPython, FaReact, FaDocker, FaGitAlt } from 'react-icons/fa';
-import { SiPytorch, SiTypescript, SiFastapi, SiJupyter, SiStreamlit } from 'react-icons/si';
+import { FaBrain, FaCode, FaTools, FaPython, FaReact, FaDocker, FaGitAlt, FaDatabase, FaLinux } from 'react-icons/fa';
+import { SiPytorch, SiTypescript, SiFastapi, SiJupyter, SiStreamlit, SiTensorflow, SiOpencv, SiScikitlearn, SiPandas, SiNumpy } from 'react-icons/si';
+import { SiHuggingface } from 'react-icons/si';
 
 interface Skill {
   name: string;
@@ -15,14 +16,16 @@ interface Skill {
 const allSkills: Skill[] = [
   // ML
   { name: 'PyTorch', icon: <SiPytorch />, color: '#EE4C2C', category: 'ml' },
+  { name: 'TensorFlow', icon: <SiTensorflow />, color: '#FF6F00', category: 'ml' },
   { name: 'Deep Learning', icon: <FaBrain />, color: '#a855f7', category: 'ml' },
-  { name: 'Transformers', icon: <FaBrain />, color: '#f59e0b', category: 'ml' },
+  { name: 'Transformers', icon: <SiHuggingface />, color: '#FFD21E', category: 'ml' },
   { name: 'Explainable AI', icon: <FaBrain />, color: '#22c55e', category: 'ml' },
-  { name: 'Computer Vision', icon: <FaBrain />, color: '#0ea5e9', category: 'ml' },
-  { name: 'GNNs', icon: <FaBrain />, color: '#ec4899', category: 'ml' },
+  { name: 'Computer Vision', icon: <SiOpencv />, color: '#5C3EE8', category: 'ml' },
+  { name: 'Scikit-learn', icon: <SiScikitlearn />, color: '#F7931E', category: 'ml' },
   { name: 'Time-Series', icon: <FaBrain />, color: '#8b5cf6', category: 'ml' },
   // Dev
   { name: 'Python', icon: <FaPython />, color: '#3776AB', category: 'dev' },
+  { name: 'SQL', icon: <FaDatabase />, color: '#336791', category: 'dev' },
   { name: 'TypeScript', icon: <SiTypescript />, color: '#3178C6', category: 'dev' },
   { name: 'React', icon: <FaReact />, color: '#61DAFB', category: 'dev' },
   { name: 'FastAPI', icon: <SiFastapi />, color: '#009688', category: 'dev' },
@@ -30,6 +33,10 @@ const allSkills: Skill[] = [
   // Tools
   { name: 'Git', icon: <FaGitAlt />, color: '#F05032', category: 'tools' },
   { name: 'Docker', icon: <FaDocker />, color: '#2496ED', category: 'tools' },
+  { name: 'Linux', icon: <FaLinux />, color: '#FCC624', category: 'tools' },
+  { name: 'Pandas', icon: <SiPandas />, color: '#150458', category: 'tools' },
+  { name: 'NumPy', icon: <SiNumpy />, color: '#013243', category: 'tools' },
+  { name: 'W&B', icon: <FaTools />, color: '#FFBE00', category: 'tools' },
   { name: 'Jupyter', icon: <SiJupyter />, color: '#F37626', category: 'tools' },
 ];
 

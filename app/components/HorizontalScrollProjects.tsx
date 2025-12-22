@@ -38,8 +38,8 @@ const projects: Project[] = [
         image: '/images/project/MERR-GAT.png',
         tags: ['Wav2Vec 2.0', 'RoBERTa', 'GATv2', 'XAI'],
         badge: 'In Progress',
-        highlights: ['Dynamic conversational graph', 'Intrinsic XAI via attention', 'IEMOCAP, RAVDESS, MELD benchmarks'],
-        role: 'Corresponding Author & Co-Lead',
+        highlights: ['Dynamic conversational graph', 'Intrinsic XAI via attention', 'IEMOCAP, RAVDESS, MELD benchmarks', 'Flexible 4/5/6-class emotion heads'],
+        role: 'Second Author & Corresponding Author',
     },
     {
         title: 'Vietnamese ASR',

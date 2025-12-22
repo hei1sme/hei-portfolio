@@ -49,12 +49,12 @@ const featuredProject: ProjectItem = {
 
 const otherProjects: ProjectItem[] = [
   {
-    title: 'Conformer-GAT Multimodal SER',
-    description: 'Fusing Conformer encoders with graph attention for transparent speech emotion recognition.',
-    technologies: ['Conformer', 'Graph Attention', 'XAI', 'IEMOCAP', 'RAVDESS'],
+    title: 'MERR-GAT Multimodal SER',
+    description: 'Fusing Wav2Vec 2.0 (audio) and RoBERTa (text) via GATv2 for explainable speech emotion recognition.',
+    technologies: ['Wav2Vec 2.0', 'RoBERTa', 'GATv2', 'IEMOCAP', 'RAVDESS', 'MELD'],
     image: '/images/project-placeholder.svg',
     badge: 'In Progress',
-    metrics: [{ label: 'Datasets', value: '2', color: 'sky' }],
+    metrics: [{ label: 'Datasets', value: '3', color: 'sky' }],
   },
   {
     title: 'PPE Detection & Safety Compliance',

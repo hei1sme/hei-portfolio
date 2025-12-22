@@ -1,36 +1,43 @@
 ---
-title: "Conformer-GAT Multimodal Speech Emotion Recognition"
-date: "2025-03-02"
-summary: "An explainable multimodal pipeline that fuses Conformer encoders with graph attention to reason about speech emotion."
-image: "/images/project-placeholder.svg"
-tags: ['Multimodal AI', 'Speech Emotion Recognition', 'Graph Attention']
-technologies: ['Conformer', 'Graph Attention Networks', 'PyTorch', 'SHAP', 'Integrated Gradients', 'IEMOCAP', 'RAVDESS']
+title: "MERR-GAT: Explainable Multimodal Emotion Recognition"
+date: "2025-10-01"
+summary: "A hybrid architecture fusing Wav2Vec 2.0 and RoBERTa via GATv2 for transparent multimodal speech emotion recognition."
+image: "/images/project/MERR-GAT.png"
+tags: ['Multimodal AI', 'Speech Emotion Recognition', 'Graph Attention', 'XAI']
+technologies: ['Wav2Vec 2.0', 'RoBERTa', 'GATv2', 'PyTorch', 'SHAP', 'Integrated Gradients', 'IEMOCAP', 'RAVDESS', 'MELD']
 ---
 
 ## Motivation
 
 Emotion recognition systems often operate as black boxes, especially when they merge acoustic signals with transcripts.  
-This project explores how **Conformer encoders** and **Graph Attention Networks (GATs)** can cooperate to provide both accuracy and interpretability.
+This project explores how **Wav2Vec 2.0**, **RoBERTa**, and **Graph Attention Networks (GATv2)** can cooperate to provide both accuracy and interpretability.
 
-## Architecture Sketch
+## Architecture
 
-- **Conformer branch** encodes prosody, spectral features, and temporal cues from audio.
-- **Text branch** produces contextual embeddings for transcripts and forced alignments.
-- **GAT fusion layer** models cross-modal dependencies, letting important syllables attend to emotive acoustic frames.
-- A shared decision head predicts categorical emotions while exposing attention weights for inspection.
+- **Wav2Vec 2.0** encodes rich audio representations capturing prosody, spectral features, and temporal cues
+- **RoBERTa** produces contextual embeddings for transcripts
+- **GATv2 fusion layer** models cross-modal dependencies with dynamic conversational graphs modeling temporal and speaker interactions
+- A shared decision head predicts categorical emotions with **flexible 4/5/6-class emotion heads**
 
 ## Explainability Toolkit
 
-- Built a reusable pipeline featuring SHAP value aggregation, Integrated Gradients, and counterfactual analysis (DiCE-style).
-- Explanations surface *which* words or time segments contribute to a prediction and *how* the modalities corroborate each other.
+- Implementing **intrinsic XAI** using attention weights for decision interpretability
+- Built a reusable pipeline featuring SHAP value aggregation, Integrated Gradients, and counterfactual analysis
+- Explanations surface *which* words or time segments contribute to a prediction and *how* the modalities corroborate each other
 
 ## Current Progress
 
-- Standing up reproducible experiments on the **IEMOCAP** and **RAVDESS** datasets.
-- Validating that GAT-based fusion improves macro-F1 compared to late-concatenation baselines.
-- Stress-testing interpretability outputs with qualitative reviews from peers.
+- Benchmarking on **IEMOCAP**, **RAVDESS**, and **MELD** datasets
+- Designing dynamic conversational graphs modeling temporal and speaker interactions
+- Validating that GATv2-based fusion improves macro-F1 compared to late-concatenation baselines
+- Stress-testing interpretability outputs with qualitative reviews from peers
+
+## Role
+
+**Second Author & Corresponding Author**
 
 ## Next Steps
 
-- Extend to low-resource languages by experimenting with multilingual wav2vec front-ends.
-- Package the training code and dashboards for the SpeedyLabX research group.
+- Complete experiments across all benchmark datasets
+- Package the training code and dashboards for the SpeedyLabX research group
+- Prepare manuscript for submission

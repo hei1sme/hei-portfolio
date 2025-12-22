@@ -1,84 +1,107 @@
-# LE NGUYEN GIA HUNG (Gia-Hung Nguyen Le)
-**AI/ML Researcher**
+# LE NGUYEN GIA HUNG
 
+📧 heiontheway@gmail.com | 📞 +84 394 262 651  
 📍 Ho Chi Minh City, Vietnam  
-📧 [heiontheway@gmail.com](mailto:heiontheway@gmail.com) | 📞 +84 39 426 2651  
-🌐 [hei-portfolio-w.vercel.app](https://hei-portfolio-w.vercel.app) | 🔗 [LinkedIn](https://www.linkedin.com/in/le-nguyen-gia-hung) | 🐙 [GitHub](https://github.com/hei1sme)
 
-🔬 **Research Profiles:** [ORCID](https://orcid.org/0009-0003-7120-8167) • [Google Scholar](https://scholar.google.com/citations?user=iGODAQYAAAAJ&hl=en) • [Scopus](https://www.scopus.com/authid/detail.uri?authorId=60219530700) • [Web of Science](https://www.webofscience.com/wos/author/record/PCR-6096-2025)
-
----
-
-## 🎓 Education
-
-**FPT University** | Ho Chi Minh City, Vietnam  
-*Bachelor of Engineering in Artificial Intelligence* | *Expected Dec 2027* **GPA:** 8.0/10.0  
-
-* **Honors:** Certificates of Merit – Honorable Student of Trimester (Semesters 3, 4 & 5).
-* **Relevant Coursework:** Data Structures and Algorithms, Linear Algebra, Introduction to Artificial Intelligence, Deep Learning, Statistical Analysis.
+🔗 [LinkedIn](https://www.linkedin.com/in/le-nguyen-gia-hung)  
+🐙 [GitHub](https://github.com/hei1sme)  
+🌐 [Portfolio](https://hei-portfolio.vercel.app)  
+🆔 [ORCID](https://orcid.org/0009-0003-7120-8167)  
+🎓 [Google Scholar](https://scholar.google.com/citations?user=iGODAQYAAAAJ)
 
 ---
 
-## 📚 Publications
+## EDUCATION
 
-* **Gia-Hung Nguyen Le** *et al.*, "Proactive Air Quality Forecasting and Health Alert System for Melbourne." *Australasian Joint Conference on Artificial Intelligence (AJCAI 2025)*. Springer, Lecture Notes in Artificial Intelligence (LNAI). *Q2 (SJR 2024)*.  
-    🔗 [DOI: 10.1007/978-981-95-4969-6_34](https://link.springer.com/chapter/10.1007/978-981-95-4969-6_34)
+**FPT University**, Ho Chi Minh City, Vietnam  
+**Bachelor of Engineering in Artificial Intelligence**  
+*Expected Dec 2027* — **GPA:** 8.62 / 10.0  
 
----
-
-## 🔬 Research & Technical Experience
-
-### **Proactive Air Quality Forecasting System (AJCAI 2025)**
-*Academic Research | Lead Researcher & Author | Jan 2025 – Present*
-* Architected and implemented **SmokeNet**, a novel Transformer-based architecture for time-series forecasting of PM2.5.
-* Achieved **MAE of 0.7470** and **R² of 0.9545**, reducing error by **35.9%** compared to XGBoost baselines on 2024 test data.
-* Demonstrated model robustness by outperforming baselines by **57.7%** during the severe May 2024 smoke event backtest.
-* Engineered an end-to-end pipeline processing 4+ years of OpenWeather data with GPU-accelerated chronological cross-validation.
-* Integrated Explainable AI (SHAP, Integrated Gradients) to provide interpretable health warnings for public safety dashboards.
-
-### **End-to-End Vietnamese Speech Recognition System**
-*Academic Research | Co-Researcher | In Progress*
-* Developing a parameter-efficient (5.4M) end-to-end ASR model using a **4-layer CNN frontend** and **3-layer Residual BiLSTM encoder**.
-* Curated and trained on a massive **745-hour Vietnamese speech corpus**, optimizing with Connectionist Temporal Classification (CTC) loss.
-* Achieved a **Word Error Rate (WER) of 33.09%** and **Character Error Rate (CER) of 15.28%** on diverse test sets.
-* Benchmarked performance against foundation models (PhoWhisper) to evaluate trade-offs between computational efficiency and accuracy.
-
-### **MERR-GAT: Explainable Multimodal Emotion Recognition**
-*Academic Research | Corresponding Author & Co-Lead | In Progress*
-* Developing **MERR-GAT**, a novel hybrid framework fusing **Wav2Vec 2.0** (audio) and **RoBERTa** (text) via Graph Attention Networks (GATv2).
-* Designing a dynamic conversational graph where nodes represent utterances and edges capture temporal and speaker interactions.
-* Implementing an intrinsic XAI mechanism where learned attention weights provide granular insights into the model's decision-making.
-* Benchmarking on **IEMOCAP**, **RAVDESS**, and **MELD** with a dynamic classification head supporting 4, 5, or 6 emotion classes.
-
-### **Personal Protective Equipment (PPE) Detection System**
-*Course Project | Developer | Sep 2024 – Dec 2024*
-* Built a real-time object detection system using **YOLOv8** to identify 9 classes of personal protective equipment (helmets, vests, gloves).
-* Developed a safety logic engine to automatically classify workers as "Compliance Safe" or "Unsafe" based on detected equipment combinations.
-* Deployed the model via a **Streamlit** web interface featuring live webcam inference and automated violation reporting.
+- **Honors:** Certificate of Merit – Honorable Student of Trimester (Semesters 3, 4, 5)  
+- **Relevant Coursework:** Data Structures and Algorithms, Linear Algebra, Introduction to Artificial Intelligence, Deep Learning, Statistical Analysis
 
 ---
 
-## 🧭 Leadership
+## PUBLICATIONS
 
-**SpeedyLabX - Student Research Group** | FPT University  
-*Founder & Lead Researcher | 2025 – Present*
-* Established and directed a research team of 10 undergraduates focused on applied AI solutions for environmental challenges.
-* Spearheaded the Melbourne Air Quality project, managing timeline and deliverables, resulting in the group's first accepted publication at a top-tier regional conference (AJCAI).
-
----
-
-## 📜 Certifications
-
-* **Building RAG Agents with LLMs** – NVIDIA
-* **IBM Full Stack Software Developer Professional Certificate** – IBM
-* **Data Science Fundamentals with Python and SQL** – IBM
+**Gia-Hung Nguyen Le et al.**  
+*Proactive Air Quality Forecasting and Health Alert System for Melbourne*  
+**Australasian Joint Conference on Artificial Intelligence (AJCAI 2025)**  
+Springer, Lecture Notes in Artificial Intelligence (LNAI) — **Q2 (SJR 2024)**  
+DOI: https://doi.org/10.1007/978-981-95-4969-6_34
 
 ---
 
-## 🛠️ Skills
+## RESEARCH & TECHNICAL EXPERIENCE
 
-* **Programming Languages:** Python, SQL (PostgreSQL), C++.
-* **Frameworks & Libraries:** PyTorch, TensorFlow, Keras, Hugging Face Transformers, Scikit-learn, OpenCV.
-* **Data & Tools:** Pandas, NumPy, Matplotlib, Git, Docker, Streamlit, Weights & Biases (W\&B), Linux.
-* **Technical Writing:** Authored ["My First Encounter with AI"](https://hei-portfolio-w.vercel.app/blog/my-first-encounter-to-the-world-of-ai) (Personal Tech Blog).
-* **Areas of Interest:** Time-Series Forecasting, Transformer Architectures, Multimodal Learning, Explainable AI (XAI).
+### Proactive Air Quality Forecasting System (AJCAI 2025)  
+**Academic Research** — *First Author & Corresponding Author*  
+*Jun 2025 – Nov 2025*
+
+- Designed and implemented **SmokeNet**, a Transformer-based architecture for PM2.5 time-series forecasting  
+- Achieved **MAE 0.7470** and **R² 0.9545**, reducing error by **35.9%** vs. XGBoost baselines on 2024 data  
+- Outperformed baselines by **57.7%** during the May 2024 severe smoke event backtest  
+- Built an end-to-end pipeline processing **4+ years** of OpenWeather data with GPU-accelerated chronological CV  
+- Integrated **Explainable AI** (SHAP, Integrated Gradients) for interpretable health alerts
+
+---
+
+### MERR-GAT: Explainable Multimodal Emotion Recognition  
+**Academic Research** — *Second Author & Corresponding Author*  
+*Oct 2025 – Present*
+
+- Developing **MERR-GAT**, fusing **Wav2Vec 2.0 (audio)** and **RoBERTa (text)** via **GATv2**  
+- Designing dynamic conversational graphs modeling temporal and speaker interactions  
+- Implementing intrinsic XAI using attention weights for decision interpretability  
+- Benchmarking on **IEMOCAP, RAVDESS, MELD** with flexible 4/5/6-class emotion heads
+
+---
+
+### End-to-End Vietnamese Speech Recognition System  
+**Academic Research** — *Co-Author*  
+*Sep 2025 – Present*
+
+- Building a **5.4M-parameter** ASR model with 4-layer CNN frontend and 3-layer Residual BiLSTM encoder  
+- Trained on a **745-hour** Vietnamese speech corpus using **CTC loss**  
+- Achieved **WER 33.09%** and **CER 15.28%** on diverse test sets  
+- Benchmarked against **PhoWhisper** to analyze efficiency–accuracy trade-offs
+
+---
+
+### PPE Detection System (YOLOv8)  
+**Course Project** — *Developer*  
+*Sep 2025 – Nov 2025*
+
+- Developed real-time object detection with **YOLOv8** for 9 PPE classes  
+- Implemented safety logic to classify workers as **Compliance Safe** or **Unsafe**  
+- Deployed via **Streamlit** with live webcam inference and violation reporting
+
+---
+
+## LEADERSHIP
+
+### SpeedyLabX — Student Research Group, FPT University  
+**Founder & Student Lead**  
+*2025 – Present*
+
+- Founded and led a 10-member undergraduate research group  
+- Organized weekly technical workshops and paper reading sessions  
+- Coordinated submission workflow for the group’s first **AJCAI-accepted** paper
+
+---
+
+## CERTIFICATIONS
+
+- Data Science Fundamentals with Python and SQL — **IBM**  
+- Statistics for Data Science with Python — **IBM**  
+- Introduction to Containers with Docker, Kubernetes & OpenShift — **IBM**
+
+---
+
+## SKILLS
+
+- **Programming:** Python, SQL (PostgreSQL)  
+- **ML/DL:** PyTorch, TensorFlow/Keras, Hugging Face Transformers, Scikit-learn, OpenCV  
+- **Data & MLOps:** Pandas, NumPy, Matplotlib, Git, Docker, Linux, Weights & Biases (W&B), Streamlit  
+- **Technical Writing:** Blog posts and technical documentation  
+  - Portfolio: https://hei-portfolio.vercel.app

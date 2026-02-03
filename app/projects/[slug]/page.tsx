@@ -15,7 +15,7 @@ const getProjectPath = (slug: string): string | null => {
     }
     // Check for .md extension as fallback
     const mdFilePath = path.join(PROJECTS_PATH, `${slug}.md`);
-     if (fs.existsSync(mdFilePath)) {
+    if (fs.existsSync(mdFilePath)) {
         return mdFilePath;
     }
     return null;
@@ -45,14 +45,14 @@ const getProjectData = async (slug: string) => {
 };
 
 interface ProjectPageProps {
-  params: {
-    slug: string;
-  };
+    params: Promise<{
+        slug: string;
+    }>;
 }
 
 // This is the main server component for the page
 export default async function ProjectPage({ params }: ProjectPageProps) {
-    const { slug } = params;
+    const { slug } = await params;
     const projectData = await getProjectData(slug);
 
     if (!projectData) {

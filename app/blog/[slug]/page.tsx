@@ -7,8 +7,9 @@ import Footer from '../../components/Footer';
 import VerticalNavigation from '../../components/VerticalNavigation';
 import BlogPostClientContent from '../../components/BlogPostClientContent';
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = await getPostData(params.slug);
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = await getPostData(slug);
 
   if (!post) {
     notFound();

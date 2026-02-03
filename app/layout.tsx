@@ -26,8 +26,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="bg-black"> {/* Ensure html has base background */}
-      <body className={`${inter.className} cursor-none bg-black relative`}> {/* Apply cursor-none to body */}
+    <html lang="en" className="bg-black">
+      <body className={`${inter.className} cursor-none bg-black relative`}>
         <ThemeProvider>
           <LabProvider>
             <ParallaxProvider> {/* Wrap with ParallaxProvider */}

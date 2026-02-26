@@ -63,7 +63,7 @@ const About: React.FC = () => {
 
               {/* Photo */}
               <Image
-                src="/profile.png"
+                src="/profile.jpg"
                 alt="Le Nguyen Gia Hung"
                 fill
                 className="object-cover"

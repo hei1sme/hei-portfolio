@@ -51,8 +51,5 @@
     "sucrase": {
       "glob": "^10.5.0"
     }
-  },
-  "optionalDependencies": {
-    "@next/swc-linux-x64-gnu": "^16.2.12"
   }
 }

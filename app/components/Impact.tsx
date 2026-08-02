@@ -30,10 +30,10 @@ const stats: Stat[] = [
     },
     {
         icon: <FaFileAlt />,
-        value: 1,
-        label: 'Q2 Publication',
+        value: 3,
+        label: 'Research Manuscripts',
         color: 'green',
-        description: 'AJCAI 2025 accepted',
+        description: 'KDD 2027, AJCAI 2026 & 2025',
     },
     {
         icon: <FaChartLine />,

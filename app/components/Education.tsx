@@ -77,7 +77,7 @@ const Education: React.FC = () => {
                 style={{ boxShadow: '0 0 15px #f59e0b30' }}
               >
                 <FaMedal className="text-amber-300" />
-                <span className="text-sm text-white/80">Certificate of Merit — Sem 3, 4 & 5</span>
+                <span className="text-sm text-white/80">Certificate of Merit — Semesters 3, 4, 5 & 6</span>
               </div>
               <div
                 className="flex items-center gap-2 px-4 py-2 rounded-full border border-purple-400/30 bg-purple-500/10"

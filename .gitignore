@@ -130,3 +130,6 @@ dist
 .pnp.*
 .vercel
 .agent
+
+# Private LaTeX CV source & render workspace
+docs/

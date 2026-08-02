@@ -330,8 +330,8 @@ const VerticalNavigation: React.FC = () => {
                 key={i}
                 x1="50%"
                 y1="50%"
-                x2={`${50 + Math.cos(i * Math.PI / 1.5) * 40}%`}
-                y2={`${50 + Math.sin(i * Math.PI / 1.5) * 40}%`}
+                x2={`${(50 + Math.cos((i * Math.PI) / 1.5) * 40).toFixed(2)}%`}
+                y2={`${(50 + Math.sin((i * Math.PI) / 1.5) * 40).toFixed(2)}%`}
                 stroke="#a855f7"
                 strokeWidth="1"
                 strokeOpacity="0.3"

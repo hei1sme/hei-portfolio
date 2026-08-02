@@ -8,9 +8,10 @@ import { GlowText, GlowBox } from './AnimationUtils';
 
 const About: React.FC = () => {
   const photoRef = useRef<HTMLDivElement>(null);
-  const [rotate, setRotate] = useState({ x: 0, y: 0 });
+  const shineRef = useRef<HTMLDivElement>(null);
+  const shadowRef = useRef<HTMLDivElement>(null);
 
-  // Continuous mouse tracking on entire window
+  // Continuous mouse tracking on entire window (direct DOM transform, zero React re-renders)
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!photoRef.current) return;
@@ -20,7 +21,6 @@ const About: React.FC = () => {
       const centerY = rect.top + rect.height / 2;
 
       // Calculate rotation based on mouse position relative to photo center
-      // Limit effect range to reasonable distance
       const maxDistance = 500;
       const distX = Math.max(-maxDistance, Math.min(maxDistance, e.clientX - centerX));
       const distY = Math.max(-maxDistance, Math.min(maxDistance, e.clientY - centerY));
@@ -28,7 +28,14 @@ const About: React.FC = () => {
       const rotateY = (distX / maxDistance) * 20; // Max 20deg
       const rotateX = -(distY / maxDistance) * 20; // Max 20deg
 
-      setRotate({ x: rotateX, y: rotateY });
+      photoRef.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+      if (shineRef.current) {
+        shineRef.current.style.background = `radial-gradient(circle at ${50 + rotateY * 1.5}% ${50 - rotateX * 1.5}%, rgba(255,255,255,0.12) 0%, transparent 50%)`;
+      }
+      if (shadowRef.current) {
+        shadowRef.current.style.boxShadow = `${rotateY * 1.5}px ${-rotateX * 1.5}px 50px rgba(147, 51, 234, 0.25)`;
+      }
     };
 
     window.addEventListener('mousemove', handleMouseMove);
@@ -51,10 +58,8 @@ const About: React.FC = () => {
           >
             <div
               ref={photoRef}
-              className="relative aspect-[3/4] w-full overflow-hidden rounded-3xl border border-white/10 bg-white/5"
+              className="relative aspect-[3/4] w-full overflow-hidden rounded-3xl border border-white/10 bg-white/5 group transition-transform duration-200 ease-out"
               style={{
-                transform: `perspective(1000px) rotateX(${rotate.x}deg) rotateY(${rotate.y}deg)`,
-                transition: 'transform 0.15s ease-out',
                 transformStyle: 'preserve-3d',
               }}
             >
@@ -72,18 +77,14 @@ const About: React.FC = () => {
 
               {/* Dynamic shine effect based on tilt */}
               <div
+                ref={shineRef}
                 className="absolute inset-0 z-20 pointer-events-none"
-                style={{
-                  background: `radial-gradient(circle at ${50 + rotate.y * 1.5}% ${50 - rotate.x * 1.5}%, rgba(255,255,255,0.12) 0%, transparent 50%)`,
-                }}
               />
 
               {/* Purple glow that follows tilt */}
               <div
+                ref={shadowRef}
                 className="absolute inset-0 z-30 rounded-3xl pointer-events-none"
-                style={{
-                  boxShadow: `${rotate.y * 1.5}px ${-rotate.x * 1.5}px 50px rgba(147, 51, 234, 0.25)`,
-                }}
               />
             </div>
 
@@ -138,35 +139,35 @@ const About: React.FC = () => {
             </p>
 
             {/* Stats Row - GPA, Honors, Publication */}
-            <div className="flex flex-wrap gap-4">
+            <div className="grid grid-cols-3 gap-3 w-full">
               <div
-                className="flex items-center gap-3 px-4 py-3 rounded-2xl border border-purple-400/30 bg-purple-500/10"
+                className="flex items-center gap-2.5 px-3 py-2.5 rounded-2xl border border-purple-400/30 bg-purple-500/10 min-w-0"
                 style={{ boxShadow: '0 0 20px #a855f730' }}
               >
-                <span className="text-2xl font-black text-purple-300">8.62</span>
-                <div className="text-left">
-                  <p className="text-xs text-white/50 uppercase tracking-wider">GPA</p>
-                  <p className="text-sm font-medium text-white/80">/ 10.0</p>
+                <span className="text-xl sm:text-2xl font-black text-purple-300 shrink-0">8.62</span>
+                <div className="text-left min-w-0 truncate">
+                  <p className="text-[10px] sm:text-xs text-white/50 uppercase tracking-wider truncate">GPA</p>
+                  <p className="text-xs sm:text-sm font-medium text-white/80 truncate">/ 10.0</p>
                 </div>
               </div>
               <div
-                className="flex items-center gap-3 px-4 py-3 rounded-2xl border border-amber-400/30 bg-amber-500/10"
+                className="flex items-center gap-2.5 px-3 py-2.5 rounded-2xl border border-amber-400/30 bg-amber-500/10 min-w-0"
                 style={{ boxShadow: '0 0 20px #f59e0b30' }}
               >
-                <span className="text-2xl font-black text-amber-300">3×</span>
-                <div className="text-left">
-                  <p className="text-xs text-white/50 uppercase tracking-wider">Honor Student</p>
-                  <p className="text-sm font-medium text-white/80">Semesters 3, 4, 5</p>
+                <span className="text-xl sm:text-2xl font-black text-amber-300 shrink-0">4×</span>
+                <div className="text-left min-w-0 truncate">
+                  <p className="text-[10px] sm:text-xs text-white/50 uppercase tracking-wider truncate">Honors</p>
+                  <p className="text-xs sm:text-sm font-medium text-white/80 truncate">Semesters 3–6</p>
                 </div>
               </div>
               <div
-                className="flex items-center gap-3 px-4 py-3 rounded-2xl border border-green-400/30 bg-green-500/10"
+                className="flex items-center gap-2.5 px-3 py-2.5 rounded-2xl border border-green-400/30 bg-green-500/10 min-w-0"
                 style={{ boxShadow: '0 0 20px #22c55e30' }}
               >
-                <span className="text-2xl font-black text-green-300">1</span>
-                <div className="text-left">
-                  <p className="text-xs text-white/50 uppercase tracking-wider">Q2 Publication</p>
-                  <p className="text-sm font-medium text-white/80">AJCAI 2025</p>
+                <span className="text-xl sm:text-2xl font-black text-green-300 shrink-0">3</span>
+                <div className="text-left min-w-0 truncate">
+                  <p className="text-[10px] sm:text-xs text-white/50 uppercase tracking-wider truncate">Papers</p>
+                  <p className="text-xs sm:text-sm font-medium text-white/80 truncate">KDD & AJCAI</p>
                 </div>
               </div>
             </div>

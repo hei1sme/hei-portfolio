@@ -4,24 +4,6 @@ import React, { useMemo, useRef, useEffect, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
-// Hook to get mouse position in normalized device coordinates
-const useMousePosition = () => {
-  const [mouse, setMouse] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMouse({
-        x: (e.clientX / window.innerWidth) * 2 - 1,
-        y: -(e.clientY / window.innerHeight) * 2 + 1,
-      });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
-  return mouse;
-};
-
 const useParticlePositions = (count: number, radius: number) => {
   return useMemo(() => {
     const positions = new Float32Array(count * 3);
@@ -38,24 +20,29 @@ const useParticlePositions = (count: number, radius: number) => {
   }, [count, radius]);
 };
 
-interface MouseReactiveGroupProps {
-  children: React.ReactNode;
-  mouse: { x: number; y: number };
-}
-
-const MouseReactiveGroup: React.FC<MouseReactiveGroupProps> = ({ children, mouse }) => {
+const MouseReactiveGroup: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const groupRef = useRef<THREE.Group>(null);
   const targetRotation = useRef({ x: 0, y: 0 });
+  const mouseRef = useRef({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseRef.current.x = (e.clientX / window.innerWidth) * 2 - 1;
+      mouseRef.current.y = -(e.clientY / window.innerHeight) * 2 + 1;
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   useFrame((state) => {
     if (!groupRef.current) return;
 
-    // Smooth follow mouse with gentle breathing
-    targetRotation.current.x = mouse.y * 0.4;
-    targetRotation.current.y = mouse.x * 0.4;
+    // Smooth follow mouse (tracked via window.mousemove ref without React re-renders)
+    targetRotation.current.x = mouseRef.current.y * 0.5;
+    targetRotation.current.y = mouseRef.current.x * 0.5;
 
-    groupRef.current.rotation.x += (targetRotation.current.x - groupRef.current.rotation.x) * 0.03;
-    groupRef.current.rotation.y += (targetRotation.current.y - groupRef.current.rotation.y) * 0.03;
+    groupRef.current.rotation.x += (targetRotation.current.x - groupRef.current.rotation.x) * 0.04;
+    groupRef.current.rotation.y += (targetRotation.current.y - groupRef.current.rotation.y) * 0.04;
 
     // Subtle breathing effect
     const breathe = Math.sin(state.clock.elapsedTime * 0.5) * 0.02;
@@ -233,11 +220,7 @@ const EnergyBeams: React.FC = () => {
   );
 };
 
-interface SceneProps {
-  mouse: { x: number; y: number };
-}
-
-const Scene: React.FC<SceneProps> = ({ mouse }) => {
+const Scene: React.FC = () => {
   return (
     <>
       <color attach="background" args={['#000000']} />
@@ -261,7 +244,7 @@ const Scene: React.FC<SceneProps> = ({ mouse }) => {
         color="#ffffff"
       />
 
-      <MouseReactiveGroup mouse={mouse}>
+      <MouseReactiveGroup>
         {/* Particles in different colors */}
         <FloatingParticles color="#a855f7" count={600} radius={2.5} speed={0.04} />
         <FloatingParticles color="#ec4899" count={300} radius={3} speed={-0.03} />
@@ -284,12 +267,10 @@ const Scene: React.FC<SceneProps> = ({ mouse }) => {
 };
 
 const HeroShape: React.FC = () => {
-  const mouse = useMousePosition();
-
   return (
     <div className="absolute inset-0 z-0 opacity-70 md:opacity-80" style={{ pointerEvents: 'none' }}>
       <Canvas camera={{ position: [0, 0, 5.5], fov: 50 }}>
-        <Scene mouse={mouse} />
+        <Scene />
       </Canvas>
     </div>
   );

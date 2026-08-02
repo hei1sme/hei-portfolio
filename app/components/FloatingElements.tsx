@@ -75,27 +75,30 @@ const DraggableBubble: React.FC<{ element: FloatingElement }> = ({ element }) =>
 
     // Word change effect
     useEffect(() => {
-        const changeWord = () => {
-            setIsChanging(true);
-            setTimeout(() => {
-                const pool = wordPools[element.wordPoolIndex];
-                const newWord = pool[Math.floor(Math.random() * pool.length)];
-                setCurrentWord(newWord);
-                setIsChanging(false);
-            }, 300);
-        };
+        let isMounted = true;
+        let timeoutId: NodeJS.Timeout;
 
-        // Random interval between 3-10 seconds
-        const scheduleChange = () => {
-            const delay = 3000 + Math.random() * 7000;
-            return setTimeout(() => {
-                changeWord();
-                scheduleChange();
+        const scheduleNext = () => {
+            const delay = 4000 + Math.random() * 6000;
+            timeoutId = setTimeout(() => {
+                if (!isMounted) return;
+                setIsChanging(true);
+                setTimeout(() => {
+                    if (!isMounted) return;
+                    const pool = wordPools[element.wordPoolIndex];
+                    const newWord = pool[Math.floor(Math.random() * pool.length)];
+                    setCurrentWord(newWord);
+                    setIsChanging(false);
+                    scheduleNext();
+                }, 300);
             }, delay);
         };
 
-        const timeout = scheduleChange();
-        return () => clearTimeout(timeout);
+        scheduleNext();
+        return () => {
+            isMounted = false;
+            clearTimeout(timeoutId);
+        };
     }, [element.wordPoolIndex]);
 
     const handleDragEnd = () => {

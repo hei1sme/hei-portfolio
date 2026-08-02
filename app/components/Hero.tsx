@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Parallax } from 'react-scroll-parallax';
 import HeroShape from './HeroShape';
@@ -10,16 +10,18 @@ import { AnimatedText, GlowText } from './AnimationUtils';
 
 const Hero: React.FC = () => {
   const { scrollY } = useScroll();
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const glowRef = useRef<HTMLDivElement>(null);
 
   // Parallax transforms based on scroll
   const contentY = useTransform(scrollY, [0, 500], [0, -80]);
   const opacity = useTransform(scrollY, [0, 400], [1, 0]);
 
-  // Mouse follow effect
+  // Mouse follow effect (direct DOM update, zero React re-renders)
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+      if (glowRef.current) {
+        glowRef.current.style.background = `radial-gradient(600px circle at ${e.clientX}px ${e.clientY}px, rgba(147, 51, 234, 0.15), transparent 40%)`;
+      }
     };
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
@@ -31,12 +33,9 @@ const Hero: React.FC = () => {
       className="relative min-h-screen flex items-center justify-center bg-black text-white overflow-hidden"
     >
       {/* Mouse-follow glow */}
-      <motion.div
+      <div
+        ref={glowRef}
         className="pointer-events-none fixed inset-0 z-0 opacity-50"
-        animate={{
-          background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(147, 51, 234, 0.15), transparent 40%)`,
-        }}
-        transition={{ type: 'tween', ease: 'linear', duration: 0.1 }}
       />
 
       {/* Ambient background gradient */}
@@ -89,7 +88,7 @@ const Hero: React.FC = () => {
           transition={{ delay: 0.8, duration: 0.7 }}
         >
           <GlowText color="#a855f7" intensity="low">
-            Explainable AI systems for high-stakes decisions.
+            AI Research Engineer · Time-Series & Multimodal XAI
           </GlowText>
           <br />
           <span className="text-white/40">Research · Development · Impact</span>

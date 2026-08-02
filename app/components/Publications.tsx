@@ -21,10 +21,30 @@ interface Publication {
 
 const publications: Publication[] = [
     {
+        id: 'ajcai-2026',
+        title: 'Stress-Testing Multi-Source Cyanobacterial Bloom Forecasting under Sparse Monitoring',
+        authors: ['Gia-Hung Nguyen Le (First & Corresponding Author)', 'et al.'],
+        highlightedAuthor: 'Gia-Hung Nguyen Le (First & Corresponding Author)',
+        venue: 'Australasian Joint Conference on Artificial Intelligence (AJCAI 2026)',
+        venueType: 'conference',
+        year: 2026,
+        ranking: 'Under Review',
+    },
+    {
+        id: 'kdd-2027',
+        title: 'Trustworthy Multimodal Anomaly Detection in Time Series with Conformal Calibration and Counterfactual Attribution',
+        authors: ['Co-Authors', 'Gia-Hung Nguyen Le (Second Author)', 'et al.'],
+        highlightedAuthor: 'Gia-Hung Nguyen Le (Second Author)',
+        venue: '33rd ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD 2027)',
+        venueType: 'conference',
+        year: 2027,
+        ranking: 'Under Review',
+    },
+    {
         id: 'ajcai-2025',
         title: 'Proactive Air Quality Forecasting and Health Alert System for Melbourne',
-        authors: ['Gia-Hung Nguyen Le', 'Gia-Bao Pham Hoang', 'Tan-Phat Vo', 'Thu Le', 'Nhu Nguyen'],
-        highlightedAuthor: 'Gia-Hung Nguyen Le',
+        authors: ['Gia-Hung Nguyen Le (First & Corresponding Author)', 'Gia-Bao Pham Hoang', 'Tan-Phat Vo', 'Thu Le', 'Nhu Nguyen'],
+        highlightedAuthor: 'Gia-Hung Nguyen Le (First & Corresponding Author)',
         venue: 'Australasian Joint Conference on Artificial Intelligence (AJCAI 2025)',
         venueType: 'conference',
         year: 2025,

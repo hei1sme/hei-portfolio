@@ -166,13 +166,13 @@ const EntranceAnimation: React.FC<EntranceAnimationProps> = ({ onAnimationComple
               <motion.div
                 key={i}
                 className="absolute w-1 h-1 rounded-full bg-purple-400/30"
-                initial={{
-                  x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
-                  y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
-                  opacity: 0,
+                style={{
+                  left: `${(i * 17 + 12) % 90}%`,
+                  top: `${(i * 23 + 15) % 80}%`,
                 }}
+                initial={{ opacity: 0, y: 0 }}
                 animate={{
-                  y: [null, -100],
+                  y: [0, -100],
                   opacity: [0, 0.6, 0],
                 }}
                 transition={{

@@ -14,6 +14,7 @@ import CustomCursor from './components/CustomCursor'; // Import CustomCursor
 import VerticalNavigation from './components/VerticalNavigation'; // Keep VerticalNavigation
 import ScrollProgress from './components/ScrollProgress'; // Import ScrollProgress
 import FloatingCTA from './components/FloatingCTA';
+import { Analytics } from '@vercel/analytics/next';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -42,6 +43,7 @@ export default function RootLayout({
             </ParallaxProvider>
           </LabProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );

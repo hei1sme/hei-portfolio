@@ -21,6 +21,16 @@ interface Publication {
 
 const publications: Publication[] = [
     {
+        id: 'nz-au-air-quality-2026',
+        title: 'Warning Before the Evening Peak: Health-Centred Air Quality Alerts in New Zealand and Australia',
+        authors: ['Co-Authors', 'Gia-Hung Nguyen Le (Second Author)', 'et al.'],
+        highlightedAuthor: 'Gia-Hung Nguyen Le (Second Author)',
+        venue: 'Health-Centred Air Quality Forecasting (New Zealand & Australia)',
+        venueType: 'journal',
+        year: 2026,
+        ranking: 'Manuscript Under Review',
+    },
+    {
         id: 'ajcai-2026',
         title: 'Stress-Testing Multi-Source Cyanobacterial Bloom Forecasting under Sparse Monitoring',
         authors: ['Gia-Hung Nguyen Le (First & Corresponding Author)', 'et al.'],

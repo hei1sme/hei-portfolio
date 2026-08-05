@@ -164,10 +164,10 @@ const About: React.FC = () => {
                 className="flex items-center gap-2.5 px-3 py-2.5 rounded-2xl border border-green-400/30 bg-green-500/10 min-w-0"
                 style={{ boxShadow: '0 0 20px #22c55e30' }}
               >
-                <span className="text-xl sm:text-2xl font-black text-green-300 shrink-0">3</span>
+                <span className="text-xl sm:text-2xl font-black text-green-300 shrink-0">4</span>
                 <div className="text-left min-w-0 truncate">
                   <p className="text-[10px] sm:text-xs text-white/50 uppercase tracking-wider truncate">Papers</p>
-                  <p className="text-xs sm:text-sm font-medium text-white/80 truncate">KDD & AJCAI</p>
+                  <p className="text-xs sm:text-sm font-medium text-white/80 truncate">Research Papers</p>
                 </div>
               </div>
             </div>

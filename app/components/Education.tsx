@@ -69,8 +69,8 @@ const Education: React.FC = () => {
             </div>
           </div>
 
-          {/* Achievements */}
-          <div className="mt-8 pt-6 border-t border-white/10">
+          {/* Achievements & Certifications */}
+          <div className="mt-8 pt-6 border-t border-white/10 space-y-4">
             <div className="flex flex-wrap gap-3">
               <div
                 className="flex items-center gap-2 px-4 py-2 rounded-full border border-amber-400/30 bg-amber-500/10"
@@ -84,6 +84,30 @@ const Education: React.FC = () => {
                 style={{ boxShadow: '0 0 15px #a855f730' }}
               >
                 <span className="text-sm text-white/80">AI Research Focus</span>
+              </div>
+            </div>
+
+            {/* Certifications badges */}
+            <div className="pt-2">
+              <p className="text-xs uppercase tracking-[0.2em] text-white/40 mb-3">Specializations & Certifications</p>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  { title: 'Natural Language Processing', provider: 'DeepLearning.AI', color: '#a855f7' },
+                  { title: 'MLOps & Model Serving', provider: 'Coursera', color: '#0ea5e9' },
+                  { title: 'Full Stack Software Developer', provider: 'IBM', color: '#3b82f6' },
+                  { title: 'AI Engineer Professional', provider: 'Packt', color: '#ec4899' },
+                  { title: 'Data Science & SQL', provider: 'IBM', color: '#22c55e' },
+                  { title: 'Docker, Kubernetes & OpenShift', provider: 'IBM', color: '#f59e0b' },
+                ].map((cert) => (
+                  <span
+                    key={cert.title}
+                    className="px-3 py-1.5 text-xs rounded-xl border bg-white/5 backdrop-blur-sm"
+                    style={{ borderColor: `${cert.color}40`, color: 'rgba(255,255,255,0.9)' }}
+                  >
+                    <span className="font-semibold text-white">{cert.title}</span>
+                    <span className="text-white/40 ml-1.5">({cert.provider})</span>
+                  </span>
+                ))}
               </div>
             </div>
           </div>

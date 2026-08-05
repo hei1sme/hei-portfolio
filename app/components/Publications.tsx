@@ -25,10 +25,10 @@ const publications: Publication[] = [
         title: 'Warning Before the Evening Peak: Health-Centred Air Quality Alerts in New Zealand and Australia',
         authors: ['Co-Authors', 'Gia-Hung Nguyen Le (Second Author)', 'et al.'],
         highlightedAuthor: 'Gia-Hung Nguyen Le (Second Author)',
-        venue: 'Health-Centred Air Quality Forecasting (New Zealand & Australia)',
-        venueType: 'journal',
+        venue: 'Australasian Joint Conference on Artificial Intelligence (AJCAI 2026)',
+        venueType: 'conference',
         year: 2026,
-        ranking: 'Manuscript Under Review',
+        ranking: 'Under Review',
     },
     {
         id: 'ajcai-2026',

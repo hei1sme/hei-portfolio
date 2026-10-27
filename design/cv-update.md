@@ -6,11 +6,13 @@ the CV and portfolio. The attachment is valid LaTeX despite its `.txt` suffix.
 ## Local files and build
 
 - Working source: `docs/cv/resume_havard_ver.tex`.
+- One-page AI/ML source: `docs/cv/resume_ai_ml.tex`.
 - Unmodified attachment: `docs/cv/original/resume_havard_ver.tex.txt`.
 - Previous website PDF and Markdown: `docs/cv/original/`, with
   `HungLNG_Resume-before-update` filenames.
 - Review export: `output/pdf/HungLNG_Resume.pdf`.
 - Published assets: `public/HungLNG_Resume.pdf` and `public/HungLNG_Resume.md`.
+- Industry assets: `public/HungLNG_Resume_AI_ML.pdf` and matching `.md`.
 
 `docs/` and `output/` stay ignored. The source is available on the owner's machine,
 not in the public Git repository. The build helper is tracked so future source
@@ -18,10 +20,21 @@ imports can use the same workflow. It uses Tectonic with shell execution disable
 the local Windows compiler download has a pinned release and SHA-256 checksum.
 
 The CV keeps the supplied template's Charter typeface, letter paper, one-inch
-margins and two-page format. T1 font encoding selects the actual Charter faces
+margins and two-page research format. The industry resume uses the same typeface
+and margins on one page, with one text column and no table-based entries.
+T1 font encoding selects the actual Charter faces
 under Tectonic rather than falling back to Latin Modern. The PDF includes
 selectable text and clickable profile, DOI and project links. Humanizer was used
 for concise technical wording; reported results retain their evaluation scope.
+
+The career-skill review adds explicit research interests, the published paper's
+full author list, and separate published/under-review categories. General
+coursework was removed from the short education block to make room; the original
+source is preserved. The one-page resume surfaces technical skills and all four
+featured projects, with a link to the full research CV for other manuscripts.
+The research CV remains the default navigation download; Education offers both
+documents with their page counts. See `notes/career-skills-review.md` for the
+skill sources, application workflow and evidence gaps.
 
 ## Content reconciliation
 
@@ -59,5 +72,7 @@ dates were not silently changed. These questions are in
 The updated PDF is checked as a two-page letter document, rendered page by page,
 and inspected for clipping and readable hierarchy. Text extraction checks the
 current architecture, publication status, metrics and certification. Website
-checks cover the certification disclosure and CV links; deployment is verified
-against the pushed commit and the public PDF checksum.
+checks cover the certification disclosure and both download links. The industry
+resume is checked as a one-page letter document with selectable text and working
+links. Neither extraction nor a local rubric is a guarantee about an employer's
+ATS. Deployment is verified against the pushed commit and both public PDF checksums.

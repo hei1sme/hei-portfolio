@@ -372,6 +372,42 @@
         "scripts/validate-package.py": "941bd99e52b2ba21449719bb7969607ac8117e3dc173d0c9dfe64fd274c65938",
         "SKILL.md": "0612f1dfb1672b0ea9b97e139bf1f06cabe98d8b27424fe8ff01e1fb4cc99cad"
       }
+    },
+    {
+      "directory": "academic-cv-builder",
+      "repository": "https://github.com/davila7/claude-code-templates",
+      "commit": "4efb68547887d2a4dd714074bd7ecb4171dc9fee",
+      "upstream_path": "cli-tool/components/skills/career/academic-cv-builder",
+      "license_note": "MIT; root license bundled as UPSTREAM-LICENSE",
+      "retrieved_on": "2026-10-27",
+      "files": {
+        "SKILL.md": "88f88f4b50bf6564b18563780966dbc8d2f8ff7e597892e898c979256008f291",
+        "UPSTREAM-LICENSE": "15cc073ffa3a01bb7da145aeae2a842b473860d142c92485536ee9c91195a705"
+      }
+    },
+    {
+      "directory": "tech-resume-optimizer",
+      "repository": "https://github.com/davila7/claude-code-templates",
+      "commit": "4efb68547887d2a4dd714074bd7ecb4171dc9fee",
+      "upstream_path": "cli-tool/components/skills/career/tech-resume-optimizer",
+      "license_note": "MIT; root license bundled as UPSTREAM-LICENSE",
+      "retrieved_on": "2026-10-27",
+      "files": {
+        "SKILL.md": "937d5f6b01f37a4de62a63e52af3432f239607adc073ba1918bdd0b907bbe6b0",
+        "UPSTREAM-LICENSE": "15cc073ffa3a01bb7da145aeae2a842b473860d142c92485536ee9c91195a705"
+      }
+    },
+    {
+      "directory": "resume-cover-letter",
+      "repository": "https://github.com/jezweb/claude-skills",
+      "commit": "1260fa7439b36b18dbf16648ccc7fb44783f6c23",
+      "upstream_path": "plugins/writing/skills/resume-cover-letter",
+      "license_note": "MIT; root license bundled as UPSTREAM-LICENSE",
+      "retrieved_on": "2026-10-27",
+      "files": {
+        "SKILL.md": "adaa35a36ae0bfa6b1ce14104aebcbfe8a51c65434087056facf4f8f45217b96",
+        "UPSTREAM-LICENSE": "4530f92f44fe545e18773c7bbe0c312b0f04b78c161bdb784ff24f0ace9a5592"
+      }
     }
   ]
 }

@@ -1,4 +1,4 @@
-"""Build the owner's private LaTeX CV; publish only with an explicit flag."""
+"""Build the owner's research CV and AI/ML resume; publish with an explicit flag."""
 import argparse
 import hashlib
 import io
@@ -39,23 +39,34 @@ def compiler():
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--publish", action="store_true", help="Also replace the website PDF after review.")
+    parser.add_argument("--variant", choices=["research", "industry", "all"], default="all")
     args = parser.parse_args()
-    source = ROOT / "docs/cv/resume_havard_ver.tex"
-    if not source.is_file():
-        raise SystemExit("Import the private CV source to docs/cv/resume_havard_ver.tex first.")
+    variants = {
+        "research": ("resume_havard_ver", "HungLNG_Resume"),
+        "industry": ("resume_ai_ml", "HungLNG_Resume_AI_ML"),
+    }
+    selected = variants if args.variant == "all" else {args.variant: variants[args.variant]}
+    for source_name, _ in selected.values():
+        source = ROOT / f"docs/cv/{source_name}.tex"
+        if not source.is_file():
+            raise SystemExit(f"Missing private CV source: {source}")
     build = ROOT / "docs/cv/build"
-    export = ROOT / "output/pdf/HungLNG_Resume.pdf"
     build.mkdir(parents=True, exist_ok=True)
-    export.parent.mkdir(parents=True, exist_ok=True)
+    (ROOT / "output/pdf").mkdir(parents=True, exist_ok=True)
     environment = dict(os.environ, TECTONIC_CACHE_DIR=str(ROOT / ".codex/tooling/tectonic-cache"))
-    subprocess.run([compiler(), "--untrusted", "--keep-logs", "--outdir", str(build), str(source)],
-                   cwd=ROOT, env=environment, check=True)
-    shutil.copy2(build / "resume_havard_ver.pdf", export)
-    print(f"Built {export}")
+    executable = compiler()
+    for source_name, export_name in selected.values():
+        source = ROOT / f"docs/cv/{source_name}.tex"
+        export = ROOT / f"output/pdf/{export_name}.pdf"
+        subprocess.run([executable, "--untrusted", "--keep-logs", "--outdir", str(build), str(source)],
+                       cwd=ROOT, env=environment, check=True)
+        shutil.copy2(build / f"{source_name}.pdf", export)
+        print(f"Built {export}")
     if args.publish:
-        destination = ROOT / "public/HungLNG_Resume.pdf"
-        shutil.copy2(export, destination)
-        print(f"Updated {destination}")
+        for _, export_name in selected.values():
+            destination = ROOT / f"public/{export_name}.pdf"
+            shutil.copy2(ROOT / f"output/pdf/{export_name}.pdf", destination)
+            print(f"Updated {destination}")
 
 
 if __name__ == "__main__":

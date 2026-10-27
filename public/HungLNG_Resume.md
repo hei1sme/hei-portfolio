@@ -2,6 +2,9 @@
 
 AI Undergraduate Researcher | Time-Series & Multimodal XAI
 
+Research interests: explainable AI, time-series forecasting, multimodal learning
+and computer vision.
+
 heiontheway@gmail.com | +84 394 262 651 | Ho Chi Minh City, Vietnam
 
 [LinkedIn](https://linkedin.com/in/le-nguyen-gia-hung) ·
@@ -16,15 +19,19 @@ heiontheway@gmail.com | +84 394 262 651 | Ho Chi Minh City, Vietnam
 B.Eng. in Artificial Intelligence | 2023–December 2027 (expected) | GPA: 8.62/10.0
 
 - Certificate of Merit: Honorable Student of Trimester, semesters 3, 4, 5 and 6.
-- Coursework: Data Structures and Algorithms, Linear Algebra, Introduction to AI,
-  Deep Learning, Statistical Analysis.
 
 ## Publications & manuscripts
 
-- **Published:** Gia-Hung Nguyen Le et al. “Proactive Air Quality Forecasting and
+### Peer-reviewed conference publication
+
+- **Gia-Hung Nguyen Le**, Gia-Bao Pham Hoang, Tan-Phat Vo, Thu Le and Nhu Nguyen.
+  “Proactive Air Quality Forecasting and
   Health Alert System for Melbourne.” AJCAI 2025, Springer LNAI.
   First and corresponding author.
   [DOI: 10.1007/978-981-95-4969-6_34](https://doi.org/10.1007/978-981-95-4969-6_34).
+
+### Manuscripts under review
+
 - “Stress-Testing Multi-Source Cyanobacterial Bloom Forecasting under Sparse
   Monitoring.” Under review, AJCAI 2026. First and corresponding author.
 - “Warning Before the Evening Peak: Health-Centred Air Quality Alerts in New
@@ -58,9 +65,8 @@ AJCAI 2026 under review
   untouched 2023–2024 holdout (n=170).
 - Compared forecast horizons: 7-day Chl-a history XGBoost reached weighted F1
   0.791 (+0.103 over full fusion, p=0.016); 14-day full fusion reached 0.703.
-- Audited incident eligibility: 22 apparent episode starts reduced to 3 incidents;
-  formulated an 8-gate provenance-aware audit protocol.
-- Led manuscript writing and experimental protocols.
+- Led manuscript writing and the 8-gate provenance audit: 22 apparent episode
+  starts reduced to 3 eligible incidents.
 
 ### Health-Centred Air Quality Alerts (NZ & Australia)
 

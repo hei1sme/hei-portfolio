@@ -111,6 +111,13 @@ Repository skills live in `.agents/skills/`:
 - `writing-guidelines`: concise, concrete portfolio writing.
 - `humanizer`: edit AI-sounding prose while preserving the owner's voice,
   technical facts, names, numbers, metadata and source links.
+- `academic-cv-builder`: research CV structure, publication categories and
+  authorship. Apply at the owner's undergraduate stage; omit unsupported grants,
+  teaching appointments, advisors and references.
+- `tech-resume-optimizer`: technical resume hierarchy and evidence-backed
+  project bullets for AI/ML engineering roles.
+- `resume-cover-letter`: role-specific resumes and cover letters once a real
+  job description and employer are supplied. Region and eligibility need facts.
 - `taste-skill` (skill name `design-taste-frontend`): reference-led art direction
   and browser-based visual iteration.
 - `apple-design`: fluid interaction, typography and spatial consistency for web.
@@ -135,6 +142,16 @@ the Claude-specific environment variable in the upstream command exists.
   `python scripts/build-cv.py`, inspect both pages, then use `--publish` to update
   the public PDF. Keep `public/HungLNG_Resume.md` aligned. Source reconciliation
   and unresolved dates are in `design/cv-update.md` and the portfolio backlog.
+  The industry source is `docs/cv/resume_ai_ml.tex`; it exports the one-page
+  `public/HungLNG_Resume_AI_ML.pdf` and has a matching Markdown file. The default
+  build now handles both variants (`--variant research|industry|all`).
+- Career skills are guidance, not evidence. Do not estimate achievements, change
+  official roles, infer work authorization, turn certificates into hands-on
+  experience or report a universal ATS score. Preserve the research CV as the
+  default download. The role-specific application workflow and evidence gaps
+  are in `notes/career-skills-review.md`; private application material belongs
+  in ignored `docs/career/`. Do not send applications or contact anyone without
+  explicit instructions.
 
 - Decorative stars/arrows in active pages must use `components/portfolio/Icon`
   SVGs, not Unicode glyphs that iOS/iPadOS can render as emoji. Semantic symbols

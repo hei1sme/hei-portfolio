@@ -72,6 +72,7 @@ and WebGL fallback. Normal pointer behavior and vertical scrolling remain usable
 - Cases: `content/projects/*.mdx`, loaded by `lib/projects.ts`.
 - Shared facts/profiles: `app/concepts/research/portfolioData.ts`.
 - Resume: `public/HungLNG_Resume.pdf`; text version: `public/HungLNG_Resume.md`.
+- One-page AI/ML resume: `public/HungLNG_Resume_AI_ML.pdf` and matching `.md`.
 
 Trusted repository MDX is compiled on the server. Preserve authorship, paper
 status, project roles, dates and evaluation scope. Do not present attention as a
@@ -79,8 +80,9 @@ causal explanation, a schematic as measured output, or a profile as a project re
 
 ### Update the CV
 
-The owner's imported Overleaf source lives locally at
-`docs/cv/resume_havard_ver.tex`. The attachment and previous PDF are preserved in
+The owner's research CV source lives locally at `docs/cv/resume_havard_ver.tex`;
+the one-page industry source is `docs/cv/resume_ai_ml.tex`.
+The attachment and previous PDF are preserved in
 `docs/cv/original/`. The entire `docs/` directory is ignored; these private source
 files are not included in a fresh clone.
 
@@ -88,16 +90,20 @@ files are not included in a fresh clone.
 python scripts/build-cv.py
 ```
 
-This builds a review copy at `output/pdf/HungLNG_Resume.pdf`. On Windows the
+This builds both review copies in `output/pdf/`. Use `--variant research` or
+`--variant industry` to build one. On Windows the
 script installs a checksum-verified Tectonic 0.17.0 into ignored local tooling if
 needed; other platforms need Tectonic on PATH. The first build downloads TeX
-packages and requires network access. Review both pages and links, then run
-`python scripts/build-cv.py --publish` to replace the website PDF. Update the
-Markdown resume and shared portfolio facts alongside it. The `--publish` flag
-only copies the PDF locally; deploying still requires the Git/Vercel flow below.
+packages and requires network access. Review all three pages and links, then run
+`python scripts/build-cv.py --publish` to replace the website PDFs. Update the
+Markdown versions and shared portfolio facts alongside them. The `--publish`
+flag only copies the PDFs locally; deploying still requires the Git/Vercel flow below.
 
 The import, content reconciliation and remaining date questions are documented
 in [design/cv-update.md](design/cv-update.md).
+Career skill selection, application workflow and evidence gaps are in
+[notes/career-skills-review.md](notes/career-skills-review.md). These are base
+documents; tailor a copy to the actual posting before applying.
 
 ## Deployment
 
@@ -123,7 +129,10 @@ domain has been chosen or configured by this change.
 Read `AGENTS.md` before making changes. Interviews and reference studies remain
 in `design/`; skill attribution is in `.agents/skills/SOURCES.json`.
 Humanizer is vendored in `.agents/skills/humanizer/` with its MIT license and
-pinned source commit. The latest icon, motion-control and copy review is in
+pinned source commit. Academic CV Builder, Tech Resume Optimizer and
+Resume/Cover Letter Writer are also vendored with pinned commits and upstream
+MIT licenses. Their scope and local factual constraints are in `AGENTS.md`.
+The latest icon, motion-control and copy review is in
 [design/ipad-icons-and-copy.md](design/ipad-icons-and-copy.md).
 
 Deferred research figures, demos and owner inputs are tracked in

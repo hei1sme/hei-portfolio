@@ -31,11 +31,18 @@ The local site runs at `http://localhost:3000`. If npm is unavailable in this
 Windows checkout, `python scripts/bootstrap-portfolio-tools.py` prepares the
 isolated tooling described in `.codex/config.toml`. Its npm entry point is
 `.codex/tooling/npm/bin/npm-cli.js`.
+On Windows, the bootstrap also creates npm/npx command shims in
+`.codex/tooling/bin`. Add that directory to the current process PATH when a
+framework command needs to invoke npm internally; no global installation is needed.
 
 ## Stack and structure
 
 Next.js 15, React 19, TypeScript, Tailwind 3, Three.js and Framer Motion. Installed
 versions in `package.json` and `package-lock.json` are authoritative.
+
+The current Next.js 15 patch baseline is 15.5.28. Dependency fixes and the two
+scoped PostCSS/parser overrides are documented in
+[design/dependency-maintenance.md](design/dependency-maintenance.md).
 
 - `app/page.tsx`: main homepage composition.
 - `app/concepts/garden/`: shared Sculpture components, publications, project

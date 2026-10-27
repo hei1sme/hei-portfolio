@@ -55,6 +55,11 @@ giả hoặc dùng audio/ảnh không liên quan để minh họa như kết qu�
 
 ## Khi tiếp tục
 
+Ghi chú kỹ thuật: dependency đã được vá trong đợt deploy 2026-10-27; xem
+`design/dependency-maintenance.md`. ESLint 8 và một số công cụ build còn báo
+deprecated. Việc nâng major của tooling nên làm thành một lượt riêng, có build
+và kiểm tra lại; không tự đổi major Next.js hay Tailwind trong lúc thêm nội dung.
+
 1. Đọc file này cùng `AGENTS.md` và `design/recruiter-content-refinement.md`.
 2. Kiểm tra tài liệu chủ portfolio vừa cung cấp và nguồn gốc artifact.
 3. Ưu tiên hoàn thiện SmokeNet trước, rồi demo PPE/ASR. Bổ sung vào case study

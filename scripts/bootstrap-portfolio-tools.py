@@ -15,8 +15,19 @@ URL = "https://registry.npmjs.org/npm/-/npm-11.6.2.tgz"
 SHA512 = "7iKzNfy8lWYs3zq4oFPa8EXZz5xt9gQNKJZau3B1ErLBb6bF7sBJ00x09485DOvRT2l5Gerbl3VlZNT57MxJVA=="
 
 
+def write_windows_shims():
+    shim_dir = DEST.parent / "bin"
+    shim_dir.mkdir(parents=True, exist_ok=True)
+    for command in ("npm", "npx"):
+        (shim_dir / f"{command}.cmd").write_text(
+            '@echo off\nnode "%~dp0..\\npm\\bin\\' + command + '-cli.js" %*\n',
+            encoding="utf-8",
+        )
+
+
 def main():
     if (DEST / "bin" / "npx-cli.js").is_file():
+        write_windows_shims()
         print("Repo-local npm already installed.")
         return
     with urllib.request.urlopen(URL, timeout=60) as response:
@@ -41,6 +52,7 @@ def main():
                     target.write_bytes(source.read())
             else:
                 raise RuntimeError("Unsupported archive member")
+    write_windows_shims()
     print("Installed verified npm 11.6.2 into .codex/tooling/npm")
 
 

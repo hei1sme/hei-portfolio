@@ -1,2 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Keep vendored skill sources intact, including upstream whitespace.
+.agents/skills/** linguist-vendored=true -whitespace

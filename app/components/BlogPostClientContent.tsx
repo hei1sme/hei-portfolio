@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import Image from 'next/image';
 import { FaCalendar, FaClock, FaUser } from 'react-icons/fa';
 
@@ -11,7 +10,7 @@ interface BlogPostClientContentProps {
   date: string;
   author?: string;
   imageUrl?: string;
-  mdxSource: MDXRemoteSerializeResult;
+  children: React.ReactNode;
 }
 
 const BlogPostClientContent: React.FC<BlogPostClientContentProps> = ({
@@ -19,7 +18,7 @@ const BlogPostClientContent: React.FC<BlogPostClientContentProps> = ({
   date,
   author = 'Gia Hung',
   imageUrl,
-  mdxSource,
+  children,
 }) => {
   const readTime = 5; // Estimate
 
@@ -51,6 +50,7 @@ const BlogPostClientContent: React.FC<BlogPostClientContentProps> = ({
               src={imageUrl}
               alt={title}
               fill
+              sizes="(max-width: 768px) 100vw, 896px"
               className="object-cover"
               priority
             />
@@ -133,7 +133,7 @@ const BlogPostClientContent: React.FC<BlogPostClientContentProps> = ({
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.5 }}
       >
-        <MDXRemote {...mdxSource} />
+        {children}
       </motion.article>
 
       {/* End divider */}

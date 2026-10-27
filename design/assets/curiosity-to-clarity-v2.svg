@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="native-blog-cover" width="1600" height="1000" viewBox="0 0 1600 1000" fill="none">
+<title>From curiosity to clarity</title>
+<desc>A cobalt typographic poster. A wandering route becomes a clear arrow between the words Curiosity and Clarity, a visual metaphor for learning, not measured data.</desc>
+<rect width="1600" height="1000" fill="#edf1f5"/>
+<rect x="56" y="56" width="1488" height="888" rx="24" fill="#214ce8"/>
+<g fill="#edf1f5" font-family="Manrope,Arial,sans-serif" font-weight="550">
+<text x="120" y="272" font-size="178" letter-spacing="-7">Curiosity.</text>
+<text x="662" y="837" font-size="178" letter-spacing="-7" fill="#d7ed91">Clarity.</text>
+</g>
+<path d="M136 526C232 321 524 676 578 483C622 325 312 355 326 527C346 735 733 611 706 455C686 338 568 433 639 521C734 641 952 428 1111 482C1215 517 1267 515 1404 515" stroke="#152344" stroke-width="27" stroke-linecap="round"/>
+<path d="M136 526C232 321 524 676 578 483C622 325 312 355 326 527C346 735 733 611 706 455C686 338 568 433 639 521C734 641 952 428 1111 482C1215 517 1267 515 1404 515" stroke="#d7ed91" stroke-width="12" stroke-linecap="round"/>
+<path d="m1368 476 40 39-40 39" stroke="#d7ed91" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="136" cy="526" r="19" fill="#edf1f5"/>
+<circle cx="136" cy="526" r="7" fill="#214ce8"/>
+<g fill="#edf1f5" font-family="Manrope,Arial,sans-serif">
+<text x="126" y="879" font-size="40" font-weight="800" letter-spacing="-2">hei</text>
+<text x="1382" y="153" font-size="28" font-weight="550" text-anchor="end">Learning AI</text>
+</g>
+</svg>

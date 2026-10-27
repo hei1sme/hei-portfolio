@@ -1,43 +1,41 @@
 ---
 title: "MERR-GAT: Explainable Multimodal Emotion Recognition"
 date: "2025-10-01"
-summary: "A hybrid architecture fusing Wav2Vec 2.0 and RoBERTa via GATv2 for transparent multimodal speech emotion recognition."
-image: "/images/project/MERR-GAT.png"
+summary: "WavLM and Compact Conformer audio encoding, BERT/RoBERTa text representations and dual-channel graph attention for multimodal emotion recognition."
+image: "/images/project/merr-conformer-architecture.svg"
 tags: ['Multimodal AI', 'Speech Emotion Recognition', 'Graph Attention', 'XAI']
-technologies: ['Wav2Vec 2.0', 'RoBERTa', 'GATv2', 'PyTorch', 'SHAP', 'Integrated Gradients', 'IEMOCAP', 'RAVDESS', 'MELD']
+technologies: ['WavLM', 'Compact Conformer', 'BERT / RoBERTa', 'GAT', 'PyTorch', 'SHAP', 'Integrated Gradients']
+repoUrl: "https://github.com/SpeedyLabX/ser-conformer-gat-xai"
 ---
 
 ## Motivation
 
-Emotion recognition systems often operate as black boxes, especially when they merge acoustic signals with transcripts.  
-This project explores how **Wav2Vec 2.0**, **RoBERTa**, and **Graph Attention Networks (GATv2)** can cooperate to provide both accuracy and interpretability.
+Emotion recognition systems combine acoustic signals and language, but their decisions can be difficult to inspect. This ongoing research investigates a hybrid audio-text architecture with temporal modelling, graph attention and attribution analysis.
 
-## Architecture
+## Current architecture
 
-- **Wav2Vec 2.0** encodes rich audio representations capturing prosody, spectral features, and temporal cues
-- **RoBERTa** produces contextual embeddings for transcripts
-- **GATv2 fusion layer** models cross-modal dependencies with dynamic conversational graphs modeling temporal and speaker interactions
-- A shared decision head predicts categorical emotions with **flexible 4/5/6-class emotion heads**
+- **WavLM-Base** provides audio representations.
+- A **Compact Conformer** models the acoustic sequence.
+- **BERT/RoBERTa** provides contextual text representations.
+- **Dual-channel GAT** models intra- and inter-modal relationships.
+- **BiGRU, pooling and a classifier** produce emotion predictions.
 
-## Explainability Toolkit
+The schematic above describes the architecture in the current research repository; it is not a measured model output.
 
-- Implementing **intrinsic XAI** using attention weights for decision interpretability
-- Built a reusable pipeline featuring SHAP value aggregation, Integrated Gradients, and counterfactual analysis
-- Explanations surface *which* words or time segments contribute to a prediction and *how* the modalities corroborate each other
+## My contribution
 
-## Current Progress
+**Second author and corresponding author.** I work on combining the audio and text representations, graph-based fusion, and analysis that makes the predictions easier to inspect.
 
-- Benchmarking on **IEMOCAP**, **RAVDESS**, and **MELD** datasets
-- Designing dynamic conversational graphs modeling temporal and speaker interactions
-- Validating that GATv2-based fusion improves macro-F1 compared to late-concatenation baselines
-- Stress-testing interpretability outputs with qualitative reviews from peers
+## Explainability
 
-## Role
+The research uses attention visualization alongside **SHAP** and **Integrated Gradients** to investigate modality contributions. Attention is an inspection signal, not a causal explanation on its own.
 
-**Second Author & Corresponding Author**
+## Evaluation in progress
 
-## Next Steps
+The repository specifies **IEMOCAP**, **RAVDESS** and **MELD** for evaluation and generalization studies, with **Weighted Accuracy, Unweighted Accuracy and Macro-F1** as evaluation metrics. No final accuracy or improvement is claimed here.
 
-- Complete experiments across all benchmark datasets
-- Package the training code and dashboards for the SpeedyLabX research group
-- Prepare manuscript for submission
+## Limitations and next steps
+
+The experiments and attribution analysis remain in progress. The architecture schematic is not a measured model output, and performance should not be compared across datasets without matching evaluation protocols.
+
+Next steps are to complete the experiments, review attribution quality and prepare the research manuscript. The linked repository contains the current research implementation and configuration files.

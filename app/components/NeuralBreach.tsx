@@ -1,12 +1,13 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ShooterGame from './ShooterGame';
 
 interface NeuralBreachProps {
     onClose: () => void;
     buttonPosition: { x: number; y: number };
+    allowSkip?: boolean;
 }
 
 // Captured DOM element for suction
@@ -29,9 +30,10 @@ const useTypewriter = (text: string, speed: number = 50, startDelay: number = 0)
         setDisplayText('');
         setIsComplete(false);
 
+        let timer: ReturnType<typeof setInterval> | undefined;
         const timeout = setTimeout(() => {
             let i = 0;
-            const timer = setInterval(() => {
+            timer = setInterval(() => {
                 if (i < text.length) {
                     setDisplayText(text.slice(0, i + 1));
                     i++;
@@ -40,10 +42,9 @@ const useTypewriter = (text: string, speed: number = 50, startDelay: number = 0)
                     setIsComplete(true);
                 }
             }, speed);
-            return () => clearInterval(timer);
         }, startDelay);
 
-        return () => clearTimeout(timeout);
+        return () => { clearTimeout(timeout); clearInterval(timer); };
     }, [text, speed, startDelay]);
 
     return { displayText, isComplete };
@@ -115,7 +116,7 @@ const SuckedDOMElement: React.FC<{
 
 
 // Main Neural Breach Component
-const NeuralBreach: React.FC<NeuralBreachProps> = ({ onClose, buttonPosition }) => {
+const NeuralBreach: React.FC<NeuralBreachProps> = ({ onClose, buttonPosition, allowSkip = false }) => {
     const [phase, setPhase] = useState<'story' | 'sucking' | 'blackout' | 'mission' | 'game' | 'complete'>('story');
     const [storyIndex, setStoryIndex] = useState(0);
     const [chaosIndex, setChaosIndex] = useState(0);
@@ -123,6 +124,8 @@ const NeuralBreach: React.FC<NeuralBreachProps> = ({ onClose, buttonPosition }) 
     const [capturedElements, setCapturedElements] = useState<CapturedElement[]>([]);
     const [screenShake, setScreenShake] = useState(false);
     const [suckProgress, setSuckProgress] = useState(0);
+    const completionTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+    useEffect(() => () => clearTimeout(completionTimer.current), []);
 
     // Current story text
     const currentStory = STORY_PHASES[storyIndex];
@@ -232,7 +235,7 @@ const NeuralBreach: React.FC<NeuralBreachProps> = ({ onClose, buttonPosition }) 
 
     const handleGameComplete = useCallback(() => {
         setPhase('complete');
-        setTimeout(onClose, 3000);
+        completionTimer.current = setTimeout(onClose, 3000);
     }, [onClose]);
 
     return (
@@ -384,7 +387,7 @@ const NeuralBreach: React.FC<NeuralBreachProps> = ({ onClose, buttonPosition }) 
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="absolute inset-0"
+                    className="absolute inset-x-0 top-16 bottom-0"
                 >
                     <ShooterGame onComplete={handleGameComplete} />
                 </motion.div>
@@ -408,8 +411,13 @@ const NeuralBreach: React.FC<NeuralBreachProps> = ({ onClose, buttonPosition }) 
                 </div>
             )}
 
+            {allowSkip && phase !== 'game' && phase !== 'complete' ? (
+                <button type="button" onClick={() => { setScreenShake(false); setPhase('game'); }} className="absolute bottom-6 left-1/2 -translate-x-1/2 z-50 rounded-full bg-white px-6 py-3 text-sm font-semibold text-black">Skip intro & play</button>
+            ) : null}
             {/* Close button */}
             <button
+                type="button"
+                aria-label="Close NeuralBreach"
                 onClick={onClose}
                 className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors z-50 cursor-pointer"
             >

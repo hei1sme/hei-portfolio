@@ -1,24 +1,23 @@
-'use client'; // Layout now needs to be client for ParallaxProvider
+import type { Metadata } from "next";
+import { Manrope } from "next/font/google";
+import "./globals.css";
+import "./concepts/garden/garden.css";
+import "./portfolio.css";
+import "./components/portfolio/intro.css";
+import SiteShell from "./components/SiteShell";
+import { siteUrl } from "../lib/site";
+import { introBootstrap } from "../lib/intro";
 
-// Remove Metadata type import if no longer needed here
-// import type { Metadata } from 'next'; 
-import { Inter } from 'next/font/google';
-import './globals.css';
-import { ThemeProvider } from './context/ThemeContext';
-import { LabProvider } from './context/LabContext';
-import { ParallaxProvider } from 'react-scroll-parallax'; // Import ParallaxProvider
-// Import slick-carousel styles
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import CustomCursor from './components/CustomCursor'; // Import CustomCursor
-import VerticalNavigation from './components/VerticalNavigation'; // Keep VerticalNavigation
-import ScrollProgress from './components/ScrollProgress'; // Import ScrollProgress
-import FloatingCTA from './components/FloatingCTA';
+const manrope = Manrope({ subsets: ["latin", "vietnamese"], variable: "--garden-font", display: "swap" });
 
-const inter = Inter({ subsets: ['latin'] });
-
-// Remove metadata export from here
-// export const metadata: Metadata = { ... };
+export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+  title: { default: "Le Nguyen Gia Hung — AI research & things in motion", template: "%s — hei" },
+  description: "AI undergraduate researcher at FPT University. Explainable AI, computer vision and time-series forecasting. Publications, projects and research by Le Nguyen Gia Hung.",
+  authors: [{ name: "Le Nguyen Gia Hung" }],
+  openGraph: { title: "hei — Seeing beyond the prediction", description: "Research, transparent AI systems and a curious person behind them.", type: "website", locale: "en_US" },
+  twitter: { card: "summary_large_image" },
+};
 
 export default function RootLayout({
   children,
@@ -26,23 +25,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="bg-black">
-      <body className={`${inter.className} cursor-none bg-black relative`}>
-        <ThemeProvider>
-          <LabProvider>
-            <ParallaxProvider> {/* Wrap with ParallaxProvider */}
-              <ScrollProgress /> {/* Add scroll progress bar */}
-              <CustomCursor /> {/* Add CustomCursor here */}
-              <FloatingCTA /> {/* Floating contact button */}
-              <VerticalNavigation />
-              {/* Render children directly, add padding to avoid nav */}
-              <main className="pl-0 md:pl-20 w-full min-h-screen">
-                {children}
-              </main>
-            </ParallaxProvider>
-          </LabProvider>
-        </ThemeProvider>
+    <html lang="en">
+      <head><script dangerouslySetInnerHTML={{ __html: introBootstrap }} /></head>
+      <body className={`${manrope.variable} ${manrope.className}`}>
+        <SiteShell>{children}</SiteShell>
       </body>
     </html>
   );
-} 
+}

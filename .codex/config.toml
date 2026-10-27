@@ -1,0 +1,6 @@
+# Repo-scoped tooling. Bootstrap once with: python scripts/bootstrap-portfolio-tools.py
+[mcp_servers.portfolio_playwright]
+command = "node"
+args = [".codex/tooling/npm/bin/npx-cli.js", "--yes", "@playwright/mcp@0.0.83", "--isolated", "--headless", "--output-dir", "output/playwright"]
+startup_timeout_sec = 60
+tool_timeout_sec = 60

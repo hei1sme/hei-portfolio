@@ -1,13 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { serialize } from 'next-mdx-remote/serialize';
+import { compileMDX } from 'next-mdx-remote/rsc';
+import { cache, type ReactElement } from 'react';
 // Import rehype-pretty-code
 import rehypePrettyCode from 'rehype-pretty-code';
 // If you plan to use remark/rehype plugins for syntax highlighting, footnotes, etc., import them here
 // Example: import rehypeHighlight from 'rehype-highlight';
 
-import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
 // Define options for rehype-pretty-code
 const prettyCodeOptions = {
@@ -50,7 +50,8 @@ export interface PostMetadata {
 }
 
 export interface PostData extends PostMetadata {
-  mdxSource: MDXRemoteSerializeResult; // Type from next-mdx-remote/dist/types
+  renderedContent: ReactElement;
+  readingMinutes: number;
 }
 
 export function getSortedPostsData(): PostMetadata[] {
@@ -144,7 +145,8 @@ export function getAllPostSlugs() {
     });
 }
 
-export async function getPostData(slug: string): Promise<PostData | null> {
+export const getPostData = cache(async (slug: string): Promise<PostData | null> => {
+  if (!/^[a-z0-9-]+$/.test(slug)) return null;
   const fullPath = path.join(postsDirectory, `${slug}.mdx`);
 
   if (!fs.existsSync(fullPath)) {
@@ -170,16 +172,21 @@ export async function getPostData(slug: string): Promise<PostData | null> {
   }
   const { data, content } = matterResult;
 
-  // Use next-mdx-remote to serialize the MDX content
-  let mdxSource;
+  // Render trusted local MDX on the server, then pass its element tree through
+  // the client presentation shell. Client MDX evaluation fails under React 19.
+  let renderedContent: ReactElement;
   try {
-      mdxSource = await serialize(content, {
+      const compiled = await compileMDX({
+          source: content,
+          options: {
           mdxOptions: {
               // Add rehypePrettyCode to rehype plugins
               rehypePlugins: [[rehypePrettyCode, prettyCodeOptions]],
           },
-          parseFrontmatter: false // Already parsed by gray-matter
+          parseFrontmatter: false, // Already parsed by gray-matter
+          },
       });
+      renderedContent = compiled.content;
   } catch (error) {
       console.error(`Error serializing MDX for slug "${slug}":`, error);
       // Optionally return partial data or null depending on desired behavior
@@ -195,7 +202,8 @@ export async function getPostData(slug: string): Promise<PostData | null> {
     author: data.author || 'Unknown Author',
     excerpt: data.excerpt || '',
     imageUrl: data.imageUrl || null,
-    mdxSource,
+    renderedContent,
+    readingMinutes: Math.max(1, Math.ceil(content.trim().split(/\s+/).length / 200)),
     // Add other frontmatter fields from 'data' here
   } as PostData; // Type assertion
-}
+});

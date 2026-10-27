@@ -57,6 +57,16 @@ export default function ShooterGame({ onComplete }: ShooterGameProps) {
     const lastShotRef = useRef(0);
     const bulletIdRef = useRef(0);
     const enemyIdRef = useRef(0);
+    const timersRef = useRef(new Set<ReturnType<typeof setTimeout>>());
+    const touchPointerRef = useRef<number | null>(null);
+    const touchOriginRef = useRef({ x: 0, y: 0, playerX: 0, playerY: 0 });
+    const touchFiringRef = useRef(false);
+    const [touchMode, setTouchMode] = useState(false);
+    const schedule = useCallback((callback: () => void, delay: number) => {
+        const timer = setTimeout(() => { timersRef.current.delete(timer); callback(); }, delay);
+        timersRef.current.add(timer);
+    }, []);
+    useEffect(() => () => { timersRef.current.forEach(clearTimeout); timersRef.current.clear(); }, []);
 
     // State for React rendering
     const [player, setPlayer] = useState({ x: 450, y: 350, rotation: 0, health: 100 });
@@ -71,10 +81,14 @@ export default function ShooterGame({ onComplete }: ShooterGameProps) {
     const [dimensions, setDimensions] = useState({ width: 900, height: 580 });
 
     useEffect(() => {
-        setDimensions({
+        const resize = () => setDimensions({
             width: Math.min(window.innerWidth - 80, 950),
-            height: Math.min(window.innerHeight - 160, 620),
+            height: Math.min(window.innerHeight - 224, 620),
         });
+        resize();
+        setTouchMode(window.matchMedia('(pointer: coarse)').matches);
+        window.addEventListener('resize', resize);
+        return () => window.removeEventListener('resize', resize);
     }, []);
 
     const gameWidth = dimensions.width;
@@ -124,7 +138,7 @@ export default function ShooterGame({ onComplete }: ShooterGameProps) {
 
     // Input handlers
     useEffect(() => {
-        const onKeyDown = (e: KeyboardEvent) => { keysRef.current.add(e.key.toLowerCase()); if (e.key === ' ') e.preventDefault(); };
+        const onKeyDown = (e: KeyboardEvent) => { keysRef.current.add(e.key.toLowerCase()); if ([' ', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) e.preventDefault(); };
         const onKeyUp = (e: KeyboardEvent) => keysRef.current.delete(e.key.toLowerCase());
         const onMouseMove = (e: MouseEvent) => {
             if (gameRef.current) {
@@ -133,14 +147,17 @@ export default function ShooterGame({ onComplete }: ShooterGameProps) {
                 mouseRef.current.y = e.clientY - rect.top;
             }
         };
-        const onMouseDown = () => mouseRef.current.down = true;
+        const onMouseDown = (event: MouseEvent) => { if (gameRef.current?.contains(event.target as Node)) mouseRef.current.down = true; };
         const onMouseUp = () => mouseRef.current.down = false;
+        const clearInput = () => { keysRef.current.clear(); mouseRef.current.down = false; touchFiringRef.current = false; touchPointerRef.current = null; };
 
         window.addEventListener('keydown', onKeyDown);
         window.addEventListener('keyup', onKeyUp);
         window.addEventListener('mousemove', onMouseMove);
         window.addEventListener('mousedown', onMouseDown);
         window.addEventListener('mouseup', onMouseUp);
+        window.addEventListener('blur', clearInput);
+        document.addEventListener('visibilitychange', clearInput);
 
         return () => {
             window.removeEventListener('keydown', onKeyDown);
@@ -148,6 +165,8 @@ export default function ShooterGame({ onComplete }: ShooterGameProps) {
             window.removeEventListener('mousemove', onMouseMove);
             window.removeEventListener('mousedown', onMouseDown);
             window.removeEventListener('mouseup', onMouseUp);
+            window.removeEventListener('blur', clearInput);
+            document.removeEventListener('visibilitychange', clearInput);
         };
     }, []);
 
@@ -160,6 +179,14 @@ export default function ShooterGame({ onComplete }: ShooterGameProps) {
             const keys = keysRef.current;
             const mouse = mouseRef.current;
             const p = playerRef.current;
+
+            // Touch dragging moves the ship; aim at the closest live enemy while
+            // the finger is down. Desktop retains its original mouse aiming.
+            if (touchFiringRef.current) {
+                const nearest = enemiesRef.current.filter(e => e.active && e.health > 0)
+                    .reduce<Enemy | null>((closest, e) => !closest || Math.hypot(e.x - p.x, e.y - p.y) < Math.hypot(closest.x - p.x, closest.y - p.y) ? e : closest, null);
+                if (nearest) { mouse.x = nearest.x; mouse.y = nearest.y; }
+            }
 
             // === PLAYER MOVEMENT ===
             const speed = 5;
@@ -176,7 +203,7 @@ export default function ShooterGame({ onComplete }: ShooterGameProps) {
             p.rotation = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
 
             // === PLAYER SHOOTING ===
-            if ((mouse.down || keys.has(' ')) && now - lastShotRef.current > 100) {
+            if ((mouse.down || keys.has(' ') || touchFiringRef.current) && now - lastShotRef.current > 100) {
                 lastShotRef.current = now;
                 const dist = Math.sqrt(dx * dx + dy * dy) || 1;
                 bulletsRef.current.push({
@@ -318,7 +345,7 @@ export default function ShooterGame({ onComplete }: ShooterGameProps) {
                 if (tookDamage > 0) {
                     p.health -= tookDamage;
                     invincibleRef.current = true;
-                    setTimeout(() => invincibleRef.current = false, 1000);
+                    schedule(() => invincibleRef.current = false, 1000);
                 }
             }
 
@@ -342,10 +369,10 @@ export default function ShooterGame({ onComplete }: ShooterGameProps) {
             if (aliveEnemies.length === 0) {
                 if (stage >= STAGES.length) {
                     setGameState('victory');
-                    setTimeout(onComplete, 3500);
+                    schedule(onComplete, 3500);
                 } else {
                     setGameState('stageComplete');
-                    setTimeout(() => {
+                    schedule(() => {
                         setStage(s => s + 1);
                         playerRef.current.health = Math.min(playerRef.current.health + 25, 100);
                         setGameState('playing');
@@ -359,9 +386,14 @@ export default function ShooterGame({ onComplete }: ShooterGameProps) {
 
         frameRef.current = requestAnimationFrame(loop);
         return () => cancelAnimationFrame(frameRef.current);
-    }, [gameState, gameWidth, gameHeight, stage, onComplete]);
+    }, [gameState, gameWidth, gameHeight, stage, onComplete, schedule]);
 
     const resetGame = () => {
+        timersRef.current.forEach(clearTimeout);
+        timersRef.current.clear();
+        touchFiringRef.current = false;
+        mouseRef.current.down = false;
+        keysRef.current.clear();
         playerRef.current = { x: gameWidth / 2, y: gameHeight / 2, rotation: 0, health: 100 };
         bulletsRef.current = [];
         invincibleRef.current = false;
@@ -404,10 +436,30 @@ export default function ShooterGame({ onComplete }: ShooterGameProps) {
             {/* Game area */}
             <div
                 ref={gameRef}
+                role="region"
+                aria-label="NeuralBreach game arena"
+                onPointerDown={(event) => {
+                    if (event.pointerType !== 'touch') return;
+                    event.preventDefault();
+                    setTouchMode(true);
+                    touchPointerRef.current = event.pointerId;
+                    touchOriginRef.current = { x: event.clientX, y: event.clientY, playerX: playerRef.current.x, playerY: playerRef.current.y };
+                    touchFiringRef.current = true;
+                    event.currentTarget.setPointerCapture(event.pointerId);
+                }}
+                onPointerMove={(event) => {
+                    if (touchPointerRef.current !== event.pointerId) return;
+                    playerRef.current.x = Math.max(20, Math.min(gameWidth - 20, touchOriginRef.current.playerX + event.clientX - touchOriginRef.current.x));
+                    playerRef.current.y = Math.max(20, Math.min(gameHeight - 20, touchOriginRef.current.playerY + event.clientY - touchOriginRef.current.y));
+                }}
+                onPointerUp={() => { touchFiringRef.current = false; touchPointerRef.current = null; }}
+                onPointerCancel={() => { touchFiringRef.current = false; touchPointerRef.current = null; }}
+                onLostPointerCapture={() => { touchFiringRef.current = false; touchPointerRef.current = null; }}
                 className="relative rounded-xl overflow-hidden cursor-crosshair"
                 style={{
                     width: gameWidth,
                     height: gameHeight,
+                    touchAction: 'none',
                     background: 'linear-gradient(135deg, #0a0018 0%, #15002a 100%)',
                     border: '2px solid rgba(168,85,247,0.5)',
                     boxShadow: '0 0 40px rgba(168,85,247,0.25)',
@@ -421,6 +473,7 @@ export default function ShooterGame({ onComplete }: ShooterGameProps) {
 
                 {/* Player */}
                 <div
+                    data-game-player
                     className={`absolute transition-opacity ${isInvincible ? 'opacity-40' : ''}`}
                     style={{
                         left: player.x - 20,
@@ -498,7 +551,7 @@ export default function ShooterGame({ onComplete }: ShooterGameProps) {
             </div>
 
             {/* Controls */}
-            <p className="absolute bottom-3 text-xs text-white/40">WASD = Move • Mouse = Aim • Click/Space = Shoot</p>
+            <p className="absolute bottom-3 px-4 text-center text-sm text-white/70">{touchMode ? 'Drag anywhere in the arena to move. Aim & fire are automatic while touching.' : 'WASD / arrows = Move · Mouse = Aim · Click / Space = Shoot'}</p>
 
             {/* Overlays */}
             <AnimatePresence>

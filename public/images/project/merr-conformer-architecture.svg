@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 650" fill="none">
+  <title>MERR-GAT research architecture</title>
+  <desc>Audio goes through WavLM and a Compact Conformer. Text goes through BERT or RoBERTa. Dual-channel graph attention fuses the representations, followed by BiGRU, pooling and classification. SHAP, Integrated Gradients and attention visualization support inspection. This is a method schematic, not measured output.</desc>
+  <rect width="1200" height="650" rx="20" fill="#edf1f5"/>
+  <g font-family="Arial,sans-serif" fill="#152344">
+    <text x="55" y="65" font-size="30" font-weight="600">Audio and language, connected.</text>
+    <text x="55" y="100" font-size="17">WavLM + Compact Conformer · BERT / RoBERTa · GAT</text>
+    <g stroke="#214ce8" stroke-width="2">
+      <rect x="55" y="170" width="140" height="85" rx="12" fill="white"/>
+      <rect x="245" y="170" width="150" height="85" rx="12" fill="white"/>
+      <rect x="445" y="170" width="180" height="85" rx="12" fill="white"/>
+      <rect x="55" y="330" width="140" height="85" rx="12" fill="white"/>
+      <rect x="245" y="330" width="220" height="85" rx="12" fill="white"/>
+      <rect x="700" y="230" width="190" height="145" rx="15" fill="#d7ed91" stroke="#152344"/>
+      <rect x="955" y="230" width="190" height="145" rx="15" fill="#214ce8"/>
+    </g>
+    <g fill="none" stroke="#214ce8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M195 212h50m-9-6 9 6-9 6M395 212h50m-9-6 9 6-9 6M195 372h50m-9-6 9 6-9 6M625 212h35v65h40m-9-6 9 6-9 6M465 372h195v-40h40m-9-6 9 6-9 6M890 302h65m-9-6 9 6-9 6"/>
+    </g>
+    <g text-anchor="middle" font-size="21">
+      <text x="125" y="219">Audio</text><text x="320" y="219">WavLM</text>
+      <text x="535" y="205">Compact</text><text x="535" y="233">Conformer</text>
+      <text x="125" y="379">Text</text><text x="355" y="379">BERT / RoBERTa</text>
+      <text x="795" y="285">Dual-channel</text><text x="795" y="315">GAT fusion</text>
+      <g fill="white"><text x="1050" y="273">BiGRU + Pool</text><text x="1050" y="306">Classifier</text><text x="1050" y="346" font-size="16">Emotion prediction</text></g>
+    </g>
+    <path d="M795 375v85h255v-85" fill="none" stroke="#152344" stroke-width="2" stroke-dasharray="6 7"/>
+    <rect x="580" y="490" width="565" height="70" rx="12" fill="white" stroke="#152344" stroke-width="1.5"/>
+    <path d="M920 460v30" stroke="#152344" stroke-width="2" stroke-dasharray="6 7"/>
+    <text x="862" y="532" text-anchor="middle" font-size="20">Inspect: attention visualization · SHAP · IG</text>
+    <text x="55" y="610" font-size="16">Research in progress · Architecture schematic based on the public research repository</text>
+  </g>
+</svg>

@@ -132,4 +132,10 @@ dist
 .agent
 
 # Private LaTeX CV source & render workspace
-docs/
+docs/
+# Local portfolio design tooling
+.codex/tooling/
+output/
+.playwright-mcp/
+__pycache__/
+.taste-skill/

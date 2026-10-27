@@ -1,0 +1,29 @@
+---
+title: "Vietnamese ASR: Parameter-efficient Speech Recognition"
+summary: "A CNN and residual BiLSTM model for Vietnamese speech recognition with CTC decoding."
+tags: ['Speech', 'Deep Learning', 'Vietnamese']
+technologies: ['Python', 'CNN', 'Residual BiLSTM', 'CTC']
+---
+
+## Problem
+
+Recognising Vietnamese speech with a compact end-to-end model. This research explores a CNN frontend and a residual recurrent encoder rather than assuming that a larger model is always the right starting point.
+
+## Method
+
+- Four CNN layers process the input speech features.
+- Three residual BiLSTM layers model the temporal sequence.
+- CTC connects variable-length speech inputs with text outputs.
+- The documented model has **5.4 million parameters** and uses a **745-hour Vietnamese speech corpus**.
+
+## Contribution
+
+I work on this project as a **co-researcher and co-author**. The portfolio documents the model architecture, corpus scale and reported recognition results.
+
+## Reported evaluation
+
+The original project reports **33.09% word error rate (WER)** and **15.28% character error rate (CER)**. Lower is better for both measures.
+
+## Limitations
+
+The portfolio does not include a complete benchmark protocol, dataset split specification or comparison table. These numbers should be read as reported project results, not evidence of state-of-the-art performance. The work remains in progress.

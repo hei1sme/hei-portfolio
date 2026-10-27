@@ -1,23 +1,6 @@
-import React from 'react';
-import Footer from '../components/Footer';
-import VerticalNavigation from '../components/VerticalNavigation';
-import { getSortedPostsData } from '../../lib/posts';
-import BlogListClient from '@/app/components/BlogListClient';
+import type { Metadata } from "next";
+import { getSortedPostsData } from "../../lib/posts";
+import BlogListClient from "../components/BlogListClient";
 
-export default async function BlogPage() {
-  const blogPosts = getSortedPostsData();
-
-  return (
-    <main className="relative min-h-screen bg-black">
-      <VerticalNavigation />
-
-      {/* Main content */}
-      <div className="flex flex-col items-center pt-6 pb-24 px-4 md:px-8">
-        <BlogListClient posts={blogPosts} />
-      </div>
-
-      {/* Footer */}
-      <Footer />
-    </main>
-  );
-}
+export const metadata: Metadata = { title: "Writing", description: "Notes on learning AI, research and building things, by Le Nguyen Gia Hung.", alternates: { canonical: "/blog" } };
+export default function BlogPage() { return <BlogListClient posts={getSortedPostsData()} />; }

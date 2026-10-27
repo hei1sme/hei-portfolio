@@ -1,58 +1,16 @@
-import React from 'react';
-import { notFound } from 'next/navigation';
-import { getPostData } from '../../../lib/posts';
-import Link from 'next/link';
-import { FaArrowLeft, FaHome } from 'react-icons/fa';
-import Footer from '../../components/Footer';
-import VerticalNavigation from '../../components/VerticalNavigation';
-import BlogPostClientContent from '../../components/BlogPostClientContent';
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import { getPostData, getSortedPostsData } from "../../../lib/posts";
 
-export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const post = await getPostData(slug);
-
-  if (!post) {
-    notFound();
-  }
-
-  const { title, date, imageUrl, mdxSource, author } = post;
-
-  return (
-    <main className="relative min-h-screen bg-black">
-      <VerticalNavigation />
-
-      {/* Main content */}
-      <div className="max-w-4xl mx-auto px-4 md:px-8 pt-20 pb-16">
-        {/* Navigation breadcrumb */}
-        <nav className="mb-8 flex items-center gap-4">
-          <Link
-            href="/"
-            className="p-2 rounded-lg bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all"
-            title="Home"
-          >
-            <FaHome className="w-4 h-4" />
-          </Link>
-          <Link
-            href="/blog"
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 hover:text-purple-300 hover:bg-purple-500/20 transition-all"
-          >
-            <FaArrowLeft className="w-3 h-3" />
-            <span className="text-sm font-medium">Back to Blog</span>
-          </Link>
-        </nav>
-
-        {/* Post content */}
-        <BlogPostClientContent
-          title={title}
-          date={date}
-          author={author}
-          imageUrl={imageUrl}
-          mdxSource={mdxSource}
-        />
-      </div>
-
-      {/* Footer */}
-      <Footer />
-    </main>
-  );
+type Props = { params: Promise<{ slug: string }> };
+export function generateStaticParams() { return getSortedPostsData().map(post => ({ slug: post.slug })); }
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const post = await getPostData((await params).slug);
+  return post ? { title: post.title, description: post.excerpt, alternates: { canonical: `/blog/${post.slug}` }, openGraph: { title: post.title, description: post.excerpt, type: "article", authors: post.author ? [post.author] : [] } } : { title: "Article not found" };
+}
+export default async function BlogPostPage({ params }: Props) {
+  const post = await getPostData((await params).slug);
+  if (!post) notFound();
+  return <article className="portfolio-article"><nav className="portfolio-breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">/</span><Link href="/blog">All writing</Link></nav><header><h1>{post.title}</h1><div className="portfolio-article-meta"><time dateTime={post.date}>{post.date}</time><span>{post.author}</span><span>{post.readingMinutes} min read</span></div></header><div className="portfolio-prose">{post.renderedContent}</div><nav className="portfolio-next-project" aria-label="Continue reading"><Link href="/blog">← All writing</Link><Link href="/#garden-publications">Explore the research ↗</Link></nav></article>;
 }

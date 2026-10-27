@@ -187,23 +187,6 @@ main {
   animation: gradient-shift 8s ease infinite;
 }
 
-::-webkit-scrollbar {
-  width: 9px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(15, 10, 28, 0.9);
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, rgba(148, 93, 255, 0.85), rgba(56, 189, 248, 0.75));
-  border-radius: 999px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, rgba(168, 85, 247, 0.9), rgba(14, 165, 233, 0.85));
-}
-
 /* Pretty code styling overrides */
 pre[data-rehype-pretty-code-fragment] {
   padding: 1.2rem 1.5rem;

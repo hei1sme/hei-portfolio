@@ -1,181 +1,109 @@
-# Le Nguyen Gia Hung - Portfolio
+# hei — Le Nguyen Gia Hung
 
-[![Next.js](https://img.shields.io/badge/Next.js-14-000000?logo=next.js&logoColor=white)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3-38BDF8?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![Framer Motion](https://img.shields.io/badge/Framer_Motion-11-0055FF?logo=framer&logoColor=white)](https://www.framer.com/motion/)
-[![Three.js](https://img.shields.io/badge/Three.js-Neural_Core-000000?logo=three.js&logoColor=white)](https://threejs.org/)
-[![Vercel](https://img.shields.io/badge/Deploy-Vercel-000000?logo=vercel&logoColor=white)](https://hei-portfolio-w.vercel.app)
-[![License](https://img.shields.io/badge/License-MIT-0A0A0A.svg)](#license)
+Research-first portfolio for an AI undergraduate at FPT University, with a cobalt
+botanical Sculpture opening, visible publications and an optional playground.
 
-> Research-driven personal site for hei.isme: highlights SmokeNet (AJCAI 2025), ongoing Conformer-GAT experiments, and collaboration touchpoints in a glassmorphism interface.
+A short welcome introduces the owner with his running duck and full name before
+revealing the Sculpture. It runs once per browser-tab session and can be skipped
+immediately with the button, Escape, Tab or scrolling. Direct section links and
+reduced motion bypass it. It is an introduction, not a simulated loading meter.
 
-Live site → https://hei-portfolio-w.vercel.app
+The Sculpture site is now the main homepage at `/`. `/concepts/garden` redirects
+there. Earlier concepts remain under `/concepts`, excluded from indexing and
+outside the public portfolio navigation.
 
----
+## Run locally
 
-## Table of Contents
+With a supported Node runtime and dependencies installed:
 
-1. [Quick Links](#quick-links)
-2. [Feature Matrix](#feature-matrix)
-3. [Technology Stack](#technology-stack)
-4. [Architecture Overview](#architecture-overview)
-5. [Content Model](#content-model)
-6. [Design Notes](#design-notes)
-7. [Getting Started](#getting-started)
-8. [MDX Workflow](#mdx-workflow)
-9. [Deployment](#deployment)
-10. [Roadmap](#roadmap)
-11. [Maintainer](#maintainer)
-12. [License](#license)
-
----
-
-## Quick Links
-
-- Live portfolio: https://hei-portfolio-w.vercel.app
-- Resume (PDF): `/public/HungLNG_Resume.pdf`
-- Blog: `/blog`
-- Projects: `/projects/[slug]`
-- Neural Calibration Lab: hero CTA or type `AILAB`
-
----
-
-## Feature Matrix
-
-| Surface      | Highlights                                                                                  |
-| ------------ | ------------------------------------------------------------------------------------------- |
-| Hero         | Three.js neural core, generative gradients, rolling bio via Typewriter, dual CTAs           |
-| Navigation   | Glassmorphic sidebar/topbar, framer-motion transitions, smooth scroll, theme toggle        |
-| About        | Narrative glass cards with research highlights, active experiments, and collaboration CTA   |
-| Projects     | MDX-backed case studies rendered as responsive cards with tool tags and CTA actions         |
-| Skills       | Competency gauges + tooling tiles with glass styling                                        |
-| Experience   | Timeline narrative of SpeedyLabX leadership, SmokeNet acceptance, Conformer-GAT progress    |
-| Education    | Honors and core modules in elevated cards                                                   |
-| Contact      | Split layout (signals + glass form), animated status messaging                              |
-| Blog         | MDX posts, Shiki-based syntax highlighting via rehype-pretty-code                           |
-| AI Lab       | Neural Calibration Lab space-shooter (Three.js) with easter-egg trigger, score, and hardware upgrades |
-
----
-
-## Technology Stack
-
-- **Framework**: Next.js 14 (App Router) + React 18
-- **Language**: TypeScript with ESLint (Next config)
-- **Styling**: Tailwind CSS 3, custom global glassmorphism tokens
-- **Motion**: Framer Motion 11
-- **3D**: Three.js powered by @react-three/fiber (neural hologram)
-- **Content**: next-mdx-remote, gray-matter, Shiki / rehype-pretty-code
-
----
-
-## Architecture Overview
-
-```
-app/
-  layout.tsx          # Root layout (theme provider, parallax, custom cursor, nav)
-  page.tsx            # Landing page orchestrating sections
-  blog/               # Listing + dynamic slug routes
-  projects/[slug]/    # MDX-driven project pages
-  components/         # Hero, cards, sliders, timelines, etc.
-  context/            # ThemeContext (dark/light)
-  utils/              # Theme utilities
-
-content/
-  blog/               # Published + WIP MDX posts
-  projects/           # Case studies (smokenet, conformer-gat-ser, ppe)
-
-lib/
-  posts.ts            # MDX parsing, sorting, serialization
-
-public/
-  images/             # Placeholder imagery + blog assets
-  HungLNG_Resume.pdf  # Downloadable resume
-```
-
----
-
-## Content Model
-
-- **Projects**: MDX frontmatter (`title`, `summary`, `image`, `tags`, `technologies`) rendered via `ProjectClientPage`.
-- **Blog posts**: MDX with `date`, `excerpt`, `imageUrl`; loaded by `getSortedPostsData` / `getPostData`.
-- **Experience**: Curated array in `Experience.tsx` to enable timeline presentation.
-- **Skills**: Structured arrays in `Skills.tsx` for competencies and tooling.
-
----
-
-## Design Notes
-
-- Layered radial gradients + global utilities in `app/globals.css` drive glassmorphism.
-- Hero uses particle field, rotating halos, and neural link lines for an AI-lab aesthetic.
-- Framer Motion animates section entrances and navigation transitions.
-- Accessible focus states retained via Tailwind focus classes and semantic HTML.
-- Placeholder SVGs in `public/images` match card styling for consistent fallbacks.
-
----
-
-## Getting Started
-
-```bash
-# install dependencies
-npm install
-
-# run dev server (http://localhost:3000)
+```sh
 npm run dev
+```
 
-# lint
-npm run lint
+For a production build:
 
-# build production bundle
+```sh
 npm run build
-
-# start production server
 npm run start
 ```
 
-No environment variables required for local content—MDX lives in `content/`.
+The local site runs at `http://localhost:3000`. If npm is unavailable in this
+Windows checkout, `python scripts/bootstrap-portfolio-tools.py` prepares the
+isolated tooling described in `.codex/config.toml`. Its npm entry point is
+`.codex/tooling/npm/bin/npm-cli.js`.
 
----
+## Stack and structure
 
-## MDX Workflow
+Next.js 15, React 19, TypeScript, Tailwind 3, Three.js and Framer Motion. Installed
+versions in `package.json` and `package-lock.json` are authoritative.
 
-1. Add a new `.mdx` file under `content/blog` or `content/projects`.
-2. Include frontmatter metadata.
-3. Start or refresh `npm run dev` to hot-load the new entry.
-4. Code blocks automatically receive Shiki highlighting via `rehype-pretty-code` (configured in `lib/posts.ts`).
+- `app/page.tsx`: main homepage composition.
+- `app/concepts/garden/`: shared Sculpture components, publications, project
+  inspector, background and visual tools workflow.
+- `app/components/portfolio/`: shared navigation/footer, contextual pointer,
+  duck welcome, copy-email action and method diagrams.
+- `lib/intro.ts`: welcome eligibility and the pre-paint bootstrap/failsafe.
+- `app/portfolio.css`: cross-page styles and production homepage refinements.
+- `app/projects/[slug]`: statically generated cases with real figures or labelled
+  schematics and explicit evaluation scope.
+- `app/blog`: searchable writing index and server-rendered MDX articles.
+- `NeuralBreach.tsx` and `ShooterGame.tsx`: optional playground entered through
+  the running duck/footer or the `ailab` shortcut.
 
----
+The welcome can be skipped while 3D loads. Identity, CV and publications remain
+server-rendered; JavaScript failure does not leave a blank screen. Reduced motion
+starts settled. A still captured from the procedural scene supplies the loading
+and WebGL fallback. Normal pointer behavior and vertical scrolling remain usable.
+
+## Content
+
+- Blog: `content/blog/*.mdx`, loaded by `lib/posts.ts`.
+- Cases: `content/projects/*.mdx`, loaded by `lib/projects.ts`.
+- Shared facts/profiles: `app/concepts/research/portfolioData.ts`.
+- Resume: `public/HungLNG_Resume.pdf`.
+
+Trusted repository MDX is compiled on the server. Preserve authorship, paper
+status, project roles, dates and evaluation scope. Do not present attention as a
+causal explanation, a schematic as measured output, or a profile as a project repo.
 
 ## Deployment
 
-Optimized for Vercel deployment (static + SSR mix). Typical flow:
+Production: [hei-portfolio.vercel.app](https://hei-portfolio.vercel.app).
+The former `hei-portfolio-w.vercel.app` address redirects there. The connected
+GitHub repository is `hei1sme/hei-portfolio`; pushes to `main` trigger the existing
+Vercel production integration. Verify the Vercel status for the pushed commit and
+the public page before treating an update as live. Local edits alone do not deploy.
 
-```bash
-npm run build
-npm run start
-```
+Set `NEXT_PUBLIC_SITE_URL` when deploying under another domain; it controls
+metadata URLs, canonicals, `robots.txt` and `sitemap.xml`. The generated social
+preview is at `/opengraph-image`. Build with `npm run build` on the existing
+Next.js deployment platform.
 
-Ensure `content/` and `public/` assets ship with the deployment bundle. No server-side secrets are required.
+For a future `.me` domain, connect the registered domain in the existing Vercel
+project, use the DNS records Vercel gives for that domain, then set
+`NEXT_PUBLIC_SITE_URL` to its HTTPS origin and redeploy. Do not point this Next.js
+app at GitHub Pages just because a student domain offer includes Pages. No custom
+domain has been chosen or configured by this change.
 
----
+## Design and verification
 
-## Roadmap
+Read `AGENTS.md` before making changes. Interviews and reference studies remain
+in `design/`; skill attribution is in `.agents/skills/SOURCES.json`.
 
-- Surface SpeedyLabX research updates through a dedicated MDX feed.
-- Persist theme preference (local storage or cookies).
-- Evaluate CMS integration (e.g., Sanity, Contentlayer) for easier content authoring.
-- Expand project gallery with additional measurable outcomes and prepared slides.
+Deferred research figures, demos and owner inputs are tracked in
+[notes/portfolio-backlog.md](notes/portfolio-backlog.md). Check it before planning
+the next content pass.
 
----
+See [design/final-build.md](design/final-build.md) for the full-site scope and
+verification. Browser output belongs in ignored `output/`. The duck is generated
+artwork; provenance remains in `design/garden-function-parity-audit.md`. The
+sculpture is procedural Three.js geometry, not a scan or model attribution.
+Welcome behavior and verification: [design/duck-welcome-intro.md](design/duck-welcome-intro.md).
 
 ## Maintainer
 
-Le Nguyen Gia Hung  
-https://hei-portfolio-w.vercel.app  
-https://linkedin.com/in/le-nguyen-gia-hung/  
+Le Nguyen Gia Hung · [LinkedIn](https://linkedin.com/in/le-nguyen-gia-hung/) ·
 heiontheway@gmail.com
-
----
 
 ## License
 

@@ -55,7 +55,7 @@ Không trừ điểm vì chưa có grants, teaching hay faculty appointments.
 
 Không phát hiện lỗi format nghiêm trọng trong lần kiểm tra này.
 
-### Important — Làm rõ ngữ cảnh số liệu
+### Important — Làm rõ ngữ cảnh số liệu SmokeNet và ASR
 
 “Reported MAE 0.7470, R² 0.9545” chưa cho biết horizon, đơn vị của MAE hoặc dữ liệu
 có được chuẩn hóa hay không. Cần đối chiếu protocol trước khi bổ sung; không tự

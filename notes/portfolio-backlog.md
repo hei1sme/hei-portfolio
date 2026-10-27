@@ -8,13 +8,16 @@ Không cần mở lại vòng chọn concept để xử lý các mục dưới �
 
 ## Ưu tiên 1 — Bằng chứng nghiên cứu SmokeNet
 
-- [ ] PDF cuối cùng của paper hoặc bản tác giả để đối chiếu bảng kết quả,
-  thông tin xuất bản và mô tả thí nghiệm.
+- [x] Đã nhận bản camera-ready và đối chiếu thiết lập 48-hour input,
+  next-day mean PM2.5, đơn vị gốc và test 2024. Nguồn giữ riêng trong `cv-inbox/`.
 - [ ] Đầu ra dự báo và ground truth trên cùng tập test: timestamp, đơn vị,
   horizon và cách chia dữ liệu. Dùng để vẽ forecast vs actual.
 - [ ] Bảng baseline gốc, kèm cùng protocol/split. Phân biệt kết quả held-out
   2024 (35.9% giảm MAE so với XGBoost) với backtest sự kiện tháng 5/2024
   (57.7% giảm MAE so với baseline); không gộp hai phạm vi.
+- [ ] Đối chiếu baseline table trong paper với log gốc: lượt scan CV phát hiện
+  một bất nhất MAE/RMSE cần kiểm tra. Homepage hiện dẫn bằng phương pháp và phạm
+  vi đánh giá thay cho KPI hiệu năng; không tự sửa số liệu paper.
 - [ ] Một ví dụ SHAP / Integrated Gradients / counterfactual thật, có đầu vào,
   prediction, hình attribution và phần diễn giải ngắn của tác giả.
 
@@ -49,12 +52,33 @@ giả hoặc dùng audio/ảnh không liên quan để minh họa như kết qu�
   Dùng cho About hoặc một dải ảnh nhỏ, không biến homepage thành gallery dài.
 - [ ] Thời gian có thể bắt đầu internship, lịch làm việc và ưu tiên địa điểm.
   Hiện chỉ dùng định hướng đã xác nhận: research + AI/ML engineering.
-- [ ] FCAJ: xác nhận ngày bắt đầu/kết thúc và trạng thái chương trình.
-  Chủ portfolio chưa xác nhận đã kết thúc; không tự ghi completed hay
-  suy ra đang là nhân viên AWS.
+- [x] FCAJ: chứng nhận và chủ CV đã xác nhận cùng đợt OJT Jan–May 2026, đã hoàn
+  thành đợt được chứng nhận. Report dùng một khoảng planned ngắn hơn; ưu tiên
+  chứng nhận cho CV. Người dùng còn ở cộng đồng/nhóm nhưng trạng thái tiếp tục
+  chưa rõ; không tự kéo OJT tới Present hoặc suy ra current AWS employment.
 - [ ] PPE: xác nhận thời gian thực hiện. Bản LaTeX chủ portfolio gửi ghi
   09–11/2025, còn case MDX ghi 09/2024. CV hiện để “Course project”, chưa ghi
   mốc tháng/năm; không tự chọn một mốc để đồng bộ.
+
+## Đợt paper, experience và cuộc thi đã tiếp nhận
+
+- [x] Một paper published và bốn manuscript under review. Bloom đã chuyển từ
+  AJCAI bị từ chối sang ACIIDS 2027; AISTATS 2027 là paper mới. Author lists và
+  trạng thái được cập nhật trên homepage, không public bản manuscript.
+- [x] NutriTrack/FCAJ có experience và case study; BioListen và CosmicOptic có
+  visual/case riêng, cùng CV downloads đã đồng bộ.
+- [x] VAIC: chủ CV xác nhận hạng 6 vòng 1, không phải hạng chung cuộc hoặc giải.
+- [x] CosmicOptic: chủ CV làm frontend/backend; repo web hiện dùng synthetic
+  inference. Không gán accuracy hiển thị hoặc SHAP demo thành kết quả model thật.
+- [ ] Contribution chi tiết của từng paper, khi chủ CV bổ sung. Giữ co-authored
+  ở các phần chưa xác nhận module/experiment, không tự nâng thành led/designed.
+- [ ] TeamFinder: repo hiện chủ CV chưa tìm lại được, đã deferred. Mô tả đã rõ
+  là web tìm đồng đội môn học; không hỏi lại link trước khi có thông tin mới.
+- [ ] CosmicOptic: model cuối/real inference nếu có sau này. Không dùng việc chưa
+  có link model để phủ nhận contribution web/API đã xác nhận.
+
+FPT Hackathon 2025 là thi lập trình giải thuật kiểu ICPC, không phải một project
+app. Không tiếp tục đòi repo/sản phẩm hoặc tự ghi official ICPC affiliation.
 
 ## Nguồn CV đã nhập
 

@@ -1,0 +1,35 @@
+---
+title: "NutriTrack — AI workflows at FCAJ"
+summary: "Recipe generation, contextual coaching and structured responses for a nutrition app, built during First Cloud AI Journey."
+image: "/images/project/nutritrack-architecture.png"
+technologies: ['Amazon Bedrock', 'AWS Lambda', 'DynamoDB', 'AppSync', 'Structured JSON']
+---
+
+## The problem
+
+NutriTrack connects meal logging, ingredient information and nutrition features. A useful AI response needs the user's context and an output the app can actually consume, rather than an unrestricted block of generated text.
+
+## My part
+
+I worked as a **FCAJ Cloud Intern in Team NeuraX** in the First Cloud AI Journey program at AWS Vietnam. My AI work included recipe-generation and coaching workflows, with DynamoDB context supplied to Amazon Bedrock through Lambda functions.
+
+The internship worklog records prompt design, structured JSON responses, integration with the application developer, and timeout handling. I also documented the implementation for the technical workshop.
+
+## Through the workflow
+
+1. Read relevant user or ingredient context from DynamoDB.
+2. Pass that context to a Bedrock-backed Lambda workflow.
+3. Return structured JSON for recipe or coaching features.
+4. Connect those responses to the app through AppSync.
+
+The architecture above comes from the internship workshop. It shows the wider team system; my contribution focuses on the AI workflows and their integration.
+
+## Period and evidence
+
+I completed the certified OJT training period in **January–May 2026**.
+
+The [internship report](https://hei1sme.github.io/hei-FCAJ-intership-report/) contains weekly worklogs and workshop material. The [Week 8 worklog](https://github.com/hei1sme/hei-FCAJ-intership-report/blob/main/content/worklog/week-8.en.md) documents recipe integration; [Week 9](https://github.com/hei1sme/hei-FCAJ-intership-report/blob/main/content/worklog/week-9.en.md) covers contextual coaching.
+
+## Project scope
+
+The worklogs document implementation, integration demos and workshop delivery. Production usage, operating costs and model performance were not measured during this training project.

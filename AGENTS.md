@@ -141,6 +141,11 @@ the Claude-specific environment variable in the upstream command exists.
 
 ## Content and design
 
+- The owner reviewed/scanned the CV batch, then explicitly requested the web
+  update on 2026-10-27. That request supersedes the earlier web hold for this
+  update. Follow `design/research-experience-update.md`; keep intake PDFs private,
+  distinguish all paper/competition statuses, and scope SmokeNet performance
+  claims to the published report while its baseline table awaits source review.
 - The owner's Overleaf CV was imported into ignored `docs/cv/`. Edit
   `resume_havard_ver.tex` there; preserve `original/`. Build with
   `python scripts/build-cv.py`, inspect both pages, then use `--publish` to update
@@ -167,6 +172,12 @@ the Claude-specific environment variable in the upstream command exists.
   are in `notes/career-skills-review.md`; private application material belongs
   in ignored `docs/career/`. Do not send applications or contact anyone without
   explicit instructions.
+- Owner-supplied CV updates belong in ignored `cv-inbox/`. Start with
+  `cv-inbox/00-README.md` and `cv-inbox/01-tra-loi.md` when resuming intake.
+  It holds papers, conference and hackathon details, project evidence and private
+  answers. Never force-add the folder. Participation is not an award; conference
+  attendance, paper submission, acceptance and presentation are different facts.
+  Reconcile confirmed details with the existing CV before publishing updates.
 
 - Decorative stars/arrows in active pages must use `components/portfolio/Icon`
   SVGs, not Unicode glyphs that iOS/iPadOS can render as emoji. Semantic symbols

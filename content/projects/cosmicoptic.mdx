@@ -1,0 +1,30 @@
+---
+title: "CosmicOptic — exploring stellar light curves"
+summary: "A React/D3 frontend and FastAPI backend for a NASA Space Apps prototype, demonstrated with synthetic signals."
+image: "/images/project/cosmicoptic-lightcurve.svg"
+technologies: ['React', 'D3', 'FastAPI', 'Pydantic', 'NumPy']
+---
+
+## The idea
+
+A possible planetary transit appears as a dip in a star's measured brightness. CosmicOptic gives that kind of signal an interface: select a light curve, inspect the curve and pass it through an analysis service.
+
+The project was made for **NASA International Space Apps Challenge 2025**, held on 4–5 October. My role was **frontend and backend development**.
+
+## What I built
+
+- A React frontend with interactive D3 light-curve views.
+- A FastAPI backend and typed response models.
+- A replaceable prediction-service interface connecting the UI to the analysis flow.
+
+The cover illustration represents a synthetic transit-shaped signal. It is not an observed light curve or a model prediction.
+
+## What the public version does
+
+The [public prediction service](https://github.com/hei1sme/cosmicoptic-webapp/blob/main/backend/services/prediction.py) currently calls a synthetic generator. The interface demonstrates how a result could be explored while keeping the inference component replaceable.
+
+The SHAP-like visualization and confidence values in that version are also illustrative. The metrics endpoint returns fixed demonstration values, so those values are not an evaluation of a trained exoplanet detector.
+
+## Outcome and limits
+
+We built a working frontend/API prototype for the hackathon. Integrating and evaluating a trained model remains outside the verified scope of the public web version.

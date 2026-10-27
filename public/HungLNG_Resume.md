@@ -2,155 +2,84 @@
 
 AI undergraduate researcher | Explainable AI & multimodal learning
 
-Research interests: time-series forecasting, transparency in AI and computer vision.
+Research interests: trustworthy AI, time-series forecasting and computer vision.
 
-heiontheway@gmail.com | +84 394 262 651 | Ho Chi Minh City, Vietnam
+heiontheway@gmail.com | +84 394 262 651 | Ho Chi Minh City, Vietnam github.com/hei1sme | hei-portfolio.vercel.app | linkedin.com/in/le-nguyen-gia-hung
 
-[linkedin.com/in/le-nguyen-gia-hung](https://linkedin.com/in/le-nguyen-gia-hung) ·
-[github.com/hei1sme](https://github.com/hei1sme) ·
-[hei-portfolio.vercel.app](https://hei-portfolio.vercel.app) ·
-[ORCID: 0009-0003-7120-8167](https://orcid.org/0009-0003-7120-8167) ·
-[Google Scholar: iGODAQYAAAAJ](https://scholar.google.com/citations?user=iGODAQYAAAAJ)
+ORCID: 0009-0003-7120-8167 | Google Scholar: iGODAQYAAAAJ
 
 ## Education
 
-**FPT University**, Ho Chi Minh City, Vietnam
-B.Eng. in Artificial Intelligence | 2023–December 2027 (expected) | GPA: 8.62/10.0
+FPT University — B.Eng. in Artificial Intelligence 2023 – Dec 2027 (expected) GPA: 8.62/10.0. Certificate of Merit: semesters 3, 4, 5 and 6.
 
-- Certificate of Merit: Honorable Student of Trimester, semesters 3, 4, 5 and 6.
+## Publications & Manuscripts
 
-## Publications & manuscripts
+Peer-reviewed conference publication Gia-Hung Nguyen Le, Gia-Bao Pham Hoang, Tan-Phat Vo, Thu Le and Nhu Nguyen. “Proactive Air Quality Forecasting and Health Alert System for Melbourne.” AJCAI 2025, Springer LNAI. First and corresponding author. DOI: 10.1007/978-981-95-4969-6_34.
 
-### Peer-reviewed conference publication
+Manuscripts under review Gia-Hung Nguyen Le, Thu Le and Huynh Quoc Viet. “Distribution-Free Coverage of Attack Classes on Devices Absent from Training.” AISTATS 2027, under review. First author.
 
-- **Gia-Hung Nguyen Le**, Gia-Bao Pham Hoang, Tan-Phat Vo, Thu Le and Nhu Nguyen.
-  “Proactive Air Quality Forecasting and
-  Health Alert System for Melbourne.” AJCAI 2025, Springer LNAI.
-  First and corresponding author.
-  [DOI: 10.1007/978-981-95-4969-6_34](https://doi.org/10.1007/978-981-95-4969-6_34).
+Gia-Hung Nguyen Le, Quoc-Viet Huynh and Thu Le. “Auditing Multi-Source Cyanobacterial Bloom Forecasts under Sparse Environmental Telemetry.” ACIIDS 2027, under review. First and corresponding author.
 
-### Manuscripts under review
+Thu Le, Le Nguyen Gia Hung, Huynh Quoc Viet, Nguyen Hoai My and Trieu Vuong Nguyen. “Trustworthy Multimodal Anomaly Detection in Time Series with Conformal Calibration and Counterfactual Attribution.” ACM SIGKDD 2027, under review. Second author.
 
-- “Stress-Testing Multi-Source Cyanobacterial Bloom Forecasting under Sparse
-  Monitoring.” Under review, AJCAI 2026. First and corresponding author.
-- “Warning Before the Evening Peak: Health-Centred Air Quality Alerts in New
-  Zealand and Australia.” Under review, AJCAI 2026. Second author.
-- “Trustworthy Multimodal Anomaly Detection in Time Series with Conformal
-  Calibration and Counterfactual Attribution.” Under review, ACM SIGKDD 2027.
-  Second author.
+Thu Le, Gia-Hung Nguyen Le, Hoang Pham Gia Bao and Huynh Quoc Viet. “Warning Before the Evening Peak: Health-Centred Air Quality Alerts in New Zealand and Australia.” AJCAI 2026, under review. Second author.
 
-## Selected research experience
+## Selected Research Experience
 
-### SmokeNet: Air Quality Forecasting
+SmokeNet: Air Quality Forecasting Jun – Nov 2025 First & Corresponding Author; published at AJCAI 2025 Academic research
 
-Academic research | First & Corresponding Author | June–November 2025
-Published at AJCAI 2025
+• Designed a Transformer using 48 hours of history to forecast next-day mean PM2.5, with seasonal embeddings and reconstruction loss. • Reported MAE 0.7470 µg/m3, R2 0.9545 and 35.9% lower MAE than XGBoost on the held-out 2024 test year. • Examined forecasts with SHAP, Integrated Gradients and DiCE; a separate May 2024 smoke-event backtest reported 57.7% lower MAE. Code. Cyanobacterial Bloom Forecast Audit Jan 2026 – Present First & Corresponding Author; ACIIDS 2027 under review Academic research
 
-- Designed a Transformer with seasonal embeddings and reconstruction loss to
-  forecast Melbourne's PM2.5; built chronological evaluation on 4+ years of
-  OpenWeather data.
-- Reported MAE 0.7470, R² 0.9545 and 35.9% lower MAE than XGBoost on the 2024
-  held-out evaluation.
-- Evaluated the May 2024 smoke event separately: 57.7% lower MAE than the baseline
-  in that backtest.
-- Inspected forecasts with SHAP, Integrated Gradients and DiCE.
+• Co-authored a past-only audit across 7 New Zealand lakes, evaluating 7- and 14-day forecasts on 170 observed holdout targets per horizon. • Full fusion showed no significant gain over Chl-a history after Holm correction; provenance checks reduced 22 apparent episode starts to 3 eligible incidents. Device-Held-Out Conformal Prediction First Author; AISTATS 2027 under review Academic research
 
-### Cyanobacterial Bloom Forecasting
+• Co-authored a device-disjoint conformal prediction study on CIC IoT-DIAD 2024: 40 training, 14 calibration and 14 test devices; compared device-weighted and device-quantile rules. Code.
 
-Academic research | First & Corresponding Author | January 2026–Present
-AJCAI 2026 under review
+Research experience continued
 
-- Built a causal weekly benchmark across 7 New Zealand lakes: n=5,432, with an
-  untouched 2023–2024 holdout (n=170).
-- 7-day Chl-a history XGBoost reached weighted F1
-  0.791 (+0.103 over full fusion, p=0.016); 14-day full fusion reached 0.703.
-- Led manuscript writing and the 8-gate provenance audit: 22 apparent episode
-  starts reduced to 3 eligible incidents.
+Trustworthy Multimodal Anomaly Detection Jan 2026 – Present Second Author; ACM SIGKDD 2027 under review Academic research
 
-### Health-Centred Air Quality Alerts (NZ & Australia)
+• Co-authored a leakage audit across 9 domains and the C-DLE framework for calibrated false-alarm control; reported 94.3% attribution accuracy against ground-truth anomalies. Other research. Second author on health-centred air-quality alerts: the study reported 1-day-ahead MAE 3.19 µg/m3 and R2 = 0.54 in Canterbury. MERR-GAT: Multimodal Emotion Recognition Oct 2025 – Present Second & Corresponding Author Research in progress
 
-Academic research | Second Author | January 2026–Present
-AJCAI 2026 under review
+• Develop audio–text emotion recognition with WavLM + Compact Conformer, BERT/RoBERTa and GAT fusion; evaluation on IEMOCAP, RAVDESS and MELD is ongoing. Vietnamese Speech Recognition Sep 2025 – Present Co-Researcher & Co-Author Research in progress
 
-- Evaluated exposure coverage across Canterbury's 10-year (n=620,057) and
-  Melbourne's 4-year (n=823,009) hourly records.
-- Reported that daily-mean triggers overstate exposure protection by 7.7–18.6
-  points; 42% of exposure occurred on sub-threshold daily-mean days.
-- Built an archived weather-forecast panel model: 1-day-ahead MAE 3.19 µg/m³,
-  R² 0.54.
+• Develop a 5.4M-parameter CNN–BiLSTM/CTC model on 745 hours of speech; reported WER 33.09% and CER 15.28%. Selected course project: Built 9-class PPE detection with YOLOv8/OpenCV, compliance logic and a Streamlit webcam interface with violation reports.
 
-### Trustworthy Multimodal Anomaly Detection
+## Experience & Leadership
 
-Academic research | Second Author | January 2026–Present
-ACM SIGKDD 2027 under review
+First Cloud AI Journey — NutriTrack Jan – May 2026 FCAJ Cloud Intern, Team NeuraX AWS Vietnam program
 
-- Audited look-ahead text leakage across 9 domains: a reported 4.52% error
-  reduction from naive text fusion reversed under embargo (leakage fraction 1.50).
-- Developed C-DLE with split-conformal calibration and Mondrian pools for
-  false-alarm control under missing modalities.
-- Designed cross-modal counterfactual attribution; reported 94.3% accuracy against
-  ground-truth anomalies with a 10% coreset.
+• Developed recipe-generation and AI-coaching workflows using Amazon Bedrock and AWS Lambda, structured JSON responses and DynamoDB user context. • Collaborated on AppSync integration; documented timeout handling and workshops. Report. SpeedyLabX Student Research Group Jan 2025 – Present Founder & Student Lead FPT University
 
-### MERR-GAT: Multimodal Emotion Recognition
+• Lead a 10-member undergraduate group through technical workshops, paper reading and shared research and submission workflows.
 
-Academic research | Second & Corresponding Author | October 2025–Present
-In progress
+## Hackathon Projects & Competitions
 
-- Develop emotion recognition from speech and text, using WavLM + Compact
-  Conformer, BERT/RoBERTa and dual-channel graph-attention fusion.
-- Inspect modality contributions with attention plots, SHAP and
-  Integrated Gradients; attention alone is not a causal explanation.
-- Evaluation is in progress on IEMOCAP, RAVDESS and MELD, using WA, UA and Macro-F1.
+BioListen VN — Vietnam AI Innovation Challenge Jul 2026 UI & LLM; placed 6th in Round 1 Team NeuraX.ai
 
-### Vietnamese Speech Recognition
+• Built monitoring views for audio input, spectrograms and alerts; integrated API data and Vietnamese ranger-report prompts. Next.js, TypeScript, FastAPI/Groq stack. Code. CosmicOptic — NASA Space Apps Challenge Oct 2025 Frontend & Backend Developer Hackathon participant
 
-Academic research | Co-Researcher & Co-Author | September 2025–Present
-In progress
-
-- Develop a 5.4M-parameter Vietnamese ASR model with a 4-layer CNN, 3-layer
-  residual BiLSTM and CTC training on 745 hours of speech.
-- Reported WER 33.09% and CER 15.28%; compare against PhoWhisper to study the
-  trade-off between accuracy and model size.
-  [Evaluation notes](https://hei-portfolio.vercel.app/projects/vietnamese-asr).
-
-### PPE Detection (YOLOv8)
-
-Course project | Developer
-
-- Built 9-class detection, safe/unsafe compliance logic and a Streamlit webcam
-  interface with violation reporting.
-
-## Leadership & cloud learning
-
-### SpeedyLabX Student Research Group, FPT University
-
-Founder & Student Lead | January 2025–Present
-
-- Lead a 10-member undergraduate group, with weekly technical workshops, paper
-  reading and shared conference-submission workflows; research spans 3 pilots
-  and 4 manuscripts.
-
-### First Cloud AI Journey Program
-
-FCAJ Cloud Intern, Team NeuraX | AWS Vietnam program | 2026
-
-- Documented cloud learning, workshops and project work in the
-  [program journal](https://hei1sme.github.io/hei-FCAJ-intership-report/).
+• Built React/D3 light-curve views and a FastAPI backend; demonstrated the inference interface with synthetic signals. Code. Also participated: FPT Hackathon 2025 (algorithmic programming); FPT University AI Hackathon (TeamFinder, a course-teammate website).
 
 ## Skills
 
-- Programming: Python, SQL/PostgreSQL; TypeScript, React, FastAPI.
-- ML & evaluation: PyTorch, Transformers, TensorFlow/Keras, Scikit-learn, OpenCV;
-  SHAP, Integrated Gradients, DiCE, chronological cross-validation.
-- Data & tools: Pandas, NumPy, Matplotlib, Weights & Biases, Jupyter, Git, Docker,
-  Linux, Streamlit. Technical writing: manuscripts, documentation and blog posts.
+Languages & frameworks: Python, SQL/PostgreSQL, TypeScript, React, FastAPI. ML & evaluation: PyTorch, Transformers, TensorFlow/Keras, Scikit-learn, OpenCV; SHAP, Integrated Gradients, DiCE, chronological evaluation. Data & tools: Pandas, NumPy, Git, Docker, Linux; Bedrock, Lambda, DynamoDB, AppSync.
 
-## Certifications
+## Selected Certifications
 
-- Natural Language Processing — DeepLearning.AI.
-- Gradient to Production: MLOps & Model Serving — Coursera.
-- Full Stack Software Developer — IBM.
-- Data Science Fundamentals with Python and SQL — IBM.
-- Statistics for Data Science with Python — IBM.
-- Introduction to Containers with Docker, Kubernetes & OpenShift — IBM.
-- AI Engineer Professional — Packt.
+Natural Language Processing (DeepLearning.AI); Gradient to Production: MLOps & Model Serving (Coursera); Full Stack Software Developer (IBM).
+
+## Source and profile links
+
+- <https://doi.org/10.1007/978-981-95-4969-6_34>
+- <https://github.com/SpeedyLabX/iot-diad-device-held-out>
+- <https://github.com/SpeedyLabX/melbourne-air-quality-forecast>
+- <https://github.com/hei1sme>
+- <https://github.com/hei1sme/BioListen-VN>
+- <https://github.com/hei1sme/cosmicoptic-webapp>
+- <https://hei-portfolio.vercel.app>
+- <https://hei1sme.github.io/hei-FCAJ-intership-report/>
+- <https://linkedin.com/in/le-nguyen-gia-hung>
+- <https://orcid.org/0009-0003-7120-8167>
+- <https://scholar.google.com/citations?user=iGODAQYAAAAJ>
+- <mailto:heiontheway@gmail.com>
+- <tel:+84394262651>

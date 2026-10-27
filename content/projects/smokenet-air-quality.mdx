@@ -1,7 +1,7 @@
 ---
 title: "SmokeNet - Proactive Air Quality Forecasting"
 date: "2025-01-15"
-summary: "Transformer architecture delivering interpretable PM2.5 forecasts and public-health alerts for Melbourne."
+summary: "Next-day PM2.5 forecasting for Melbourne, with chronological evaluation and methods for inspecting model predictions. Published at AJCAI 2025."
 image: "/images/project/SmokeNet_architecture.jpeg"
 tags: ['Time-Series Forecasting', 'Environmental AI', 'Explainability']
 technologies: ['PyTorch', 'Transformers', 'SHAP', 'Integrated Gradients', 'DiCE', 'OpenWeather API']
@@ -9,34 +9,34 @@ technologies: ['PyTorch', 'Transformers', 'SHAP', 'Integrated Gradients', 'DiCE'
 
 ## Overview
 
-SmokeNet is a transformer-based forecasting system that I designed after months of air-quality monitoring in Melbourne.  
-The aim was to **predict PM2.5 levels up to 24 hours ahead** and translate raw concentrations into practical health alerts.
+SmokeNet is a transformer-based forecasting study using Melbourne air-quality data from the OpenWeather API. It uses **48 hours of history to predict next-day mean PM2.5**, then connects forecasts to an interpretable alerting prototype.
 
-## Key Outcomes
+## Publication and evaluation
 
-- **Published at AJCAI 2025** with a research paper detailing the end-to-end system.
-- Achieved **MAE 0.7470** and **R^2 0.9545** on the held-out 2024 evaluation split (35.9% MAE reduction vs an XGBoost baseline).
-- In the **May 2024 smoke-event backtest**, MAE was **57.7% lower than the baseline**. This is a separate evaluation from the held-out result above.
+I am the **first and corresponding author** of the paper published at **AJCAI 2025, Springer LNAI**. The [published chapter](https://doi.org/10.1007/978-981-95-4969-6_34) contains the numerical results and their experimental setup.
+
+Training and validation precede a **held-out 2024 test year**. The May 2024 smoke-event backtest is a separate evaluation, not an extra independent test year. Metrics in the paper are reported on the original PM2.5 concentration scale after inverse transforms.
 
 ## Architecture
 
 - Custom transformer encoder with seasonal embeddings and a reconstruction loss that stabilises long-horizon error.
 - Chronological cross-validation keeps training and evaluation ordered in time.
-- GPU-accelerated training on rolling 2020-2025 data ingested from the OpenWeather API.
+- Data from the OpenWeather Air Pollution API, spanning late 2020 to early 2025.
 
 ## Explainability
 
 Transparency is central to the project:
 
 - Integrated **SHAP**, **Integrated Gradients**, and **DiCE** to audit forecasts both globally and per prediction.
-- Generated clinic-friendly rationales that highlight how humidity shifts, wind direction, or burn-off events influence alerts.
+- Used attribution and counterfactual analysis to inspect forecast drivers and possible changes to model inputs.
 
 ## Product Surface
 
-- Dashboard prototype that summarises next-day PM2.5 levels, confidence bands, and response playbooks.
-- Health guidance tiers mapped to WHO thresholds and local emergency procedures.
+- Dashboard prototype for next-day PM2.5 forecasts and explanations.
+- Proposed alert tiers mapped to the U.S. EPA AQI categories documented in the paper.
 
 ## Lessons
 
 - The model comparison depends on the data split and evaluation protocol. I report the held-out and smoke-event results separately.
+- The original evaluation logs are not linked here. A consistency check on the paper's baseline table is pending; its numbers should not be treated as an independently reproduced benchmark.
 - Attribution and counterfactual analysis help inspect a forecast. They do not establish that the system is ready for public-safety use.

@@ -22,9 +22,16 @@ KEYWORDS = [
     "Le Nguyen Gia Hung", "heiontheway@gmail.com", "+84 394 262 651",
     "github.com/hei1sme", "linkedin.com/in/le-nguyen-gia-hung",
     "PyTorch", "TensorFlow/Keras", "Scikit-learn", "OpenCV",
-    "WavLM + Compact Conformer", "BERT/RoBERTa", "Education",
-    "0.7470", "0.9545", "35.9%", "33.09%", "15.28%", "8.62",
+    "Education", "0.7470", "0.9545", "35.9%", "8.62",
+    "Bedrock", "Lambda", "DynamoDB", "AppSync", "BioListen", "CosmicOptic",
+    "6th in Round 1",
 ]
+RESEARCH_KEYWORDS = [
+    "WavLM + Compact Conformer", "BERT/RoBERTa", "33.09%", "15.28%",
+    "AISTATS 2027", "ACIIDS 2027", "ACM SIGKDD 2027", "AJCAI 2026",
+    "Distribution-Free Coverage", "Sparse Environmental Telemetry", "Holm correction",
+]
+INDUSTRY_KEYWORDS = ["Four additional manuscripts under review", "synthetic signals"]
 
 
 def normalize(text):
@@ -32,7 +39,8 @@ def normalize(text):
     return re.sub(r"\s+", " ", unicodedata.normalize("NFKC", text)).strip()
 
 
-def check(path, expected_pages):
+def check(path, expected_pages, keywords=None):
+    expected_keywords = KEYWORDS if keywords is None else keywords
     reader = PdfReader(path)
     assert not reader.is_encrypted, f"{path.name}: encrypted PDF"
     assert len(reader.pages) == expected_pages, f"{path.name}: unexpected page count"
@@ -47,7 +55,7 @@ def check(path, expected_pages):
         texts["pymupdf"] = normalize(" ".join(page.get_text("text") for page in document))
         assert not any(page.get_images() for page in document), "Unexpected raster image"
     for mode, text in texts.items():
-        missing = [word for word in KEYWORDS if word not in text]
+        missing = [word for word in expected_keywords if word not in text]
         assert not missing, f"{path.name} / {mode}: missing or split words: {missing}"
         assert "\ufffd" not in text, f"{path.name} / {mode}: invalid Unicode"
         assert re.search(r"1\s*/\s*" + str(expected_pages) + r"\b", text), "Missing page counter"
@@ -57,7 +65,7 @@ def check(path, expected_pages):
     }
     assert "https://doi.org/10.1007/978-981-95-4969-6_34" in uris, "Paper DOI link missing"
     return {"file": path.name, "pages": expected_pages, "readers": list(texts),
-            "keyword_checks": len(KEYWORDS), "status": "passed"}
+            "keyword_checks": len(expected_keywords), "status": "passed"}
 
 
 def main():
@@ -67,7 +75,8 @@ def main():
     results = []
     for stem, pages in VARIANTS.items():
         for suffix in ["", "_Print"]:
-            results.append(check(args.directory / f"{stem}{suffix}.pdf", pages))
+            required = KEYWORDS + (RESEARCH_KEYWORDS if stem == "HungLNG_Resume" else INDUSTRY_KEYWORDS)
+            results.append(check(args.directory / f"{stem}{suffix}.pdf", pages, required))
     print(json.dumps({"scope": "local PDF extraction, not employer ATS matching", "results": results}, indent=2))
 
 

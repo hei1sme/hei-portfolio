@@ -16,15 +16,27 @@ export const publicationRecords = [
   },
   {
     id: "bloom",
-    year: 2026,
+    year: 2027,
     status: "Under review",
-    venue: "AJCAI 2026",
+    venue: "ACIIDS 2027",
     title:
-      "Stress-Testing Multi-Source Cyanobacterial Bloom Forecasting under Sparse Monitoring",
+      "Auditing Multi-Source Cyanobacterial Bloom Forecasts under Sparse Environmental Telemetry",
     role: "First & corresponding author",
-    authors: "Gia-Hung Nguyen Le et al.",
+    authors: "Gia-Hung Nguyen Le, Quoc-Viet Huynh, Thu Le",
     href: "",
-    note: "Multi-source forecasting under sparse environmental monitoring.",
+    note: "A seven-lake audit of forecast timing, calibration and warning burden; no reliable fusion gain after correction.",
+  },
+  {
+    id: "device-coverage",
+    year: 2027,
+    status: "Under review",
+    venue: "AISTATS 2027",
+    title: "Distribution-Free Coverage of Attack Classes on Devices Absent from Training",
+    role: "First author",
+    authors: "Gia-Hung Nguyen Le, Thu Le, Huynh Quoc Viet",
+    href: "",
+    source: "https://github.com/SpeedyLabX/iot-diad-device-held-out",
+    note: "Class-conditional conformal prediction evaluated on devices absent from model training.",
   },
   {
     id: "evening",
@@ -34,7 +46,7 @@ export const publicationRecords = [
     title:
       "Warning Before the Evening Peak: Health-Centred Air Quality Alerts in New Zealand and Australia",
     role: "Second author",
-    authors: "Co-authored research",
+    authors: "Thu Le, Gia-Hung Nguyen Le, Hoang Pham Gia Bao, Huynh Quoc Viet",
     href: "",
     note: "Air-quality forecasting connected to health-centred alerting.",
   },
@@ -46,7 +58,7 @@ export const publicationRecords = [
     title:
       "Trustworthy Multimodal Anomaly Detection in Time Series with Conformal Calibration and Counterfactual Attribution",
     role: "Second author",
-    authors: "Co-authored research",
+    authors: "Thu Le, Le Nguyen Gia Hung, Huynh Quoc Viet, Nguyen Hoai My, Trieu Vuong Nguyen",
     href: "",
     note: "Calibrated anomaly detection and counterfactual attribution.",
   },
@@ -65,9 +77,9 @@ export const projectRecords = [
     image: "/images/project/SmokeNet_architecture.jpeg",
     stack: ["PyTorch", "Transformers", "SHAP", "Integrated Gradients", "DiCE"],
     metrics: [
-      { value: "0.7470", label: "MAE · 2024 held-out split" },
-      { value: "0.9545", label: "R² · same evaluation" },
-      { value: "35.9%", label: "MAE reduction vs XGBoost" },
+      { value: "48 h", label: "Input history" },
+      { value: "Next day", label: "Mean PM₂.₅ forecast" },
+      { value: "2024", label: "Held-out test year" },
     ],
     contributions: [
       "Designed and implemented the transformer architecture with seasonal embeddings and reconstruction loss.",
@@ -75,9 +87,9 @@ export const projectRecords = [
       "Integrated SHAP, Integrated Gradients and counterfactual analysis for interpretable alerts.",
     ],
     evaluation:
-      "The reported May 2024 severe-smoke backtest shows 57.7% lower MAE than the baseline. This is a specific event evaluation, separate from the 35.9% held-out result.",
+      "Chronological training and validation precede a held-out 2024 test year. The May 2024 smoke-event backtest is a separate evaluation. Numerical results are reported in the published paper.",
     limitation:
-      "Results are scoped to the reported Melbourne data and evaluation splits; they do not establish performance in every city or event.",
+      "The original evaluation logs are not linked here, and a baseline-table consistency check is pending. Published metrics should be read with their protocol, not treated as an independently reproduced benchmark or evidence of deployment.",
     href: "/projects/smokenet-air-quality",
     paper: "https://doi.org/10.1007/978-981-95-4969-6_34",
     source: "https://github.com/SpeedyLabX/melbourne-air-quality-forecast",
@@ -173,7 +185,7 @@ export const projectRecords = [
   },
 ];
 
-export type ResearchProject = (typeof projectRecords)[number];
+export type ResearchProject = (typeof projectRecords)[number] & { visualCaption?: string };
 export const skillGroups = [
   {
     title: "Models & methods",

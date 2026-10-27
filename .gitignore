@@ -85,6 +85,7 @@ web_modules/
 
 # Next.js build output
 .next
+.next-local/
 out
 
 # Nuxt.js build / generate output
@@ -139,3 +140,6 @@ output/
 .playwright-mcp/
 __pycache__/
 .taste-skill/
+
+# Owner-supplied CV material, paper drafts and questionnaire answers (local only)
+/cv-inbox/

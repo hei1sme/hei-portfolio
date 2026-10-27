@@ -5,6 +5,7 @@ import { cache } from "react";
 import { compileMDX } from "next-mdx-remote/rsc";
 import { projectMdxComponents } from "../app/projects/[slug]/ProjectMdxComponents";
 import { projectRecords } from "../app/concepts/research/portfolioData";
+import { appliedProjects } from "./applied-work";
 
 const directory = path.join(process.cwd(), "content/projects");
 export function getProjectSlugs() {
@@ -16,6 +17,6 @@ export const getProjectData = cache(async (slug: string) => {
   if (!filename) return null;
   const { data, content } = matter(fs.readFileSync(filename, "utf8"));
   const compiled = await compileMDX({ source: content, components: projectMdxComponents });
-  const record = projectRecords.find(project => project.href === `/projects/${slug}`);
+  const record = [...projectRecords, ...appliedProjects].find(project => project.href === `/projects/${slug}`);
   return { frontmatter: data, renderedContent: compiled.content, record };
 });

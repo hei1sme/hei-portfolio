@@ -1,83 +1,54 @@
 # Le Nguyen Gia Hung
 
-AI Undergraduate | Machine Learning, Computer Vision & Speech
+AI undergraduate | Applied machine learning & AI systems
 
 First & corresponding author of a published AJCAI 2025 paper.
 
-heiontheway@gmail.com | +84 394 262 651 | Ho Chi Minh City, Vietnam
-
-[github.com/hei1sme](https://github.com/hei1sme) ·
-[linkedin.com/in/le-nguyen-gia-hung](https://linkedin.com/in/le-nguyen-gia-hung) ·
-[hei-portfolio.vercel.app](https://hei-portfolio.vercel.app)
+heiontheway@gmail.com | +84 394 262 651 | Ho Chi Minh City, Vietnam github.com/hei1sme | hei-portfolio.vercel.app | linkedin.com/in/le-nguyen-gia-hung
 
 ## Education
 
-**FPT University** — B.Eng. in Artificial Intelligence | Expected December 2027
+FPT University — B.Eng. in Artificial Intelligence Expected Dec 2027 GPA: 8.62/10.0. Certificate of Merit: semesters 3, 4, 5 and 6.
 
-GPA: 8.62/10.0. Certificate of Merit: semesters 3, 4, 5 and 6.
+## Experience
 
-## Technical skills
+First Cloud AI Journey — NutriTrack Jan – May 2026 FCAJ Cloud Intern, Team NeuraX AWS Vietnam program
 
-- Languages & data: Python, SQL/PostgreSQL, Pandas, NumPy.
-- Machine learning: PyTorch, Transformers, TensorFlow/Keras, Scikit-learn, OpenCV.
-- Evaluation & tools: SHAP, Integrated Gradients, DiCE, chronological
-  cross-validation; Git, Docker, Linux, Weights & Biases, Streamlit, FastAPI.
+• Developed recipe-generation and coaching workflows with Amazon Bedrock, AWS Lambda and DynamoDB user context; returned structured JSON for the application. • Collaborated on AppSync integration, timeout handling and workshop documentation. Report.
 
-## Selected research & projects
+## Selected Research & Projects
 
-### SmokeNet: Air Quality Forecasting
+SmokeNet: Air Quality Forecasting Jun – Nov 2025 First & Corresponding Author; published at AJCAI 2025
 
-First & Corresponding Author | June–November 2025 | Published at AJCAI 2025
+• Designed a Transformer for next-day mean PM2.5 from 48 hours of history; used chronological evaluation and SHAP/Integrated Gradients/DiCE. • Reported MAE 0.7470 µg/m3, R2 0.9545 and 35.9% lower MAE than XGBoost on the held-out 2024 test year. Code. BioListen VN — Vietnam AI Innovation Challenge Jul 2026 UI & LLM; placed 6th in Round 1 Team NeuraX.ai
 
-- Designed a Transformer to forecast PM2.5; used seasonal embeddings,
-  reconstruction loss and chronological evaluation on 4+ years of OpenWeather data.
-- Reported MAE 0.7470, R² 0.9545 and 35.9% lower MAE than XGBoost on the 2024
-  held-out evaluation. Inspected forecasts with SHAP, Integrated Gradients and DiCE.
-  [Case study](https://hei-portfolio.vercel.app/projects/smokenet-air-quality).
+• Built audio-input, spectrogram and alert views with Next.js/TypeScript; integrated API data and Vietnamese ranger-report prompts with the Groq LLM layer. Code. CosmicOptic — NASA Space Apps Challenge Oct 2025 Frontend & Backend Developer
 
-### MERR-GAT: Multimodal Emotion Recognition
+• Built a React/D3 interface for stellar light curves and a FastAPI backend with a replaceable inference service; demonstrated the prototype on synthetic signals. Code.
 
-Second & Corresponding Author | October 2025–Present | Research in progress
+## Leadership
 
-- Develop emotion recognition from speech and text with WavLM + Compact
-  Conformer, BERT/RoBERTa and dual-channel graph-attention fusion.
-- Evaluate on IEMOCAP, RAVDESS and MELD using WA, UA and Macro-F1; experiments
-  are ongoing.
-  [Methods and code links](https://hei-portfolio.vercel.app/projects/conformer-gat-ser).
+SpeedyLabX, FPT University Jan 2025 – Present Founder & Student Lead
 
-### Vietnamese Speech Recognition
+• Lead a 10-member undergraduate group through technical workshops, paper reading and shared research and submission workflows.
 
-Co-Researcher & Co-Author | September 2025–Present | Research in progress
+## Technical Skills
 
-- Develop a 5.4M-parameter CNN–residual BiLSTM with CTC on 745 hours of
-  Vietnamese speech; reported WER 33.09%, CER 15.28%. Compare with PhoWhisper.
-  [Evaluation notes](https://hei-portfolio.vercel.app/projects/vietnamese-asr).
-
-### PPE Detection
-
-YOLOv8, OpenCV, Streamlit | Course project
-
-- Built 9-class detection, safe/unsafe compliance logic and a webcam interface
-  with violation reporting.
-  [Project details](https://hei-portfolio.vercel.app/projects/ppe-detection-system).
-
-## Leadership & cloud learning
-
-**SpeedyLabX, FPT University** — Founder & Student Lead | January 2025–Present
-
-- Lead a 10-member undergraduate group with weekly technical workshops, paper
-  reading and shared conference-submission workflows.
-
-**First Cloud AI Journey** — FCAJ Cloud Intern, Team NeuraX | 2026
-
-AWS Vietnam program; cloud learning and project work documented in the
-[program journal](https://hei1sme.github.io/hei-FCAJ-intership-report/).
+Languages & frameworks: Python, SQL/PostgreSQL, TypeScript, React, FastAPI. Machine learning: PyTorch, Transformers, TensorFlow/Keras, Scikit-learn, OpenCV; SHAP, Integrated Gradients, chronological evaluation. Cloud & tools: Bedrock, Lambda, DynamoDB, AppSync; Git, Docker, Linux, Pandas, NumPy.
 
 ## Publication
 
-**Gia-Hung Nguyen Le** et al. “Proactive Air Quality Forecasting and Health Alert
-System for Melbourne.” AJCAI 2025, Springer LNAI.
-[DOI: 10.1007/978-981-95-4969-6_34](https://doi.org/10.1007/978-981-95-4969-6_34).
+Gia-Hung Nguyen Le et al. “Proactive Air Quality Forecasting and Health Alert System for Melbourne.” AJCAI 2025, Springer LNAI. DOI: 10.1007/978-981-95-4969-6_34. Four additional manuscripts under review.
 
-Three additional manuscripts under review; full titles and contributions in the
-[research CV](https://hei-portfolio.vercel.app/HungLNG_Resume.pdf).
+## Source and profile links
+
+- <https://doi.org/10.1007/978-981-95-4969-6_34>
+- <https://github.com/SpeedyLabX/melbourne-air-quality-forecast>
+- <https://github.com/hei1sme>
+- <https://github.com/hei1sme/BioListen-VN>
+- <https://github.com/hei1sme/cosmicoptic-webapp>
+- <https://hei-portfolio.vercel.app>
+- <https://hei1sme.github.io/hei-FCAJ-intership-report/>
+- <https://linkedin.com/in/le-nguyen-gia-hung>
+- <mailto:heiontheway@gmail.com>
+- <tel:+84394262651>

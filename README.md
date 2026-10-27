@@ -16,6 +16,14 @@ The Sculpture site is now the main homepage at `/`. `/concepts/garden` redirects
 there. Earlier concepts remain under `/concepts`, excluded from indexing and
 outside the public portfolio navigation.
 
+Research lists one published paper and four manuscripts under review, with full
+authorship and venue/status kept distinct. The applied-work section covers
+FCAJ/NutriTrack, BioListen VN (6th in Round 1 of VAIC 2026) and CosmicOptic
+(frontend/backend, synthetic-data demo). Each has a linked case study. Existing
+speech and computer-vision projects remain in the project explorer. See
+`design/research-experience-update.md` for the content reconciliation and asset
+provenance; private papers and certificates stay in ignored `cv-inbox/`.
+
 ## Run locally
 
 With a supported Node runtime and dependencies installed:
@@ -38,6 +46,13 @@ isolated tooling described in `.codex/config.toml`. Its npm entry point is
 On Windows, the bootstrap also creates npm/npx command shims in
 `.codex/tooling/bin`. Add that directory to the current process PATH when a
 framework command needs to invoke npm internally; no global installation is needed.
+
+`PORTFOLIO_DIST_DIR` optionally selects a local Next.js build directory; production
+defaults to `.next`. This checkout uses an ignored `.next-local` junction for
+build output when the system disk is full. If that junction points to another
+volume, the task's build parent also needs a `node_modules` junction back to this
+checkout so Node can resolve runtime dependencies. No absolute machine path is
+required in the application configuration.
 
 ## Stack and structure
 
@@ -112,6 +127,9 @@ layout modes plus the independent PyMuPDF reader. Local review dependencies can
 be installed with `python -m pip install --target .codex/tooling/pdf-python pypdf PyMuPDF`.
 Use `--directory public` to check the website copies. These checks establish
 local text extraction; they do not certify an employer's ATS or job fit.
+Expected content differs by role: the research CV keeps speech-research keywords
+and all four manuscript venues; the one-page résumé checks the selected applied
+projects. Do not reintroduce omitted projects solely to satisfy a shared keyword list.
 
 Use the digital PDFs for online applications and the `_Print` editions when
 printing on A4 at actual size (100%). Employer requirements take precedence if a

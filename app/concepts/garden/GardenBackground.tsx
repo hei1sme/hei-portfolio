@@ -15,12 +15,12 @@ export default function GardenBackground() {
           <ol className="garden-milestones">
             <li><span>January 2025</span><h3>Starting SpeedyLabX.</h3><p>Founded SpeedyLabX, a 10-member undergraduate research group. Weekly technical workshops, paper reading and shared submission workflows.</p></li>
             <li><span>December 2025 · AJCAI 2025</span><h3>The first paper.</h3><p>SmokeNet became the foundation for the environmental forecasting research that followed.</p><a href="#garden-published-paper">Publication & contribution <Icon name="external" /></a></li>
-            <li><span>2026 · FCAJ program</span><h3>Learning cloud infrastructure.</h3><p>FCAJ Cloud Intern with Team NeuraX in the First Cloud AI Journey program at AWS Vietnam. I keep a journal of the workshops and project work.</p><a href="https://hei1sme.github.io/hei-FCAJ-intership-report/" target="_blank" rel="noreferrer">Read the cloud journal <Icon name="external" /></a></li>
-            <li><span>2026 · Under review</span><h3>Environmental forecasting.</h3><p>Cyanobacterial bloom forecasting and health-centred air-quality alerts, submitted to AJCAI 2026.</p></li>
-            <li><span>Under review · KDD 2027</span><h3>Anomaly detection and XAI.</h3><p>Co-authored work on multimodal anomaly detection, conformal calibration and counterfactual attribution.</p></li>
+            <li><span>January–May 2026 · Certified OJT</span><h3>AI workflows at FCAJ.</h3><p>Recipe generation and coaching for NutriTrack with Team NeuraX, connecting cloud AI to an application.</p><a href="#garden-experience">Experience & implementation <Icon name="external" /></a></li>
+            <li><span>July 2026 · VAIC</span><h3>Listening to the forest.</h3><p>UI and LLM work on BioListen VN. Team NeuraX.ai placed 6th in Round 1 of Vietnam AI Innovation Challenge.</p></li>
+            <li><span>Current research · Under review</span><h3>Questions of trust.</h3><p>Bloom forecasting at ACIIDS 2027, device-held-out coverage at AISTATS 2027, multimodal anomaly detection at KDD 2027 and health-centred alerts at AJCAI 2026.</p><a href="#garden-publications">Titles, authors & status <Icon name="external" /></a></li>
           </ol>
         </div>
-        <p className="garden-research-context">Across SpeedyLabX: 3 research pilots and 4 manuscripts. <a href="https://github.com/SpeedyLabX" target="_blank" rel="noreferrer">Explore the lab on GitHub <Icon name="external" /></a></p>
+        <p className="garden-research-context"><a href="https://github.com/SpeedyLabX" target="_blank" rel="noreferrer">More from SpeedyLabX on GitHub <Icon name="external" /></a></p>
       </section>
       <section className="garden-background-details" id="garden-background" aria-label="Education and technical background">
         <section className="garden-education" id="garden-education" aria-labelledby="garden-education-title">

@@ -21,6 +21,7 @@ const stages: { name: string; description: string; tools: Tool[] }[] = [
     { name: "PyTorch", Icon: SiPytorch }, { name: "TensorFlow / Keras", Icon: SiTensorflow },
     { name: "Transformers" }, { name: "Hugging Face", Icon: SiHuggingface },
     { name: "Scikit-learn", Icon: SiScikitlearn }, { name: "OpenCV", Icon: SiOpencv }, { name: "Time series", kind: "data" },
+    { name: "Amazon Bedrock" },
   ] },
   { name: "Inspect the decision", description: "Evaluate and explain", tools: [
     { name: "Explainable AI", kind: "inspect" }, { name: "SHAP", kind: "inspect" },
@@ -29,6 +30,7 @@ const stages: { name: string; description: string; tools: Tool[] }[] = [
   { name: "Make it usable", description: "Interfaces and serving", tools: [
     { name: "FastAPI", Icon: SiFastapi }, { name: "Streamlit", Icon: SiStreamlit },
     { name: "TypeScript", Icon: SiTypescript }, { name: "React", Icon: SiReact }, { name: "Docker", Icon: SiDocker },
+    { name: "AWS Lambda" }, { name: "DynamoDB", kind: "data" }, { name: "AppSync" },
   ] },
 ];
 const labTools: Tool[] = [{ name: "Git", Icon: SiGit }, { name: "Linux", Icon: SiLinux }, { name: "Jupyter", Icon: SiJupyter }, { name: "Weights & Biases", Icon: SiWeightsandbiases }];
@@ -38,6 +40,7 @@ const workflows = [
   { id: "merr", name: "MERR-GAT", tools: ["Python", "PyTorch", "Transformers", "Explainable AI", "SHAP", "Integrated Gradients"], steps: ["Audio + text", "WavLM + Conformer / RoBERTa → GAT", "Attribution research", "Emotion recognition · In progress"], href: "/projects/conformer-gat-ser" },
   { id: "asr", name: "Vietnamese ASR", tools: ["Python"], steps: ["Vietnamese speech corpus", "CNN + residual BiLSTM", "WER / CER evaluation", "CTC speech recognition"], href: "/projects/vietnamese-asr" },
   { id: "ppe", name: "PPE Detection", tools: ["Python", "OpenCV", "Streamlit"], steps: ["Webcam images", "YOLOv8", "PPE compliance logic", "Streamlit reports"], href: "/projects/ppe-detection-system" },
+  { id: "nutritrack", name: "NutriTrack", tools: ["Amazon Bedrock", "AWS Lambda", "DynamoDB", "AppSync", "TypeScript"], steps: ["DynamoDB user context", "Bedrock + Lambda", "Structured JSON responses", "AppSync app features"], href: "/projects/nutritrack-ai-workflows" },
 ];
 
 function ToolLabel({ tool, active = false }: { tool: Tool; active?: boolean }) {

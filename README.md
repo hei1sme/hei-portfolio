@@ -73,6 +73,8 @@ and WebGL fallback. Normal pointer behavior and vertical scrolling remain usable
 - Shared facts/profiles: `app/concepts/research/portfolioData.ts`.
 - Resume: `public/HungLNG_Resume.pdf`; text version: `public/HungLNG_Resume.md`.
 - One-page AI/ML resume: `public/HungLNG_Resume_AI_ML.pdf` and matching `.md`.
+- Print editions: the corresponding `_Print.pdf` files, with a grayscale layout
+  and a portfolio QR. All four PDFs use A4; digital copies retain cobalt links.
 
 Trusted repository MDX is compiled on the server. Preserve authorship, paper
 status, project roles, dates and evaluation scope. Do not present attention as a
@@ -82,6 +84,9 @@ causal explanation, a schematic as measured output, or a profile as a project re
 
 The owner's research CV source lives locally at `docs/cv/resume_havard_ver.tex`;
 the one-page industry source is `docs/cv/resume_ai_ml.tex`.
+Both use the private `docs/cv/cv-style.tex` layout, with 11pt body text, visible
+profile addresses and page numbers. The print edition is generated from the same
+content with a QR and grayscale styling.
 The attachment and previous PDF are preserved in
 `docs/cv/original/`. The entire `docs/` directory is ignored; these private source
 files are not included in a fresh clone.
@@ -90,14 +95,22 @@ files are not included in a fresh clone.
 python scripts/build-cv.py
 ```
 
-This builds both review copies in `output/pdf/`. Use `--variant research` or
-`--variant industry` to build one. On Windows the
+This builds all four review copies in `output/pdf/`. Use `--variant research` or
+`--variant industry` to select the content; `--edition digital` or
+`--edition print` selects the output style. Both default to `all`. On Windows the
 script installs a checksum-verified Tectonic 0.17.0 into ignored local tooling if
 needed; other platforms need Tectonic on PATH. The first build downloads TeX
-packages and requires network access. Review all three pages and links, then run
+packages and requires network access. Review all six pages and links, then run
 `python scripts/build-cv.py --publish` to replace the website PDFs. Update the
 Markdown versions and shared portfolio facts alongside them. The `--publish`
 flag only copies the PDFs locally; deploying still requires the Git/Vercel flow below.
+
+Use the digital PDFs for online applications and the `_Print` editions when
+printing on A4 at actual size (100%). Employer requirements take precedence if a
+posting asks for another paper size or file format. The website's Education
+section keeps the digital downloads visible and groups print downloads in a
+disclosure. Layout decisions and verification are in
+[design/cv-digital-and-print.md](design/cv-digital-and-print.md).
 
 The import, content reconciliation and remaining date questions are documented
 in [design/cv-update.md](design/cv-update.md).

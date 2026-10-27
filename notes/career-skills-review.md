@@ -84,7 +84,7 @@ Hiện chưa có JD, quốc gia ứng tuyển, lịch có thể bắt đầu hay
 được cung cấp. Hai bản PDF hiện tại là base documents; chưa phải hồ sơ đã tailor
 cho một công ty hoặc lab cụ thể.
 
-## Kiểm tra đầu ra
+## Kiểm tra trước lần tách digital/print
 
 - Build Next.js production qua compile, lint/type checks và static generation.
 - PDF research 2 trang, PDF AI/ML 1 trang; letter paper, Charter 10pt, lề 1 inch.
@@ -97,3 +97,12 @@ cho một công ty hoặc lab cụ thể.
   HTTP của cả hai PDF. Không thêm client component cho nhóm link.
 - File nguồn CV, bản gốc và tài liệu ứng tuyển riêng tiếp tục nằm trong `docs/`
   được ignore. Git chỉ chứa skill/license, ghi chú chung và các đầu ra public.
+
+## Phiên bản digital và bản in hiện tại
+
+Sau khi chủ CV yêu cầu học thêm rồi chỉnh cả hai cách dùng, layout đã chuyển
+sang A4, chữ thân bài 11pt, tên lệch trái và màu cobalt cho bản digital. Bản in
+dùng grayscale, có QR dẫn tới portfolio và cùng nội dung theo từng vai trò.
+Profile URL, DOI và số trang đọc được trên giấy. Hai bản nội dung vẫn là research
+2 trang và AI/ML 1 trang; mỗi bản có digital và print, tổng cộng 4 PDF / 6 trang.
+Xem `design/cv-digital-and-print.md` để biết nguồn tham khảo và kiểm tra mới nhất.

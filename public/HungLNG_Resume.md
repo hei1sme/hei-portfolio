@@ -1,17 +1,16 @@
 # Le Nguyen Gia Hung
 
-AI Undergraduate Researcher | Time-Series & Multimodal XAI
+AI undergraduate researcher | Explainable AI & multimodal learning
 
-Research interests: explainable AI, time-series forecasting, multimodal learning
-and computer vision.
+Research interests: time-series forecasting, transparency in AI and computer vision.
 
 heiontheway@gmail.com | +84 394 262 651 | Ho Chi Minh City, Vietnam
 
-[LinkedIn](https://linkedin.com/in/le-nguyen-gia-hung) ·
-[GitHub](https://github.com/hei1sme) ·
-[Portfolio](https://hei-portfolio.vercel.app) ·
+[linkedin.com/in/le-nguyen-gia-hung](https://linkedin.com/in/le-nguyen-gia-hung) ·
+[github.com/hei1sme](https://github.com/hei1sme) ·
+[hei-portfolio.vercel.app](https://hei-portfolio.vercel.app) ·
 [ORCID: 0009-0003-7120-8167](https://orcid.org/0009-0003-7120-8167) ·
-[Google Scholar](https://scholar.google.com/citations?user=iGODAQYAAAAJ)
+[Google Scholar: iGODAQYAAAAJ](https://scholar.google.com/citations?user=iGODAQYAAAAJ)
 
 ## Education
 
@@ -47,14 +46,14 @@ B.Eng. in Artificial Intelligence | 2023–December 2027 (expected) | GPA: 8.62/
 Academic research | First & Corresponding Author | June–November 2025
 Published at AJCAI 2025
 
-- Designed the Transformer forecasting architecture with seasonal embeddings and
-  reconstruction loss for Melbourne's PM2.5.
+- Designed a Transformer with seasonal embeddings and reconstruction loss to
+  forecast Melbourne's PM2.5; built chronological evaluation on 4+ years of
+  OpenWeather data.
 - Reported MAE 0.7470, R² 0.9545 and 35.9% lower MAE than XGBoost on the 2024
   held-out evaluation.
 - Evaluated the May 2024 smoke event separately: 57.7% lower MAE than the baseline
   in that backtest.
-- Built a chronological evaluation pipeline on 4+ years of OpenWeather data;
-  used SHAP, Integrated Gradients and DiCE to inspect forecasts.
+- Inspected forecasts with SHAP, Integrated Gradients and DiCE.
 
 ### Cyanobacterial Bloom Forecasting
 
@@ -63,7 +62,7 @@ AJCAI 2026 under review
 
 - Built a causal weekly benchmark across 7 New Zealand lakes: n=5,432, with an
   untouched 2023–2024 holdout (n=170).
-- Compared forecast horizons: 7-day Chl-a history XGBoost reached weighted F1
+- 7-day Chl-a history XGBoost reached weighted F1
   0.791 (+0.103 over full fusion, p=0.016); 14-day full fusion reached 0.703.
 - Led manuscript writing and the 8-gate provenance audit: 22 apparent episode
   starts reduced to 3 eligible incidents.
@@ -97,9 +96,9 @@ ACM SIGKDD 2027 under review
 Academic research | Second & Corresponding Author | October 2025–Present
 In progress
 
-- Develop WavLM + Compact Conformer audio encoding and BERT/RoBERTa text
-  representations, fused through dual-channel graph attention.
-- Inspect modality contributions using attention visualization, SHAP and
+- Develop emotion recognition from speech and text, using WavLM + Compact
+  Conformer, BERT/RoBERTa and dual-channel graph-attention fusion.
+- Inspect modality contributions with attention plots, SHAP and
   Integrated Gradients; attention alone is not a causal explanation.
 - Evaluation is in progress on IEMOCAP, RAVDESS and MELD, using WA, UA and Macro-F1.
 
@@ -108,11 +107,11 @@ In progress
 Academic research | Co-Researcher & Co-Author | September 2025–Present
 In progress
 
-- Build a 5.4M-parameter ASR model: 4-layer CNN, 3-layer residual BiLSTM and CTC
-  training on 745 hours of Vietnamese speech.
-- Reported WER 33.09% and CER 15.28%; compare with PhoWhisper to study the
-  efficiency–accuracy trade-off.
-  [Method and evaluation notes](https://hei-portfolio.vercel.app/projects/vietnamese-asr).
+- Develop a 5.4M-parameter Vietnamese ASR model with a 4-layer CNN, 3-layer
+  residual BiLSTM and CTC training on 745 hours of speech.
+- Reported WER 33.09% and CER 15.28%; compare against PhoWhisper to study the
+  trade-off between accuracy and model size.
+  [Evaluation notes](https://hei-portfolio.vercel.app/projects/vietnamese-asr).
 
 ### PPE Detection (YOLOv8)
 

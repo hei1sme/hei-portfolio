@@ -1,4 +1,4 @@
-"""Build the owner's research CV and AI/ML resume; publish with an explicit flag."""
+"""Build digital/print editions of the private CV sources; publish with an explicit flag."""
 import argparse
 import hashlib
 import io
@@ -40,6 +40,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--publish", action="store_true", help="Also replace the website PDF after review.")
     parser.add_argument("--variant", choices=["research", "industry", "all"], default="all")
+    parser.add_argument("--edition", choices=["digital", "print", "all"], default="all")
     args = parser.parse_args()
     variants = {
         "research": ("resume_havard_ver", "HungLNG_Resume"),
@@ -52,20 +53,32 @@ def main():
             raise SystemExit(f"Missing private CV source: {source}")
     build = ROOT / "docs/cv/build"
     build.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(ROOT / "docs/cv/cv-style.tex", build / "cv-style.tex")
     (ROOT / "output/pdf").mkdir(parents=True, exist_ok=True)
     environment = dict(os.environ, TECTONIC_CACHE_DIR=str(ROOT / ".codex/tooling/tectonic-cache"))
     executable = compiler()
+    editions = ["digital", "print"] if args.edition == "all" else [args.edition]
+    exports = []
     for source_name, export_name in selected.values():
-        source = ROOT / f"docs/cv/{source_name}.tex"
-        export = ROOT / f"output/pdf/{export_name}.pdf"
-        subprocess.run([executable, "--untrusted", "--keep-logs", "--outdir", str(build), str(source)],
-                       cwd=ROOT, env=environment, check=True)
-        shutil.copy2(build / f"{source_name}.pdf", export)
-        print(f"Built {export}")
+        for edition in editions:
+            source = ROOT / f"docs/cv/{source_name}.tex"
+            suffix = "_Print" if edition == "print" else ""
+            job_name = source_name
+            if edition == "print":
+                job_name += "_print"
+                content = source.read_text(encoding="utf-8")
+                source = build / f"{job_name}.tex"
+                source.write_text("\\def\\PrintEdition{1}\n" + content, encoding="utf-8")
+            export = ROOT / f"output/pdf/{export_name}{suffix}.pdf"
+            subprocess.run([executable, "--untrusted", "--keep-logs", "--outdir", str(build), str(source)],
+                           cwd=ROOT, env=environment, check=True)
+            shutil.copy2(build / f"{job_name}.pdf", export)
+            exports.append(export)
+            print(f"Built {export}")
     if args.publish:
-        for _, export_name in selected.values():
-            destination = ROOT / f"public/{export_name}.pdf"
-            shutil.copy2(ROOT / f"output/pdf/{export_name}.pdf", destination)
+        for export in exports:
+            destination = ROOT / "public" / export.name
+            shutil.copy2(export, destination)
             print(f"Updated {destination}")
 
 

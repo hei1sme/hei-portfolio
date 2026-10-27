@@ -145,6 +145,12 @@ the Claude-specific environment variable in the upstream command exists.
   The industry source is `docs/cv/resume_ai_ml.tex`; it exports the one-page
   `public/HungLNG_Resume_AI_ML.pdf` and has a matching Markdown file. The default
   build now handles both variants (`--variant research|industry|all`).
+  `--edition digital|print|all` selects editions; the default builds four PDFs.
+  Shared style: ignored `docs/cv/cv-style.tex`. Current editions are A4, 11pt
+  Charter, with visible profile URLs and page counts. Print adds a real portfolio
+  QR and grayscale styling from the same content. See
+  `design/cv-digital-and-print.md`; inspect all six rendered pages and decode the
+  print QR before publishing. Keep the digital research CV as the default link.
 - Career skills are guidance, not evidence. Do not estimate achievements, change
   official roles, infer work authorization, turn certificates into hands-on
   experience or report a universal ATS score. Preserve the research CV as the

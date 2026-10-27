@@ -2,11 +2,13 @@
 
 AI Undergraduate | Machine Learning, Computer Vision & Speech
 
+First & corresponding author of a published AJCAI 2025 paper.
+
 heiontheway@gmail.com | +84 394 262 651 | Ho Chi Minh City, Vietnam
 
-[GitHub](https://github.com/hei1sme) ·
-[LinkedIn](https://linkedin.com/in/le-nguyen-gia-hung) ·
-[Portfolio](https://hei-portfolio.vercel.app)
+[github.com/hei1sme](https://github.com/hei1sme) ·
+[linkedin.com/in/le-nguyen-gia-hung](https://linkedin.com/in/le-nguyen-gia-hung) ·
+[hei-portfolio.vercel.app](https://hei-portfolio.vercel.app)
 
 ## Education
 
@@ -27,19 +29,18 @@ GPA: 8.62/10.0. Certificate of Merit: semesters 3, 4, 5 and 6.
 
 First & Corresponding Author | June–November 2025 | Published at AJCAI 2025
 
-- Designed a Transformer with seasonal embeddings and reconstruction loss for
-  PM2.5 forecasting; built a chronological evaluation pipeline on 4+ years of
-  OpenWeather data.
+- Designed a Transformer to forecast PM2.5; used seasonal embeddings,
+  reconstruction loss and chronological evaluation on 4+ years of OpenWeather data.
 - Reported MAE 0.7470, R² 0.9545 and 35.9% lower MAE than XGBoost on the 2024
-  held-out evaluation; used SHAP, Integrated Gradients and DiCE to inspect forecasts.
+  held-out evaluation. Inspected forecasts with SHAP, Integrated Gradients and DiCE.
   [Case study](https://hei-portfolio.vercel.app/projects/smokenet-air-quality).
 
 ### MERR-GAT: Multimodal Emotion Recognition
 
 Second & Corresponding Author | October 2025–Present | Research in progress
 
-- Develop WavLM + Compact Conformer audio encoding, BERT/RoBERTa text
-  representations and dual-channel graph-attention fusion.
+- Develop emotion recognition from speech and text with WavLM + Compact
+  Conformer, BERT/RoBERTa and dual-channel graph-attention fusion.
 - Evaluate on IEMOCAP, RAVDESS and MELD using WA, UA and Macro-F1; experiments
   are ongoing.
   [Methods and code links](https://hei-portfolio.vercel.app/projects/conformer-gat-ser).
@@ -48,8 +49,8 @@ Second & Corresponding Author | October 2025–Present | Research in progress
 
 Co-Researcher & Co-Author | September 2025–Present | Research in progress
 
-- Build a 5.4M-parameter CNN–residual BiLSTM model with CTC, trained on 745 hours
-  of speech. Reported WER 33.09% and CER 15.28%; compare with PhoWhisper.
+- Develop a 5.4M-parameter CNN–residual BiLSTM with CTC on 745 hours of
+  Vietnamese speech; reported WER 33.09%, CER 15.28%. Compare with PhoWhisper.
   [Evaluation notes](https://hei-portfolio.vercel.app/projects/vietnamese-asr).
 
 ### PPE Detection
@@ -75,8 +76,8 @@ AWS Vietnam program; cloud learning and project work documented in the
 ## Publication
 
 **Gia-Hung Nguyen Le** et al. “Proactive Air Quality Forecasting and Health Alert
-System for Melbourne.” AJCAI 2025, Springer LNAI. First and corresponding author.
-[DOI](https://doi.org/10.1007/978-981-95-4969-6_34).
+System for Melbourne.” AJCAI 2025, Springer LNAI.
+[DOI: 10.1007/978-981-95-4969-6_34](https://doi.org/10.1007/978-981-95-4969-6_34).
 
 Three additional manuscripts under review; full titles and contributions in the
 [research CV](https://hei-portfolio.vercel.app/HungLNG_Resume.pdf).

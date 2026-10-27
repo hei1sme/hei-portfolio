@@ -62,8 +62,10 @@ Chủ portfolio đã gửi nguồn Overleaf `resume_havard_ver.tex.txt`. Bản g
 cũ nằm trong `docs/cv/original/`; bản đang chỉnh là
 `docs/cv/resume_havard_ver.tex`. Thư mục `docs/` được ignore và chỉ có trên máy
 này. Dùng `python scripts/build-cv.py` để xuất bản kiểm tra; chỉ thêm `--publish`
-sau khi đã kiểm tra cả hai bản PDF. Bản research có 2 trang; bản AI/ML trong
-`docs/cv/resume_ai_ml.tex` có 1 trang. Hai bản đều có link ở Education.
+sau khi đã kiểm tra cả bốn PDF (6 trang). Bản research có 2 trang; bản AI/ML trong
+`docs/cv/resume_ai_ml.tex` có 1 trang. Mỗi bản có edition digital và print A4,
+dùng chung `docs/cv/cv-style.tex`. Link digital ở Education; link bản in nằm
+trong mục “Print editions · A4”.
 Xem `design/cv-update.md` để biết nguồn thông tin và các mục đã đồng bộ;
 `notes/career-skills-review.md` ghi cách dùng các skill CV/job và phần cần làm
 khi có JD cụ thể. Tài liệu ứng tuyển riêng nằm trong `docs/career/` (ignored).

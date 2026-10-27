@@ -33,6 +33,13 @@ export default function GardenBackground() {
                 <a className="garden-degree-cv" href="/HungLNG_Resume.pdf" target="_blank" rel="noreferrer">Research CV · 2 pages <Icon name="external" /></a>
                 <a className="garden-degree-cv" href="/HungLNG_Resume_AI_ML.pdf" target="_blank" rel="noreferrer">AI/ML résumé · 1 page <Icon name="external" /></a>
               </div>
+              <details className="garden-print-downloads">
+                <summary>Print editions · A4 <Icon name="down" size={16} /></summary>
+                <div className="garden-print-links">
+                  <a className="garden-degree-cv" href="/HungLNG_Resume_Print.pdf" target="_blank" rel="noreferrer">Research CV · print <Icon name="external" size={18} /></a>
+                  <a className="garden-degree-cv" href="/HungLNG_Resume_AI_ML_Print.pdf" target="_blank" rel="noreferrer">AI/ML résumé · print <Icon name="external" size={18} /></a>
+                </div>
+              </details>
             </div>
             <div>
               <p className="garden-education-result"><strong>8.62 / 10</strong> GPA<br />Certificate of Merit · Semesters 3, 4, 5 & 6</p>

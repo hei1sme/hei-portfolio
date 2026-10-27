@@ -229,6 +229,11 @@ body:has(.garden-root) { background: #edf1f5; cursor: auto; }
 .garden-education .garden-education-result { margin-top: 0 !important; }
 .garden-cv-links { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; margin-top: 20px; }
 .garden-degree-cv { display: inline-flex; align-items: center; gap: 15px; min-height: 44px; color: var(--cobalt) !important; font-weight: 650; }
+.garden-print-downloads { margin-top: 8px; }
+.garden-background-details .garden-print-downloads > summary { justify-content: flex-start; gap: 10px; min-height: 44px; padding: 6px 0; font-size: 14px; color: #435578; cursor: pointer; }
+.garden-print-downloads[open] > summary > svg { transform: rotate(180deg); }
+.garden-print-links { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+.garden-print-links .garden-degree-cv { font-size: 14px; }
 .garden-certification-detail { margin-top: 20px; }
 .garden-background-details .garden-certification-detail > summary { font-size: 16px; padding: 12px 0; line-height: 1.6; }
 .garden-background-details .garden-certification-detail[open] > summary > span { rotate: 45deg; }

@@ -106,3 +106,12 @@ dùng grayscale, có QR dẫn tới portfolio và cùng nội dung theo từng v
 Profile URL, DOI và số trang đọc được trên giấy. Hai bản nội dung vẫn là research
 2 trang và AI/ML 1 trang; mỗi bản có digital và print, tổng cộng 4 PDF / 6 trang.
 Xem `design/cv-digital-and-print.md` để biết nguồn tham khảo và kiểm tra mới nhất.
+
+## Đã xử lý lỗi trích xuất chữ và bổ sung dấu vịt
+
+Sau khi chủ CV cho phép sửa tiếp, font đã chuyển sang XCharter OpenType, giữ
+cùng phong cách nhưng sửa việc pypdf plain tách `PyTorch`/`TensorFlow`.
+Lệnh `python scripts/check-cv-text.py` kiểm tra cả pypdf plain/layout và PyMuPDF;
+các từ khóa hiện đọc đúng trên cả bốn PDF. Đây là kiểm tra cục bộ, chưa phải
+chứng nhận từ ATS của nhà tuyển dụng. Vịt chạy vector nhỏ được thêm vào footer
+bản in; bản digital giữ phần chữ. Dữ kiện và hai nguồn nội dung không thay đổi.

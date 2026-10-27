@@ -147,8 +147,13 @@ the Claude-specific environment variable in the upstream command exists.
   build now handles both variants (`--variant research|industry|all`).
   `--edition digital|print|all` selects editions; the default builds four PDFs.
   Shared style: ignored `docs/cv/cv-style.tex`. Current editions are A4, 11pt
-  Charter, with visible profile URLs and page counts. Print adds a real portfolio
-  QR and grayscale styling from the same content. See
+  XCharter OpenType (fontspec), with visible profile URLs and page counts.
+  Keep the text-extraction font settings: the previous Type 1 export split
+  PyTorch/TensorFlow in pypdf plain mode. Run `python scripts/check-cv-text.py`
+  before publishing; it uses pypdf plain/layout and PyMuPDF, not an ATS score.
+  Print adds a real portfolio QR, grayscale styling and the small native vector
+  duck from `design/assets/cv-running-duck.tex`; keep it out of digital editions.
+  All editions derive from the same content per role. See
   `design/cv-digital-and-print.md`; inspect all six rendered pages and decode the
   print QR before publishing. Keep the digital research CV as the default link.
 - Career skills are guidance, not evidence. Do not estimate achievements, change

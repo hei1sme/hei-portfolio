@@ -34,13 +34,14 @@ Builder, Tech Resume Optimizer and Humanizer guided the structure and copy revie
 | Research CV, 2 pages | `HungLNG_Resume.pdf` | `HungLNG_Resume_Print.pdf` |
 | AI/ML resume, 1 page | `HungLNG_Resume_AI_ML.pdf` | `HungLNG_Resume_AI_ML_Print.pdf` |
 
-All four use A4, 20mm margins, Charter 11pt body text, a left-aligned name and
+All four use A4, 20mm margins, XCharter OpenType 11pt body text, a left-aligned name and
 page counts. Dates/location use a quieter hierarchy than project names and
 contributions. Profile addresses and the paper DOI are visible text. ORCID and
 Google Scholar retain their actual identifiers and links. Publication status and
 reported result scopes remain unchanged.
 
-Digital uses cobalt headings and links. Print uses grayscale and an 18mm QR on
+Digital uses cobalt headings and links. Print uses grayscale, a small running-duck
+footer mark and an 18mm QR on
 the first page that encodes `https://hei-portfolio.vercel.app`. The readable web
 address, email, phone and social addresses remain beside it. Print at actual size
 on A4; these files have been reviewed on screen, not physically printed on the
@@ -71,6 +72,37 @@ aligned with the content sources. The website keeps two digital links visible an
 groups print downloads in a native keyboard-accessible disclosure under Education.
 
 ## Verification
+
+### Text-extraction follow-up
+
+The owner authorized repairing the identified parser issue and adding the duck
+after a read-only review. The previous embedded Type 1/T1 Charter export produced
+`PyT orch` and `T ensorFlow` in pypdf's plain mode, although layout mode was correct.
+The shared style now loads [XCharter OpenType](https://ctan.org/pkg/xcharter) with
+[fontspec](https://ctan.org/pkg/fontspec), with kerning and common-ligature settings
+chosen for reliable word boundaries. The visual family, body size, page counts,
+profile links and all factual content are retained.
+
+`scripts/check-cv-text.py` checks 18 identity/skill/result strings in all four
+PDFs using pypdf plain, pypdf layout and the independent PyMuPDF reader. It also
+checks A4/page counts, the DOI link and absence of raster images. The regression
+now passes in all modes. All fonts remain embedded. This is local extraction
+verification; no actual employer ATS has been accessed or an ATS score invented.
+
+The print-only mark is an original code-native TikZ drawing in
+`design/assets/cv-running-duck.tex`, roughly 7 by 8mm. Its running pose/headband
+refer to the owner's established duck identity. It is distinct from the generated
+bitmap mascot described in `duck-cursor-and-blog-cover.md`; neither artwork is
+claimed as the owner's hand drawing. The existing bitmap files are unchanged.
+The mark sits beside the footer name, away from the QR and factual text. Digital
+editions contain no duck. The source is copied into the private build directory
+by the build helper; both print editions use the same mark.
+
+After the font/duck changes, all six pages were rendered and inspected again.
+The content source files match their pre-change backups byte-for-byte. Print
+grayscale, QR decoding, embedded fonts and digital/print text parity also pass.
+
+### Layout and download checks
 
 The production build passed compilation, lint/type checks and static generation.
 Browser checks at 1440, 834 and 390px found no horizontal overflow or console

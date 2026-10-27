@@ -22,13 +22,14 @@ not in the public Git repository. The build helper is tracked so future source
 imports can use the same workflow. It uses Tectonic with shell execution disabled;
 the local Windows compiler download has a pinned release and SHA-256 checksum.
 
-The current CV keeps Charter and the two-page research / one-page industry
+The current CV uses XCharter OpenType and the two-page research / one-page industry
 split, with a single text column. The digital/print refinement uses A4, 20mm
 margins, 11pt body text, visible social addresses and page counts. Digital uses
 cobalt headings/links; print uses grayscale and a portfolio QR. The original
 letter-paper template is preserved privately. See `cv-digital-and-print.md` for
-the reference review and checks. T1 font encoding selects the actual Charter faces
-under Tectonic rather than falling back to Latin Modern. The PDF includes
+the reference review and checks. Fontspec loads the actual OpenType faces, with
+kerning/common-ligature settings checked for text extraction. This supersedes
+the Type 1/T1 version that produced split words in pypdf plain mode. The PDF includes
 selectable text and clickable profile, DOI and project links. Humanizer was used
 for concise technical wording; reported results retain their evaluation scope.
 

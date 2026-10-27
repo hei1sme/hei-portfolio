@@ -58,6 +58,8 @@ def main():
     environment = dict(os.environ, TECTONIC_CACHE_DIR=str(ROOT / ".codex/tooling/tectonic-cache"))
     executable = compiler()
     editions = ["digital", "print"] if args.edition == "all" else [args.edition]
+    if "print" in editions:
+        shutil.copy2(ROOT / "design/assets/cv-running-duck.tex", build / "cv-running-duck.tex")
     exports = []
     for source_name, export_name in selected.values():
         for edition in editions:

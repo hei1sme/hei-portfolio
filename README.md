@@ -84,9 +84,10 @@ causal explanation, a schematic as measured output, or a profile as a project re
 
 The owner's research CV source lives locally at `docs/cv/resume_havard_ver.tex`;
 the one-page industry source is `docs/cv/resume_ai_ml.tex`.
-Both use the private `docs/cv/cv-style.tex` layout, with 11pt body text, visible
-profile addresses and page numbers. The print edition is generated from the same
-content with a QR and grayscale styling.
+Both use the private `docs/cv/cv-style.tex` layout, with 11pt XCharter OpenType
+text, visible profile addresses and page numbers. The print edition is generated
+from the same content with a QR, grayscale styling and a small vector running
+duck in the footer. Its editable source is `design/assets/cv-running-duck.tex`.
 The attachment and previous PDF are preserved in
 `docs/cv/original/`. The entire `docs/` directory is ignored; these private source
 files are not included in a fresh clone.
@@ -104,6 +105,13 @@ packages and requires network access. Review all six pages and links, then run
 `python scripts/build-cv.py --publish` to replace the website PDFs. Update the
 Markdown versions and shared portfolio facts alongside them. The `--publish`
 flag only copies the PDFs locally; deploying still requires the Git/Vercel flow below.
+
+Before publishing, run `python scripts/check-cv-text.py` against the review
+exports. It checks the original split-word regression using pypdf in plain and
+layout modes plus the independent PyMuPDF reader. Local review dependencies can
+be installed with `python -m pip install --target .codex/tooling/pdf-python pypdf PyMuPDF`.
+Use `--directory public` to check the website copies. These checks establish
+local text extraction; they do not certify an employer's ATS or job fit.
 
 Use the digital PDFs for online applications and the `_Print` editions when
 printing on A4 at actual size (100%). Employer requirements take precedence if a

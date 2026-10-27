@@ -116,6 +116,10 @@ Repository skills live in `.agents/skills/`:
   teaching appointments, advisors and references.
 - `tech-resume-optimizer`: technical resume hierarchy and evidence-backed
   project bullets for AI/ML engineering roles.
+- `resume-reviewer`: a four-dimension review rubric, prioritized findings and
+  sample rewrites. Calibrate its length rules to academic CVs; scores are manual
+  judgments, not employer ATS results. Latest review:
+  `notes/cv-format-and-content-review.md`.
 - `resume-cover-letter`: role-specific resumes and cover letters once a real
   job description and employer are supplied. Region and eligibility need facts.
 - `taste-skill` (skill name `design-taste-frontend`): reference-led art direction

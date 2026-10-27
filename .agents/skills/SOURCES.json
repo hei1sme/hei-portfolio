@@ -408,6 +408,18 @@
         "SKILL.md": "adaa35a36ae0bfa6b1ce14104aebcbfe8a51c65434087056facf4f8f45217b96",
         "UPSTREAM-LICENSE": "4530f92f44fe545e18773c7bbe0c312b0f04b78c161bdb784ff24f0ace9a5592"
       }
+    },
+    {
+      "directory": "resume-reviewer",
+      "repository": "https://github.com/SkillMedev/resume-toolkit",
+      "commit": "2766b5325cd7d65f7f04a0906305393ccbe4c48a",
+      "upstream_path": "skills/resume-reviewer",
+      "license_note": "MIT; root license bundled as UPSTREAM-LICENSE",
+      "retrieved_on": "2026-10-27",
+      "files": {
+        "SKILL.md": "62c2b647ac703115b8f5b793562860454114539184e5c05c3bc555e0ddceb640",
+        "UPSTREAM-LICENSE": "e55c0849226f9059d1b291000940bda5f88121f12a90c0d8c899fcccdb292292"
+      }
     }
   ]
 }

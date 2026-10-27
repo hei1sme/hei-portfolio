@@ -3,11 +3,13 @@
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import DuckSprite from "./DuckSprite";
+import { usePortfolioMotion } from "./PortfolioMotion";
 
 // A damped, contextual companion to the ordinary pointer; never replaces it.
 export default function PortfolioCursor() {
   const ref = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+  const { paused } = usePortfolioMotion();
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
@@ -41,7 +43,7 @@ export default function PortfolioCursor() {
     };
     const hide = () => { node.dataset.visible = "false"; node.dataset.pressed = "false"; node.dataset.gait = "idle"; lastClientX = null; effort = 0; breathRemaining = 0; cancelAnimationFrame(frame); frame = 0; previous = 0; resetMagnet(); };
     const move = (event: PointerEvent) => {
-      if (!query.matches || event.pointerType === "touch" || document.documentElement.dataset.portfolioIntro || document.querySelector("dialog[open]")) { hide(); return; }
+      if (paused || !query.matches || event.pointerType === "touch" || document.documentElement.dataset.portfolioIntro || document.querySelector("dialog[open]")) { hide(); return; }
       const target = event.target as Element;
       if (target.closest("input, textarea, select, [contenteditable=true], .garden-running-duck")) { hide(); return; }
       const nextMagnet = target.closest<HTMLElement>("[data-magnetic]");
@@ -56,7 +58,7 @@ export default function PortfolioCursor() {
       const area = target.closest<HTMLElement>("[data-cursor]");
       const control = target.closest<HTMLElement>("a,button,summary");
       const disabled = control instanceof HTMLButtonElement && control.disabled;
-      const hint = disabled ? "" : control ? (control.hasAttribute("data-cursor") ? control.dataset.cursor : control instanceof HTMLAnchorElement ? "↗" : "") : area?.dataset.cursor;
+      const hint = disabled ? "" : control ? (control.hasAttribute("data-cursor") ? control.dataset.cursor : control instanceof HTMLAnchorElement ? "Open" : "") : area?.dataset.cursor;
       label.textContent = hint || "";
       node.dataset.mode = hint ? "context" : "rest";
       node.dataset.tone = target.closest(".garden-work,.portfolio-motion-strip") ? "light" : "blue";
@@ -85,6 +87,6 @@ export default function PortfolioCursor() {
     window.addEventListener("blur", hide); window.addEventListener("scroll", hide, { passive: true });
     query.addEventListener("change", hide);
     return () => { hide(); document.removeEventListener("pointermove", move); document.removeEventListener("pointerdown", down); document.removeEventListener("pointerup", up); document.removeEventListener("pointercancel", up); document.removeEventListener("keydown", keyboard); document.removeEventListener("visibilitychange", visibility); document.removeEventListener("click", click); document.documentElement.removeEventListener("pointerleave", hide); window.removeEventListener("blur", hide); window.removeEventListener("scroll", hide); query.removeEventListener("change", hide); };
-  }, [pathname]);
+  }, [pathname, paused]);
   return <div className="portfolio-cursor" ref={ref} aria-hidden="true" data-visible="false" data-mode="rest" data-gait="idle" data-facing="right"><span className="portfolio-cursor-duck"><DuckSprite className="portfolio-cursor-sprite" /></span><span className="portfolio-cursor-label" /></div>;
 }

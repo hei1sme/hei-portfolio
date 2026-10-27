@@ -1,14 +1,17 @@
 "use client";
 
+import Icon from "../../components/portfolio/Icon";
+
 import dynamic from "next/dynamic";
 import MethodDrawing from "../../components/portfolio/MethodDrawing";
 import EmailCopy from "../../components/portfolio/EmailCopy";
 import MotionStrip from "../../components/portfolio/MotionStrip";
 import DuckSprite from "../../components/portfolio/DuckSprite";
 import { useDuckRhythm } from "../../components/portfolio/useDuckRhythm";
+import { usePortfolioMotion } from "../../components/portfolio/PortfolioMotion";
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import type { PostMetadata } from "../../../lib/posts";
 import { academicLinks, projectRecords } from "../research/portfolioData";
 
@@ -17,15 +20,6 @@ const BotanicalScene = dynamic(() => import("./BotanicalScene"), {
   loading: () => <div className="garden-scene-poster" role="status"><Image src="/images/personal/sculpture-poster.jpg" alt="" fill sizes="(max-width: 900px) 100vw, 70vw" priority /><span className="sr-only">Loading the interactive sculpture</span></div>,
 });
 const NeuralBreach = dynamic(() => import("../../components/NeuralBreach"), { ssr: false });
-
-const reducedMotionQuery = "(prefers-reduced-motion: reduce)";
-function subscribeMotionPreference(callback: () => void) {
-  const query = window.matchMedia(reducedMotionQuery);
-  query.addEventListener("change", callback);
-  return () => query.removeEventListener("change", callback);
-}
-const motionPreference = () => window.matchMedia(reducedMotionQuery).matches;
-const serverMotionPreference = () => false;
 
 const projectEvidence = {
   smokenet: ["35.9% lower MAE", "vs XGBoost · 2024 held-out evaluation"],
@@ -40,14 +34,13 @@ function Arrow({ diagonal = false }: { diagonal?: boolean }) {
 
 
 export default function GardenPortfolio({ posts, background, publications, production = false }: { posts: PostMetadata[]; background: ReactNode; publications: ReactNode; production?: boolean }) {
-  const reduced = useSyncExternalStore(subscribeMotionPreference, motionPreference, serverMotionPreference);
+  const { paused, reduced } = usePortfolioMotion();
   const rootRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLElement>(null);
   const personRef = useRef<HTMLElement>(null);
   const projectFocusRef = useRef<HTMLDivElement>(null);
   const progress = useRef(0);
   const playgroundRef = useRef<HTMLDialogElement>(null);
-  const [paused, setPaused] = useState(false);
   const aboutDuckRef = useDuckRhythm(paused, reduced);
   const [points, setPoints] = useState(false);
   const [rotation, setRotation] = useState(0);
@@ -64,6 +57,12 @@ export default function GardenPortfolio({ posts, background, publications, produ
   const project = projectRecords.find(record => record.id === projectId)!;
   const onSceneReady = useCallback(() => setSceneReady(true), []);
   const onSceneUnavailable = useCallback(() => setSceneReady(false), []);
+  const replayWelcome = () => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+    progress.current = 0; setPoints(false); setRotation(0);
+    setEntranceReplay(value => value + 1);
+    window.dispatchEvent(new Event("portfolio:intro-replay"));
+  };
 
   const openPlayground = useCallback((origin?: { x: number; y: number }) => {
     if (playgroundRef.current?.open) return;
@@ -160,9 +159,9 @@ export default function GardenPortfolio({ posts, background, publications, produ
       <div className="garden-page-progress" aria-hidden="true" />
       <a href="#garden-publications" className="garden-skip">Skip to research</a>
       <header className="garden-nav">
-        <a href="#garden-home" aria-label="hei, home" className="garden-brand">hei<span>✳</span></a>
-        <nav aria-label="Main navigation"><a href="#garden-publications">Research</a><details className="garden-explore" onKeyDown={(event) => { if (event.key === "Escape") { event.currentTarget.open = false; event.currentTarget.querySelector("summary")?.focus(); } }}><summary>Explore <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4" stroke="currentColor" strokeWidth="1.5" fill="none" /></svg></summary><div className="garden-menu-links" onClick={(event) => { const anchor = (event.target as HTMLElement).closest("a"); if (!anchor) return; const href = anchor.getAttribute("href"); const target = href?.startsWith("#") ? document.getElementById(href.slice(1)) : null; if (target instanceof HTMLDetailsElement) target.open = true; event.currentTarget.parentElement?.removeAttribute("open"); }}><a href="#garden-publications">Publications & manuscripts</a><a href="#garden-work">Selected projects</a><a href="#garden-person">About & running duck</a><a href="#garden-journey">Research journey</a><a href="#garden-education">Education & certifications</a><a href="#garden-toolkit">Technical toolkit</a><a href="#garden-writing">Writing</a><a href="/HungLNG_Resume.pdf" target="_blank" rel="noreferrer">Download CV</a></div></details><a href="/HungLNG_Resume.pdf" target="_blank" rel="noreferrer">CV <Arrow diagonal /></a></nav>
-        <a href="mailto:heiontheway@gmail.com" data-magnetic className="garden-contact-link">Say hello <span aria-hidden="true">↗</span></a>
+        <a href="#garden-home" aria-label="hei, home" className="garden-brand">hei<Icon name="spark" size={27} className="portfolio-brand-mark" /></a>
+        <nav aria-label="Main navigation"><a href="#garden-publications">Research</a><details className="garden-explore" onKeyDown={(event) => { if (event.key === "Escape") { event.currentTarget.open = false; event.currentTarget.querySelector("summary")?.focus(); } }}><summary>Explore <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4" stroke="currentColor" strokeWidth="1.5" fill="none" /></svg></summary><div className="garden-menu-links" onClick={(event) => { const anchor = (event.target as HTMLElement).closest("a"); if (!anchor) return; const href = anchor.getAttribute("href"); const target = href?.startsWith("#") ? document.getElementById(href.slice(1)) : null; if (target instanceof HTMLDetailsElement) target.open = true; event.currentTarget.parentElement?.removeAttribute("open"); }}><a href="#garden-publications">Publications & manuscripts</a><a href="#garden-work">Selected projects</a><a href="#garden-person">About me</a><a href="#garden-journey">Research journey</a><a href="#garden-education">Education & certifications</a><a href="#garden-toolkit">Technical toolkit</a><a href="#garden-writing">Writing</a><a href="/HungLNG_Resume.pdf" target="_blank" rel="noreferrer">Download CV</a><p className="garden-menu-motion-title">Animation options</p><button type="button" disabled={reduced || paused} onClick={event => { replayWelcome(); event.currentTarget.closest("details")?.removeAttribute("open"); }}><Icon name="rotate" />Replay welcome</button><button type="button" disabled={!sceneReady} aria-pressed={points} onClick={() => setPoints(value => !value)}>Sculpture points</button><button type="button" disabled={!sceneReady} onClick={() => setRotation(value => value + Math.PI / 3)}><Icon name="rotate" />Rotate sculpture</button></div></details><a href="/HungLNG_Resume.pdf" target="_blank" rel="noreferrer">CV <Arrow diagonal /></a></nav>
+        <a href="mailto:heiontheway@gmail.com" data-magnetic className="garden-contact-link">Say hello <Icon name="external" /></a>
       </header>
 
       <main>
@@ -170,7 +169,7 @@ export default function GardenPortfolio({ posts, background, publications, produ
           <div className="garden-intro">
             <p className="garden-identity">Le Nguyen Gia Hung<br /><span>AI undergraduate researcher · FPT University</span><span className="portfolio-hero-qualification">GPA 8.62/10 · Expected graduation: Dec 2027</span></p>
             <h1>Seeing beyond<br />the prediction.</h1>
-            <p className="garden-intro-copy">I&apos;m Hưng. I work on explainable AI, time-series forecasting and computer vision, building systems whose decisions we can inspect.</p>
+            <p className="garden-intro-copy">I&apos;m Hưng. I work on time-series forecasting and computer vision, with a focus on explaining model predictions.</p>
             <p className="portfolio-hero-opportunities">Open to research internships and AI/ML engineering opportunities.</p>
             <div className="garden-hero-actions"><a href="#garden-publications" data-magnetic className="garden-primary-link">Explore research <Arrow /></a><a data-magnetic className="garden-hero-cv" href="/HungLNG_Resume.pdf" target="_blank" rel="noreferrer">CV <Arrow diagonal /></a></div>
             <a className="garden-hero-paper" href="#garden-published-paper"><strong>Published: SmokeNet · AJCAI 2025</strong><span>First & corresponding author <Arrow diagonal /></span></a>
@@ -180,24 +179,18 @@ export default function GardenPortfolio({ posts, background, publications, produ
               <Image src="/images/experience/2_SmokeNet/2_1_SN.jpg" alt="SmokeNet paper title projected in the AJCAI 2025 conference room" fill sizes="(max-width: 760px) 100vw, 65vw" priority />
               <figcaption>The first paper. The beginning of more questions.<br /><span>SmokeNet · AJCAI 2025</span></figcaption>
             </figure> : <BotanicalScene points={points} paused={paused} reduced={reduced} rotation={rotation} progress={progress} replay={entranceReplay} onReady={onSceneReady} onUnavailable={onSceneUnavailable} />}
-            {!photographic && sceneReady ? <button type="button" className="garden-replay-opening" disabled={reduced} title={reduced ? "Opening motion is disabled by your reduced-motion preference" : "Replay the duck welcome and sculpture opening"} onClick={() => { window.scrollTo({ top: 0, behavior: "instant" }); progress.current = 0; setPoints(false); setRotation(0); setPaused(false); setEntranceReplay(value => value + 1); window.dispatchEvent(new Event("portfolio:intro-replay")); }}><svg width="16" height="16" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 8a6 6 0 1 1 0 5M4 3v5h5" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" /></svg>{reduced ? "Motion reduced" : "Replay opening"}</button> : null}
           </div>
           <div className="garden-hero-bottom">
-            <a href="#garden-publications" className="garden-scroll-link"><span aria-hidden="true">↓</span> Research, just below</a>
-            {!photographic ? <div className="garden-scene-tools">
-              <div role="group" aria-label="Botanical representation" className="garden-segmented"><button disabled={!sceneReady} type="button" aria-pressed={!points} onClick={() => setPoints(false)}>Surface</button><button disabled={!sceneReady} type="button" aria-pressed={points} onClick={() => setPoints(true)}>Points</button></div>
-              <button disabled={!sceneReady} className="garden-rotate" type="button" onClick={() => setRotation(value => value + Math.PI / 3)} aria-label="Rotate botanical sculpture 60 degrees">↻</button>
-              <button disabled={!sceneReady} className="garden-motion-toggle" type="button" onClick={() => setPaused(value => !value)} aria-pressed={paused} aria-label={paused ? "Resume ambient motion" : "Pause ambient motion"}>{paused ? "Play" : "Pause"}</button>
-              <span className="garden-scene-note">A procedural botanical study.<span>Drag to turn. Scroll to reveal its points.</span></span>
-            </div> : <span className="garden-photo-note">Research, with a person behind it.</span>}
+            <a href="#garden-publications" className="garden-scroll-link"><Icon name="down" /> Research, just below</a>
+            {!photographic ? <p className="garden-scene-hint"><span className="portfolio-pointer-hint">Drag to turn. Scroll to explore.</span><span className="portfolio-touch-hint">More sculpture views in Explore.</span></p> : null}
           </div>
         </section>
 
         {publications}
-        <MotionStrip paused={paused} reduced={reduced} onToggle={() => setPaused(value => !value)} />
+        <MotionStrip paused={paused} reduced={reduced} />
 
         <section className="garden-work" id="garden-work" aria-labelledby="garden-work-title">
-          <div className="garden-work-heading"><h2 id="garden-work-title">Selected projects.</h2><p>What I built, how I evaluated it,<br />and the questions still open.</p></div>
+          <div className="garden-work-heading"><h2 id="garden-work-title">Selected projects.</h2><p>Models, experiments<br />and the code behind them.</p></div>
           <div className="garden-project-index" role="group" aria-label="Project overview and detail selection">
             {projectRecords.map(record => <article key={record.id} data-selected={inspectorOpen && projectId === record.id} id={`garden-overview-${record.id}`}>
               <div className="garden-index-name"><div className="garden-index-thumb" aria-hidden="true">{record.image ? <Image src={record.image} alt="" fill sizes="140px" /> : <svg viewBox="0 0 160 96"><g fill="none" stroke="currentColor" strokeWidth="2">{record.id === "asr" ? <>{Array.from({ length: 8 }, (_, i) => { const halfHeight = 10 + Math.sin(i * 1.1) ** 2 * 18; return <path key={i} d={`M${17 + i * 7} ${(47 - halfHeight).toFixed(2)}v${(halfHeight * 2).toFixed(2)}`} />; })}<path d="M81 48h18m-6-6 6 6-6 6" /></> : <><rect x="15" y="16" width="56" height="60" rx="4" /><rect x="25" y="25" width="35" height="28" rx="3" /><path d="M81 48h18m-6-6 6 6-6 6" /></>}</g><text x="104" y="54" fill="currentColor" fontSize="17" fontWeight="600">{record.id === "asr" ? "CTC" : "PPE"}</text></svg>}{!record.image || record.id === "merr" ? <span>Schematic</span> : null}</div><div><h3>{record.name}</h3><p>{record.status}</p></div></div>
@@ -207,7 +200,7 @@ export default function GardenPortfolio({ posts, background, publications, produ
           </div>
           <button className="portfolio-explorer-toggle" type="button" ref={inspectorToggleRef} aria-expanded={inspectorOpen} aria-controls="portfolio-project-explorer" onClick={() => setInspectorOpen(value => !value)}>{inspectorOpen ? "Close project explorer" : "Open the project explorer"} <span aria-hidden="true">{inspectorOpen ? "−" : "+"}</span></button>
           <div id="portfolio-project-explorer" hidden={!inspectorOpen}>
-          <div className="portfolio-project-controls"><div role="group" aria-label="Choose a project">{projectRecords.map(item => <button type="button" key={item.id} aria-pressed={projectId === item.id} onClick={() => { setProjectId(item.id); setShowMethod(false); }}>{item.name}</button>)}</div><div><button type="button" aria-label="Previous project" onClick={() => browseProject(-1)}>←</button><button type="button" aria-label="Next project" onClick={() => browseProject(1)}>→</button></div></div>
+          <div className="portfolio-project-controls"><div role="group" aria-label="Choose a project">{projectRecords.map(item => <button type="button" key={item.id} aria-pressed={projectId === item.id} onClick={() => { setProjectId(item.id); setShowMethod(false); }}>{item.name}</button>)}</div><div><button type="button" aria-label="Previous project" onClick={() => browseProject(-1)}><Icon name="left" /></button><button type="button" aria-label="Next project" onClick={() => browseProject(1)}><Icon name="right" /></button></div></div>
           <div onKeyDown={event => { if (event.key === "ArrowLeft" || event.key === "ArrowRight") { event.preventDefault(); browseProject(event.key === "ArrowRight" ? 1 : -1); } }} className={`garden-project-stage garden-project-${project.id}`} ref={projectFocusRef} tabIndex={-1} aria-label={`${project.name} project detail`} id="garden-project-focus">
             <div className="garden-project-visual" key={project.id} onPointerDown={event => { if (event.pointerType === "touch") swipeStart.current = { x: event.clientX, y: event.clientY }; }} onPointerCancel={() => { swipeStart.current = null; }} onPointerUp={event => { const start = swipeStart.current; swipeStart.current = null; if (!start) return; const dx = event.clientX - start.x, dy = event.clientY - start.y; if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) browseProject(dx < 0 ? 1 : -1); }}>
               {project.id === "smokenet" && !showMethod ? <Image src="/images/experience/2_SmokeNet/2_1_SN.jpg" alt="SmokeNet paper title projected in the AJCAI 2025 conference room" fill sizes="(max-width: 760px) 100vw, 65vw" /> : project.image ? <Image src={project.image} alt={`${project.name} ${project.id === "merr" ? "current architecture schematic" : "original architecture diagram"}`} fill sizes="(max-width: 760px) 100vw, 65vw" className="garden-architecture" /> : <MethodDrawing project={project.id} />}
@@ -235,19 +228,19 @@ export default function GardenPortfolio({ posts, background, publications, produ
 
         <section id="garden-person" className="garden-person" aria-labelledby="garden-person-title" ref={personRef}>
           <div className="garden-person-image"><Image src="/profile.jpg" alt="Le Nguyen Gia Hung" fill sizes="(max-width: 900px) 65vw, 30vw" /><button type="button" ref={aboutDuckRef} data-duck-state="idle" className="garden-running-duck" aria-label="Open the playground with my running duck" onClick={(event) => { const bounds = event.currentTarget.getBoundingClientRect(); openPlayground({ x: bounds.x + bounds.width / 2, y: bounds.y + bounds.height / 2 }); }}><span className="garden-duck-motion"><DuckSprite large /></span><span className="garden-duck-label">Play break?</span></button></div>
-          <div className="garden-person-copy"><p>There&apos;s a person in here, too.</p><h2 id="garden-person-title">Researcher.<br />Runner.<br />Duck person.</h2><p>AI undergraduate at FPT University. Founder of SpeedyLabX. Usually asking another question; otherwise running, at the gym, or behind a camera. Also very much a duck person.</p><div className="garden-person-links"><a href="#garden-journey">The journey <Arrow /></a><a href="/HungLNG_Resume.pdf" target="_blank" rel="noreferrer">My CV <Arrow diagonal /></a></div></div>
+          <div className="garden-person-copy"><h2 id="garden-person-title">Researcher.<br />Runner.<br />Duck person.</h2><p>I founded SpeedyLabX at FPT University. Outside research, I run, train at the gym and take photos. I also have a soft spot for ducks.</p><div className="garden-person-links"><a href="#garden-journey">The journey <Arrow /></a><a href="/HungLNG_Resume.pdf" target="_blank" rel="noreferrer">My CV <Arrow diagonal /></a></div></div>
         </section>
         {background}
         {posts.length ? <section className="garden-writing" id="garden-writing" aria-labelledby="garden-writing-title"><div><h2 id="garden-writing-title">Thinking out loud.</h2><Link href="/blog">All writing <Arrow /></Link></div>{posts.map(post => <Link className="garden-writing-entry" data-cursor="Read" href={`/blog/${post.slug}`} key={post.slug}><div className="garden-writing-image">{post.imageUrl ? <Image src={post.imageUrl} alt="" fill sizes="(max-width: 900px) 90vw, 40vw" /> : null}</div><div><time dateTime={post.date}>{post.date}</time><h3>{post.title}</h3><p>{post.excerpt}</p><span>Read the story <Arrow /></span></div></Link>)}</section> : null}
         <section className="garden-outro" id="garden-contact">
-          <p>Interesting questions? I&apos;m listening.</p><a href="mailto:heiontheway@gmail.com">Let&apos;s figure<br />something out.<Arrow diagonal /></a>
-          <p className="portfolio-availability">Open to research internships, AI/ML engineering opportunities and research collaborations.</p>
+          <p>For internships and research collaborations</p><a href="mailto:heiontheway@gmail.com">Let&apos;s talk.<Arrow diagonal /></a>
+          <p className="portfolio-availability">I&apos;m looking for research internships and AI/ML engineering opportunities.</p>
           <EmailCopy />
           <div className="garden-socials"><a href="https://github.com/hei1sme/" target="_blank" rel="noreferrer">GitHub</a><a href="https://linkedin.com/in/le-nguyen-gia-hung/" target="_blank" rel="noreferrer">LinkedIn</a>{academicLinks.map(([label, href]) => <a key={label} href={href} target="_blank" rel="noreferrer">{label}</a>)}</div>
         </section>
       </main>
       <nav className="garden-sitemap" aria-label="Portfolio sections"><a href="#garden-publications">Publications</a><a href="#garden-work">Projects</a><a href="#garden-journey">Journey</a><a href="#garden-education">Education</a><a href="#garden-toolkit">Toolkit</a><a href="#garden-writing">Writing</a><a href="#garden-contact">Contact</a></nav>
-      <footer className="garden-footer"><p>Le Nguyen Gia Hung <span>Keep asking. Keep moving.</span></p><button type="button" className="garden-playground-link" onClick={(event) => { const bounds = event.currentTarget.getBoundingClientRect(); openPlayground({ x: bounds.x + bounds.width / 2, y: bounds.y + bounds.height / 2 }); }}>Something to play with <span aria-hidden="true">✳</span></button></footer>
+      <footer className="garden-footer"><p>Le Nguyen Gia Hung <span>Keep asking. Keep moving.</span></p><button type="button" className="garden-playground-link" onClick={(event) => { const bounds = event.currentTarget.getBoundingClientRect(); openPlayground({ x: bounds.x + bounds.width / 2, y: bounds.y + bounds.height / 2 }); }}>Something to play with <Icon name="spark" size={27} className="portfolio-brand-mark" /></button></footer>
       {!production ? <aside className="garden-comparison" aria-label="Compare design explorations"><span>Compare openings</span><button type="button" aria-pressed={!photographic} onClick={() => chooseOpening(false)}>Sculpture</button><button type="button" aria-pressed={photographic} onClick={() => chooseOpening(true)}>Photograph</button><Link href="/">Main website <Arrow diagonal /></Link></aside> : null}
       <dialog className="garden-playground" ref={playgroundRef} onCancel={() => setPlayground(false)} aria-label="NeuralBreach playground"><button type="button" className="garden-playground-close" onClick={closePlayground}>Close playground</button>{playground ? <NeuralBreach onClose={closePlayground} buttonPosition={playgroundOrigin} allowSkip /> : null}</dialog>
     </div>

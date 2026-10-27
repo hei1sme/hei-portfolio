@@ -330,7 +330,7 @@ export default function BotanicalScene(props: BotanicalSceneProps) {
     <div className="garden-canvas-host" ref={hostRef}>
       {failed ? (
         <div className="garden-scene-poster garden-scene-fallback"><Image src="/images/personal/sculpture-poster.jpg" alt="The blue botanical sculpture, shown as a still image" fill sizes="(max-width: 900px) 100vw, 70vw" /><p>Still view · 3D is unavailable on this device.</p></div>
-      ) : <canvas ref={canvasRef} aria-label="Procedural blue botanical sculpture. Use the buttons below to rotate or change its representation." role="img" />}
+      ) : <canvas ref={canvasRef} aria-label="Procedural blue botanical sculpture. Rotate it or show its points from the Explore menu." role="img" />}
     </div>
   );
 }

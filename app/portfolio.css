@@ -1,6 +1,27 @@
 /* Shared Sculpture identity: homepage, case studies and writing. */
 body { background: #edf1f5; color: #152344; font-family: var(--garden-font), sans-serif; cursor: auto; }
 body::before, body::after { display: none; }
+.portfolio-icon { display: inline-block; flex-shrink: 0; vertical-align: -.15em; }
+.portfolio-brand-mark { color: #214ce8; }
+.portfolio-welcome .portfolio-brand-mark { color: #d7ed91; }
+.portfolio-motion-control { position: fixed; right: max(18px, env(safe-area-inset-right)); bottom: max(18px, env(safe-area-inset-bottom)); z-index: 70; display: inline-flex; gap: 8px; align-items: center; min-height: 44px; border: 1px solid #15234440; border-radius: 24px; background: #edf1f5; color: #152344; padding: 10px 14px; font: inherit; font-size: 12px; cursor: pointer; }
+.portfolio-motion-control:hover { background: #dce3ed; }
+.portfolio-motion-control:focus-visible { outline: 3px solid #dc6b27; outline-offset: 4px; }
+.portfolio-motion-control:disabled { cursor: default; }
+.portfolio-site[data-motion-paused="true"] .portfolio-cursor { display: none; }
+.garden-scene-hint { font-size: 13px; line-height: 1.6; color: #435578; }
+.portfolio-touch-hint { display: none; }
+@media (hover: none), (pointer: coarse) {
+  .portfolio-pointer-hint { display: none; }
+  .portfolio-touch-hint { display: inline; }
+}
+.garden-menu-links { max-height: calc(100svh - 140px); overflow-y: auto; }
+.garden-menu-links button { display: flex; align-items: center; gap: 12px; min-height: 44px; width: 100%; padding: 8px 0; border: 0; background: transparent; color: inherit; text-align: left; font: inherit; font-size: 14px; }
+.garden-menu-links button:disabled { color: #64728d; cursor: default; }
+.garden-menu-links button[aria-pressed="true"] { color: #214ce8; }
+.garden-menu-motion-title { padding-top: 16px; margin-top: 8px !important; border-top: 1px solid #15234426; font-size: 12px; color: #435578; }
+.portfolio-site .garden-footer, .portfolio-site .portfolio-site-footer { padding-bottom: 82px; }
+@media (prefers-reduced-motion: reduce) { .portfolio-motion-control { display: none; } }
 .portfolio-shell { min-height: 100svh; }
 .portfolio-shell main { min-height: 55svh; }
 .portfolio-shell h1, .portfolio-shell h2 { text-wrap: balance; }

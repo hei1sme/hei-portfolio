@@ -17,7 +17,7 @@ function StripFrames() {
   </>;
 }
 
-export default function MotionStrip({ paused, reduced, onToggle }: { paused: boolean; reduced: boolean; onToggle: () => void }) {
+export default function MotionStrip({ paused, reduced }: { paused: boolean; reduced: boolean }) {
   const viewportRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const groupRef = useRef<HTMLDivElement>(null);
@@ -132,6 +132,6 @@ export default function MotionStrip({ paused, reduced, onToggle }: { paused: boo
     <div className="portfolio-strip-viewport" ref={viewportRef} tabIndex={0} role="group" aria-label="Research and personal image strip. Use left and right arrow keys to move it." data-cursor="Drag" data-running="false">
       <div className="portfolio-strip-track" ref={trackRef} aria-hidden="true"><div className="portfolio-strip-group" ref={groupRef}><StripFrames /></div><div className="portfolio-strip-group"><StripFrames /></div></div>
     </div>
-    <div className="portfolio-strip-caption"><p>Research, running, and the curiosity between them.<span className="portfolio-strip-breather" aria-hidden="true">Catching my breath…</span></p><button type="button" onClick={onToggle} disabled={reduced} aria-pressed={paused || reduced} aria-label={reduced ? "Ribbon motion reduced" : paused ? "Play ribbon motion" : "Pause ribbon motion"}>{reduced ? "Motion reduced" : paused ? "Play motion" : "Pause motion"}<svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor" aria-hidden="true">{paused ? <path d="m6 3 10 7-10 7z" /> : <path d="M5 3h3v14H5zm7 0h3v14h-3z" />}</svg></button></div>
+    <div className="portfolio-strip-caption"><p>A few things from my work and life.<span className="portfolio-strip-breather" aria-hidden="true">Catching my breath…</span></p></div>
   </section>;
 }

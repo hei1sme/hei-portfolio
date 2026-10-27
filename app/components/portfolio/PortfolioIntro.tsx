@@ -1,5 +1,7 @@
 "use client";
 
+import Icon from "./Icon";
+
 import { useEffect, useRef } from "react";
 import { introSessionKey } from "../../../lib/intro";
 import DuckSprite from "./DuckSprite";
@@ -71,12 +73,12 @@ export default function PortfolioIntro() {
   }, []);
 
   return <section className="portfolio-welcome" ref={ref} aria-labelledby="portfolio-welcome-title" aria-hidden="true">
-    <div className="portfolio-welcome-top"><span>hei<span aria-hidden="true">✳</span></span><button type="button">Skip intro <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" fill="none" stroke="currentColor" strokeWidth="1.7" /></svg></button></div>
+    <div className="portfolio-welcome-top"><span>hei<Icon name="spark" size={27} className="portfolio-brand-mark" /></span><button type="button">Skip intro <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" fill="none" stroke="currentColor" strokeWidth="1.7" /></svg></button></div>
     <div className="portfolio-welcome-stage">
       <p className="portfolio-welcome-name" id="portfolio-welcome-title"><span>Le Nguyen</span>{" "}<span>Gia Hung<span className="portfolio-welcome-dot">.</span></span></p>
-      <p className="portfolio-welcome-description">Researcher. Runner. Always curious.</p>
+      <p className="portfolio-welcome-description">AI research, with a few running breaks.</p>
       <div className="portfolio-welcome-lane" aria-hidden="true"><div className="portfolio-welcome-runner"><DuckSprite large /></div><span className="portfolio-welcome-ground" /></div>
-      <p className="portfolio-welcome-caption">A quick warm-up. Then, the work.</p>
+      <p className="portfolio-welcome-caption">Just warming up.</p>
     </div>
     <div className="portfolio-welcome-bottom"><span>Keep asking.</span><span>Keep moving.</span></div>
   </section>;

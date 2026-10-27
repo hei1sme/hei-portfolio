@@ -16,12 +16,12 @@ The aim was to **predict PM2.5 levels up to 24 hours ahead** and translate raw c
 
 - **Published at AJCAI 2025** with a research paper detailing the end-to-end system.
 - Achieved **MAE 0.7470** and **R^2 0.9545** on the held-out 2024 evaluation split (35.9% MAE reduction vs an XGBoost baseline).
-- Survived a back-test on the **May 2024 smoke crisis**, outperforming the traditional baseline by **57.7% MAE**.
+- In the **May 2024 smoke-event backtest**, MAE was **57.7% lower than the baseline**. This is a separate evaluation from the held-out result above.
 
 ## Architecture
 
 - Custom transformer encoder with seasonal embeddings and a reconstruction loss that stabilises long-horizon error.
-- Chronological cross-validation ensures leakage-free evaluation for drifting urban-air patterns.
+- Chronological cross-validation keeps training and evaluation ordered in time.
 - GPU-accelerated training on rolling 2020-2025 data ingested from the OpenWeather API.
 
 ## Explainability
@@ -38,5 +38,5 @@ Transparency is central to the project:
 
 ## Lessons
 
-- A lightweight transformer with solid data hygiene can beat heavier baselines when the evaluation protocol is honest.
-- Human-readable narratives (via XAI) are non-negotiable when models drive public safety decisions.
+- The model comparison depends on the data split and evaluation protocol. I report the held-out and smoke-event results separately.
+- Attribution and counterfactual analysis help inspect a forecast. They do not establish that the system is ready for public-safety use.

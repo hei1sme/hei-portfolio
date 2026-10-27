@@ -109,6 +109,8 @@ Repository skills live in `.agents/skills/`:
 - `react-best-practices` (skill name `vercel-react-best-practices`): React/Next.js performance.
 - `web-design-guidelines`: UI, accessibility, and interaction review.
 - `writing-guidelines`: concise, concrete portfolio writing.
+- `humanizer`: edit AI-sounding prose while preserving the owner's voice,
+  technical facts, names, numbers, metadata and source links.
 - `taste-skill` (skill name `design-taste-frontend`): reference-led art direction
   and browser-based visual iteration.
 - `apple-design`: fluid interaction, typography and spatial consistency for web.
@@ -127,6 +129,13 @@ UI UX Pro Max's scripts against its installed skill directory rather than assumi
 the Claude-specific environment variable in the upstream command exists.
 
 ## Content and design
+
+- Decorative stars/arrows in active pages must use `components/portfolio/Icon`
+  SVGs, not Unicode glyphs that iOS/iPadOS can render as emoji. Semantic symbols
+  in scientific text are unaffected. See `design/ipad-icons-and-copy.md`.
+- Keep one shared ambient-motion control via `PortfolioMotion`; hero replay,
+  points and rotation options are in Explore. Do not restore a row of prototype
+  controls or duplicate ribbon pause buttons. System reduced motion still wins.
 
 - The owner requested a running-duck welcome before the homepage and authorized
   pushing the finished site to the connected Vercel integration. Its behavior,

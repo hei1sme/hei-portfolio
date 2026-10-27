@@ -1,5 +1,7 @@
 "use client";
 
+import Icon from "../../components/portfolio/Icon";
+
 import { useState } from "react";
 import Link from "next/link";
 import type { IconType } from "react-icons";
@@ -47,13 +49,13 @@ export default function GardenToolkit() {
   const [selected, setSelected] = useState(0);
   const workflow = workflows[selected];
   return <section className="garden-visual-toolkit" id="garden-toolkit" aria-labelledby="garden-toolkit-title">
-    <div className="garden-toolkit-heading"><h2 id="garden-toolkit-title">Tools, connected<br />to the work.</h2><p>A research workflow, from observations to usable systems.<br />Choose a project to trace its documented methods.</p></div>
+    <div className="garden-toolkit-heading"><h2 id="garden-toolkit-title">Tools I use.</h2><p>Choose a project to see which tools I used.</p></div>
     <div className="garden-workflow-choices" role="group" aria-label="Trace a project workflow">{workflows.map((item, index) => <button type="button" key={item.id} aria-pressed={selected === index} onClick={() => setSelected(index)}>{item.name}</button>)}</div>
     <div className="garden-workflow-map">
       <svg className="garden-workflow-path" viewBox="0 0 1000 80" preserveAspectRatio="none" aria-hidden="true" key={workflow.id}><path d="M125 40H875" fill="none" stroke="currentColor" strokeWidth="2" />{[125, 375, 625, 875].map(x => <circle cx={x} cy="40" r="7" fill="currentColor" key={x} />)}</svg>
       <ol className="garden-tool-stages">{stages.map(stage => <li key={stage.name}><h3>{stage.name}</h3><p>{stage.description}</p><ul>{stage.tools.map(tool => <ToolLabel tool={tool} active={workflow.tools.includes(tool.name)} key={tool.name} />)}</ul></li>)}</ol>
     </div>
-    <div className="garden-workflow-proof" aria-live="polite" aria-atomic="true"><h3>{workflow.name}</h3><ol>{workflow.steps.map(step => <li key={step}>{step}</li>)}</ol>{workflow.href ? <Link href={workflow.href}>Read the case study <span aria-hidden="true">↗</span></Link> : <a href="#garden-overview-asr">View the ASR project <span aria-hidden="true">↗</span></a>}</div>
-    <div className="garden-lab-tools"><h3>Across the lab workflow</h3><ul>{labTools.map(tool => <ToolLabel tool={tool} key={tool.name} />)}</ul><p>Blue marks show documented tools for the selected project. Other tools remain visible as part of my broader toolkit.</p></div>
+    <div className="garden-workflow-proof" aria-live="polite" aria-atomic="true"><h3>{workflow.name}</h3><ol>{workflow.steps.map(step => <li key={step}>{step}</li>)}</ol>{workflow.href ? <Link href={workflow.href}>Read the case study <Icon name="external" /></Link> : <a href="#garden-overview-asr">View the ASR project <Icon name="external" /></a>}</div>
+    <div className="garden-lab-tools"><h3>Across the lab workflow</h3><ul>{labTools.map(tool => <ToolLabel tool={tool} key={tool.name} />)}</ul><p>Blue marks show tools used in the selected project. The rest are part of my broader toolkit.</p></div>
   </section>;
 }

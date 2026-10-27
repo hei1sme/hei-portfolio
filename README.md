@@ -7,6 +7,10 @@ A short welcome introduces the owner with his running duck and full name before
 revealing the Sculpture. It runs once per browser-tab session and can be skipped
 immediately with the button, Escape, Tab or scrolling. Direct section links and
 reduced motion bypass it. It is an introduction, not a simulated loading meter.
+Replay welcome and sculpture options live in Explore. A single Pause motion
+control stops ambient movement across the site; it is hidden when the system
+already requests reduced motion. Decorative stars and arrows use SVG so Safari
+does not replace them with colored emoji.
 
 The Sculpture site is now the main homepage at `/`. `/concepts/garden` redirects
 there. Earlier concepts remain under `/concepts`, excluded from indexing and
@@ -96,6 +100,9 @@ domain has been chosen or configured by this change.
 
 Read `AGENTS.md` before making changes. Interviews and reference studies remain
 in `design/`; skill attribution is in `.agents/skills/SOURCES.json`.
+Humanizer is vendored in `.agents/skills/humanizer/` with its MIT license and
+pinned source commit. The latest icon, motion-control and copy review is in
+[design/ipad-icons-and-copy.md](design/ipad-icons-and-copy.md).
 
 Deferred research figures, demos and owner inputs are tracked in
 [notes/portfolio-backlog.md](notes/portfolio-backlog.md). Check it before planning

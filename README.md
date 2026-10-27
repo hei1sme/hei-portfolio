@@ -16,6 +16,11 @@ The Sculpture site is now the main homepage at `/`. `/concepts/garden` redirects
 there. Earlier concepts remain under `/concepts`, excluded from indexing and
 outside the public portfolio navigation.
 
+A two-leaf sculpture trial is available at `/?sculpture=leaves`: curved cobalt
+leaves, fine veins, a sampled-point opening and a small duck companion. The main
+homepage keeps the existing sculpture while this candidate is reviewed. See
+[the trial notes](design/leaf-study-trial.md) for scope and provenance.
+
 Research lists one published paper and four manuscripts under review, with full
 authorship and venue/status kept distinct. The applied-work section covers
 FCAJ/NutriTrack, BioListen VN (6th in Round 1 of VAIC 2026) and CosmicOptic

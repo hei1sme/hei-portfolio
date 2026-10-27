@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 850" fill="none">
+  <defs>
+    <path id="leaf" d="M0 0C-18-8.5-46-4-50 12C-56 25-38 29-17 37C-22 39-41 33-49 36C-56 43-48 55-39 57C-29 60-18 55-12 61C-19 65-34 60-38 63C-40 70-28 78-11 79C-15 82-23 77-24 80C-20 88-6 94 1.5 102C8 92 22 86 27 77C30 72 15 76 11 73C16 68 34 71 39 63C46 52 40 50 17 53C12 50 43 48 49 41C54 34 47 27 39 27C30 27 20 31 15 28C24 23 47 24 49 12C51-4.5 20-10 0 0Z"/>
+  </defs>
+  <ellipse cx="465" cy="735" rx="130" ry="20" fill="#152344" opacity=".08"/>
+  <ellipse cx="420" cy="719" rx="56" ry="17" fill="#d5dce8"/>
+  <path d="M420 713Q444 622 456 583M420 713Q369 644 371 612" stroke="#2147bd" stroke-width="5"/>
+  <g transform="translate(456 583) rotate(196) scale(3.75)" fill="#2144c3"><use href="#leaf"/><path d="M0 0L1 100M0 7L-44 16M0 29L-45 46M0 52L-31 70M0 25L44 39M0 46L33 63" stroke="#456ce0" stroke-width=".5"/></g>
+  <g transform="translate(371 612) rotate(132) scale(2.9)" fill="#193bb0"><use href="#leaf"/><path d="M0 0L1 100M0 7L-44 16M0 29L-45 46M0 52L-31 70M0 25L44 39M0 46L33 63" stroke="#456ce0" stroke-width=".5"/></g>
+</svg>

@@ -19,6 +19,10 @@ const BotanicalScene = dynamic(() => import("./BotanicalScene"), {
   ssr: false,
   loading: () => <div className="garden-scene-poster" role="status"><Image src="/images/personal/sculpture-poster.jpg" alt="" fill sizes="(max-width: 900px) 100vw, 70vw" priority /><span className="sr-only">Loading the interactive sculpture</span></div>,
 });
+const LeafStudyScene = dynamic(() => import("./LeafStudyScene"), {
+  ssr: false,
+  loading: () => <div className="garden-scene-poster" role="status"><Image src="/images/personal/leaf-study-poster.svg" alt="" fill sizes="(max-width: 900px) 100vw, 70vw" priority /><span className="sr-only">Loading the two-leaf sculpture</span></div>,
+});
 const NeuralBreach = dynamic(() => import("../../components/NeuralBreach"), { ssr: false });
 
 const projectEvidence = {
@@ -47,6 +51,7 @@ export default function GardenPortfolio({ posts, background, publications, exper
   const [entranceReplay, setEntranceReplay] = useState(0);
   const [sceneReady, setSceneReady] = useState(false);
   const [photographic, setPhotographic] = useState(false);
+  const [leafStudy, setLeafStudy] = useState<boolean | null>(null);
   const [projectId, setProjectId] = useState("smokenet");
   const [showMethod, setShowMethod] = useState(false);
   const [inspectorOpen, setInspectorOpen] = useState(!production);
@@ -86,7 +91,9 @@ export default function GardenPortfolio({ posts, background, publications, exper
   }, [openPlayground]);
 
   useEffect(() => {
-    if (!production) setPhotographic(new URLSearchParams(window.location.search).get("view") === "photo");
+    const query = new URLSearchParams(window.location.search);
+    if (!production) setPhotographic(query.get("view") === "photo");
+    setLeafStudy(query.get("sculpture") === "leaves");
   }, [production]);
 
   useEffect(() => {
@@ -178,7 +185,7 @@ export default function GardenPortfolio({ posts, background, publications, exper
             {photographic ? <figure className="garden-hero-photo">
               <Image src="/images/experience/2_SmokeNet/2_1_SN.jpg" alt="SmokeNet paper title projected in the AJCAI 2025 conference room" fill sizes="(max-width: 760px) 100vw, 65vw" priority />
               <figcaption>The first paper. The beginning of more questions.<br /><span>SmokeNet · AJCAI 2025</span></figcaption>
-            </figure> : <BotanicalScene points={points} paused={paused} reduced={reduced} rotation={rotation} progress={progress} replay={entranceReplay} onReady={onSceneReady} onUnavailable={onSceneUnavailable} />}
+            </figure> : leafStudy === null ? <div className="garden-scene-poster" role="status"><span className="sr-only">Preparing the sculpture</span></div> : leafStudy ? <LeafStudyScene points={points} paused={paused} reduced={reduced} rotation={rotation} progress={progress} replay={entranceReplay} onReady={onSceneReady} onUnavailable={onSceneUnavailable} /> : <BotanicalScene points={points} paused={paused} reduced={reduced} rotation={rotation} progress={progress} replay={entranceReplay} onReady={onSceneReady} onUnavailable={onSceneUnavailable} />}
           </div>
           <div className="garden-hero-bottom">
             <a href="#garden-publications" className="garden-scroll-link"><Icon name="down" /> Research, just below</a>

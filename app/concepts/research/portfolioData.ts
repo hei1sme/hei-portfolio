@@ -219,6 +219,7 @@ export const certificationRecords = [
   ["Full Stack Software Developer", "IBM"],
   ["AI Engineer Professional", "Packt"],
   ["Data Science & SQL", "IBM"],
+  ["Statistics for Data Science with Python", "IBM"],
   ["Docker, Kubernetes & OpenShift", "IBM"],
 ];
 export const academicLinks = [

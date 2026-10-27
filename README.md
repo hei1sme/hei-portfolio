@@ -71,11 +71,33 @@ and WebGL fallback. Normal pointer behavior and vertical scrolling remain usable
 - Blog: `content/blog/*.mdx`, loaded by `lib/posts.ts`.
 - Cases: `content/projects/*.mdx`, loaded by `lib/projects.ts`.
 - Shared facts/profiles: `app/concepts/research/portfolioData.ts`.
-- Resume: `public/HungLNG_Resume.pdf`.
+- Resume: `public/HungLNG_Resume.pdf`; text version: `public/HungLNG_Resume.md`.
 
 Trusted repository MDX is compiled on the server. Preserve authorship, paper
 status, project roles, dates and evaluation scope. Do not present attention as a
 causal explanation, a schematic as measured output, or a profile as a project repo.
+
+### Update the CV
+
+The owner's imported Overleaf source lives locally at
+`docs/cv/resume_havard_ver.tex`. The attachment and previous PDF are preserved in
+`docs/cv/original/`. The entire `docs/` directory is ignored; these private source
+files are not included in a fresh clone.
+
+```sh
+python scripts/build-cv.py
+```
+
+This builds a review copy at `output/pdf/HungLNG_Resume.pdf`. On Windows the
+script installs a checksum-verified Tectonic 0.17.0 into ignored local tooling if
+needed; other platforms need Tectonic on PATH. The first build downloads TeX
+packages and requires network access. Review both pages and links, then run
+`python scripts/build-cv.py --publish` to replace the website PDF. Update the
+Markdown resume and shared portfolio facts alongside it. The `--publish` flag
+only copies the PDF locally; deploying still requires the Git/Vercel flow below.
+
+The import, content reconciliation and remaining date questions are documented
+in [design/cv-update.md](design/cv-update.md).
 
 ## Deployment
 

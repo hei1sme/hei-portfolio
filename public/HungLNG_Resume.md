@@ -1,107 +1,151 @@
-# LE NGUYEN GIA HUNG
+# Le Nguyen Gia Hung
 
-📧 heiontheway@gmail.com | 📞 +84 394 262 651  
-📍 Ho Chi Minh City, Vietnam  
+AI Undergraduate Researcher | Time-Series & Multimodal XAI
 
-🔗 [LinkedIn](https://www.linkedin.com/in/le-nguyen-gia-hung)  
-🐙 [GitHub](https://github.com/hei1sme)  
-🌐 [Portfolio](https://hei-portfolio.vercel.app)  
-🆔 [ORCID](https://orcid.org/0009-0003-7120-8167)  
-🎓 [Google Scholar](https://scholar.google.com/citations?user=iGODAQYAAAAJ)
+heiontheway@gmail.com | +84 394 262 651 | Ho Chi Minh City, Vietnam
 
----
+[LinkedIn](https://linkedin.com/in/le-nguyen-gia-hung) ·
+[GitHub](https://github.com/hei1sme) ·
+[Portfolio](https://hei-portfolio.vercel.app) ·
+[ORCID: 0009-0003-7120-8167](https://orcid.org/0009-0003-7120-8167) ·
+[Google Scholar](https://scholar.google.com/citations?user=iGODAQYAAAAJ)
 
-## EDUCATION
+## Education
 
-**FPT University**, Ho Chi Minh City, Vietnam  
-**Bachelor of Engineering in Artificial Intelligence**  
-*Expected Dec 2027* — **GPA:** 8.62 / 10.0  
+**FPT University**, Ho Chi Minh City, Vietnam
+B.Eng. in Artificial Intelligence | 2023–December 2027 (expected) | GPA: 8.62/10.0
 
-- **Honors:** Certificate of Merit – Honorable Student of Trimester (Semesters 3, 4, 5)  
-- **Relevant Coursework:** Data Structures and Algorithms, Linear Algebra, Introduction to Artificial Intelligence, Deep Learning, Statistical Analysis
+- Certificate of Merit: Honorable Student of Trimester, semesters 3, 4, 5 and 6.
+- Coursework: Data Structures and Algorithms, Linear Algebra, Introduction to AI,
+  Deep Learning, Statistical Analysis.
 
----
+## Publications & manuscripts
 
-## PUBLICATIONS
+- **Published:** Gia-Hung Nguyen Le et al. “Proactive Air Quality Forecasting and
+  Health Alert System for Melbourne.” AJCAI 2025, Springer LNAI.
+  First and corresponding author.
+  [DOI: 10.1007/978-981-95-4969-6_34](https://doi.org/10.1007/978-981-95-4969-6_34).
+- “Stress-Testing Multi-Source Cyanobacterial Bloom Forecasting under Sparse
+  Monitoring.” Under review, AJCAI 2026. First and corresponding author.
+- “Warning Before the Evening Peak: Health-Centred Air Quality Alerts in New
+  Zealand and Australia.” Under review, AJCAI 2026. Second author.
+- “Trustworthy Multimodal Anomaly Detection in Time Series with Conformal
+  Calibration and Counterfactual Attribution.” Under review, ACM SIGKDD 2027.
+  Second author.
 
-**Gia-Hung Nguyen Le et al.**  
-*Proactive Air Quality Forecasting and Health Alert System for Melbourne*  
-**Australasian Joint Conference on Artificial Intelligence (AJCAI 2025)**  
-Springer, Lecture Notes in Artificial Intelligence (LNAI) — **Q2 (SJR 2024)**  
-DOI: https://doi.org/10.1007/978-981-95-4969-6_34
+## Selected research experience
 
----
+### SmokeNet: Air Quality Forecasting
 
-## RESEARCH & TECHNICAL EXPERIENCE
+Academic research | First & Corresponding Author | June–November 2025
+Published at AJCAI 2025
 
-### Proactive Air Quality Forecasting System (AJCAI 2025)  
-**Academic Research** — *First Author & Corresponding Author*  
-*Jun 2025 – Nov 2025*
+- Designed the Transformer forecasting architecture with seasonal embeddings and
+  reconstruction loss for Melbourne's PM2.5.
+- Reported MAE 0.7470, R² 0.9545 and 35.9% lower MAE than XGBoost on the 2024
+  held-out evaluation.
+- Evaluated the May 2024 smoke event separately: 57.7% lower MAE than the baseline
+  in that backtest.
+- Built a chronological evaluation pipeline on 4+ years of OpenWeather data;
+  used SHAP, Integrated Gradients and DiCE to inspect forecasts.
 
-- Designed and implemented **SmokeNet**, a Transformer-based architecture for PM2.5 time-series forecasting  
-- Achieved **MAE 0.7470** and **R² 0.9545**, reducing error by **35.9%** vs. XGBoost baselines on 2024 data  
-- Outperformed baselines by **57.7%** during the May 2024 severe smoke event backtest  
-- Built an end-to-end pipeline processing **4+ years** of OpenWeather data with GPU-accelerated chronological CV  
-- Integrated **Explainable AI** (SHAP, Integrated Gradients) for interpretable health alerts
+### Cyanobacterial Bloom Forecasting
 
----
+Academic research | First & Corresponding Author | January 2026–Present
+AJCAI 2026 under review
 
-### MERR-GAT: Explainable Multimodal Emotion Recognition  
-**Academic Research** — *Second Author & Corresponding Author*  
-*Oct 2025 – Present*
+- Built a causal weekly benchmark across 7 New Zealand lakes: n=5,432, with an
+  untouched 2023–2024 holdout (n=170).
+- Compared forecast horizons: 7-day Chl-a history XGBoost reached weighted F1
+  0.791 (+0.103 over full fusion, p=0.016); 14-day full fusion reached 0.703.
+- Audited incident eligibility: 22 apparent episode starts reduced to 3 incidents;
+  formulated an 8-gate provenance-aware audit protocol.
+- Led manuscript writing and experimental protocols.
 
-- Developing **MERR-GAT**, fusing **Wav2Vec 2.0 (audio)** and **RoBERTa (text)** via **GATv2**  
-- Designing dynamic conversational graphs modeling temporal and speaker interactions  
-- Implementing intrinsic XAI using attention weights for decision interpretability  
-- Benchmarking on **IEMOCAP, RAVDESS, MELD** with flexible 4/5/6-class emotion heads
+### Health-Centred Air Quality Alerts (NZ & Australia)
 
----
+Academic research | Second Author | January 2026–Present
+AJCAI 2026 under review
 
-### End-to-End Vietnamese Speech Recognition System  
-**Academic Research** — *Co-Author*  
-*Sep 2025 – Present*
+- Evaluated exposure coverage across Canterbury's 10-year (n=620,057) and
+  Melbourne's 4-year (n=823,009) hourly records.
+- Reported that daily-mean triggers overstate exposure protection by 7.7–18.6
+  points; 42% of exposure occurred on sub-threshold daily-mean days.
+- Built an archived weather-forecast panel model: 1-day-ahead MAE 3.19 µg/m³,
+  R² 0.54.
 
-- Building a **5.4M-parameter** ASR model with 4-layer CNN frontend and 3-layer Residual BiLSTM encoder  
-- Trained on a **745-hour** Vietnamese speech corpus using **CTC loss**  
-- Achieved **WER 33.09%** and **CER 15.28%** on diverse test sets  
-- Benchmarked against **PhoWhisper** to analyze efficiency–accuracy trade-offs
+### Trustworthy Multimodal Anomaly Detection
 
----
+Academic research | Second Author | January 2026–Present
+ACM SIGKDD 2027 under review
 
-### PPE Detection System (YOLOv8)  
-**Course Project** — *Developer*  
-*Sep 2025 – Nov 2025*
+- Audited look-ahead text leakage across 9 domains: a reported 4.52% error
+  reduction from naive text fusion reversed under embargo (leakage fraction 1.50).
+- Developed C-DLE with split-conformal calibration and Mondrian pools for
+  false-alarm control under missing modalities.
+- Designed cross-modal counterfactual attribution; reported 94.3% accuracy against
+  ground-truth anomalies with a 10% coreset.
 
-- Developed real-time object detection with **YOLOv8** for 9 PPE classes  
-- Implemented safety logic to classify workers as **Compliance Safe** or **Unsafe**  
-- Deployed via **Streamlit** with live webcam inference and violation reporting
+### MERR-GAT: Multimodal Emotion Recognition
 
----
+Academic research | Second & Corresponding Author | October 2025–Present
+In progress
 
-## LEADERSHIP
+- Develop WavLM + Compact Conformer audio encoding and BERT/RoBERTa text
+  representations, fused through dual-channel graph attention.
+- Inspect modality contributions using attention visualization, SHAP and
+  Integrated Gradients; attention alone is not a causal explanation.
+- Evaluation is in progress on IEMOCAP, RAVDESS and MELD, using WA, UA and Macro-F1.
 
-### SpeedyLabX — Student Research Group, FPT University  
-**Founder & Student Lead**  
-*2025 – Present*
+### Vietnamese Speech Recognition
 
-- Founded and led a 10-member undergraduate research group  
-- Organized weekly technical workshops and paper reading sessions  
-- Coordinated submission workflow for the group’s first **AJCAI-accepted** paper
+Academic research | Co-Researcher & Co-Author | September 2025–Present
+In progress
 
----
+- Build a 5.4M-parameter ASR model: 4-layer CNN, 3-layer residual BiLSTM and CTC
+  training on 745 hours of Vietnamese speech.
+- Reported WER 33.09% and CER 15.28%; compare with PhoWhisper to study the
+  efficiency–accuracy trade-off.
+  [Method and evaluation notes](https://hei-portfolio.vercel.app/projects/vietnamese-asr).
 
-## CERTIFICATIONS
+### PPE Detection (YOLOv8)
 
-- Data Science Fundamentals with Python and SQL — **IBM**  
-- Statistics for Data Science with Python — **IBM**  
-- Introduction to Containers with Docker, Kubernetes & OpenShift — **IBM**
+Course project | Developer
 
----
+- Built 9-class detection, safe/unsafe compliance logic and a Streamlit webcam
+  interface with violation reporting.
 
-## SKILLS
+## Leadership & cloud learning
 
-- **Programming:** Python, SQL (PostgreSQL)  
-- **ML/DL:** PyTorch, TensorFlow/Keras, Hugging Face Transformers, Scikit-learn, OpenCV  
-- **Data & MLOps:** Pandas, NumPy, Matplotlib, Git, Docker, Linux, Weights & Biases (W&B), Streamlit  
-- **Technical Writing:** Blog posts and technical documentation  
-  - Portfolio: https://hei-portfolio.vercel.app
+### SpeedyLabX Student Research Group, FPT University
+
+Founder & Student Lead | January 2025–Present
+
+- Lead a 10-member undergraduate group, with weekly technical workshops, paper
+  reading and shared conference-submission workflows; research spans 3 pilots
+  and 4 manuscripts.
+
+### First Cloud AI Journey Program
+
+FCAJ Cloud Intern, Team NeuraX | AWS Vietnam program | 2026
+
+- Documented cloud learning, workshops and project work in the
+  [program journal](https://hei1sme.github.io/hei-FCAJ-intership-report/).
+
+## Skills
+
+- Programming: Python, SQL/PostgreSQL; TypeScript, React, FastAPI.
+- ML & evaluation: PyTorch, Transformers, TensorFlow/Keras, Scikit-learn, OpenCV;
+  SHAP, Integrated Gradients, DiCE, chronological cross-validation.
+- Data & tools: Pandas, NumPy, Matplotlib, Weights & Biases, Jupyter, Git, Docker,
+  Linux, Streamlit. Technical writing: manuscripts, documentation and blog posts.
+
+## Certifications
+
+- Natural Language Processing — DeepLearning.AI.
+- Gradient to Production: MLOps & Model Serving — Coursera.
+- Full Stack Software Developer — IBM.
+- Data Science Fundamentals with Python and SQL — IBM.
+- Statistics for Data Science with Python — IBM.
+- Introduction to Containers with Docker, Kubernetes & OpenShift — IBM.
+- AI Engineer Professional — Packt.

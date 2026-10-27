@@ -52,6 +52,18 @@ giả hoặc dùng audio/ảnh không liên quan để minh họa như kết qu�
 - [ ] FCAJ: xác nhận ngày bắt đầu/kết thúc và trạng thái chương trình.
   Chủ portfolio chưa xác nhận đã kết thúc; không tự ghi completed hay
   suy ra đang là nhân viên AWS.
+- [ ] PPE: xác nhận thời gian thực hiện. Bản LaTeX chủ portfolio gửi ghi
+  09–11/2025, còn case MDX ghi 09/2024. CV hiện để “Course project”, chưa ghi
+  mốc tháng/năm; không tự chọn một mốc để đồng bộ.
+
+## Nguồn CV đã nhập
+
+Chủ portfolio đã gửi nguồn Overleaf `resume_havard_ver.tex.txt`. Bản gốc và CV
+cũ nằm trong `docs/cv/original/`; bản đang chỉnh là
+`docs/cv/resume_havard_ver.tex`. Thư mục `docs/` được ignore và chỉ có trên máy
+này. Dùng `python scripts/build-cv.py` để xuất bản kiểm tra; chỉ thêm `--publish`
+sau khi đã kiểm tra hai trang PDF. Xem `design/cv-update.md` để biết nguồn thông
+tin và các mục đã đồng bộ.
 
 ## Khi tiếp tục
 

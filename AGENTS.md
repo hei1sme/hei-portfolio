@@ -130,6 +130,12 @@ the Claude-specific environment variable in the upstream command exists.
 
 ## Content and design
 
+- The owner's Overleaf CV was imported into ignored `docs/cv/`. Edit
+  `resume_havard_ver.tex` there; preserve `original/`. Build with
+  `python scripts/build-cv.py`, inspect both pages, then use `--publish` to update
+  the public PDF. Keep `public/HungLNG_Resume.md` aligned. Source reconciliation
+  and unresolved dates are in `design/cv-update.md` and the portfolio backlog.
+
 - Decorative stars/arrows in active pages must use `components/portfolio/Icon`
   SVGs, not Unicode glyphs that iOS/iPadOS can render as emoji. Semantic symbols
   in scientific text are unaffected. See `design/ipad-icons-and-copy.md`.

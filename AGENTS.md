@@ -209,6 +209,14 @@ the Claude-specific environment variable in the upstream command exists.
   points and rotation options are in Explore. Do not restore a row of prototype
   controls or duplicate ribbon pause buttons. System reduced motion still wins.
 
+- Scroll navigation uses shared `PortfolioHeader` on the homepage and content
+  pages. A single DOM header contracts into a fixed paper capsule above 96px and
+  expands below 40px, with a reversible spring and reserved document space.
+  Preserve anchor clearance, 44px targets, viewport-fitting Explore, static
+  no-JS fallback and pause/reduced-motion behavior. See
+  `design/floating-navigation.md`. The owner's workspace-photo illustration
+  idea awaits their photo; do not invent their actual desk layout.
+
 - The owner requested a running-duck welcome before the homepage and authorized
   pushing the finished site to the connected Vercel integration. Its behavior,
   bypasses and verification are in `design/duck-welcome-intro.md`. Keep Skip,

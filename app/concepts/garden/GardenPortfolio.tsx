@@ -1,5 +1,6 @@
 "use client";
 
+import PortfolioHeader from "../../components/portfolio/PortfolioHeader";
 import Icon from "../../components/portfolio/Icon";
 
 import dynamic from "next/dynamic";
@@ -175,11 +176,11 @@ export default function GardenPortfolio({ posts, background, publications, exper
     <div className={`garden-root${production ? " portfolio-home" : ""}`} ref={rootRef} data-reduced-motion={reduced} data-motion-paused={paused} data-scene-ready={sceneReady}>
       <div className="garden-page-progress" aria-hidden="true" />
       <a href="#garden-publications" className="garden-skip">Skip to research</a>
-      <header className="garden-nav">
+      <PortfolioHeader>
         <a href="#garden-home" aria-label="hei, home" className="garden-brand">hei<Icon name="spark" size={27} className="portfolio-brand-mark" /></a>
         <nav aria-label="Main navigation"><a href="#garden-publications">Research</a><a className="portfolio-experience-nav" href="#garden-experience">Experience</a><details className="garden-explore" onKeyDown={(event) => { if (event.key === "Escape") { event.currentTarget.open = false; event.currentTarget.querySelector("summary")?.focus(); } }}><summary>Explore <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4" stroke="currentColor" strokeWidth="1.5" fill="none" /></svg></summary><div className="garden-menu-links" onClick={(event) => { const anchor = (event.target as HTMLElement).closest("a"); if (!anchor) return; const href = anchor.getAttribute("href"); const target = href?.startsWith("#") ? document.getElementById(href.slice(1)) : null; if (target instanceof HTMLDetailsElement) target.open = true; event.currentTarget.parentElement?.removeAttribute("open"); }}><a href="#garden-publications">Publications & manuscripts</a><a href="#garden-work">Selected projects</a><a href="#garden-experience">Experience & builds</a><a href="#garden-person">About me</a><a href="#garden-journey">Research journey</a><a href="#garden-education">Education & certifications</a><a href="#garden-toolkit">Technical toolkit</a><a href="#garden-writing">Writing</a><a href="/HungLNG_Resume.pdf" target="_blank" rel="noreferrer">Download CV</a><p className="garden-menu-motion-title">Animation options</p><button type="button" disabled={reduced || paused} onClick={event => { replayWelcome(); event.currentTarget.closest("details")?.removeAttribute("open"); }}><Icon name="rotate" />Replay welcome</button>{!isIllustrated ? <><button type="button" disabled={!sceneReady} aria-pressed={points} onClick={() => setPoints(value => !value)}>Sculpture points</button><button type="button" disabled={!sceneReady} onClick={() => setRotation(value => value + Math.PI / 3)}><Icon name="rotate" />Rotate sculpture</button></> : null}</div></details><a href="/HungLNG_Resume.pdf" target="_blank" rel="noreferrer">CV <Arrow diagonal /></a></nav>
         <a href="mailto:heiontheway@gmail.com" data-magnetic className="garden-contact-link">Say hello <Icon name="external" /></a>
-      </header>
+      </PortfolioHeader>
 
       <main>
         <section className={`garden-hero ${photographic ? "garden-photo-opening" : ""}${isIllustrated ? " garden-illustrated-opening" : ""}`} id="garden-home" ref={heroRef}>

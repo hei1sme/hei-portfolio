@@ -16,6 +16,11 @@ The integrated portfolio is the main homepage at `/`. `/concepts/garden` redirec
 there. Earlier concepts remain under `/concepts`, excluded from indexing and
 outside the public portfolio navigation.
 
+The shared navigation contracts into a floating paper pill on scroll and expands
+again near the top. Links keep their keyboard focus throughout the reversible
+spring transition; pause and reduced motion use instant shape changes. See
+[the navigation notes](design/floating-navigation.md).
+
 A two-leaf sculpture trial is available at `/?sculpture=leaves`: curved cobalt
 leaves, fine veins, a sampled-point opening and the original 2D duck. The first
 potted object remains at `/?scene=sculpture`. See

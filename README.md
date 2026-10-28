@@ -34,6 +34,13 @@ run/rest rhythm along its path. The research and CV links remain visible; the
 `BotanicalDrawing.tsx`, regenerate its static loading poster with
 `node scripts/export-botanical-poster.cjs`.
 
+A photo-inspired desk illustration is available for comparison at
+`/?scene=workspace`. The courtyard remains the default, with an exact source
+backup at Git tag `hero-botanical-backup-2026-10-28`. See
+[the workspace notes](design/workspace-illustration.md); its poster exports with
+`node scripts/export-botanical-poster.cjs --workspace`. The original reference
+photo stays private.
+
 Research lists one published paper and four manuscripts under review, with full
 authorship and venue/status kept distinct. The applied-work section covers
 FCAJ/NutriTrack, BioListen VN (6th in Round 1 of VAIC 2026) and CosmicOptic

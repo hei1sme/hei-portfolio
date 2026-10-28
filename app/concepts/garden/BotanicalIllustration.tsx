@@ -10,9 +10,12 @@ interface Props {
   replay: number;
   progress: { current: number };
   onReady: () => void;
+  Drawing?: typeof BotanicalDrawing;
+  description?: string;
+  route?: (t: number) => { x: number; y: number };
 }
 
-function route(t: number) {
+function courtyardRoute(t: number) {
   const a = 1 - t;
   return {
     x: a*a*a*150 + 3*a*a*t*320 + 3*a*t*t*635 + t*t*t*800,
@@ -20,7 +23,7 @@ function route(t: number) {
   };
 }
 
-export default function BotanicalIllustration({ paused, reduced, replay, progress, onReady }: Props) {
+export default function BotanicalIllustration({ paused, reduced, replay, progress, onReady, Drawing = BotanicalDrawing, route = courtyardRoute, description = "An illustrated cobalt courtyard: tropical plants, an arched window and my doodle duck running along a curved path." }: Props) {
   const hostRef = useRef<HTMLDivElement>(null);
   const worldRef = useRef<HTMLDivElement>(null);
   const duckRef = useRef<SVGGElement>(null);
@@ -129,11 +132,11 @@ export default function BotanicalIllustration({ paused, reduced, replay, progres
       host.removeEventListener("pointermove", move); host.removeEventListener("pointerleave", leave);
       document.removeEventListener("visibilitychange", visibility);
     };
-  }, [paused, reduced, replay, progress, onReady]);
+  }, [paused, reduced, replay, progress, onReady, route]);
 
-  return <div ref={hostRef} className="botanical-illustration" data-running="false" role="img" aria-label="An illustrated cobalt courtyard: tropical plants, an arched window and my doodle duck running along a curved path.">
+  return <div ref={hostRef} className="botanical-illustration" data-running="false" role="img" aria-label={description}>
     <div ref={worldRef} className="botanical-world" data-entered="false">
-      <BotanicalDrawing character={<g className="botanical-duck" ref={duckRef} data-duck-state="idle" data-facing="right" aria-hidden="true"><g className="botanical-duck-body"><g transform="translate(-62 -115.32)" clipPath="url(#botanical-duck-crop)"><image className="botanical-duck-run" href="/images/personal/running-duck-sprite-large-v2.webp" width="372" height="248" /><image className="botanical-duck-rest" href="/images/personal/running-duck-rest-v1.webp" width="124" height="124" /></g></g></g>} />
+      <Drawing character={<g className="botanical-duck" ref={duckRef} data-duck-state="idle" data-facing="right" aria-hidden="true"><g className="botanical-duck-body"><g transform="translate(-62 -115.32)" clipPath="url(#botanical-duck-crop)"><image className="botanical-duck-run" href="/images/personal/running-duck-sprite-large-v2.webp" width="372" height="248" /><image className="botanical-duck-rest" href="/images/personal/running-duck-rest-v1.webp" width="124" height="124" /></g></g></g>} />
     </div>
   </div>;
 }

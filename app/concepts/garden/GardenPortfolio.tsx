@@ -28,6 +28,10 @@ const BotanicalIllustration = dynamic(() => import("./BotanicalIllustration"), {
   ssr: false,
   loading: () => <div className="garden-scene-poster" role="status"><Image src="/images/personal/botanical-courtyard-poster.svg" alt="" fill sizes="(max-width: 900px) 100vw, 57vw" priority /><span className="sr-only">Preparing the courtyard</span></div>,
 });
+const WorkspaceIllustration = dynamic(() => import("./WorkspaceIllustration"), {
+  ssr: false,
+  loading: () => <div className="garden-scene-poster" role="status"><Image src="/images/personal/workspace-poster.svg" alt="" fill sizes="(max-width: 900px) 100vw, 57vw" priority /><span className="sr-only">Preparing the workspace illustration</span></div>,
+});
 const NeuralBreach = dynamic(() => import("../../components/NeuralBreach"), { ssr: false });
 
 const projectEvidence = {
@@ -58,6 +62,7 @@ export default function GardenPortfolio({ posts, background, publications, exper
   const [photographic, setPhotographic] = useState(false);
   const [leafStudy, setLeafStudy] = useState<boolean | null>(null);
   const [illustrated, setIllustrated] = useState<boolean | null>(null);
+  const [workspace, setWorkspace] = useState(false);
   const isIllustrated = illustrated !== false;
   const [projectId, setProjectId] = useState("smokenet");
   const [showMethod, setShowMethod] = useState(false);
@@ -101,7 +106,8 @@ export default function GardenPortfolio({ posts, background, publications, exper
     const query = new URLSearchParams(window.location.search);
     const photo = !production && query.get("view") === "photo";
     const leaves = query.get("sculpture") === "leaves";
-    setIllustrated(!photo && (query.get("scene") === "botanical" || (!leaves && query.get("scene") !== "sculpture")));
+    setWorkspace(query.get("scene") === "workspace");
+    setIllustrated(!photo && (["botanical", "workspace"].includes(query.get("scene") || "") || (!leaves && query.get("scene") !== "sculpture")));
     if (!production) setPhotographic(photo);
     setLeafStudy(leaves);
   }, [production]);
@@ -192,11 +198,11 @@ export default function GardenPortfolio({ posts, background, publications, exper
             <div className="garden-hero-actions"><a href="#garden-publications" data-magnetic className="garden-primary-link">Explore research <Arrow /></a><a data-magnetic className="garden-hero-cv" href="/HungLNG_Resume.pdf" target="_blank" rel="noreferrer">CV <Arrow diagonal /></a></div>
             <a className="garden-hero-paper" href="#garden-published-paper"><strong>Published: SmokeNet · AJCAI 2025</strong><span>First & corresponding author <Arrow diagonal /></span></a>
           </div>
-          <div className="garden-hero-art" data-scene={isIllustrated && !photographic ? "botanical" : undefined} data-sculpture={leafStudy && !photographic && !isIllustrated ? "leaves" : undefined} data-cursor={photographic || isIllustrated ? undefined : "Drag"}>
+          <div className="garden-hero-art" data-artwork={workspace ? "workspace" : "courtyard"} data-scene={isIllustrated && !photographic ? "botanical" : undefined} data-sculpture={leafStudy && !photographic && !isIllustrated ? "leaves" : undefined} data-cursor={photographic || isIllustrated ? undefined : "Drag"}>
             {photographic ? <figure className="garden-hero-photo">
               <Image src="/images/experience/2_SmokeNet/2_1_SN.jpg" alt="SmokeNet paper title projected in the AJCAI 2025 conference room" fill sizes="(max-width: 760px) 100vw, 65vw" priority />
               <figcaption>The first paper. The beginning of more questions.<br /><span>SmokeNet · AJCAI 2025</span></figcaption>
-            </figure> : illustrated === true ? <BotanicalIllustration paused={paused} reduced={reduced} replay={entranceReplay} progress={progress} onReady={onSceneReady} /> : leafStudy === null ? <div className="garden-scene-poster" role="status"><Image src="/images/personal/botanical-courtyard-poster.svg" alt="" fill sizes="(max-width: 900px) 100vw, 57vw" priority /><span className="sr-only">Preparing the courtyard</span></div> : leafStudy ? <LeafStudyScene points={points} paused={paused} reduced={reduced} rotation={rotation} progress={progress} replay={entranceReplay} onReady={onSceneReady} onUnavailable={onSceneUnavailable} /> : <BotanicalScene points={points} paused={paused} reduced={reduced} rotation={rotation} progress={progress} replay={entranceReplay} onReady={onSceneReady} onUnavailable={onSceneUnavailable} />}
+            </figure> : illustrated === true && workspace ? <WorkspaceIllustration paused={paused} reduced={reduced} replay={entranceReplay} progress={progress} onReady={onSceneReady} /> : illustrated === true ? <BotanicalIllustration paused={paused} reduced={reduced} replay={entranceReplay} progress={progress} onReady={onSceneReady} /> : leafStudy === null ? <div className="garden-scene-poster" role="status"><Image src="/images/personal/botanical-courtyard-poster.svg" alt="" fill sizes="(max-width: 900px) 100vw, 57vw" priority /><span className="sr-only">Preparing the courtyard</span></div> : leafStudy ? <LeafStudyScene points={points} paused={paused} reduced={reduced} rotation={rotation} progress={progress} replay={entranceReplay} onReady={onSceneReady} onUnavailable={onSceneUnavailable} /> : <BotanicalScene points={points} paused={paused} reduced={reduced} rotation={rotation} progress={progress} replay={entranceReplay} onReady={onSceneReady} onUnavailable={onSceneUnavailable} />}
           </div>
           <div className="garden-hero-bottom">
             <a href="#garden-publications" className="garden-scroll-link"><Icon name="down" /> Research, just below</a>

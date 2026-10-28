@@ -143,6 +143,16 @@ the Claude-specific environment variable in the upstream command exists.
 
 ## Content and design
 
+- Owner supplied their workspace photo on 2026-10-28 and likes the current
+  botanical hero: preserve it as the default `/` and `?scene=botanical`.
+  The photo-inspired vector desk is comparison-only at `?scene=workspace`;
+  follow `design/workspace-illustration.md`. Original hero source/poster stay
+  intact, with Git tag `hero-botanical-backup-2026-10-28` at `100abc9`.
+  Photo is private in ignored `docs/design/`; do not publish its screen contents.
+  WorkspaceDrawing adds plants artistically, reuses the original 2D duck and
+  shared animation runtime with a lower foreground route. Do not promote this
+  comparison without the owner's selection.
+
 - Latest selected direction (2026-10-28): layered 2D botanical illustration.
   The main `/` uses this hero; `/?scene=botanical` selects it explicitly. Follow
   `design/botanical-illustration.md`. It uses authored flat SVG courtyard layers
@@ -214,8 +224,8 @@ the Claude-specific environment variable in the upstream command exists.
   expands below 40px, with a reversible spring and reserved document space.
   Preserve anchor clearance, 44px targets, viewport-fitting Explore, static
   no-JS fallback and pause/reduced-motion behavior. See
-  `design/floating-navigation.md`. The owner's workspace-photo illustration
-  idea awaits their photo; do not invent their actual desk layout.
+  `design/floating-navigation.md`. The workspace-photo comparison is tracked in
+  `design/workspace-illustration.md`; the original hero remains the default.
 
 - The owner requested a running-duck welcome before the homepage and authorized
   pushing the finished site to the connected Vercel integration. Its behavior,

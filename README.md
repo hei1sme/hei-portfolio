@@ -1,25 +1,33 @@
 # hei — Le Nguyen Gia Hung
 
 Research-first portfolio for an AI undergraduate at FPT University, with a cobalt
-botanical Sculpture opening, visible publications and an optional playground.
+layered 2D botanical opening, visible publications and an optional playground.
 
 A short welcome introduces the owner with his running duck and full name before
-revealing the Sculpture. It runs once per browser-tab session and can be skipped
+revealing the illustrated courtyard. It runs once per browser-tab session and can be skipped
 immediately with the button, Escape, Tab or scrolling. Direct section links and
 reduced motion bypass it. It is an introduction, not a simulated loading meter.
-Replay welcome and sculpture options live in Explore. A single Pause motion
+Replay welcome lives in Explore; the older 3D comparisons also have sculpture options. A single Pause motion
 control stops ambient movement across the site; it is hidden when the system
 already requests reduced motion. Decorative stars and arrows use SVG so Safari
 does not replace them with colored emoji.
 
-The Sculpture site is now the main homepage at `/`. `/concepts/garden` redirects
+The integrated portfolio is the main homepage at `/`. `/concepts/garden` redirects
 there. Earlier concepts remain under `/concepts`, excluded from indexing and
 outside the public portfolio navigation.
 
 A two-leaf sculpture trial is available at `/?sculpture=leaves`: curved cobalt
-leaves, fine veins, a sampled-point opening and a small duck companion. The main
-homepage keeps the existing sculpture while this candidate is reviewed. See
+leaves, fine veins, a sampled-point opening and the original 2D duck. The first
+potted object remains at `/?scene=sculpture`. See
 [the trial notes](design/leaf-study-trial.md) for scope and provenance.
+
+The selected 2D direction opens `/` and is also available at `/?scene=botanical`: an
+authored SVG courtyard, layered parallax and the original duck following a
+run/rest rhythm along its path. The research and CV links remain visible; the
+2D scene does not load WebGL or offer sculpture controls. See
+[the illustration notes](design/botanical-illustration.md). After editing
+`BotanicalDrawing.tsx`, regenerate its static loading poster with
+`node scripts/export-botanical-poster.cjs`.
 
 Research lists one published paper and four manuscripts under review, with full
 authorship and venue/status kept distinct. The applied-work section covers

@@ -25,7 +25,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    // The pre-paint welcome deliberately adds data attributes to this root.
+    <html lang="en" suppressHydrationWarning>
       <head><script dangerouslySetInnerHTML={{ __html: introBootstrap }} /></head>
       <body className={`${manrope.variable} ${manrope.className}`}>
         <SiteShell>{children}</SiteShell>

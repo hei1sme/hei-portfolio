@@ -24,9 +24,9 @@ identity and meaningful motion. Adding technical cards, a large name, or an
 illustrative neural graph is not sufficient. Preserve the original information
 while making research artifacts themselves carry the visual idea. Study technical
 creators' actual rendered work and interactions; do not equate "technical" with
-dashboard styling or tiny monospace labels. The latest reference study is in
-`design/tech-portfolio-reference-study.md`. No replacement visual direction has
-been approved.
+dashboard styling or tiny monospace labels. The reference study is in
+`design/tech-portfolio-reference-study.md`; it predates the 2D botanical selection
+on 2026-10-28 described below.
 
 Latest correction (2026-10-27): the owner also rejected text-heavy technical
 references and said the original may be more fun. Preserve the original's
@@ -69,8 +69,10 @@ Do not turn factual paper references, author roles or statuses into icon-only UI
 
 ## Skills
 
-Full-site build requested by the owner on 2026-10-27: Sculpture is now the main
-homepage at `/`, and `/concepts/garden` redirects there. Blog, article and all
+Full-site build requested by the owner on 2026-10-27: the integrated botanical
+portfolio is the homepage at `/`, and `/concepts/garden` redirects there. The
+owner selected the layered 2D hero on 2026-10-28; it now opens the main page.
+Blog, article and all
 four project cases share the portfolio shell; legacy components remain in the
 repository but are not the public presentation. The selected-project inspector
 opens on demand while all four summaries and publication evidence stay visible.
@@ -141,19 +143,27 @@ the Claude-specific environment variable in the upstream command exists.
 
 ## Content and design
 
+- Latest selected direction (2026-10-28): layered 2D botanical illustration.
+  The main `/` uses this hero; `/?scene=botanical` selects it explicitly. Follow
+  `design/botanical-illustration.md`. It uses authored flat SVG courtyard layers
+  and the original 2D duck, with a shared run/rest rhythm, distance-driven gait,
+  and scroll/pointer parallax. No new 3D mascot or fake research output. Hide
+  sculpture-specific controls for this scene. The original potted object is at
+  `/?scene=sculpture`; the leaf trial remains at `/?sculpture=leaves`. The owner
+  selected the 2D direction, not every palette/type/art detail as permanently
+  approved. Photography collage is not selected.
 - Two-leaf hero trial requested on 2026-10-28: `/?sculpture=leaves` loads
-  `LeafStudyScene`; `/` retains the approved potted Sculpture for comparison.
+  `LeafStudyScene`; `/?scene=sculpture` retains the potted object for comparison.
   Follow `design/leaf-study-trial.md`. The current refinement has a mature split
-  leaf, curled young leaf, solid beveled edges and a small authored 3D duck;
+  leaf, curled young leaf, solid beveled edges and the restored original 2D duck;
   desktop alignment shifts right and resets on smaller screens. This is
   procedural geometry, not a plant scan or model inference. Existing generated
   duck artwork elsewhere is unchanged. Do not promote
   the trial to the default hero without the owner's selection.
-- Latest owner correction: the procedural 3D still looks strange and the original
+- Owner correction before the 2D selection: the procedural 3D looks strange and the original
   2D duck is preferred. Restore the original six-frame duck in the leaf preview;
-  do not replace the mascot with another 3D toy. The hero remains unapproved.
-  Layered 2D botanical illustration and a real-image/research collage are
-  proposed alternatives, not selected directions. Compare before a broad rebuild.
+  do not replace the mascot with another 3D toy. The 3D hero remains unapproved.
+  The subsequent 2D selection above supersedes the earlier alternative proposals.
 - The owner reviewed/scanned the CV batch, then explicitly requested the web
   update on 2026-10-27. That request supersedes the earlier web hold for this
   update. Follow `design/research-experience-update.md`; keep intake PDFs private,

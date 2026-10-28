@@ -23,6 +23,10 @@ const LeafStudyScene = dynamic(() => import("./LeafStudyScene"), {
   ssr: false,
   loading: () => <div className="garden-scene-poster" role="status"><Image src="/images/personal/leaf-study-poster.svg" alt="" fill sizes="(max-width: 900px) 100vw, 70vw" priority /><span className="sr-only">Loading the two-leaf sculpture</span></div>,
 });
+const BotanicalIllustration = dynamic(() => import("./BotanicalIllustration"), {
+  ssr: false,
+  loading: () => <div className="garden-scene-poster" role="status"><Image src="/images/personal/botanical-courtyard-poster.svg" alt="" fill sizes="(max-width: 900px) 100vw, 57vw" priority /><span className="sr-only">Preparing the courtyard</span></div>,
+});
 const NeuralBreach = dynamic(() => import("../../components/NeuralBreach"), { ssr: false });
 
 const projectEvidence = {
@@ -52,6 +56,8 @@ export default function GardenPortfolio({ posts, background, publications, exper
   const [sceneReady, setSceneReady] = useState(false);
   const [photographic, setPhotographic] = useState(false);
   const [leafStudy, setLeafStudy] = useState<boolean | null>(null);
+  const [illustrated, setIllustrated] = useState<boolean | null>(null);
+  const isIllustrated = illustrated !== false;
   const [projectId, setProjectId] = useState("smokenet");
   const [showMethod, setShowMethod] = useState(false);
   const [inspectorOpen, setInspectorOpen] = useState(!production);
@@ -92,8 +98,11 @@ export default function GardenPortfolio({ posts, background, publications, exper
 
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
-    if (!production) setPhotographic(query.get("view") === "photo");
-    setLeafStudy(query.get("sculpture") === "leaves");
+    const photo = !production && query.get("view") === "photo";
+    const leaves = query.get("sculpture") === "leaves";
+    setIllustrated(!photo && (query.get("scene") === "botanical" || (!leaves && query.get("scene") !== "sculpture")));
+    if (!production) setPhotographic(photo);
+    setLeafStudy(leaves);
   }, [production]);
 
   useEffect(() => {
@@ -140,6 +149,7 @@ export default function GardenPortfolio({ posts, background, publications, exper
 
   const chooseOpening = (photo: boolean) => {
     setPhotographic(photo);
+    setIllustrated(!photo);
     const url = new URL(window.location.href);
     if (photo) url.searchParams.set("view", "photo"); else url.searchParams.delete("view");
     window.history.replaceState(null, "", url);
@@ -167,12 +177,12 @@ export default function GardenPortfolio({ posts, background, publications, exper
       <a href="#garden-publications" className="garden-skip">Skip to research</a>
       <header className="garden-nav">
         <a href="#garden-home" aria-label="hei, home" className="garden-brand">hei<Icon name="spark" size={27} className="portfolio-brand-mark" /></a>
-        <nav aria-label="Main navigation"><a href="#garden-publications">Research</a><a className="portfolio-experience-nav" href="#garden-experience">Experience</a><details className="garden-explore" onKeyDown={(event) => { if (event.key === "Escape") { event.currentTarget.open = false; event.currentTarget.querySelector("summary")?.focus(); } }}><summary>Explore <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4" stroke="currentColor" strokeWidth="1.5" fill="none" /></svg></summary><div className="garden-menu-links" onClick={(event) => { const anchor = (event.target as HTMLElement).closest("a"); if (!anchor) return; const href = anchor.getAttribute("href"); const target = href?.startsWith("#") ? document.getElementById(href.slice(1)) : null; if (target instanceof HTMLDetailsElement) target.open = true; event.currentTarget.parentElement?.removeAttribute("open"); }}><a href="#garden-publications">Publications & manuscripts</a><a href="#garden-work">Selected projects</a><a href="#garden-experience">Experience & builds</a><a href="#garden-person">About me</a><a href="#garden-journey">Research journey</a><a href="#garden-education">Education & certifications</a><a href="#garden-toolkit">Technical toolkit</a><a href="#garden-writing">Writing</a><a href="/HungLNG_Resume.pdf" target="_blank" rel="noreferrer">Download CV</a><p className="garden-menu-motion-title">Animation options</p><button type="button" disabled={reduced || paused} onClick={event => { replayWelcome(); event.currentTarget.closest("details")?.removeAttribute("open"); }}><Icon name="rotate" />Replay welcome</button><button type="button" disabled={!sceneReady} aria-pressed={points} onClick={() => setPoints(value => !value)}>Sculpture points</button><button type="button" disabled={!sceneReady} onClick={() => setRotation(value => value + Math.PI / 3)}><Icon name="rotate" />Rotate sculpture</button></div></details><a href="/HungLNG_Resume.pdf" target="_blank" rel="noreferrer">CV <Arrow diagonal /></a></nav>
+        <nav aria-label="Main navigation"><a href="#garden-publications">Research</a><a className="portfolio-experience-nav" href="#garden-experience">Experience</a><details className="garden-explore" onKeyDown={(event) => { if (event.key === "Escape") { event.currentTarget.open = false; event.currentTarget.querySelector("summary")?.focus(); } }}><summary>Explore <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4" stroke="currentColor" strokeWidth="1.5" fill="none" /></svg></summary><div className="garden-menu-links" onClick={(event) => { const anchor = (event.target as HTMLElement).closest("a"); if (!anchor) return; const href = anchor.getAttribute("href"); const target = href?.startsWith("#") ? document.getElementById(href.slice(1)) : null; if (target instanceof HTMLDetailsElement) target.open = true; event.currentTarget.parentElement?.removeAttribute("open"); }}><a href="#garden-publications">Publications & manuscripts</a><a href="#garden-work">Selected projects</a><a href="#garden-experience">Experience & builds</a><a href="#garden-person">About me</a><a href="#garden-journey">Research journey</a><a href="#garden-education">Education & certifications</a><a href="#garden-toolkit">Technical toolkit</a><a href="#garden-writing">Writing</a><a href="/HungLNG_Resume.pdf" target="_blank" rel="noreferrer">Download CV</a><p className="garden-menu-motion-title">Animation options</p><button type="button" disabled={reduced || paused} onClick={event => { replayWelcome(); event.currentTarget.closest("details")?.removeAttribute("open"); }}><Icon name="rotate" />Replay welcome</button>{!isIllustrated ? <><button type="button" disabled={!sceneReady} aria-pressed={points} onClick={() => setPoints(value => !value)}>Sculpture points</button><button type="button" disabled={!sceneReady} onClick={() => setRotation(value => value + Math.PI / 3)}><Icon name="rotate" />Rotate sculpture</button></> : null}</div></details><a href="/HungLNG_Resume.pdf" target="_blank" rel="noreferrer">CV <Arrow diagonal /></a></nav>
         <a href="mailto:heiontheway@gmail.com" data-magnetic className="garden-contact-link">Say hello <Icon name="external" /></a>
       </header>
 
       <main>
-        <section className={`garden-hero ${photographic ? "garden-photo-opening" : ""}`} id="garden-home" ref={heroRef}>
+        <section className={`garden-hero ${photographic ? "garden-photo-opening" : ""}${isIllustrated ? " garden-illustrated-opening" : ""}`} id="garden-home" ref={heroRef}>
           <div className="garden-intro">
             <p className="garden-identity">Le Nguyen Gia Hung<br /><span>AI undergraduate researcher · FPT University</span><span className="portfolio-hero-qualification">GPA 8.62/10 · Expected graduation: Dec 2027</span></p>
             <h1>Seeing beyond<br />the prediction.</h1>
@@ -181,15 +191,15 @@ export default function GardenPortfolio({ posts, background, publications, exper
             <div className="garden-hero-actions"><a href="#garden-publications" data-magnetic className="garden-primary-link">Explore research <Arrow /></a><a data-magnetic className="garden-hero-cv" href="/HungLNG_Resume.pdf" target="_blank" rel="noreferrer">CV <Arrow diagonal /></a></div>
             <a className="garden-hero-paper" href="#garden-published-paper"><strong>Published: SmokeNet · AJCAI 2025</strong><span>First & corresponding author <Arrow diagonal /></span></a>
           </div>
-          <div className="garden-hero-art" data-sculpture={leafStudy && !photographic ? "leaves" : undefined} data-cursor={photographic ? undefined : "Drag"}>
+          <div className="garden-hero-art" data-scene={isIllustrated && !photographic ? "botanical" : undefined} data-sculpture={leafStudy && !photographic && !isIllustrated ? "leaves" : undefined} data-cursor={photographic || isIllustrated ? undefined : "Drag"}>
             {photographic ? <figure className="garden-hero-photo">
               <Image src="/images/experience/2_SmokeNet/2_1_SN.jpg" alt="SmokeNet paper title projected in the AJCAI 2025 conference room" fill sizes="(max-width: 760px) 100vw, 65vw" priority />
               <figcaption>The first paper. The beginning of more questions.<br /><span>SmokeNet · AJCAI 2025</span></figcaption>
-            </figure> : leafStudy === null ? <div className="garden-scene-poster" role="status"><span className="sr-only">Preparing the sculpture</span></div> : leafStudy ? <LeafStudyScene points={points} paused={paused} reduced={reduced} rotation={rotation} progress={progress} replay={entranceReplay} onReady={onSceneReady} onUnavailable={onSceneUnavailable} /> : <BotanicalScene points={points} paused={paused} reduced={reduced} rotation={rotation} progress={progress} replay={entranceReplay} onReady={onSceneReady} onUnavailable={onSceneUnavailable} />}
+            </figure> : illustrated === true ? <BotanicalIllustration paused={paused} reduced={reduced} replay={entranceReplay} progress={progress} onReady={onSceneReady} /> : leafStudy === null ? <div className="garden-scene-poster" role="status"><Image src="/images/personal/botanical-courtyard-poster.svg" alt="" fill sizes="(max-width: 900px) 100vw, 57vw" priority /><span className="sr-only">Preparing the courtyard</span></div> : leafStudy ? <LeafStudyScene points={points} paused={paused} reduced={reduced} rotation={rotation} progress={progress} replay={entranceReplay} onReady={onSceneReady} onUnavailable={onSceneUnavailable} /> : <BotanicalScene points={points} paused={paused} reduced={reduced} rotation={rotation} progress={progress} replay={entranceReplay} onReady={onSceneReady} onUnavailable={onSceneUnavailable} />}
           </div>
           <div className="garden-hero-bottom">
             <a href="#garden-publications" className="garden-scroll-link"><Icon name="down" /> Research, just below</a>
-            {!photographic ? <p className="garden-scene-hint"><span className="portfolio-pointer-hint">Drag to turn. Scroll to explore.</span><span className="portfolio-touch-hint">More sculpture views in Explore.</span></p> : null}
+            {!photographic ? <p className="garden-scene-hint">{isIllustrated ? "Scroll to explore." : <><span className="portfolio-pointer-hint">Drag to turn. Scroll to explore.</span><span className="portfolio-touch-hint">More sculpture views in Explore.</span></>}</p> : null}
           </div>
         </section>
 

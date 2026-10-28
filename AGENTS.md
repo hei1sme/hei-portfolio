@@ -143,8 +143,11 @@ the Claude-specific environment variable in the upstream command exists.
 
 - Two-leaf hero trial requested on 2026-10-28: `/?sculpture=leaves` loads
   `LeafStudyScene`; `/` retains the approved potted Sculpture for comparison.
-  Follow `design/leaf-study-trial.md`. This is procedural geometry with existing
-  generated duck artwork, not a plant scan or model inference. Do not promote
+  Follow `design/leaf-study-trial.md`. The current refinement has a mature split
+  leaf, curled young leaf, solid beveled edges and a small authored 3D duck;
+  desktop alignment shifts right and resets on smaller screens. This is
+  procedural geometry, not a plant scan or model inference. Existing generated
+  duck artwork elsewhere is unchanged. Do not promote
   the trial to the default hero without the owner's selection.
 - The owner reviewed/scanned the CV batch, then explicitly requested the web
   update on 2026-10-27. That request supersedes the earlier web hold for this

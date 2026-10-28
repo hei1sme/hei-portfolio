@@ -3,7 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import Image from "next/image";
-import { createLeafGeometry, leafInterior, leafPoint, sampleLeafPoints } from "./leafStudyGeometry";
+import { createLeafGeometry, leafInterior, leafNormal, leafPoint, sampleLeafPoints } from "./leafStudyGeometry";
+import { createLeafCompanion } from "./leafCompanion";
 import type { BotanicalSceneProps } from "./BotanicalScene";
 
 export default function LeafStudyScene(props: BotanicalSceneProps) {
@@ -32,7 +33,7 @@ export default function LeafStudyScene(props: BotanicalSceneProps) {
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.05;
     renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.shadowMap.type = THREE.VSMShadowMap;
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(36, 1, 0.1, 40);
@@ -43,11 +44,13 @@ export default function LeafStudyScene(props: BotanicalSceneProps) {
     key.position.set(-3, 7, 5);
     key.castShadow = true;
     key.shadow.mapSize.set(512, 512);
+    key.shadow.radius = 5;
+    key.shadow.blurSamples = 8;
     key.shadow.camera.left = -5;
     key.shadow.camera.right = 5;
     key.shadow.camera.top = 6;
     key.shadow.camera.bottom = -5;
-    key.shadow.normalBias = 0.04;
+    key.shadow.normalBias = .02;
     scene.add(key);
     const rim = new THREE.DirectionalLight(0xb5dfff, 1.2);
     rim.position.set(4, 3, -2);
@@ -60,11 +63,13 @@ export default function LeafStudyScene(props: BotanicalSceneProps) {
     const particles = new THREE.Group();
     sculpture.add(surfaces, particles);
     const leafMaterial = new THREE.MeshPhysicalMaterial({
-      color: 0xffffff, vertexColors: true, roughness: .64, metalness: 0,
-      clearcoat: .08, clearcoatRoughness: .7,
-      side: THREE.DoubleSide, transparent: true,
+      color: 0xffffff, vertexColors: true, roughness: .5, metalness: 0,
+      clearcoat: .025, clearcoatRoughness: .7,
+      side: THREE.FrontSide, transparent: true,
     });
-    const veinMaterial = new THREE.MeshStandardMaterial({ color: 0x3656bd, roughness: .94, transparent: true });
+    const backMaterial = new THREE.MeshStandardMaterial({ color: 0x718bcd, roughness: .72, side: THREE.BackSide, transparent: true });
+    const rimMaterial = new THREE.MeshStandardMaterial({ color: 0x4262b9, roughness: .65, side: THREE.DoubleSide, transparent: true });
+    const veinMaterial = new THREE.MeshStandardMaterial({ color: 0x2852b1, roughness: .9, transparent: true });
     const stemMaterial = new THREE.MeshStandardMaterial({ color: 0x2147bd, roughness: .9, transparent: true });
     const dotMaterial = new THREE.ShaderMaterial({
       transparent: true, depthWrite: false,
@@ -101,11 +106,11 @@ export default function LeafStudyScene(props: BotanicalSceneProps) {
     const geometries: THREE.BufferGeometry[] = [];
     const layers: { surface: THREE.Group; points: THREE.Points; rest: THREE.Vector3 }[] = [];
     const leaves = [
-      { length: 3.85, width: 3.0, at: [.16, -1.30, -.12], lean: -.29, twist: -.51 },
-      { length: 3.10, width: 2.70, at: [-.18, -1.68, .52], lean: .88, twist: .72 },
+      { length: 3.85, width: 3.0, at: [.16, -1.30, -.12], lean: -.29, twist: -.38 },
+      { length: 2.9, width: 2.35, at: [-.18, -1.68, .52], lean: .68, twist: 1.1 },
     ];
     leaves.forEach((leaf, index) => {
-      const { geometry, shape } = createLeafGeometry(leaf.length, leaf.width, index);
+      const { geometry, shape, back, rim } = createLeafGeometry(leaf.length, leaf.width, index);
       const surface = new THREE.Group();
       surface.position.set(...leaf.at as [number, number, number]);
       surface.rotation.set(-.08, leaf.twist, leaf.lean);
@@ -113,7 +118,12 @@ export default function LeafStudyScene(props: BotanicalSceneProps) {
       const blade = new THREE.Mesh(geometry, leafMaterial);
       blade.castShadow = true; blade.receiveShadow = true;
       surface.add(blade);
-      geometries.push(geometry);
+      const underside = new THREE.Mesh(back, backMaterial);
+      const edge = new THREE.Mesh(rim, rimMaterial);
+      underside.castShadow = true; underside.receiveShadow = true;
+      edge.castShadow = true;
+      surface.add(underside, edge);
+      geometries.push(geometry, back, rim);
       const inside = leafInterior(shape);
       const line = (coords: number[][], radius: number, material: THREE.Material) => {
         const route = new THREE.CatmullRomCurve3(coords.map(([x,y]) => new THREE.Vector3(x,y,0)));
@@ -122,7 +132,7 @@ export default function LeafStudyScene(props: BotanicalSceneProps) {
           const p = route.getPoint(i / 48);
           if (i > 0 && !inside(new THREE.Vector2(p.x, p.y))) break;
           const point = leafPoint(p.x, p.y, leaf.length, leaf.width, index);
-          point.z += .012;
+          point.addScaledVector(leafNormal(p.x, p.y, leaf.length, leaf.width, index), .004);
           routePoints.push(point);
         }
         if (routePoints.length < 2) return;
@@ -131,15 +141,11 @@ export default function LeafStudyScene(props: BotanicalSceneProps) {
         geometries.push(tube);
         surface.add(new THREE.Mesh(tube, material));
       };
-      line([[0,0], [0,.25], [0,.55], [0,.8], [.012,1]], .013, veinMaterial);
+      line([[0,0], [0,.25], [0,.55], [0,.8], [.012,1]], .008, veinMaterial);
       for (const [x, y, origin] of [
         [-.44,.16,.07], [-.45,.46,.29], [-.31,.70,.52], [-.16,.87,.72],
         [.44,.13,.05], [.44,.39,.25], [.33,.63,.46], [.19,.83,.67],
-      ]) line([[0,origin], [x*.34,origin+(y-origin)*.7], [x,y]], .006, veinMaterial);
-      const perimeter = shape.getPoints(36).slice(0, -1).map(p => leafPoint(p.x, p.y, leaf.length, leaf.width, index));
-      const edge = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(perimeter, true), 280, .006, 4, true);
-      geometries.push(edge);
-      surface.add(new THREE.Mesh(edge, stemMaterial));
+      ]) line([[0,origin], [x*.34,origin+(y-origin)*.7], [x,y]], .0035, veinMaterial);
       const pointGeometry = sampleLeafPoints(geometry, 4400, index + 1);
       geometries.push(pointGeometry);
       const points = new THREE.Points(pointGeometry, dotMaterial);
@@ -164,17 +170,13 @@ export default function LeafStudyScene(props: BotanicalSceneProps) {
     sculpture.add(base);
     geometries.push(baseGeometry);
 
-    // Reuse the existing generated mascot artwork; no new image/model asset.
-    const duckMap = new THREE.TextureLoader().load('/images/personal/running-duck-sprite-large-v2.webp', () => { dirty = true; });
-    duckMap.colorSpace = THREE.SRGBColorSpace;
-    duckMap.repeat.set(1/3, 1/2); duckMap.offset.set(1/3, 1/2);
-    const duckMaterial = new THREE.SpriteMaterial({ map: duckMap, transparent: true, depthWrite: false });
-    const duck = new THREE.Sprite(duckMaterial);
-    duck.position.set(.94, -2.15, .65); duck.scale.set(.66, .66, 1);
+    const companion = createLeafCompanion();
+    const duck = companion.group;
+    duck.position.set(.84, -2.228, .74); duck.scale.setScalar(.84);
     sculpture.add(duck);
     let duckHover = false;
     const floorGeometry = new THREE.PlaneGeometry(200, 200);
-    const floorMaterial = new THREE.ShadowMaterial({ opacity: 0.13 });
+    const floorMaterial = new THREE.ShadowMaterial({ opacity: .085 });
     const floor = new THREE.Mesh(floorGeometry, floorMaterial);
     floor.rotation.x = -Math.PI / 2;
     floor.position.y = -2.46;
@@ -204,7 +206,9 @@ export default function LeafStudyScene(props: BotanicalSceneProps) {
       const { width, height } = host.getBoundingClientRect();
       renderer.setSize(width, height, false);
       camera.aspect = width / Math.max(1, height);
-      cameraDistance = camera.aspect > 2 ? 9.4 : camera.aspect < .9 ? 11.6 : 10.4;
+      const narrowDesktop = window.innerWidth > 900 && window.innerWidth <= 1100;
+      cameraDistance = narrowDesktop ? Math.max(10.4, 13.2 - (window.innerWidth - 901) * .012)
+        : camera.aspect > 2 ? 9.4 : camera.aspect < .9 ? 11.6 : 10.4;
       camera.position.z = cameraDistance;
       camera.lookAt(0, camera.aspect > 2 ? -.12 : .2, 0);
       camera.updateProjectionMatrix();
@@ -275,7 +279,9 @@ export default function LeafStudyScene(props: BotanicalSceneProps) {
       const openingDissolve = 1 - THREE.MathUtils.smoothstep(openingTime, 1.05, 2.15);
       const dissolve = s.points ? 1 : Math.max(openingDissolve, THREE.MathUtils.smoothstep(scroll, 0.12, 0.65));
       leafMaterial.opacity = 1 - dissolve;
-      veinMaterial.opacity = (1 - dissolve) * .68;
+      backMaterial.opacity = 1 - dissolve;
+      rimMaterial.opacity = 1 - dissolve;
+      veinMaterial.opacity = (1 - dissolve) * .8;
       stemMaterial.opacity = 1 - dissolve * .7;
       const separation = s.reduced || s.paused ? 0 : THREE.MathUtils.smoothstep(scroll, .10, .65);
       layers.forEach((layer, index) => {
@@ -285,11 +291,7 @@ export default function LeafStudyScene(props: BotanicalSceneProps) {
         layer.surface.position.z = layer.rest.z + separation * (index ? .4 : -.3);
         layer.points.position.copy(layer.surface.position);
       });
-      const duckFrame = animated && duckHover ? Math.floor(elapsed * 10) % 6 : 1;
-      duckMap.offset.set((duckFrame % 3) / 3, .5 - Math.floor(duckFrame / 3) * .5);
-      const breath = animated && !duckHover ? Math.sin(elapsed * 2.8) * .018 : 0;
-      duck.scale.set(.66, .66 + breath, 1);
-      duck.position.y = -2.15 + (animated && duckHover ? Math.abs(Math.sin(elapsed * 13)) * .026 : breath * .25);
+      companion.update(elapsed, animated, duckHover);
       dotMaterial.uniforms.uOpacity.value = dissolve;
       dotMaterial.uniforms.uAssembly.value = THREE.MathUtils.smoothstep(openingTime, 0, 1.35);
       camera.position.z = cameraDistance + (1 - arrival) * 1.1;
@@ -323,8 +325,8 @@ export default function LeafStudyScene(props: BotanicalSceneProps) {
       canvas.removeEventListener("pointerleave", leave);
       canvas.removeEventListener("webglcontextlost", contextLost);
       geometries.forEach(geometry => geometry.dispose());
-      [leafMaterial, veinMaterial, stemMaterial, dotMaterial, baseMaterial, floorMaterial, duckMaterial].forEach(material => material.dispose());
-      duckMap.dispose();
+      [leafMaterial, backMaterial, rimMaterial, veinMaterial, stemMaterial, dotMaterial, baseMaterial, floorMaterial].forEach(material => material.dispose());
+      companion.dispose();
       renderer.dispose();
     };
   }, []);

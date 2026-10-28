@@ -4,6 +4,15 @@ import * as THREE from "three";
 // are deliberately irregular; both render modes sample the same surface.
 export function leafOutline(variation: number) {
   const shape = new THREE.Shape();
+  if (variation) {
+    // A younger, still-unfurling blade gives the mature split leaf some space.
+    shape.moveTo(0, 0);
+    shape.bezierCurveTo(-.22, -.14, -.51, .04, -.48, .29);
+    shape.bezierCurveTo(-.46, .55, -.21, .84, .015, 1.02);
+    shape.bezierCurveTo(.19, .81, .45, .59, .48, .31);
+    shape.bezierCurveTo(.53, .03, .20, -.13, 0, 0);
+    return shape;
+  }
   shape.moveTo(0, 0);
   shape.bezierCurveTo(-.18, -.085, -.46, -.04, -.50, .12);
   shape.bezierCurveTo(-.56, .25, -.38, .29, -.17, .37);
@@ -23,23 +32,11 @@ export function leafOutline(variation: number) {
   shape.bezierCurveTo(.30, .27, .20, .31, .15, .28);
   shape.bezierCurveTo(.24, .23, .47, .24, .49, .12);
   shape.bezierCurveTo(.51, -.045, .20, -.10, 0, 0);
-  if (variation) {
-    const seen = new Set<THREE.Vector2>();
-    for (const curve of shape.curves) {
-      if (!(curve instanceof THREE.CubicBezierCurve)) continue;
-      for (const point of [curve.v0, curve.v1, curve.v2, curve.v3]) {
-        if (seen.has(point)) continue;
-        seen.add(point);
-        point.x = point.x * (.96 + .1 * Math.sin(point.y * 5 + 1)) + .025 * Math.pow(Math.sin(point.y * Math.PI), 2);
-        point.y += .018 * Math.sin(point.y * Math.PI * 2);
-      }
-    }
-  }
   for (const [x, y, rx, ry, angle] of [
     [-.19, .18, .033, .056, -.65],
     [.21, .37, .027, .048, .45],
     [-.21, .46, .025, .052, -.6],
-  ].slice(0, variation ? 2 : 3)) {
+  ]) {
     const hole = new THREE.Path();
     hole.absellipse(x, y, rx, ry, 0, Math.PI * 2, true, angle);
     shape.holes.push(hole);
@@ -49,13 +46,67 @@ export function leafOutline(variation: number) {
 
 export function leafPoint(x: number, y: number, length: number, width: number, variation: number) {
   const u = x * 2;
+  const curl = variation ? 1.5 + .25 * y : .85 + .35 * y;
+  const angle = u * curl;
   return new THREE.Vector3(
-    x * width * (1 + .055 * Math.sin(y * 9 + variation)),
-    y * length,
-    length * (.07 * Math.sin(Math.PI * y) + .15 * Math.pow(Math.abs(u), 1.15)
-      - .15 * y * y * y + .03 * u * Math.sin(y * 4 + variation)
+    Math.sin(angle) / curl * width * .5 + .07 * length * y * y * (variation ? -1 : 1),
+    y * length - .06 * length * Math.pow(Math.abs(u), 2) * Math.sin(Math.PI * y),
+    width * .5 * (1 - Math.cos(angle)) / curl
+      + length * (.075 * Math.sin(Math.PI * y) - .19 * y * y * y
+      + .035 * u * Math.sin(y * 4 + variation)
       + .008 * Math.exp(-u * u * 85) * Math.sin(Math.PI * y)),
   );
+}
+
+export function leafNormal(x: number, y: number, length: number, width: number, variation: number) {
+  const point = leafPoint(x, y, length, width, variation);
+  return leafPoint(x + .001, y, length, width, variation).sub(point)
+    .cross(leafPoint(x, y + .001, length, width, variation).sub(point)).normalize();
+}
+
+function leafShell(front: THREE.BufferGeometry, shape: THREE.Shape, length: number, width: number, variation: number) {
+  const thickness = .028;
+  const back = front.clone();
+  const backPositions = back.getAttribute("position");
+  const normals = back.getAttribute("normal");
+  for (let i = 0; i < backPositions.count; i++) {
+    backPositions.setXYZ(i, backPositions.getX(i) - normals.getX(i) * thickness,
+      backPositions.getY(i) - normals.getY(i) * thickness, backPositions.getZ(i) - normals.getZ(i) * thickness);
+  }
+  // A bevel follows both the outside edge and the fenestrations, joining front
+  // and back continuously. It replaces the first trial's drawn perimeter tube.
+  const positions: number[] = [], indices: number[] = [];
+  for (const [contourIndex, path] of [shape, ...shape.holes].entries()) {
+    const contour = path.getPoints(36);
+    if (contour[0].distanceTo(contour[contour.length - 1]) < .00001) contour.pop();
+    const count = contour.length;
+    const signedArea = contour.reduce((area, p, i) => {
+      const next = contour[(i + 1) % count]; return area + p.x * next.y - next.x * p.y;
+    }, 0);
+    const direction = (signedArea < 0 ? 1 : -1) * (contourIndex ? -1 : 1);
+    const offset = positions.length / 3;
+    for (let ring = 0; ring < 3; ring++) {
+      contour.forEach((p, i) => {
+        const normal = leafNormal(p.x, p.y, length, width, variation);
+        const point = leafPoint(p.x, p.y, length, width, variation);
+        const before = contour[(i + count - 1) % count], after = contour[(i + 1) % count];
+        const tangent = leafPoint(after.x, after.y, length, width, variation)
+          .sub(leafPoint(before.x, before.y, length, width, variation)).normalize();
+        const outward = normal.clone().cross(tangent).multiplyScalar(direction);
+        point.addScaledVector(normal, -thickness * ring / 2);
+        if (ring === 1) point.addScaledVector(outward, .004);
+        positions.push(point.x, point.y, point.z);
+      });
+    }
+    for (let ring = 0; ring < 2; ring++) for (let i = 0; i < count; i++) {
+      const a = offset + ring * count + i, b = offset + ring * count + (i + 1) % count;
+      indices.push(a, a + count, b, b, a + count, b + count);
+    }
+  }
+  const rim = new THREE.BufferGeometry();
+  rim.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+  rim.setIndex(indices); rim.computeVertexNormals();
+  return { back, rim };
 }
 
 export function leafInterior(shape: THREE.Shape) {
@@ -81,12 +132,10 @@ export function createLeafGeometry(length: number, width: number, variation: num
   const blue = new THREE.Color();
   const vertex = (p: THREE.Vector2) => {
     const point = leafPoint(p.x, p.y, length, width, variation);
-    const dx = leafPoint(p.x + .001, p.y, length, width, variation).sub(point);
-    const dy = leafPoint(p.x, p.y + .001, length, width, variation).sub(point);
-    const normal = dx.cross(dy).normalize();
+    const normal = leafNormal(p.x, p.y, length, width, variation);
     positions.push(point.x, point.y, point.z);
     normals.push(normal.x, normal.y, normal.z);
-    blue.setRGB(.055 + .02 * p.y, .18 + .025 * p.y, .73 + .025 * p.y, THREE.SRGBColorSpace);
+    blue.setRGB(.09 + .025 * p.y, .22 + .025 * p.y, .69 + .025 * p.y, THREE.SRGBColorSpace);
     colors.push(blue.r, blue.g, blue.b);
   };
   const subdivide = (a: THREE.Vector2, b: THREE.Vector2, c: THREE.Vector2, depth: number) => {
@@ -109,7 +158,7 @@ export function createLeafGeometry(length: number, width: number, variation: num
   geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
   geometry.setAttribute("normal", new THREE.Float32BufferAttribute(normals, 3));
   geometry.setAttribute("color", new THREE.Float32BufferAttribute(colors, 3));
-  return { geometry, shape };
+  return { geometry, shape, ...leafShell(geometry, shape, length, width, variation) };
 }
 
 export function sampleLeafPoints(surface: THREE.BufferGeometry, count: number, seed: number) {

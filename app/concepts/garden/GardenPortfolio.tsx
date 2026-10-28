@@ -181,7 +181,7 @@ export default function GardenPortfolio({ posts, background, publications, exper
             <div className="garden-hero-actions"><a href="#garden-publications" data-magnetic className="garden-primary-link">Explore research <Arrow /></a><a data-magnetic className="garden-hero-cv" href="/HungLNG_Resume.pdf" target="_blank" rel="noreferrer">CV <Arrow diagonal /></a></div>
             <a className="garden-hero-paper" href="#garden-published-paper"><strong>Published: SmokeNet · AJCAI 2025</strong><span>First & corresponding author <Arrow diagonal /></span></a>
           </div>
-          <div className="garden-hero-art" data-cursor={photographic ? undefined : "Drag"}>
+          <div className="garden-hero-art" data-sculpture={leafStudy && !photographic ? "leaves" : undefined} data-cursor={photographic ? undefined : "Drag"}>
             {photographic ? <figure className="garden-hero-photo">
               <Image src="/images/experience/2_SmokeNet/2_1_SN.jpg" alt="SmokeNet paper title projected in the AJCAI 2025 conference room" fill sizes="(max-width: 760px) 100vw, 65vw" priority />
               <figcaption>The first paper. The beginning of more questions.<br /><span>SmokeNet · AJCAI 2025</span></figcaption>

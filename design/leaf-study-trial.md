@@ -1,5 +1,23 @@
 # Two-leaf sculpture trial
 
+## Harmony refinement, 2026-10-28
+
+Owner feedback: the first candidate is too flat and needs a more coherent scene;
+move it right into the unused desktop space. Preserve the existing palette and
+Manrope, content and default `/`. Improve the same botanical subject before
+replacing it with another decorative object.
+
+Plan: right-shift the candidate by about 6.5vw on desktop, reset that offset on
+phones/tablets. A mature split leaf and a younger curled heart-shaped leaf should
+share a stem/base, with a continuous front/back shell and bevel rather than ink
+outlines. Use cobalt #214ce8, deep blue #18389b, muted underside #718bcd, mist
+#edf1f5 and the existing ink #152344. Light should describe the folded surfaces.
+Replace the sprite inside this scene with an authored small 3D duck in blue running
+kit, using the same lighting, contact shadows and motion controls. Existing duck
+artwork elsewhere is unchanged. Keep the geometry-to-points interaction and test
+readability at rest as well as in motion. This remains the review URL, not a new
+default hero. Verification below the original trial is updated after rendering.
+
 2026-10-28. The owner asked to try the proposed replacement for the potted
 Sculpture. This is a focused hero-object trial, not approval to redesign the
 portfolio or replace the production default. Frontend Design leads; React Best
@@ -44,17 +62,27 @@ visual approval. Browser captures and local build output remain ignored.
 
 ## Verification
 
-Implementation uses two authored Bezier silhouettes with unequal lobes, five
+The initial implementation used two authored Bezier silhouettes with unequal lobes, five
 fenestrations in total, curved surfaces and branching veins clipped to the blade
 boundary. Area-weighted samples form an 8,800-point representation of those same
 triangulated surfaces. A soft floor shadow and small neutral base replace the pot.
 Leaves separate slightly with scroll. No model-training or scan output is implied.
 
-The small duck reuses `running-duck-sprite-large-v2.webp`, the existing generated
+The initial small duck reused `running-duck-sprite-large-v2.webp`, the existing generated
 six-frame artwork documented in `duck-cursor-and-blog-cover.md`. It breathes
 subtly at rest and cycles its gait on pointer hover. Pause/reduced motion stops
 both. It is decorative, so no extra focus stop or mystery button was added.
 The loading/WebGL fallback is the authored vector `leaf-study-poster.svg`.
+
+The harmony refinement supersedes those two details: one mature split blade has
+three fenestrations; the younger blade is unperforated and rolls along its width.
+Front and back are joined by beveled sidewalls, including the holes. Veins sit on
+the curved surface normal and remain inside the blade. The muted underside shows
+at curled edges. The scene's companion is now authored mesh geometry with ivory
+plumage, a blue singlet/visor and running shoes. It uses the same scene lighting
+and soft variance shadows; no sprite or texture is loaded by this scene. Existing
+sprite art used for the cursor, strip and About is unchanged. The SVG fallback
+has also been updated to show the younger blade and small duck.
 
 Only the selected scene is mounted after reading the query; a trial visit does
 not first create and discard the old WebGL scene. GPU geometry, textures,
@@ -90,3 +118,30 @@ the leaf assembly until its exit; scrolling still interrupts the assembly.
 - Screenshots/logs are in ignored `output/leaf-study-*`. Local output uses the
   existing ignored D-drive junction; generated TypeScript directory references
   are restored before committing. Deployment must be checked separately.
+
+## Harmony verification
+
+- Final production build passed compilation, lint and TypeScript, including all
+  22 static pages. Standalone TypeScript passed during implementation. No new
+  dependency, research content or CV change was introduced.
+- The real local production server was inspected through Playwright MCP at
+  320, 390, 834, 901, 1024, 1440 and 1920px. No horizontal overflow was observed.
+  At 1440px the scene is shifted 93.6px right; at 1920px it is shifted 110px.
+  Touch layouts reset the shift. A dedicated 901–1100px art frame/camera avoids
+  cropping the mature leaf on narrow desktop/iPad landscape layouts.
+- Final screenshots show the curled young blade, continuous beveled edges and
+  grounded mesh duck. Mobile/tablet checks are Chromium emulations, not physical
+  Safari/iPad or GPU performance certification. Captures: ignored
+  `output/leaf-harmony-final-*.png`; build log: `output/leaf-harmony-build.log`.
+- Normal production runs reported no console/page errors. Native duck hover
+  entered its run state, mouse dragging changed the paused scene's view, and
+  keyboard-operated Explore/points controls worked. Settled pause snapshots
+  matched; reduced-motion snapshots matched at every checked width.
+- A touch gesture starting over the 390px canvas scrolled 264px. A simulated
+  unavailable WebGL context showed the updated SVG fallback and decoded it
+  successfully. Expected WebGL-construction diagnostics in that deliberate
+  fallback check are separate from normal production console checks.
+- `/` retains the original object, its original accessible description and no
+  right shift. Four under-review manuscripts and the Experience section remain
+  present. Generated local TypeScript directory references were restored before
+  committing. Verify the public deployment after pushing this revision.

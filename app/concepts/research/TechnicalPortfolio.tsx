@@ -6,12 +6,11 @@ import dynamic from "next/dynamic";
 import {
   AnimatePresence,
   motion,
-  useReducedMotion,
   useScroll,
   useSpring,
   useTransform,
 } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import NetworkStudy from "./NetworkStudy";
 import {
   academicLinks,
@@ -27,6 +26,14 @@ const NeuralBreach = dynamic(() => import("../../components/NeuralBreach"), {
   ssr: false,
 });
 const Arrow = () => <span aria-hidden="true">↗</span>;
+const reducedQuery = "(prefers-reduced-motion: reduce)";
+const subscribeReduced = (notify: () => void) => {
+  const query = matchMedia(reducedQuery);
+  query.addEventListener("change", notify);
+  return () => query.removeEventListener("change", notify);
+};
+const reducedSnapshot = () => matchMedia(reducedQuery).matches;
+const reducedServerSnapshot = () => false;
 
 function SectionTitle({
   title,
@@ -576,7 +583,7 @@ function Playground({ onClose }: { onClose: () => void }) {
 }
 
 export default function TechnicalPortfolio() {
-  const reduced = useReducedMotion();
+  const reduced = useSyncExternalStore(subscribeReduced, reducedSnapshot, reducedServerSnapshot);
   const [motionEnabled, setMotionEnabled] = useState(true);
   const [playground, setPlayground] = useState(false);
   const [paperFilter, setPaperFilter] = useState("All");

@@ -71,7 +71,8 @@ Do not turn factual paper references, author roles or statuses into icon-only UI
 
 Full-site build requested by the owner on 2026-10-27: the integrated botanical
 portfolio is the homepage at `/`, and `/concepts/garden` redirects there. The
-owner selected the layered 2D hero on 2026-10-28; it now opens the main page.
+owner selected the layered 2D hero on 2026-10-28 and subsequently chose the
+forest workspace as the main hero. Courtyard remains at `?scene=botanical`.
 Blog, article and all
 four project cases share the portfolio shell; legacy components remain in the
 repository but are not the public presentation. The selected-project inspector
@@ -143,23 +144,23 @@ the Claude-specific environment variable in the upstream command exists.
 
 ## Content and design
 
-- Owner supplied their workspace photo on 2026-10-28 and likes the current
-  botanical hero: preserve it as the default `/` and `?scene=botanical`.
-  The photo-inspired vector desk is comparison-only at `?scene=workspace`;
+- Owner selected the forest workspace as the main hero on 2026-10-28. `/` and
+  `?scene=workspace` use it, including the matching server-rendered loading poster.
+  Preserve the courtyard at `?scene=botanical`;
   follow `design/workspace-illustration.md`. Original hero source/poster stay
   intact, with Git tag `hero-botanical-backup-2026-10-28` at `100abc9`.
   Photo is private in ignored `docs/design/`; do not publish its screen contents.
   WorkspaceDrawing adds plants artistically, reuses the original 2D duck and
-  shared animation runtime with a lower foreground route. Do not promote this
-  comparison without the owner's selection.
+  shared animation runtime with a lower foreground route. Keep the original
+  courtyard and its source backup available when refining the selected workspace.
   Owner's follow-up likes the desk but requests coherent object placement and
   working-in-a-forest atmosphere. Desk objects now share one rigid middle layer;
   align keyboard/mouse to the desktop plane, keep the monitor stand above the
   desktop in draw order, and keep the foreground planter clear of the mouse.
   Preserve the layered tropical background when refining this comparison.
 
-- Latest selected direction (2026-10-28): layered 2D botanical illustration.
-  The main `/` uses this hero; `/?scene=botanical` selects it explicitly. Follow
+- Earlier selected direction (2026-10-28): layered 2D botanical illustration.
+  The courtyard is preserved at `/?scene=botanical`. Follow
   `design/botanical-illustration.md`. It uses authored flat SVG courtyard layers
   and the original 2D duck, with a shared run/rest rhythm, distance-driven gait,
   and scroll/pointer parallax. No new 3D mascot or fake research output. Hide
@@ -230,7 +231,12 @@ the Claude-specific environment variable in the upstream command exists.
   Preserve anchor clearance, 44px targets, viewport-fitting Explore, static
   no-JS fallback and pause/reduced-motion behavior. See
   `design/floating-navigation.md`. The workspace-photo comparison is tracked in
-  `design/workspace-illustration.md`; the original hero remains the default.
+  `design/workspace-illustration.md`; workspace is now selected as the default.
+  See `design/portfolio-motion-polish.md` for the whole-site interaction review.
+  `PortfolioInteractions` progressively animates native pointer disclosures/menu
+  and tracks reading progress on article/case pages. Keyboard, pause, reduced
+  motion and direct anchors stay immediate. `ProjectPicker` shares one moving
+  selection surface; do not hide reading content for scroll reveals.
 
 - The owner requested a running-duck welcome before the homepage and authorized
   pushing the finished site to the connected Vercel integration. Its behavior,

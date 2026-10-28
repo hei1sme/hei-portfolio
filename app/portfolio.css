@@ -484,3 +484,57 @@ html:has(.garden-root) { scroll-padding-top: calc(96px + env(safe-area-inset-top
 @media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
   .portfolio-header-slot .garden-nav::before { background: #f7f9fb; border-color: #758198; backdrop-filter: none; -webkit-backdrop-filter: none; }
 }
+
+/* Interaction feedback uses short, reversible changes; reading remains still. */
+.portfolio-site { --interaction-ease: cubic-bezier(.22,1,.36,1); }
+.portfolio-reading-progress {
+  position: fixed; z-index: 40; top: 0; left: 0; right: 0; height: 3px;
+  background: #214ce8; transform: scaleX(var(--reading-progress, 0));
+  transform-origin: left; pointer-events: none;
+}
+.portfolio-header-slot .garden-menu-links { transform-origin: top right; }
+.portfolio-project-controls .portfolio-project-picker {
+  position: relative; isolation: isolate; padding: 4px;
+  background: #1436bc; border-radius: 28px; gap: 4px;
+}
+.portfolio-project-picker > button { position: relative; z-index: 1; background: transparent; }
+.portfolio-project-picker[data-ready="true"] > button[aria-pressed="true"] { background: transparent; }
+.portfolio-picker-surface {
+  position: absolute; z-index: 0; left: 0; top: 0; pointer-events: none;
+  width: var(--picker-width); height: var(--picker-height); border-radius: 24px;
+  background: #d7ed91; display: none;
+  transform: translate(var(--picker-x), var(--picker-y));
+  transition: transform 220ms var(--interaction-ease), width 220ms var(--interaction-ease), height 220ms var(--interaction-ease);
+}
+.portfolio-project-picker[data-ready="true"] > .portfolio-picker-surface { display: block; }
+.portfolio-email button { width: 132px; min-width: 132px; flex-shrink: 0; justify-content: space-between; transition: background-color 150ms var(--interaction-ease), transform 140ms var(--interaction-ease); }
+.portfolio-email button[data-copied="true"] { background: #d7ed91; }
+.portfolio-email button[data-copied="true"] > svg { animation: portfolio-confirm 180ms var(--interaction-ease); }
+@keyframes portfolio-confirm { from { opacity: .5; transform: scale(.85); } to { opacity: 1; transform: scale(1); } }
+.portfolio-site :is(.garden-contact-link, .garden-image-switch, .garden-index-action, .portfolio-explorer-toggle, .portfolio-empty button) {
+  transition: transform 140ms var(--interaction-ease), background-color 140ms var(--interaction-ease), color 140ms var(--interaction-ease);
+}
+.portfolio-site :is(.garden-contact-link, .garden-image-switch, .garden-index-action, .portfolio-explorer-toggle, .portfolio-email button, .portfolio-empty button):active { transform: scale(.98); }
+.portfolio-site .garden-primary-link .garden-arrow { transition-timing-function: var(--interaction-ease); }
+.portfolio-site :is(.garden-tool-label, .garden-workflow-choices button) { transition: color 150ms var(--interaction-ease), background-color 150ms var(--interaction-ease); }
+.portfolio-site[data-motion-paused="true"] :is(.garden-tool-label, .garden-workflow-choices button),
+.portfolio-site[data-input="keyboard"] :is(.garden-tool-label, .garden-workflow-choices button) { transition: none; }
+.portfolio-site[data-motion-paused="true"] .garden-workflow-path path,
+.portfolio-site[data-input="keyboard"] .garden-workflow-path path { animation: none; }
+.portfolio-home .garden-project-visual { animation: portfolio-inspect 160ms var(--interaction-ease); }
+@keyframes portfolio-inspect { from { opacity: .7; } to { opacity: 1; } }
+.portfolio-site :is(.garden-print-downloads > summary > svg, .garden-certification-detail > summary > span, .garden-disclosure-sign) { transition: transform 180ms var(--interaction-ease), rotate 180ms var(--interaction-ease); }
+@media (hover: none), (pointer: coarse) {
+  .portfolio-site :is(.portfolio-writing-card:hover img, .garden-writing-entry:hover img, .portfolio-build-visual:hover img, .garden-project-index > article:hover .garden-index-thumb, .garden-primary-link:hover .garden-arrow) { transform: none; }
+}
+.portfolio-site[data-motion-paused="true"] :is(.portfolio-picker-surface, .portfolio-email button, .garden-contact-link, .garden-image-switch, .garden-index-action, .portfolio-explorer-toggle, .portfolio-empty button, .garden-disclosure-sign, .garden-print-downloads > summary > svg, .garden-certification-detail > summary > span),
+.portfolio-site[data-input="keyboard"] :is(.portfolio-picker-surface, .portfolio-email button, .garden-contact-link, .garden-image-switch, .garden-index-action, .portfolio-explorer-toggle, .portfolio-empty button, .garden-disclosure-sign, .garden-print-downloads > summary > svg, .garden-certification-detail > summary > span) { transition: none; }
+.portfolio-site[data-motion-paused="true"] :is(.garden-project-visual, .portfolio-email button > svg),
+.portfolio-site[data-input="keyboard"] :is(.garden-project-visual, .portfolio-email button > svg) { animation: none; }
+.portfolio-site[data-motion-paused="true"] :is(.portfolio-writing-cover img, .garden-writing-image img, .portfolio-build-visual img, .garden-index-thumb, .garden-primary-link .garden-arrow) { transition: none; transform: none !important; }
+.portfolio-site[data-input="keyboard"] :is(.garden-contact-link, .garden-image-switch, .garden-index-action, .portfolio-explorer-toggle, .portfolio-email button, .portfolio-empty button):active,
+.portfolio-site[data-motion-paused="true"] :is(.garden-contact-link, .garden-image-switch, .garden-index-action, .portfolio-explorer-toggle, .portfolio-email button, .portfolio-empty button):active { transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-site .portfolio-picker-surface, .portfolio-site .portfolio-email button { transition: none; }
+  .portfolio-site :is(.portfolio-writing-cover img, .garden-writing-image img, .portfolio-build-visual img, .garden-index-thumb, .garden-primary-link .garden-arrow) { transform: none !important; }
+}

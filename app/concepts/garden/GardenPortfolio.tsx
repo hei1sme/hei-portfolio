@@ -1,5 +1,6 @@
 "use client";
 
+import ProjectPicker from "../../components/portfolio/ProjectPicker";
 import PortfolioHeader from "../../components/portfolio/PortfolioHeader";
 import Icon from "../../components/portfolio/Icon";
 
@@ -62,7 +63,7 @@ export default function GardenPortfolio({ posts, background, publications, exper
   const [photographic, setPhotographic] = useState(false);
   const [leafStudy, setLeafStudy] = useState<boolean | null>(null);
   const [illustrated, setIllustrated] = useState<boolean | null>(null);
-  const [workspace, setWorkspace] = useState(false);
+  const [workspace, setWorkspace] = useState(true);
   const isIllustrated = illustrated !== false;
   const [projectId, setProjectId] = useState("smokenet");
   const [showMethod, setShowMethod] = useState(false);
@@ -106,21 +107,11 @@ export default function GardenPortfolio({ posts, background, publications, exper
     const query = new URLSearchParams(window.location.search);
     const photo = !production && query.get("view") === "photo";
     const leaves = query.get("sculpture") === "leaves";
-    setWorkspace(query.get("scene") === "workspace");
+    setWorkspace(query.get("scene") !== "botanical");
     setIllustrated(!photo && (["botanical", "workspace"].includes(query.get("scene") || "") || (!leaves && query.get("scene") !== "sculpture")));
     if (!production) setPhotographic(photo);
     setLeafStudy(leaves);
   }, [production]);
-
-  useEffect(() => {
-    const panel = projectFocusRef.current;
-    if (!panel) return;
-    const observer = new IntersectionObserver(([entry]) => {
-      panel.dataset.entered = String(entry.isIntersecting);
-    }, { threshold: 0.2 });
-    observer.observe(panel);
-    return () => observer.disconnect();
-  }, []);
 
   useEffect(() => {
     const milestones = document.querySelectorAll(".garden-milestones > li");
@@ -202,7 +193,7 @@ export default function GardenPortfolio({ posts, background, publications, exper
             {photographic ? <figure className="garden-hero-photo">
               <Image src="/images/experience/2_SmokeNet/2_1_SN.jpg" alt="SmokeNet paper title projected in the AJCAI 2025 conference room" fill sizes="(max-width: 760px) 100vw, 65vw" priority />
               <figcaption>The first paper. The beginning of more questions.<br /><span>SmokeNet · AJCAI 2025</span></figcaption>
-            </figure> : illustrated === true && workspace ? <WorkspaceIllustration paused={paused} reduced={reduced} replay={entranceReplay} progress={progress} onReady={onSceneReady} /> : illustrated === true ? <BotanicalIllustration paused={paused} reduced={reduced} replay={entranceReplay} progress={progress} onReady={onSceneReady} /> : leafStudy === null ? <div className="garden-scene-poster" role="status"><Image src="/images/personal/botanical-courtyard-poster.svg" alt="" fill sizes="(max-width: 900px) 100vw, 57vw" priority /><span className="sr-only">Preparing the courtyard</span></div> : leafStudy ? <LeafStudyScene points={points} paused={paused} reduced={reduced} rotation={rotation} progress={progress} replay={entranceReplay} onReady={onSceneReady} onUnavailable={onSceneUnavailable} /> : <BotanicalScene points={points} paused={paused} reduced={reduced} rotation={rotation} progress={progress} replay={entranceReplay} onReady={onSceneReady} onUnavailable={onSceneUnavailable} />}
+            </figure> : illustrated === true && workspace ? <WorkspaceIllustration paused={paused} reduced={reduced} replay={entranceReplay} progress={progress} onReady={onSceneReady} /> : illustrated === true ? <BotanicalIllustration paused={paused} reduced={reduced} replay={entranceReplay} progress={progress} onReady={onSceneReady} /> : leafStudy === null ? <div className="garden-scene-poster" role="status"><Image src="/images/personal/workspace-poster.svg" alt="" fill sizes="(max-width: 900px) 100vw, 57vw" priority /><span className="sr-only">Preparing the workspace illustration</span></div> : leafStudy ? <LeafStudyScene points={points} paused={paused} reduced={reduced} rotation={rotation} progress={progress} replay={entranceReplay} onReady={onSceneReady} onUnavailable={onSceneUnavailable} /> : <BotanicalScene points={points} paused={paused} reduced={reduced} rotation={rotation} progress={progress} replay={entranceReplay} onReady={onSceneReady} onUnavailable={onSceneUnavailable} />}
           </div>
           <div className="garden-hero-bottom">
             <a href="#garden-publications" className="garden-scroll-link"><Icon name="down" /> Research, just below</a>
@@ -224,7 +215,7 @@ export default function GardenPortfolio({ posts, background, publications, exper
           </div>
           <button className="portfolio-explorer-toggle" type="button" ref={inspectorToggleRef} aria-expanded={inspectorOpen} aria-controls="portfolio-project-explorer" onClick={() => setInspectorOpen(value => !value)}>{inspectorOpen ? "Close project explorer" : "Open the project explorer"} <span aria-hidden="true">{inspectorOpen ? "−" : "+"}</span></button>
           <div id="portfolio-project-explorer" hidden={!inspectorOpen}>
-          <div className="portfolio-project-controls"><div role="group" aria-label="Choose a project">{projectRecords.map(item => <button type="button" key={item.id} aria-pressed={projectId === item.id} onClick={() => { setProjectId(item.id); setShowMethod(false); }}>{item.name}</button>)}</div><div><button type="button" aria-label="Previous project" onClick={() => browseProject(-1)}><Icon name="left" /></button><button type="button" aria-label="Next project" onClick={() => browseProject(1)}><Icon name="right" /></button></div></div>
+          <div className="portfolio-project-controls"><ProjectPicker items={projectRecords} selected={projectId} onSelect={id => { setProjectId(id); setShowMethod(false); }} /><div><button type="button" aria-label="Previous project" onClick={() => browseProject(-1)}><Icon name="left" /></button><button type="button" aria-label="Next project" onClick={() => browseProject(1)}><Icon name="right" /></button></div></div>
           <div onKeyDown={event => { if (event.key === "ArrowLeft" || event.key === "ArrowRight") { event.preventDefault(); browseProject(event.key === "ArrowRight" ? 1 : -1); } }} className={`garden-project-stage garden-project-${project.id}`} ref={projectFocusRef} tabIndex={-1} aria-label={`${project.name} project detail`} id="garden-project-focus">
             <div className="garden-project-visual" key={project.id} onPointerDown={event => { if (event.pointerType === "touch") swipeStart.current = { x: event.clientX, y: event.clientY }; }} onPointerCancel={() => { swipeStart.current = null; }} onPointerUp={event => { const start = swipeStart.current; swipeStart.current = null; if (!start) return; const dx = event.clientX - start.x, dy = event.clientY - start.y; if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) browseProject(dx < 0 ? 1 : -1); }}>
               {project.id === "smokenet" && !showMethod ? <Image src="/images/experience/2_SmokeNet/2_1_SN.jpg" alt="SmokeNet paper title projected in the AJCAI 2025 conference room" fill sizes="(max-width: 760px) 100vw, 65vw" /> : project.image ? <Image src={project.image} alt={`${project.name} ${project.id === "merr" ? "current architecture schematic" : "original architecture diagram"}`} fill sizes="(max-width: 760px) 100vw, 65vw" className="garden-architecture" /> : <MethodDrawing project={project.id} />}

@@ -1,8 +1,10 @@
 # Workspace hero comparison
 
 2026-10-28. The owner supplied a photograph of their desk and explicitly asked
-to preserve the current botanical hero. Keep `/` and `?scene=botanical` unchanged.
-Build the workspace only at `?scene=workspace`, with no comparison toolbar.
+to preserve the current botanical hero. Initially the workspace was a comparison;
+the owner subsequently selected it as the main hero. `/` and `?scene=workspace`
+now use the forest workspace, with the courtyard retained at `?scene=botanical`.
+Keep the existing source backup and do not add a comparison toolbar.
 The exact pre-workspace source is tagged `hero-botanical-backup-2026-10-28`
 (commit `100abc9`). BotanicalDrawing and its poster remain intact.
 
@@ -37,14 +39,15 @@ public art. The source photo is kept privately in ignored `docs/design/`.
 Use authored SVG to extend the established vector art, with no new generated
 mascot or raster model. Share the existing animation runtime; load the workspace
 drawing only for its comparison URL. Respect pause, reduced motion and touch
-scrolling. Do not promote it to the default without the owner's selection.
+scrolling. The owner has selected it as the default; preserve the courtyard backup.
 
 ## Verification
 
 ### Owner refinement: coherent desk in a forest
 
 The owner likes the workspace but finds the objects scattered and asks for a
-forest-like background. Preserve the courtyard default and this comparison URL.
+forest-like background. This was refined as a comparison before the subsequent
+main-hero selection above.
 Retain the palette/type above. Rebuild the desktop as one affine plane: origin
 (113,455), surface axes (1,-.035) and (.45,.72). Align keyboard and mouse with
 these axes, place the tumbler clear of the laptop, and give the phone stand its
@@ -81,7 +84,7 @@ courtyard default, no console/page errors or horizontal overflow, and research
 anchors landing clear of the pill navigation at approximately 120px. Original
 courtyard source/poster still match their backup tag exactly.
 
-The new drawing is dynamically loaded only for `?scene=workspace`. It shares
+The workspace drawing is dynamically loaded for `/` and `?scene=workspace`. It shares
 BotanicalIllustration's runtime through optional drawing/description/route props;
 their defaults preserve the courtyard. The lower desk route keeps the duck on
 the floor rather than crossing the keyboard. Its native 1000 × 800 viewBox adds
@@ -98,8 +101,8 @@ space for foliage; all three parallax groups and the duck share that space.
   still loaded the arched courtyard and no workspace drawing. Original drawing
   and poster have no Git diff from their backed-up versions.
 - The workspace SVG loading poster is exported from the exact authored drawing.
-  This comparison is selected after hydration; without JS the page retains its
-  original courtyard poster and all research content/links. No new screenshot
+  Query-based alternatives are selected after hydration; without JS the page retains its
+  current workspace poster and all research content/links. No new screenshot
   of the owner's actual desk is public, and no paper/CV facts were edited.
 
 - Headless WebKit rendered the drawing and both duck images at 390, 834 and

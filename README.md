@@ -1,10 +1,10 @@
 # hei — Le Nguyen Gia Hung
 
 Research-first portfolio for an AI undergraduate at FPT University, with a cobalt
-layered 2D botanical opening, visible publications and an optional playground.
+layered 2D forest-workspace opening, visible publications and an optional playground.
 
 A short welcome introduces the owner with his running duck and full name before
-revealing the illustrated courtyard. It runs once per browser-tab session and can be skipped
+revealing the illustrated workspace. It runs once per browser-tab session and can be skipped
 immediately with the button, Escape, Tab or scrolling. Direct section links and
 reduced motion bypass it. It is an introduction, not a simulated loading meter.
 Replay welcome lives in Explore; the older 3D comparisons also have sculpture options. A single Pause motion
@@ -26,7 +26,7 @@ leaves, fine veins, a sampled-point opening and the original 2D duck. The first
 potted object remains at `/?scene=sculpture`. See
 [the trial notes](design/leaf-study-trial.md) for scope and provenance.
 
-The selected 2D direction opens `/` and is also available at `/?scene=botanical`: an
+The earlier courtyard remains available at `/?scene=botanical`: an
 authored SVG courtyard, layered parallax and the original duck following a
 run/rest rhythm along its path. The research and CV links remain visible; the
 2D scene does not load WebGL or offer sculpture controls. See
@@ -34,12 +34,17 @@ run/rest rhythm along its path. The research and CV links remain visible; the
 `BotanicalDrawing.tsx`, regenerate its static loading poster with
 `node scripts/export-botanical-poster.cjs`.
 
-A photo-inspired desk illustration is available for comparison at
-`/?scene=workspace`. The courtyard remains the default, with an exact source
-backup at Git tag `hero-botanical-backup-2026-10-28`. See
+The selected photo-inspired forest workspace now opens `/` and
+`/?scene=workspace`. The courtyard stays at `/?scene=botanical`, with an exact
+source backup at Git tag `hero-botanical-backup-2026-10-28`. See
 [the workspace notes](design/workspace-illustration.md); its poster exports with
 `node scripts/export-botanical-poster.cjs --workspace`. The original reference
 photo stays private.
+
+The shared interaction pass adds an anchored Explore opening, interruptible
+pointer disclosures, moving project-selection feedback, copy confirmation and
+reading progress on articles/cases. Keyboard, reduced motion and global pause
+remain immediate. See [the motion review](design/portfolio-motion-polish.md).
 
 Research lists one published paper and four manuscripts under review, with full
 authorship and venue/status kept distinct. The applied-work section covers

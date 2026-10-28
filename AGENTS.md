@@ -1,5 +1,26 @@
 # Working on hei's portfolio
 
+## Current maintenance baseline (2026-10-28)
+
+The owner approves the current forest-workspace portfolio and requests cleanup,
+not a redesign. Preserve the rendered site, its motion and all reachable routes.
+Earlier aesthetic deliberations below are historical context, not a new brief.
+
+- Public CV sources now live in `cv/` and build in ignored `output/cv-build/`.
+  `docs/cv/` keeps the private import/original/review copies only; do not edit it
+  as the current source. See `cv/README.md` and `CONTRIBUTING.md`.
+- `docs/`, `cv-inbox/` and `.taste-skill/` remain private. Never force-add them.
+  A portable private archive is made with `scripts/backup-workspace.py` and must
+  be stored outside this checkout; do not publish its ZIP or manifest.
+- Obsolete unreachable legacy components have been removed. The original site
+  is recoverable in Git history. Live concept routes and selectable hero scenes
+  remain intentionally reachable. The courtyard backup tag must be preserved.
+- Documentation starts at `design/README.md`; superseded explorations are in
+  `design/history/`. Keep source credits and vendored skill licenses intact.
+- Run `npm run audit:code -- --check`, `npm run lint`, `npm run typecheck` and
+  `npm run build`; inspect representative pages at desktop/mobile and check
+  reduced motion, keyboard use and console errors before publishing cleanup.
+
 ## Intent
 
 This is Le Nguyen Gia Hung's personal portfolio. The owner is following a research
@@ -14,8 +35,8 @@ running, gym, trail running and photography, and describes himself as curious,
 energetic and funny. XAI/transparency and Computer Vision are important interests;
 his first paper matters as the foundation of his research journey. Exact color
 values, typefaces and a final visual concept have NOT been approved.
-See `design/owner-interview-and-references.md` for the interview and reference
-review, and `design/portfolio-rebuild.md` for the
+See `design/history/owner-interview-and-references.md` for the interview and reference
+review, and `design/history/portfolio-rebuild.md` for the
 research, candidate directions, and implementation sequence.
 
 The owner subsequently rejected BOTH the designer-like concepts and the pale-blue
@@ -25,7 +46,7 @@ illustrative neural graph is not sufficient. Preserve the original information
 while making research artifacts themselves carry the visual idea. Study technical
 creators' actual rendered work and interactions; do not equate "technical" with
 dashboard styling or tiny monospace labels. The reference study is in
-`design/tech-portfolio-reference-study.md`; it predates the 2D botanical selection
+`design/history/tech-portfolio-reference-study.md`; it predates the 2D botanical selection
 on 2026-10-28 described below.
 
 Latest correction (2026-10-27): the owner also rejected text-heavy technical
@@ -33,12 +54,12 @@ references and said the original may be more fun. Preserve the original's
 playfulness and tactile/spatial interactions while improving hierarchy and
 personal identity. The homepage should be image-led and concise, with full
 research depth easy to open. The field-notebook aesthetic recommendation is
-superseded by `design/visual-direction-reset.md`; do not keep steering toward an
+superseded by `design/history/visual-direction-reset.md`; do not keep steering toward an
 essay/editorial homepage or require every playful effect to teach an algorithm.
 
 Working motion proof: `/concepts/garden` (spatial) and
 `/concepts/garden?view=photo` (photographic). Design comparison and verification
-are in `design/garden-motion-proof.md`. These remain review candidates; do not
+are in `design/history/garden-motion-proof.md`. These remain review candidates; do not
 infer approval of the palette, typeface or botanical sculpture from implementation.
 
 Owner feedback on 2026-10-27: the Sculpture variant is liked and is the direction
@@ -46,7 +67,7 @@ to develop. This is not approval of a complete final site. The owner also likes
 ducks and suggests a cute colored doodle duck in running clothes. A generated
 candidate is at `public/images/personal/running-duck-v1.png`, placed near the
 About portrait as an optional playground trigger; its artwork is not yet approved.
-Preserve its AI-generation provenance in `design/garden-function-parity-audit.md`.
+Preserve its AI-generation provenance in `design/history/garden-function-parity-audit.md`.
 Restore content/function depth rather than treating a successful hero as a finished
 portfolio. The same document tracks the original-versus-prototype review.
 
@@ -56,7 +77,7 @@ the hero, with published and under-review work distinguished. Surface authorship
 contribution, methods, contextual results, affiliation, degree/GPA and core tools
 without disclosure. All four project summaries should be scannable before the
 detail viewer. Long certifications and experimental discussion can be expandable.
-See `design/research-visibility-review.md`. This remains a prototype; choosing
+See `design/history/research-visibility-review.md`. This remains a prototype; choosing
 Sculpture selects the direction for a complete site, not a final-state approval.
 
 Latest visual refinement: the owner asks for visual tools and an impressive
@@ -64,7 +85,7 @@ opening. `GardenToolkit` maps all original tools (plus documented XAI methods)
 onto a project-linked workflow, keeping their names visible. The Sculpture
 opening assembles geometric points into the blue plant, supports replay, and is
 interruptible by scrolling/controls; reduced motion shows the settled scene.
-See `design/visual-content-and-opening.md` for the whole-page visual/text review.
+See `design/history/visual-content-and-opening.md` for the whole-page visual/text review.
 Do not turn factual paper references, author roles or statuses into icon-only UI.
 
 ## Skills
@@ -185,25 +206,15 @@ the Claude-specific environment variable in the upstream command exists.
   update. Follow `design/research-experience-update.md`; keep intake PDFs private,
   distinguish all paper/competition statuses, and scope SmokeNet performance
   claims to the published report while its baseline table awaits source review.
-- The owner's Overleaf CV was imported into ignored `docs/cv/`. Edit
-  `resume_havard_ver.tex` there; preserve `original/`. Build with
-  `python scripts/build-cv.py`, inspect both pages, then use `--publish` to update
-  the public PDF. Keep `public/HungLNG_Resume.md` aligned. Source reconciliation
-  and unresolved dates are in `design/cv-update.md` and the portfolio backlog.
-  The industry source is `docs/cv/resume_ai_ml.tex`; it exports the one-page
-  `public/HungLNG_Resume_AI_ML.pdf` and has a matching Markdown file. The default
-  build now handles both variants (`--variant research|industry|all`).
-  `--edition digital|print|all` selects editions; the default builds four PDFs.
-  Shared style: ignored `docs/cv/cv-style.tex`. Current editions are A4, 11pt
-  XCharter OpenType (fontspec), with visible profile URLs and page counts.
-  Keep the text-extraction font settings: the previous Type 1 export split
-  PyTorch/TensorFlow in pypdf plain mode. Run `python scripts/check-cv-text.py`
-  before publishing; it uses pypdf plain/layout and PyMuPDF, not an ATS score.
-  Print adds a real portfolio QR, grayscale styling and the small native vector
-  duck from `design/assets/cv-running-duck.tex`; keep it out of digital editions.
-  All editions derive from the same content per role. See
-  `design/cv-digital-and-print.md`; inspect all six rendered pages and decode the
-  print QR before publishing. Keep the digital research CV as the default link.
+- The owner's Overleaf CV was imported into ignored `docs/cv/`; originals remain
+  there. Current research and industry sources and the shared layout are tracked
+  in `cv/`. Build with `python scripts/build-cv.py` and check extraction with
+  `python scripts/check-cv-text.py` before using `--publish`. Keep both public
+  Markdown versions aligned. See `cv/README.md` for variants/editions and review.
+  Preserve the XCharter OpenType text settings: the previous Type 1 export split
+  PyTorch/TensorFlow in pypdf plain mode. Print editions use a real QR and native
+  vector duck; digital editions do not. Review all six rendered pages and decode
+  the print QR when changing content/layout. Keep research digital as default.
 - Career skills are guidance, not evidence. Do not estimate achievements, change
   official roles, infer work authorization, turn certificates into hands-on
   experience or report a universal ATS score. Preserve the research CV as the

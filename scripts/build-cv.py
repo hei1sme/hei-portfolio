@@ -1,4 +1,4 @@
-"""Build digital/print editions of the private CV sources; publish with an explicit flag."""
+"""Build digital/print CV editions from the tracked cv/ sources."""
 import argparse
 import hashlib
 import io
@@ -48,12 +48,12 @@ def main():
     }
     selected = variants if args.variant == "all" else {args.variant: variants[args.variant]}
     for source_name, _ in selected.values():
-        source = ROOT / f"docs/cv/{source_name}.tex"
+        source = ROOT / f"cv/{source_name}.tex"
         if not source.is_file():
-            raise SystemExit(f"Missing private CV source: {source}")
-    build = ROOT / "docs/cv/build"
+            raise SystemExit(f"Missing CV source: {source}")
+    build = ROOT / "output/cv-build"
     build.mkdir(parents=True, exist_ok=True)
-    shutil.copy2(ROOT / "docs/cv/cv-style.tex", build / "cv-style.tex")
+    shutil.copy2(ROOT / "cv/cv-style.tex", build / "cv-style.tex")
     (ROOT / "output/pdf").mkdir(parents=True, exist_ok=True)
     environment = dict(os.environ, TECTONIC_CACHE_DIR=str(ROOT / ".codex/tooling/tectonic-cache"))
     executable = compiler()
@@ -63,7 +63,9 @@ def main():
     exports = []
     for source_name, export_name in selected.values():
         for edition in editions:
-            source = ROOT / f"docs/cv/{source_name}.tex"
+            # Compile a local copy so \input resolves identically on a fresh clone.
+            source = build / f"{source_name}.tex"
+            shutil.copy2(ROOT / f"cv/{source_name}.tex", source)
             suffix = "_Print" if edition == "print" else ""
             job_name = source_name
             if edition == "print":

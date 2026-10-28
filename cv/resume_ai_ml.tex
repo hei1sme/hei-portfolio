@@ -1,0 +1,52 @@
+\documentclass[11pt,a4paper]{article}
+\newcommand{\CvKind}{AI/ML resume}
+\input{cv-style.tex}
+\begin{document}
+\cvHeader{AI undergraduate\enspace|\enspace Applied machine learning \& AI systems}
+{First \& corresponding author of a published AJCAI 2025 paper.}
+
+\section{Education}
+\textbf{FPT University} --- B.Eng. in Artificial Intelligence \hfill Expected Dec 2027\\
+GPA: \textbf{8.62/10.0}. Certificate of Merit: semesters 3, 4, 5 and 6.
+
+\section{Experience}
+\resumeEntry{First Cloud AI Journey --- NutriTrack}{AWS Vietnam program}
+{FCAJ Cloud Intern, Team NeuraX}{Jan -- May 2026}
+\begin{highlights}
+\item Developed recipe-generation and coaching workflows with \textbf{Amazon Bedrock, AWS Lambda} and DynamoDB user context; returned structured JSON for the application.
+\item Collaborated on AppSync integration, timeout handling and workshop documentation. \href{https://hei1sme.github.io/hei-FCAJ-intership-report/}{Report}.
+\end{highlights}
+
+\section{Selected Research \& Projects}
+\resumeEntry{SmokeNet: Air Quality Forecasting}{}
+{First \& Corresponding Author; published at AJCAI 2025}{Jun -- Nov 2025}
+\begin{highlights}
+\item Designed a Transformer for next-day mean PM\textsubscript{2.5} from 48 hours of history; used chronological evaluation and SHAP/Integrated Gradients/DiCE.
+\item Reported \textbf{MAE 0.7470} $\mu$g/m$^3$, $R^2$ \textbf{0.9545} and \textbf{35.9\% lower MAE than XGBoost} on the held-out 2024 test year. \href{https://github.com/SpeedyLabX/melbourne-air-quality-forecast}{Code}.
+\end{highlights}
+\resumeEntry{BioListen VN --- Vietnam AI Innovation Challenge}{Team NeuraX.ai}
+{UI \& LLM; placed 6th in Round 1}{Jul 2026}
+\begin{highlights}
+\item Built audio-input, spectrogram and alert views with \textbf{Next.js/TypeScript}; integrated API data and Vietnamese ranger-report prompts with the Groq LLM layer. \href{https://github.com/hei1sme/BioListen-VN}{Code}.
+\end{highlights}
+\resumeEntry{CosmicOptic --- NASA Space Apps Challenge}{}
+{Frontend \& Backend Developer}{Oct 2025}
+\begin{highlights}
+\item Built a \textbf{React/D3} interface for stellar light curves and a \textbf{FastAPI} backend with a replaceable inference service; demonstrated the prototype on synthetic signals. \href{https://github.com/hei1sme/cosmicoptic-webapp}{Code}.
+\end{highlights}
+
+\section{Leadership}
+\resumeEntry{SpeedyLabX, FPT University}{}{Founder \& Student Lead}{Jan 2025 -- Present}
+\begin{highlights}
+\item Lead a \textbf{10-member} undergraduate group through technical workshops, paper reading and shared research and submission workflows.
+\end{highlights}
+
+\section{Technical Skills}
+\textbf{Languages \& frameworks:} Python, SQL/PostgreSQL, TypeScript, React, FastAPI.\\
+\textbf{Machine learning:} PyTorch, Transformers, TensorFlow/Keras, Scikit-learn, OpenCV; SHAP, Integrated Gradients, chronological evaluation.\\
+\textbf{Cloud \& tools:} Bedrock, Lambda, DynamoDB, AppSync; Git, Docker, Linux, Pandas, NumPy.
+
+\section{Publication}
+\textbf{Gia-Hung Nguyen Le} et al. ``Proactive Air Quality Forecasting and Health Alert System for Melbourne.'' \textit{AJCAI 2025, Springer LNAI}. \href{https://doi.org/10.1007/978-981-95-4969-6_34}{DOI: 10.1007/978-981-95-4969-6\_34}.\par
+Four additional manuscripts under review.
+\end{document}

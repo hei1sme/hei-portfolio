@@ -1,5 +1,9 @@
 # CV for digital applications and in-person meetings
 
+Maintenance update (2026-10-28): the current editable sources are tracked in `cv/`,
+with build output in `output/cv-build/`. Earlier `docs/cv/` paths below describe
+the private import and review history. See [CV instructions](../cv/README.md).
+
 2026-10-27. The owner asked for more reference study and implementation for both
 online PDFs and printed CVs, after discussing a single-column cobalt direction.
 

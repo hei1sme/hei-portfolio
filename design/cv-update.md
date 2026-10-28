@@ -1,5 +1,9 @@
 # CV source import and portfolio alignment
 
+Maintenance update (2026-10-28): the current editable sources are tracked in `cv/`,
+with build output in `output/cv-build/`. Earlier `docs/cv/` paths below describe
+the private import and review history. See [CV instructions](../cv/README.md).
+
 2026-10-27. The owner supplied `resume_havard_ver.tex.txt` from Overleaf to update
 the CV and portfolio. The attachment is valid LaTeX despite its `.txt` suffix.
 

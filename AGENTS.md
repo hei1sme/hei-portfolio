@@ -149,6 +149,11 @@ the Claude-specific environment variable in the upstream command exists.
   procedural geometry, not a plant scan or model inference. Existing generated
   duck artwork elsewhere is unchanged. Do not promote
   the trial to the default hero without the owner's selection.
+- Latest owner correction: the procedural 3D still looks strange and the original
+  2D duck is preferred. Restore the original six-frame duck in the leaf preview;
+  do not replace the mascot with another 3D toy. The hero remains unapproved.
+  Layered 2D botanical illustration and a real-image/research collage are
+  proposed alternatives, not selected directions. Compare before a broad rebuild.
 - The owner reviewed/scanned the CV batch, then explicitly requested the web
   update on 2026-10-27. That request supersedes the earlier web hold for this
   update. Follow `design/research-experience-update.md`; keep intake PDFs private,

@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import Image from "next/image";
 import { createLeafGeometry, leafInterior, leafNormal, leafPoint, sampleLeafPoints } from "./leafStudyGeometry";
-import { createLeafCompanion } from "./leafCompanion";
 import type { BotanicalSceneProps } from "./BotanicalScene";
 
 export default function LeafStudyScene(props: BotanicalSceneProps) {
@@ -170,9 +169,12 @@ export default function LeafStudyScene(props: BotanicalSceneProps) {
     sculpture.add(base);
     geometries.push(baseGeometry);
 
-    const companion = createLeafCompanion();
-    const duck = companion.group;
-    duck.position.set(.84, -2.228, .74); duck.scale.setScalar(.84);
+    const duckMap = new THREE.TextureLoader().load('/images/personal/running-duck-sprite-large-v2.webp', () => { dirty = true; });
+    duckMap.colorSpace = THREE.SRGBColorSpace;
+    duckMap.repeat.set(1/3, 1/2); duckMap.offset.set(1/3, 1/2);
+    const duckMaterial = new THREE.SpriteMaterial({ map: duckMap, transparent: true, depthWrite: false, toneMapped: false });
+    const duck = new THREE.Sprite(duckMaterial);
+    duck.position.set(.84, -2.15, .74); duck.scale.set(.66, .66, 1);
     sculpture.add(duck);
     let duckHover = false;
     const floorGeometry = new THREE.PlaneGeometry(200, 200);
@@ -291,7 +293,11 @@ export default function LeafStudyScene(props: BotanicalSceneProps) {
         layer.surface.position.z = layer.rest.z + separation * (index ? .4 : -.3);
         layer.points.position.copy(layer.surface.position);
       });
-      companion.update(elapsed, animated, duckHover);
+      const duckFrame = animated && duckHover ? Math.floor(elapsed * 10) % 6 : 1;
+      duckMap.offset.set((duckFrame % 3) / 3, .5 - Math.floor(duckFrame / 3) * .5);
+      const breath = animated && !duckHover ? Math.sin(elapsed * 2.8) * .018 : 0;
+      duck.scale.set(.66, .66 + breath, 1);
+      duck.position.y = -2.15 + (animated && duckHover ? Math.abs(Math.sin(elapsed * 13)) * .026 : breath * .25);
       dotMaterial.uniforms.uOpacity.value = dissolve;
       dotMaterial.uniforms.uAssembly.value = THREE.MathUtils.smoothstep(openingTime, 0, 1.35);
       camera.position.z = cameraDistance + (1 - arrival) * 1.1;
@@ -326,7 +332,7 @@ export default function LeafStudyScene(props: BotanicalSceneProps) {
       canvas.removeEventListener("webglcontextlost", contextLost);
       geometries.forEach(geometry => geometry.dispose());
       [leafMaterial, backMaterial, rimMaterial, veinMaterial, stemMaterial, dotMaterial, baseMaterial, floorMaterial].forEach(material => material.dispose());
-      companion.dispose();
+      duckMaterial.dispose(); duckMap.dispose();
       renderer.dispose();
     };
   }, []);

@@ -1,5 +1,34 @@
 # Two-leaf sculpture trial
 
+## Owner correction: keep the 2D duck
+
+2026-10-28. The owner still finds the procedural 3D strange and explicitly prefers
+the original 2D duck. The mesh duck was an unwanted change in visual character;
+restore the existing six-frame artwork in the preview, preserving its generated
+provenance in `duck-cursor-and-blog-cover.md`. The leaf geometry, right alignment
+and current main homepage stay as they were for comparison. This is a small
+correction, not approval of the leaf hero. The solid duck helper is removed from
+active code; its experiment remains in Git history. The static vector fallback
+shows only the botanical illustration rather than a different mascot.
+
+Recommended next comparison: a layered 2D botanical composition with the existing
+duck, cobalt shapes and restrained scroll parallax; alternatively a collage of
+actual research imagery and personal photography when assets are available.
+Preserve the visible research hierarchy and concise identity in either direction.
+Neither alternative is selected or implemented by this correction.
+
+Use the original sprite colors without 3D tone mapping. Keep rest breathing,
+hover gait, global pause and reduced-motion behavior. Verify the production build,
+desktop/mobile render, pause/reduced motion and hover before pushing the preview.
+
+Verification for the restoration: Next.js production compilation, lint and types
+passed. Playwright MCP checked the production server at 1440 and 390px: the
+original 2D artwork rendered, hover entered run, settled pause and reduced-motion
+canvas snapshots matched, and mobile had no horizontal overflow. No console or
+page errors occurred in those normal runs. Images/logs are ignored
+`output/duck-2d-*`. This is targeted browser QA, not a new visual approval of the
+3D leaves or a physical-device test.
+
 ## Harmony refinement, 2026-10-28
 
 Owner feedback: the first candidate is too flat and needs a more coherent scene;

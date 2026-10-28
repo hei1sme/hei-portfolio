@@ -12,5 +12,5 @@ function workspaceRoute(t: number) {
 }
 
 export default function WorkspaceIllustration(props: Omit<Parameters<typeof BotanicalIllustration>[0], "Drawing" | "description" | "route">) {
-  return <BotanicalIllustration {...props} Drawing={WorkspaceDrawing} route={workspaceRoute} description="A cobalt illustration inspired by my desk: laptop, monitor with a light bar, mechanical keyboard and tumbler, framed by tropical plants and my running doodle duck." />;
+  return <BotanicalIllustration {...props} Drawing={WorkspaceDrawing} route={workspaceRoute} description="My workspace reimagined in a blue tropical forest: a laptop and monitor on one desk, mechanical keyboard, mouse and tumbler, with my doodle duck running along the foreground path." />;
 }

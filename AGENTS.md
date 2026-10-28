@@ -152,6 +152,11 @@ the Claude-specific environment variable in the upstream command exists.
   WorkspaceDrawing adds plants artistically, reuses the original 2D duck and
   shared animation runtime with a lower foreground route. Do not promote this
   comparison without the owner's selection.
+  Owner's follow-up likes the desk but requests coherent object placement and
+  working-in-a-forest atmosphere. Desk objects now share one rigid middle layer;
+  align keyboard/mouse to the desktop plane, keep the monitor stand above the
+  desktop in draw order, and keep the foreground planter clear of the mouse.
+  Preserve the layered tropical background when refining this comparison.
 
 - Latest selected direction (2026-10-28): layered 2D botanical illustration.
   The main `/` uses this hero; `/?scene=botanical` selects it explicitly. Follow

@@ -41,6 +41,46 @@ scrolling. Do not promote it to the default without the owner's selection.
 
 ## Verification
 
+### Owner refinement: coherent desk in a forest
+
+The owner likes the workspace but finds the objects scattered and asks for a
+forest-like background. Preserve the courtyard default and this comparison URL.
+Retain the palette/type above. Rebuild the desktop as one affine plane: origin
+(113,455), surface axes (1,-.035) and (.45,.72). Align keyboard and mouse with
+these axes, place the tumbler clear of the laptop, and give the phone stand its
+own back-right position. Draw the monitor/stand after the desktop and keep every
+desk object in the same parallax group so they cannot drift apart on scroll.
+
+Replace the background wash with layered banana leaves, palm fronds, tall stems
+and split leaves around a central clearing. Keep distant foliage pale and nearer
+leaves cobalt/leaf green; foliage frames the screens rather than covering the
+input devices. Put the foreground planter on the ground at the far right. Keep
+the running duck/path in front. No additional animation loop or page controls.
+
+Critique before implementation: increasing leaf count alone would leave the
+spatial defects intact. Correct supporting surfaces/occlusion first, then use
+the forest as a quiet background with a readable desk silhouette. No content,
+navigation, original courtyard art or research facts need to change.
+
+Implemented the new surface and draw order. Monitor/stand, laptop, keyboard,
+mouse, tumbler and phone holder now share the middle layer with the desk.
+The large planter sits on the ground at the far right; its leaves clear the
+mouse. The background has pale distant palms, large mid-distance leaves and
+deeper blue fronds near the desk. The poster is re-exported from the drawing.
+
+Refinement checks: Chromium at 320/390/834/1024/1440/1920px showed no page/console
+errors or document overflow; desktop, phone and tablet screenshots were inspected.
+After pointer parallax and a 180px scroll, every desk object's position relative
+to the table remained identical to 0.01px. Pause froze the duck and Explore/Escape
+retained keyboard focus. Reduced-motion views settle the scene. Headless WebKit
+at 390px rendered both duck images and the forest with no page errors/overflow.
+Physical iPad/iPhone verification remains an owner check.
+The refinement's production build passed lint/types and all 22 generated routes.
+Fresh production mobile checks confirmed the forest comparison, original
+courtyard default, no console/page errors or horizontal overflow, and research
+anchors landing clear of the pill navigation at approximately 120px. Original
+courtyard source/poster still match their backup tag exactly.
+
 The new drawing is dynamically loaded only for `?scene=workspace`. It shares
 BotanicalIllustration's runtime through optional drawing/description/route props;
 their defaults preserve the courtyard. The lower desk route keeps the duck on

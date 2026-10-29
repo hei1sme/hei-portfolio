@@ -21,9 +21,9 @@ export default function ProjectClientPage({ children, frontmatter, record }: { c
     </figure>
     {record ? <dl className="portfolio-case-metrics">{record.metrics.map(metric => <div key={metric.label}><dt>{metric.label}</dt><dd>{metric.value}</dd></div>)}</dl> : null}
     <div className="portfolio-case-body"><div className="portfolio-prose">{children}</div><aside className="portfolio-case-sidebar" aria-label="Project evidence">
-      {record ? <><section><h2>My contribution</h2><ul>{record.contributions.map(item => <li key={item}>{item}</li>)}</ul></section><section><h2>Evaluation scope</h2><p>{record.evaluation}</p></section><section><h2>Limitations</h2><p>{record.limitation}</p></section></> : null}
+
       <section><h2>Tools & methods</h2><ul className="portfolio-tag-list">{(frontmatter.technologies || []).map(tech => <li key={tech}>{tech}</li>)}</ul></section>
-      {record?.source || frontmatter.repoUrl || frontmatter.liveUrl ? <section><h2>Explore the work</h2>{record?.source || frontmatter.repoUrl ? <a href={record?.source || frontmatter.repoUrl} target="_blank" rel="noreferrer">Research repository <Icon name="external" /></a> : null}{frontmatter.liveUrl ? <a href={frontmatter.liveUrl} target="_blank" rel="noreferrer">Project demo <Icon name="external" /></a> : null}</section> : null}
+      {(!record?.source && frontmatter.repoUrl) || frontmatter.liveUrl ? <section><h2>Explore the work</h2>{!record?.source && frontmatter.repoUrl ? <a href={frontmatter.repoUrl} target="_blank" rel="noreferrer">Research repository <Icon name="external" /></a> : null}{frontmatter.liveUrl ? <a href={frontmatter.liveUrl} target="_blank" rel="noreferrer">Project demo <Icon name="external" /></a> : null}</section> : null}
     </aside></div>
     <nav className="portfolio-next-project" aria-label="Continue exploring"><Link href={overview}><Icon name="left" /> All work</Link><Link href={next.href || "/#garden-work"}>Next: {next.name} <Icon name="external" /></Link></nav>
   </article>;

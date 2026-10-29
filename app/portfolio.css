@@ -553,3 +553,21 @@ html:has(.garden-root) { scroll-padding-top: calc(96px + env(safe-area-inset-top
 .portfolio-outlier-contribution li { padding: 9px 0; font-size: 14px; line-height: 1.5; border-bottom: 1px solid #ffffff55; }
 @media (max-width: 900px) { .portfolio-outlier-work { padding: 30px; gap: 32px; } }
 @media (max-width: 760px) { .portfolio-outlier-work { grid-template-columns: 1fr; padding: 28px 24px; margin-bottom: 36px; } .portfolio-outlier-contribution h4 { font-size: 21px; } }
+
+/* Give full cases a clear primary path; keep the in-page inspector available. */
+.garden-index-actions .garden-index-case:first-child { background: white; color: #214ce8; padding: 8px 15px; border-radius: 24px; font-weight: 700; }
+.garden-index-actions { gap: 8px 16px; }
+.garden-index-actions .garden-index-action { background: transparent; color: white; border: 0; gap: 8px; }
+@media (max-width: 760px) {
+  .garden-tool-label { min-height: 38px; padding: 6px; gap: 7px; font-size: 14px; }
+  .garden-tool-symbol, .garden-tool-symbol svg { width: 21px; height: 21px; flex-basis: 21px; }
+  .garden-tool-stages { gap: 24px 14px; }
+  .garden-tool-stages h3 { font-size: 17px; }
+  .garden-tool-stages > li > p { margin-top: 3px; font-size: 13px; }
+  .garden-tool-stages > li > ul { padding-top: 8px; }
+  .garden-workflow-proof { padding: 20px; }
+  .garden-workflow-proof ol { gap: 12px; margin: 14px 0; }
+  .garden-workflow-proof li { font-size: 14px; line-height: 1.5; }
+  .garden-lab-tools ul { gap: 4px 14px; margin: 10px 0; }
+  .garden-milestones li + li { margin-top: 25px; }
+}

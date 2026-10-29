@@ -31,6 +31,8 @@ root README is a capture of the actual homepage, not a separate concept.
 
 Latest content update: [Outlier contributor experience](outlier-experience-update.md).
 
+Latest reading refinement: [Mobile density and case-study clarity](portfolio-reading-polish.md).
+
 ## History
 
 Superseded explorations and earlier audits are grouped in [history/](history/README.md).

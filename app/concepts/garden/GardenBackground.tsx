@@ -13,11 +13,11 @@ export default function GardenBackground() {
         <div className="garden-journey-spread">
           <figure className="garden-lab-art"><div className="garden-lab-image"><Image src="/images/experience/1_SpeedyLabX/1_1_slx.png" alt="SpeedyLabX wordmark" fill sizes="(max-width: 900px) 90vw, 50vw" /></div><figcaption>SpeedyLabX · FPT University</figcaption></figure>
           <ol className="garden-milestones">
-            <li><span>January 2025</span><h3>Starting SpeedyLabX.</h3><p>Founded SpeedyLabX, a 10-member undergraduate research group. Weekly technical workshops, paper reading and shared submission workflows.</p></li>
+            <li><span>January 2025</span><h3>Starting SpeedyLabX.</h3><p>Founded a 10-member undergraduate group for shared research, paper reading and technical workshops.</p></li>
             <li><span>December 2025 · AJCAI 2025</span><h3>The first paper.</h3><p>SmokeNet became the foundation for the environmental forecasting research that followed.</p><a href="#garden-published-paper">Publication & contribution <Icon name="external" /></a></li>
-            <li><span>January–May 2026 · Certified OJT</span><h3>AI workflows at FCAJ.</h3><p>Recipe generation and coaching for NutriTrack with Team NeuraX, connecting cloud AI to an application.</p><a href="#garden-experience">Experience & implementation <Icon name="external" /></a></li>
-            <li><span>July 2026 · VAIC</span><h3>Listening to the forest.</h3><p>UI and LLM work on BioListen VN. Team NeuraX.ai placed 6th in Round 1 of Vietnam AI Innovation Challenge.</p></li>
-            <li><span>Current research · Under review</span><h3>Questions of trust.</h3><p>Bloom forecasting at ACIIDS 2027, device-held-out coverage at AISTATS 2027, multimodal anomaly detection at KDD 2027 and health-centred alerts at AJCAI 2026.</p><a href="#garden-publications">Titles, authors & status <Icon name="external" /></a></li>
+            <li><span>January–May 2026 · Certified OJT</span><h3>AI workflows at FCAJ.</h3><p>Took research into application workflows with Team NeuraX during certified OJT.</p><a href="#garden-experience">Experience & implementation <Icon name="external" /></a></li>
+            <li><span>July 2026 · VAIC</span><h3>Listening to the forest.</h3><p>Built BioListen VN with Team NeuraX.ai; placed 6th in Round 1.</p></li>
+            <li><span>Current research · Under review</span><h3>Questions of trust.</h3><p>Four manuscripts under review explore forecasting, device-held-out coverage and trustworthy anomaly detection.</p><a href="#garden-publications">Titles, authors & status <Icon name="external" /></a></li>
           </ol>
         </div>
         <p className="garden-research-context"><a href="https://github.com/SpeedyLabX" target="_blank" rel="noreferrer">More from SpeedyLabX on GitHub <Icon name="external" /></a></p>

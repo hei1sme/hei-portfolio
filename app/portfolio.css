@@ -539,9 +539,17 @@ html:has(.garden-root) { scroll-padding-top: calc(96px + env(safe-area-inset-top
   .portfolio-site :is(.portfolio-writing-cover img, .garden-writing-image img, .portfolio-build-visual img, .garden-index-thumb, .garden-primary-link .garden-arrow) { transform: none !important; }
 }
 
-/* Contributor experience uses the existing paper/ink palette without invented artifacts. */
-.portfolio-outlier-work { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; padding: 32px 0; margin-bottom: 36px; border-top: 1px solid #15234426; border-bottom: 1px solid #15234426; }
-.portfolio-outlier-work h3 { font-size: clamp(26px, 3vw, 40px); line-height: 1.15; letter-spacing: -.04em; margin: 12px 0; }
-.portfolio-outlier-work > div > p:not([class]) { font-size: 16px; line-height: 1.75; max-width: 590px; }
-.portfolio-outlier-work > div > p + p { margin-top: 12px; }
-@media (max-width: 760px) { .portfolio-outlier-work { grid-template-columns: 1fr; gap: 16px; padding: 26px 0; } }
+/* Contributor experience: a distinct cobalt surface, aligned with the cloud row. */
+.portfolio-outlier-work { display: grid; grid-template-columns: 1.05fr 1fr; gap: 6%; padding: 44px; margin-bottom: 52px; background: var(--cobalt); color: white; border-radius: 14px; }
+.portfolio-outlier-work h3 { font-size: clamp(48px, 5vw, 72px); font-weight: 550; line-height: 1; letter-spacing: -.04em; }
+.portfolio-outlier-role { font-size: 19px; line-height: 1.5; margin-top: 16px !important; font-weight: 650; }
+.portfolio-outlier-meta { display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 14px; line-height: 1.7; margin-top: 9px !important; color: #e0e8ff; }
+.portfolio-outlier-languages { display: flex; flex-wrap: wrap; gap: 24px 40px; margin: 32px 0 0; }
+.portfolio-outlier-languages dt { color: var(--leaf); font-size: 20px; font-weight: 650; }
+.portfolio-outlier-languages dd { margin: 4px 0 0; font-size: 14px; line-height: 1.5; }
+.portfolio-outlier-contribution h4 { font-size: 23px; font-weight: 650; line-height: 1.3; letter-spacing: -.02em; }
+.portfolio-outlier-contribution > p { font-size: 16px; line-height: 1.75; margin-top: 16px !important; max-width: 60ch; }
+.portfolio-outlier-contribution ul { margin: 24px 0 0; padding: 0; list-style: none; border-top: 1px solid #ffffff55; }
+.portfolio-outlier-contribution li { padding: 9px 0; font-size: 14px; line-height: 1.5; border-bottom: 1px solid #ffffff55; }
+@media (max-width: 900px) { .portfolio-outlier-work { padding: 30px; gap: 32px; } }
+@media (max-width: 760px) { .portfolio-outlier-work { grid-template-columns: 1fr; padding: 28px 24px; margin-bottom: 36px; } .portfolio-outlier-contribution h4 { font-size: 21px; } }

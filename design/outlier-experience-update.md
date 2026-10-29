@@ -19,3 +19,17 @@ Verification: all six PDF pages visually reviewed; two-reader/three-mode extract
 checks pass, including Outlier and English-rationale checks. Production build,
 lint/types and code audit pass. Homepage entry checked at 390/834/1440px with
 reduced motion, keyboard Explore and console/overflow checks.
+
+## Visibility refinement
+
+Owner requested stronger hierarchy beside NutriTrack. Outlier now occupies a
+cobalt surface with its name as the primary heading, contributor role and dates
+visible, Vietnamese conversation / English rationale facts grouped on the left,
+and contribution plus evaluation criteria on the right. Its two columns align
+with the cloud-work row below; mobile stacks identity before contribution.
+No simulated audio, metrics, customer logo or extra motion was introduced.
+The selective research timeline stays unchanged to avoid repeating this entry.
+
+Verified production build (22 static entries, lint/types included), import audit,
+Impeccable scoped detector (no findings), and rendered 390/834/1440px views with
+reduced motion. Screenshots reviewed at mobile/desktop; no overflow/page errors.

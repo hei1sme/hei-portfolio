@@ -11,8 +11,17 @@ export default function GardenExperience() {
     <div className="portfolio-applied-heading"><h2 id="portfolio-applied-title">AI, in practice.</h2><p>Voice-model evaluation.<br />Cloud workflows & team projects.</p></div>
 
     <article className="portfolio-outlier-work" aria-labelledby="portfolio-outlier-title">
-      <div><p className="portfolio-work-context">Outlier · Aug–Oct 2026</p><h3 id="portfolio-outlier-title">Listening beyond the words.</h3><p className="portfolio-work-role">AI Evaluation Contributor · Scale AI platform</p></div>
-      <div><p>I compared two conversational voice models in live Vietnamese conversations, assessing naturalness, engagement, audio quality, helpfulness and conversational dynamics.</p><p>I wrote rationales in English to explain my ratings and preferences.</p></div>
+      <div className="portfolio-outlier-identity">
+        <h3 id="portfolio-outlier-title">Outlier.</h3>
+        <p className="portfolio-outlier-role">AI Evaluation Contributor</p>
+        <p className="portfolio-outlier-meta">Scale AI platform <span>Aug–Oct 2026</span></p>
+        <dl className="portfolio-outlier-languages"><div><dt>Vietnamese</dt><dd>Live conversations</dd></div><div><dt>English</dt><dd>Written rationales</dd></div></dl>
+      </div>
+      <div className="portfolio-outlier-contribution">
+        <h4>Conversational AI evaluation</h4>
+        <p>I compared two voice models in live Vietnamese conversations and wrote rationales in English to explain my ratings and preferences.</p>
+        <ul aria-label="Evaluation criteria"><li>Naturalness & engagement</li><li>Audio quality</li><li>Helpfulness & conversational dynamics</li></ul>
+      </div>
     </article>
 
     <article className="portfolio-cloud-work">

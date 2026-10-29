@@ -29,6 +29,8 @@ Editable artwork lives in `assets/`. The homepage SVG drawing sources live besid
 their animation components under `app/concepts/garden/`. The screenshot in the
 root README is a capture of the actual homepage, not a separate concept.
 
+Latest content update: [Outlier contributor experience](outlier-experience-update.md).
+
 ## History
 
 Superseded explorations and earlier audits are grouped in [history/](history/README.md).

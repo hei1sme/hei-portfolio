@@ -24,7 +24,7 @@ KEYWORDS = [
     "PyTorch", "TensorFlow/Keras", "Scikit-learn", "OpenCV",
     "Education", "0.7470", "0.9545", "35.9%", "8.62",
     "Bedrock", "Lambda", "DynamoDB", "AppSync", "BioListen", "CosmicOptic",
-    "6th in Round 1",
+    "6th in Round 1", "Outlier", "AI Evaluation Contributor", "Vietnamese interactions", "rationales in English",
 ]
 RESEARCH_KEYWORDS = [
     "WavLM + Compact Conformer", "BERT/RoBERTa", "33.09%", "15.28%",

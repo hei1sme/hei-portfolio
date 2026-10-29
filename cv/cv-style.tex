@@ -1,5 +1,5 @@
 % Shared layout for the digital and print editions. Run from the repository root.
-\usepackage[a4paper,margin=20mm,footskip=10mm]{geometry}
+\usepackage[a4paper,margin=18mm,footskip=10mm]{geometry}
 \usepackage{fontspec}
 \setmainfont{XCharter}[
   Extension=.otf,
@@ -37,8 +37,8 @@
 \hyphenpenalty=10000
 \exhyphenpenalty=10000
 \titleformat{\section}{\fontsize{13}{15}\selectfont\bfseries\color{Accent}}{}{0pt}{}[{\vspace{1pt}\titlerule[0.35pt]}]
-\titlespacing{\section}{0pt}{8pt}{4pt}
-\newenvironment{highlights}{\begin{itemize}[topsep=2pt,parsep=0pt,partopsep=0pt,itemsep=1pt,leftmargin=12pt]}{\end{itemize}}
+\titlespacing{\section}{0pt}{6pt}{4pt}
+\newenvironment{highlights}{\begin{itemize}[topsep=2pt,parsep=0pt,partopsep=0pt,itemsep=0pt,leftmargin=12pt]}{\end{itemize}}
 \renewcommand\labelitemi{\textbullet}
 \newcommand{\resumeEntry}[4]{%
   \par\noindent\textbf{#1}\hfill{\small\textcolor{Muted}{#4}}\par

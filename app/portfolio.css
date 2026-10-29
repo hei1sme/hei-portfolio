@@ -538,3 +538,10 @@ html:has(.garden-root) { scroll-padding-top: calc(96px + env(safe-area-inset-top
   .portfolio-site .portfolio-picker-surface, .portfolio-site .portfolio-email button { transition: none; }
   .portfolio-site :is(.portfolio-writing-cover img, .garden-writing-image img, .portfolio-build-visual img, .garden-index-thumb, .garden-primary-link .garden-arrow) { transform: none !important; }
 }
+
+/* Contributor experience uses the existing paper/ink palette without invented artifacts. */
+.portfolio-outlier-work { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; padding: 32px 0; margin-bottom: 36px; border-top: 1px solid #15234426; border-bottom: 1px solid #15234426; }
+.portfolio-outlier-work h3 { font-size: clamp(26px, 3vw, 40px); line-height: 1.15; letter-spacing: -.04em; margin: 12px 0; }
+.portfolio-outlier-work > div > p:not([class]) { font-size: 16px; line-height: 1.75; max-width: 590px; }
+.portfolio-outlier-work > div > p + p { margin-top: 12px; }
+@media (max-width: 760px) { .portfolio-outlier-work { grid-template-columns: 1fr; gap: 16px; padding: 26px 0; } }

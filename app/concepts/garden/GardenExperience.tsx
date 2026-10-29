@@ -8,7 +8,12 @@ export default function GardenExperience() {
   const builds = appliedProjects.slice(1);
 
   return <section id="garden-experience" className="portfolio-applied" aria-labelledby="portfolio-applied-title">
-    <div className="portfolio-applied-heading"><h2 id="portfolio-applied-title">AI, in practice.</h2><p>Cloud workflows at FCAJ.<br />Projects made with a team.</p></div>
+    <div className="portfolio-applied-heading"><h2 id="portfolio-applied-title">AI, in practice.</h2><p>Voice-model evaluation.<br />Cloud workflows & team projects.</p></div>
+
+    <article className="portfolio-outlier-work" aria-labelledby="portfolio-outlier-title">
+      <div><p className="portfolio-work-context">Outlier · Aug–Oct 2026</p><h3 id="portfolio-outlier-title">Listening beyond the words.</h3><p className="portfolio-work-role">AI Evaluation Contributor · Scale AI platform</p></div>
+      <div><p>I compared two conversational voice models in live Vietnamese conversations, assessing naturalness, engagement, audio quality, helpfulness and conversational dynamics.</p><p>I wrote rationales in English to explain my ratings and preferences.</p></div>
+    </article>
 
     <article className="portfolio-cloud-work">
       <figure className="portfolio-cloud-figure">

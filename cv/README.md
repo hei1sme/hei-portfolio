@@ -1,7 +1,7 @@
 # CV sources
 
-These are the current public sources, copied without content changes from the
-owner's local Overleaf import. They contain the personal information already
+These are the current public sources, maintained from the owner's
+Overleaf import. They contain the personal information already
 present in the downloadable PDFs. Originals, unpublished papers and certificates
 remain private in ignored `docs/` and `cv-inbox/`.
 
@@ -43,8 +43,9 @@ python scripts/check-cv-text.py --directory public
 
 `--publish` copies reviewed PDFs into `public/`; it does not push or deploy.
 Keep `public/HungLNG_Resume.md`, `public/HungLNG_Resume_AI_ML.md` and portfolio facts
-aligned when editing content. This cleanup changes only source location and
-build portability; it does not revise the CV claims or layout.
+aligned when editing content. The October 2026 update adds Outlier contributor experience. The layout keeps
+11pt body text with 18mm margins; the industry edition uses tighter section spacing.
+Selected certifications stay on the website rather than extending the research CV.
 
 See [CV design and print notes](../design/cv-digital-and-print.md) and
 [pending owner inputs](../notes/portfolio-backlog.md). Role-specific applications

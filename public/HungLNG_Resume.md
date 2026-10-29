@@ -46,6 +46,12 @@ Trustworthy Multimodal Anomaly Detection Jan 2026 – Present Second Author; ACM
 
 ## Experience & Leadership
 
+### Outlier · AI Evaluation Contributor
+
+Aug–Oct 2026 · Scale AI platform
+
+- Compared two conversational voice models through live Vietnamese interactions, rating naturalness, engagement, audio quality, helpfulness and conversational dynamics; wrote rationales in English.
+
 First Cloud AI Journey — NutriTrack Jan – May 2026 FCAJ Cloud Intern, Team NeuraX AWS Vietnam program
 
 • Developed recipe-generation and AI-coaching workflows using Amazon Bedrock and AWS Lambda, structured JSON responses and DynamoDB user context. • Collaborated on AppSync integration; documented timeout handling and workshops. Report. SpeedyLabX Student Research Group Jan 2025 – Present Founder & Student Lead FPT University
@@ -64,9 +70,6 @@ BioListen VN — Vietnam AI Innovation Challenge Jul 2026 UI & LLM; placed 6th i
 
 Languages & frameworks: Python, SQL/PostgreSQL, TypeScript, React, FastAPI. ML & evaluation: PyTorch, Transformers, TensorFlow/Keras, Scikit-learn, OpenCV; SHAP, Integrated Gradients, DiCE, chronological evaluation. Data & tools: Pandas, NumPy, Git, Docker, Linux; Bedrock, Lambda, DynamoDB, AppSync.
 
-## Selected Certifications
-
-Natural Language Processing (DeepLearning.AI); Gradient to Production: MLOps & Model Serving (Coursera); Full Stack Software Developer (IBM).
 
 ## Source and profile links
 

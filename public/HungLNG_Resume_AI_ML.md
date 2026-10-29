@@ -12,6 +12,12 @@ FPT University — B.Eng. in Artificial Intelligence Expected Dec 2027 GPA: 8.62
 
 ## Experience
 
+### Outlier · AI Evaluation Contributor
+
+Aug–Oct 2026 · Scale AI platform
+
+- Compared two conversational voice models through live Vietnamese interactions, rating naturalness, engagement, audio quality, helpfulness and conversational dynamics; wrote rationales in English.
+
 First Cloud AI Journey — NutriTrack Jan – May 2026 FCAJ Cloud Intern, Team NeuraX AWS Vietnam program
 
 • Developed recipe-generation and coaching workflows with Amazon Bedrock, AWS Lambda and DynamoDB user context; returned structured JSON for the application. • Collaborated on AppSync integration, timeout handling and workshop documentation. Report.
@@ -38,7 +44,7 @@ Languages & frameworks: Python, SQL/PostgreSQL, TypeScript, React, FastAPI. Mach
 
 ## Publication
 
-Gia-Hung Nguyen Le et al. “Proactive Air Quality Forecasting and Health Alert System for Melbourne.” AJCAI 2025, Springer LNAI. DOI: 10.1007/978-981-95-4969-6_34. Four additional manuscripts under review.
+First & corresponding author, AJCAI 2025, Springer LNAI. DOI: 10.1007/978-981-95-4969-6_34. Four additional manuscripts under review.
 
 ## Source and profile links
 
